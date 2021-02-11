@@ -1,0 +1,41 @@
+<!-- Get default accent colors -->
+{{ $darkAccent   := .Site.Params.Style.darkAccent   | default .Site.Data.default.style.darkAccent }}
+{{ $lightAccent  := .Site.Params.Style.lightAccent  | default .Site.Data.default.style.lightAccent }}
+
+<!-- Custom or default copyright -->
+{{ if or (templates.Exists "partials/custom/copyright") (templates.Exists "partials/custom/copyright.html") }}
+  {{ partial "custom/copyright" . }}
+{{ else }}
+  <p>{{ .Site.Copyright | markdownify | emojify }}</p>
+{{ end }}
+
+<!--
+  TODO
+  Maybe I should rethink this
+-->
+
+{{ if gt (len .Translations) 0 }}
+
+  {{ $processedKeys := slice }}
+
+  {{ range .Translations }}
+    {{ $currentKey := printf "<a rel=\"alternate\" hreflang=\"%s\" href=\"%s\">%s</a>" .Language.Lang .RelPermalink .Language.LanguageName }}
+    {{ $processedKeys = $processedKeys | append $currentKey }}
+  {{ end }}
+
+  <p>{{ T "also_available" }}: {{ delimit $processedKeys ", " (T "and") }}.</p>
+
+{{ end }}
+
+
+<!-- Footer button and color picker -->
+<section class="req-js">
+  <button class="outline-dashed" title="{{ T "change_mode" }}"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><use xlink:href="#adjust"/></svg></button><input class="outline-dashed" type="color" list="presets" value="{{ if .Site.Params.Style.isDark }}{{ $darkAccent }}{{ else }}{{ $lightAccent }}{{ end }}" title="{{ T "change_accent" }}" aria-label="{{ T "change_accent" }}"><datalist id="presets"><option value="{{ $lightAccent }}"><option value="{{ $darkAccent }}"><!-- Extra colors -->{{- range .Site.Params.style.presets -}}<option value="{{ . }}">{{ end }}</datalist>
+</section>
+
+<!-- noscript notice -->
+{{ if .Site.Params.hasNoscriptNotice }}
+  <noscript>
+    <p class="noscript">{{ T "noscript" }}</p>
+  </noscript>
+{{ end }}

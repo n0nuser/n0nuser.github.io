@@ -1,0 +1,27 @@
+{{ $googleID := (printf "%#s" $.Site.Params.ga4 ) }}
+{{ $googleURL := (printf "https://www.googletagmanager.com/gtag/js?id=%s" $googleID) }}
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+{{ with $googleURL }}<script async src="{{ . }}"></script>{{ end }}
+{{ with $googleID }}<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ . }}');
+</script> {{ end }}
+
+<!-- Lichess Icon; Use with shortcode Lichess -->
+<link rel="stylesheet" href="https://rubenwardy.com/lichess_widgets/lichess_widgets.css" />
+<script src="https://rubenwardy.com/lichess_widgets/lichess_widgets.js"></script>
+<link rel="stylesheet" href="https://rubenwardy.com/lichess_widgets/dark.css" /> 
+
+<!-- Icon SEO -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="apple-mobile-web-app-title" content="n0nuser">
+<meta name="application-name" content="n0nuser">
+<meta name="msapplication-TileColor" content="#603cba">
+<meta name="theme-color" content="#faf8f8">

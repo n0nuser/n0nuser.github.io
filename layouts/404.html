@@ -1,0 +1,11 @@
+{{ define "main" }}
+
+  <main>
+    <h1>{{ .Site.Params.notFound.title | default .Site.Data.default.notFound.title }}</h1>
+    <p>{{ .Site.Params.notFound.paragraph | default .Site.Data.default.notFound.paragraph }}</p>
+    {{ with (.Site.Params.notFound.image | default .Site.Data.default.notFound.image) }}
+      <img src="{{ . }}"/>
+    {{ end }}
+  </main>
+
+{{ end }}

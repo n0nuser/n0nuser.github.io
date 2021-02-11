@@ -1,0 +1,28 @@
+<!-- Custom or default site title -->
+{{ if or (templates.Exists "partials/custom/site-title") (templates.Exists "partials/custom/site-title.html") }}
+  {{ partial "custom/site-title" . }}
+{{ else }}
+  <a href="{{ .Site.BaseURL | relLangURL }}">{{ .Site.Title }}</a>
+{{ end }}
+
+<!-- Menu -->
+{{ if .Site.Menus.main }}
+    <nav aria-label="{{ T "main_menu" }}">
+      <ul>
+        {{ range .Site.Menus.main }}
+          {{ if .HasChildren }} <!-- Submenu if children in config.toml-->
+          <li>
+            <ul class="toggle">
+              <a class="btn" href="{{ .URL | relLangURL }}">{{ .Name }}</a>
+              {{ range .Children }}
+              <li><a class="btn togglebtn" href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
+              {{ end }}
+            </ul>
+          </li> 
+          {{ else }} <!-- No children -->
+            <li><a class="btn" href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
+          {{ end }}
+        {{ end }}
+      </ul>
+    </nav>
+{{ end }}

@@ -1,0 +1,2 @@
+{{ $user    := .Get "src"   | default (.Get 0) }}
+{{ with $user }}<script>lichess_widgets.profile_big("dark", "{{ . }}");</script> {{ end }}

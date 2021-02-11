@@ -1,0 +1,60 @@
+{{ define "main" }}
+  
+  {{ $currentTitle := .Scratch.Get "currentTitle" }}
+  
+  <!-- Collect pages using the "search" layout -->
+  {{ $searchPages := where .Site.RegularPages "Layout" "eq" "search" }}
+
+  <main class="list">
+
+    <!-- Display search form before listing posts -->
+    {{ if and .Site.Params.Search.enable (gt (len $searchPages) 0) (eq .Kind "section") }}
+      {{ partial "search-form" . }}
+    {{ end }}
+    
+    <h1>{{ $currentTitle }}</h1>
+    
+    {{ if eq .Kind "taxonomyTerm" }}
+      {{ if eq .Type "categories" }}
+        {{ partial "categories" . }}
+      {{ else if eq .Type "tags" }}
+        {{ partial "tags" . }}
+      {{ end }}
+    {{ else }}
+
+      {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
+
+      <ul class="posts">
+        {{ range $paginator.Pages }}
+          <li>
+            <a class="btn" href="{{ .RelPermalink }}">
+              <p>{{ .LinkTitle | emojify }}</p>
+              {{ if not .Date.IsZero }}<time datetime="{{ .Date | dateFormat "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>{{ end }}
+            </a>
+          </li>
+        {{ end }}
+      </ul>
+      
+      {{ partial "pagination" . }}
+
+      {{ if and (gt (len .Site.Taxonomies.tags) 1) (ne .Section "categories") }}
+        <hr>
+        <h2>{{ T "tags" }}</h2>
+        {{ partial "tags" . }}
+      {{ end }}
+
+    {{ end }}
+    
+  </main>
+  
+{{ end }}
+
+{{ define "svg-extra" }}
+  <symbol viewBox="0 0 256 512" id="angle-right">
+    <path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"/>
+  </symbol>
+
+  <symbol viewBox="0 0 448 512" id="angle-double-right">
+    <path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34zm192-34l-136-136c-9.4-9.4-24.6-9.4-33.9 0l-22.6 22.6c-9.4 9.4-9.4 24.6 0 33.9l96.4 96.4-96.4 96.4c-9.4 9.4-9.4 24.6 0 33.9l22.6 22.6c9.4 9.4 24.6 9.4 33.9 0l136-136c9.4-9.2 9.4-24.4 0-33.8z"/>
+  </symbol>
+{{ end }}

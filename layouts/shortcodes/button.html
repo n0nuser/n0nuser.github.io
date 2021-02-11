@@ -1,0 +1,8 @@
+{{ $url    := .Get "src"   | default (.Get 0) }}
+{{ $text := .Get "alt"   | default (.Get 1) }}
+
+    <li>
+        {{ with $url }}<a class="btn" href="{{ . }}">{{ end }}
+            {{ with $text }}<p>{{ . | emojify }}</p>{{ end }}
+        </a>
+    </li>

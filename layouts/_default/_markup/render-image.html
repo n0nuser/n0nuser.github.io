@@ -1,0 +1,99 @@
+{{ $file    := .Destination }}
+{{ $altText := .Text }}
+{{ $class   := .Page.Param "markupImgClass" }}
+
+<!-- Get image processing options -->
+{{ $imageProc := .Page.Scratch.Get "imageProc" }}
+
+<!-- Default image path -->
+{{ $imgPath := .Page.Param "imgPath" }}
+
+{{ if $imgPath }}
+  {{ $file = path.Join $imgPath $file }}
+{{ end }}
+
+{{ $encodedPixel := (printf "data:image/gif;base64,%s" ((resources.Get "img/pixel.gif").Content | base64Encode)) | safeURL }}
+
+<!-- Assume file is local if found -->
+{{ with $.Page.Resources.GetMatch $file }}
+
+  <!-- If image width is equal or greater than X, process it -->
+  {{ if ge .Width $imageProc.markupAutoResizeWidth }}
+
+    <!--
+      HACK
+      Reduce reflow by generating a placeholder with similar size
+    -->
+  
+    {{ $encodedPlaceholder := (printf "data:image/png;base64,%s" (((resources.Get "img/pixel.gif").Resize (printf "%vx%v %s" (.Resize (index $imageProc.mediumRes 0)).Width (.Resize (index $imageProc.mediumRes 0)).Height "png")).Content | base64Encode)) | safeURL }}
+  
+    <img
+      class="lazyload {{ $class }}"
+      loading="lazy"
+      data-srcset="{{ (.Resize (index $imageProc.highRes 0)).RelPermalink }} {{ index $imageProc.highRes 1 }}, {{ (.Resize (index $imageProc.mediumRes 0)).RelPermalink }} {{ index $imageProc.mediumRes 1 }}, {{ (.Resize (index $imageProc.lowRes 0)).RelPermalink }} {{ index $imageProc.lowRes 1 }}"
+      src="{{ $encodedPlaceholder }}"
+      data-src="{{ (.Resize (index $imageProc.mediumRes 0)).RelPermalink }}"
+      {{ with $altText }}alt="{{ . }}"{{ end }}
+    />
+
+    <noscript>
+      <img
+        {{ with $class }}class="{{ . }}"{{ end }}
+        loading="lazy"
+        srcset="{{ (.Resize (index $imageProc.highRes 0)).RelPermalink }} {{ index $imageProc.highRes 1 }}, {{ (.Resize (index $imageProc.mediumRes 0)).RelPermalink }} {{ index $imageProc.mediumRes 1 }}, {{ (.Resize (index $imageProc.lowRes 0)).RelPermalink }} {{ index $imageProc.lowRes 1 }}"
+        src="{{ $encodedPlaceholder }}"
+        {{ with $altText }}alt="{{ . }}"{{ end }}
+      />
+    </noscript>
+
+  {{ else }}
+  
+    <!--
+      HACK
+      Reduce reflow by creating a placeholder with similar size
+    -->
+
+    {{ $placeholder := (.Resize (printf "%vx %s" .Width "png")) | images.Filter (images.Contrast -100) }}
+    {{ $encodedPlaceholder := (printf "data:image/png;base64,%s" ($placeholder.Content | base64Encode)) | safeURL }}
+
+    <img
+      class="lazyload {{ $class }}"
+      loading="lazy"
+      src="{{ $encodedPlaceholder }}"
+      data-src="{{ .RelPermalink }}"
+      {{ with $altText }}alt="{{ . }}"{{ end }}
+    />
+
+    <noscript>
+      <img
+        {{ with $class }}class="{{ . }}"{{ end }}
+        loading="lazy"
+        src="{{ .RelPermalink }}"
+        {{ with $altText }}alt="{{ . }}"{{ end }}
+      />
+    </noscript>
+    
+  {{ end }}
+    
+{{ else }}
+  <!-- If local file isn't found, assume it's a remote file -->
+  {{ with (.Destination | safeURL) }}
+    <img
+      class="lazyload {{ $class }}"
+      loading="lazy"
+      src="{{ $encodedPixel }}"
+      data-src="{{ . }}"
+      {{ with $altText }}alt="{{ . }}"{{ end }}
+    />
+    
+    <noscript>
+      <img
+        {{ with $class }}class="{{ . }}"{{ end }}
+        loading="lazy"
+        src="{{ . }}"
+        {{ with $altText }}alt="{{ . }}"{{ end }}
+      />
+    </noscript>
+  
+  {{ end }}
+{{ end }}
