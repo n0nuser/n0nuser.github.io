@@ -138,6 +138,7 @@ body {
     // position: fixed;
     // top: 0;
     // z-index: 999;
+
     nav {
       margin: .5rem 0 0;
       
@@ -898,7 +899,9 @@ video {
   }
 }
 
-
+.roundedImage {
+  border-radius: 50%;
+}
 
 // Table of Contents
 .toc {

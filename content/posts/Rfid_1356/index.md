@@ -102,4 +102,4 @@ I hope you enjoyed the post and learned something!
 
 If there was any type of error, incompletion or something is not clear, just message me and I’ll fix it 😇
 
-Same goes if you have any doubt or feel like something is missing in the post, so it can help others ✌️:neckbeard:✌️
+Same goes if you have any doubt or feel like something is missing in the post, so it can help others ✌️

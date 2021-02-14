@@ -42,7 +42,7 @@ paginate = 6
   
   # Shows a message in the footer about JavaScript being disabled
   # The default is false
-  hasNoscriptNotice = true
+  hasNoscriptNotice = false
   
   # Default path for images in posts
   # ie.: "content/some-post/img"
@@ -102,11 +102,15 @@ paginate = 6
     
     # Limit search field input and pattern matching
     minLength = 2   # Default is 3
-    maxLength = 42  # Default is 32
+    maxLength = 32  # Default is 32
     
     # Optional placeholder for search field
     placeholder = "ie.: lorem ipsum"
     
+    # Stop word filter list
+    # Can also be set PER PAGE via front matter
+    # There's no default value
+    stopWords = [ "a", "an", "and", "in", "the", "to", "was", "were", "with" ]
 
   [params.style]
   

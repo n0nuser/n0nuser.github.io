@@ -1,6 +1,6 @@
 {{- $stopWords := or .Params.stopWords .Site.Params.Search.stopWords -}}
 
-{{- $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections -}}
+{{- $pages := .Site.RegularPages -}}
 
 {{- $lastIndex := (sub (len $pages) 1) -}}
 

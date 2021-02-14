@@ -44,7 +44,7 @@
   {{ end }}
 
   <img
-    class="lazyload {{ $class }}"
+    class="lazyload {{ $class }} roundedImage"
     loading="lazy"
     data-srcset='{{ delimit $outputSet ", " }}'
     src="{{ $encodedPlaceholder }}"
@@ -55,7 +55,7 @@
 
   <noscript>
     <img
-      {{ with $class }}class="{{ . }}"{{ end }}
+      {{ with $class }}class="{{ . }} roundedImage"{{ end }}
       loading="lazy"
       srcset='{{ delimit $outputSet ", " }}'
       src="{{ $encodedPlaceholder }}"

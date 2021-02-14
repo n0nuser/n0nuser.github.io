@@ -32,6 +32,8 @@ PALETTE.onchange = function () {
   {{ (index (last 1 (resources.Match "libs/fuse.js@*/dist/fuse.basic.min.js")) 0).Content | safeJS }}
 
   const fuseOptions = {
+    includeMatches: true,
+    findAllMatches:true,
     shouldSort: true,
     threshold: 0,
     ignoreLocation: true,
@@ -39,16 +41,16 @@ PALETTE.onchange = function () {
     minMatchCharLength: {{ .Site.Params.Search.minLength | default .Site.Data.default.search.minLength }},
     keys: [
       { name: 'title',        weight: .4 },
-      { name: 'tags',         weight: .3 },
+      { name: 'tags',         weight: .1 },
       { name: 'description',  weight: .2 },
-      { name: 'content',      weight: .1 }
+      { name: 'content',      weight: .3 }
     ]
   };
 
   // Sanitize
   function param(name) {
-    return decodeURIComponent((location.search.split(name + '=')[1] || '').split('&')[0]).replace(/\+/g, ' ')
-  };
+    return decodeURIComponent((location.search.split(name + '=')[1] || '').split('&')[0]).replace(/\+/g, ' ');
+  }
   
   // Capture input
   let searchQuery = param('q');
@@ -87,8 +89,11 @@ PALETTE.onchange = function () {
       const limit = {{ .Site.Params.Search.maxResults | default 30 }};
       
       const pages = data;
+      console.log("Data: " + data);
       const fuse = new Fuse(pages, fuseOptions);
+      console.log("Fuse: " + fuse);
       const result = fuse.search(searchQuery);
+      console.log("Result: " + result);
 
       // Reset info regarding the search
       info.innerHTML = '';

@@ -1,0 +1,11 @@
+{{ $src    := .Get "src"   | default (.Get 0) }}
+{{ $alt := .Get "alt"   | default (.Get 1) }}
+{{ $width := .Get "width"   | default (.Get 2) }}
+
+<li>
+    <img
+    {{ with $src }}src="{{ . }}"{{ end }}
+    {{ with $alt }}alt="{{ . }}"{{ end }}
+    {{ with $width }}width="{{ . }}"{{ end }}
+    class="btn">
+</li>
