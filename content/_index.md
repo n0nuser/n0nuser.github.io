@@ -34,6 +34,7 @@ I’m Pablo Jesús González Rubio and I was born in Salamanca (Spain) in 02/200
 
 <div class="list">
     <ul class="posts">
+        {{< button "https://resume.nonuser.es/" "Curriculum in English (WWW)" >}}
         {{< button "./cvSpanish.pdf" "Curriculum in Spanish (PDF)" >}}
         {{< button "./cvEnglish.pdf" "Curriculum in English (PDF)" >}}
     </ul>

@@ -252,9 +252,15 @@ paginate = 6
     [languages.en.menu]
 
       [[languages.en.menu.main]]
+        identifier = "cv"
+        name = "CV"
+        weight = 1
+        url = "https://resume.nonuser.es"
+
+      [[languages.en.menu.main]]
         identifier = "whoami"
         name = "whoami"
-        weight = 1
+        weight = 2
         url = "#whoami"
 
       [[languages.en.menu.main]]
@@ -267,13 +273,13 @@ paginate = 6
       [[languages.en.menu.main]]
         identifier = "posts"
         name = "Posts"
-        weight = 2
+        weight = 3
         url = "posts/"
       
       [[languages.en.menu.main]]
         identifier = "writeups"
         name = "Writeups"
-        weight = 3
+        weight = 4
         url = "writeups/"
 
       [[languages.en.menu.main]]
@@ -293,5 +299,5 @@ paginate = 6
       [[languages.en.menu.main]]
         identifier = "contact"
         name = "Contact"
-        weight = 4
+        weight = 5
         url = "#contact"
