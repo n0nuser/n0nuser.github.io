@@ -19,7 +19,7 @@ I usually upload different sort of things to ease our life when we have a task i
 * [DIY Projects](tags/projects) such as a Rubber Ducky or a Rogue AP 🔨
 * [Writeups](writeups) for [HTB](writeups/htb) or [THM](writeups/thm) machines 👹
 
-You can stay tuned for posts with the RSS feed on [here!](index.xml)
+You can stay tuned for posts with the [RSS feed](index.xml)!
 
 ## whoami
 
@@ -34,9 +34,7 @@ I’m Pablo Jesús González Rubio and I was born in Salamanca (Spain) in 02/200
 
 <div class="list">
     <ul class="posts">
-        {{< button "https://resume.nonuser.es/" "Curriculum in English (WWW)" >}}
-        {{< button "./cvSpanish.pdf" "Curriculum in Spanish (PDF)" >}}
-        {{< button "./cvEnglish.pdf" "Curriculum in English (PDF)" >}}
+        {{< button "https://resume.nonuser.es/" "Curriculum in English" >}}
     </ul>
 </div>
 

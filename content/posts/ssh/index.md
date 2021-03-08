@@ -2,11 +2,12 @@
 title: "SSH - Install and Harden"
 description: "Installing an SSH server can be very useful to manage your files from outside home and knowing it encrypts the traffic one can remain relieved that the data is secure. Today we are going to install one and secure it!"
 date: 2020-10-22
+lastmod: 2021-03-08
 author: "Pablo Jesús González Rubio"
 cover: "cover.jpg"
 coverAlt: "SSH"
 toc: true
-tags: [ "Guide" ]
+tags: [ "SysAdmin" ]
 ---
 
 ## Introduction
@@ -63,7 +64,7 @@ At this point, we can already use the SSH to connect!
 
 Even that SSH is encrypting our traffic cybercriminals can still perform some attacks on it depending on how it's configured. It's time to secure it!
 
-I've put a lot of options to secure it so choose whichever you like!
+I've put a lot of options to secure it, so choose whichever you like!
 
 You have the list [here](#TableOfContents).
 
@@ -195,7 +196,7 @@ Subsystem	sftp	/usr/lib/openssh/sftp-server
 #	ForceCommand cvs server
 ```
 
-We will review some of these settings
+We will review some of these settings.
 
 ### Changing SSH port
 
@@ -239,6 +240,8 @@ sudo ufw status
 
 {{< img "newPort.png" "New Port" "border" >}}
 
+---
+
 ### Disabling Root Login
 
 Root is the superuser with all privileges. Unsupervised access to that user can cause a lot of harm if a cybercriminal could take access, basically because they can do whatever they want with your server.
@@ -256,6 +259,8 @@ And restart SSH:
 ```
 sudo systemctl restart ssh
 ```
+
+---
 
 ### Usage of SSH Keys
 
@@ -281,6 +286,8 @@ ssh -i id_rsa username@hostname
 
 If no password was set when creating the keys we should connect directly to the server.
 
+---
+
 ### Remove Password Access
 
 Warning! ⚠
@@ -301,6 +308,8 @@ And restart SSH:
 sudo systemctl restart ssh
 ```
 
+---
+
 ### Disallow Users with no Password set
 
 When creating a user there's the option of using SSH without a password, but it's very risky!!
@@ -318,6 +327,8 @@ And restart SSH:
 ```
 sudo systemctl restart ssh
 ```
+
+---
 
 ### Setting a max of Auth tries
 
@@ -337,6 +348,8 @@ And restart SSH:
 sudo systemctl restart ssh
 ```
 
+---
+
 ### AFK timeout
 
 We as System Administrator may not want a user to chew the resources away if they are being idle.
@@ -354,6 +367,8 @@ And restart SSH:
 ```
 sudo systemctl restart ssh
 ```
+
+---
 
 ### Limit Access to some Users
 
@@ -374,3 +389,89 @@ And restart SSH:
 ```
 sudo systemctl restart ssh
 ```
+
+---
+
+### Endlessh
+
+Link to [Github](https://github.com/skeeto/endlessh).
+
+As the description says:
+
+> Endlessh is an SSH tarpit [that very slowly sends an endless, random SSH banner](https://nullprogram.com/blog/2019/03/22/). It keeps SSH clients locked up for hours or even days at a time.
+
+The idea is putting the real SSH server on another port not as common as 22 or 2222, so botnets or malicious hackers that try to execute exploits, rootkits, etc., or brute force your server, will get stuck and can't do anything else.
+
+#### Installation
+
+First, we need to download the repository:
+
+```
+git clone https://github.com/skeeto/endlessh
+```
+
+Then we need to enter the folder and compile the program:
+
+```
+cd endlessh
+make
+```
+
+It shouldn't throw you any error, but if it does:
+
+```
+sudo apt install libc6-dev -y
+```
+
+Now we can move the final executable to the local user binaries folder (which is in the PATH), to be able to use it from any folder:
+
+```
+sudo mv endlessh /usr/local/bin
+```
+
+If we want to execute it as a service, to make it run whenever the computer is powered, we can run:
+
+```
+sudo cp util/endlessh.service /etc/systemd/system
+sudo systemctl enable endlessh
+```
+
+What this does, is copying the service file to the services folder, and then enable Endlessh to run on boot.
+
+
+#### Configuration
+
+We need to create the config file:
+
+```
+mkdir -p /etc/endlessh
+printf "Port 22\nLogLevel 1" | sudo tee -a /etc/endlessh/config > /dev/null
+```
+
+You can change the port from 22 to 2222.
+
+There are [more configuration parameters](https://github.com/skeeto/endlessh#sample-configuration-file) in the repository.
+
+That's it!
+
+---
+
+### Fail2Ban
+
+Link to [webpage](https://www.fail2ban.org/wiki/index.php/Main_Page).
+
+I have a [post about Fail2Ban](../fail2ban).
+
+Apart from the normal configuration, what interests us here is changing these lines:
+
+```conf
+# To use more aggressive sshd modes set filter parameter "mode" in jail.local:
+# normal (default), ddos, extra or aggressive (combines all).
+# See "tests/files/logs/sshd" or "filter.d/sshd.conf" for usage example and details.
+#mode   = normal
+port    = ssh
+logpath = %(sshd_log)s
+backend = %(sshd_backend)s
+```
+
+In this case, changing the port if needed (default is 22) and change the mode if anything.
