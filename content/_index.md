@@ -5,21 +5,20 @@ imgPath = "."
 disableTitleSeparator = true
 +++
 
-
 <!-- ![Spongebob Happy](https://media.tenor.com/images/6d2f936160eb65153b72f0bcd74dca82/tenor.gif) -->
 
-![Cat programming](programmingCat.gif)
+<!-- ![Cat programming](programmingCat.gif) -->
 
 This a Cybersecurity and Programming blog 👽️
 
 I usually upload different sort of things to ease our life when we have a task in front of us:
 
 * [Cheatsheets](tags/cheatsheet/) about penetration testing and programming 💲
-* [IT Guides](tags/guide) such as installing a service and how to harden it 📄
+* [System Administration Guides](tags/sysadmin) such as installing a service and how to harden it 📄
 * [DIY Projects](tags/projects) such as a Rubber Ducky or a Rogue AP 🔨
 * [Writeups](writeups) for [HTB](writeups/htb) or [THM](writeups/thm) machines 👹
 
-You can stay tuned for posts with the [RSS feed](index.xml)!
+You can stay tuned for upcoming posts with the [RSS feed](index.xml)!
 
 ## whoami
 

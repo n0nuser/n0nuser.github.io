@@ -7,7 +7,7 @@ author: "Pablo Jesús González Rubio"
 cover: "m3u8.png"
 coverAlt: "Network Analysis with Developer Tools."
 toc: true
-tags: [ "Guide" ]
+tags: [ "Misc" ]
 ---
 
 ## Introduction

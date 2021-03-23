@@ -2,12 +2,12 @@
 title: "RubberSpark"
 description: "BadUSB with a cheap Arduino DigiSpark! (4€)"
 date: 2019-11-21
-lastmod: 2020-09-12
+lastmod: 2021-03-23
 author: "Pablo Jesús González Rubio"
 cover: "digispark.jpg"
 coverAlt: "Digispark board"
 toc: true
-tags: [ "Projects" ]
+tags: [ "Red-Team", "Projects" ]
 ---
 
 ## Introduction
@@ -20,13 +20,9 @@ Unfortunately, it costs 60€ in Spain, so I searched over the internet how I co
 
 {{< img "digispark.jpg" "A digispark" "border" >}}
 
-DigiSpark can also inject code but it’s a little bit trickier as in Rubber Ducky you have to put the file.duck into it. Here we have to write the .duck and transform it to a .ino Arduino readable.
+DigiSpark can also inject code but it’s a little bit trickier. In Rubber Ducky you have to put the `file.duck` in its filesystem; here we have to write the `.duck` and transform it to a .ino Arduino readable.
 
-## Get Started
-
-First of all, I’m assuming you are on Linux as the script to change it is in bash. It could also be done in Windows with Python, but you then have to install Python and add it to your Environmental Path. So to keep it simple I’ll just stick with Linux, however, if reading this you feel like you need this guide for Windows, tell me and I’ll make a part for it!
-
-### Installing Arduino and DigiSpark Drivers
+## Installing Arduino and DigiSpark Drivers
 
 To install Arduino, first download it from [Arduino IDE Download](https://www.arduino.cc/en/Main/Software), scroll down and select `linux 64 bits`. When download it go to the directory and extract, if via CLI: 
 
@@ -52,7 +48,7 @@ http://digistump.com/package_digistump_index.json
 
 After that, go to `Tools`, then `Board`, and `Boards Manager`. In the search bar, put `Digistump` and click install on `Digistump AVR Boards`. Then select in `Board` the option `Digispark (Default - 16.5mhz)` and that's it for this part!
 
-### Coding .duck
+## Coding .duck
 
 Rubber Ducky language is ___very simple___ there are few commands, the rest is up to your imagination and skills!
 
@@ -70,36 +66,122 @@ Keys:
 - `CTRL-SHIFT ENTER` for key combos
 
 
-### Converting .duck to .ino
+## RubberSpark Framework
+
+RubberSpark is a modular and light-weight framework that aims to provide all the Ducky scripts that you may need in a Red Teaming engagement.
+
+It delivers Ducky Scripts with modifiable parameters (e.g: Reverse Shell. You need to introduce an IP and a Port).
+
+### Screenshots
+
+{{< img "1.png" "Commands" >}}
+
+{{< img "2.png" "Commands" >}}
+
+### Usage
+
+```bash
+git clone https://github.com/n0nuser/rubberspark
+cd rubberspark
+python3 rubberspark.py
+```
+
+#### Commands
+
+```txt
+Command           Description
+-------           -----------
+help              Shows this help menu.
+list              Shows list of payloads, can be used with arguments. i.E.: list linux
+clear             Clears the screen
+banner            Display banner.
+exit              Exit the framework
+```
+
+### Converting DuckyScript to Arduino
 
 For this [Marcus Mengs](https://github.com/mame82) created two python scripts that transform `.duck` to `.bin` ([DuckEncoder](https://github.com/mame82/duckencoder.py)) and `.bin` to `.ino` ([Duck2Spark](https://github.com/mame82/duck2spark)).
 
-I've automatized this so you just:
+After saving the `.duck` script, you can either directly use it in a RubberDucky; or in case of using it in a DigiSpark, you can use the `ccRun.sh` script that uses both MaMe82's Duck2Spark and DuckEncoder. This automates the task of compiling the script all the way directly to an Arduino sketch.
+
+> Be sure to change the locale and the Arduino path if needed!
+
+This is the code of the Bash script:
 
 ```bash
-git clone https://github.com/n0nuser/RubberSpark.git
+#!/bin/bash
+
+## n0nuser
+## https://github.com/n0nuser/rubberspark
+
+#####################
+# CHANGE THESE VALUES
+
+## e.g.: PATH_ENCODER = 
+PATH_ENCODER="resources/duckEncoder/duckencoder.py"
+
+## e.g.: PATH_DUCK2SPARK =
+PATH_DUCK2SPARK="resources/duck2spark.py"
+
+## e.g.: PATH_ARDUINO = "arduino"
+PATH_ARDUINO="arduino"
+
+KEYBOARD_LANG="es"
+#####################
+
+file=$(echo $1 | cut -f 1 -d '.')
+
+encoder="python $PATH_ENCODER -l $KEYBOARD_LANG -i $file.duck -o $file.bin"
+spark="python $PATH_DUCK2SPARK -i $file.bin -o $file.ino"
+arduino="sudo $PATH_ARDUINO $file.ino"
+
+$($encoder)
+$($spark)
+$($arduino)
 ```
 
-When downloaded, there's a folder called Scripts, inside you can create folders with your ducky scripts and to compile them and open them in arduino, run:
+To convert the `.duck` file into a `.ino` directly just run:
 
-```bash
-# From RubberSpark folder
-chmod +x compile # Just Once
-./compile Scripts/Your_Script_Folder/NAME_of_your_script
 ```
+chmod +x ccRun.sh
+./ccRun.sh myDuckyScript.duck
+```
+
+#### Adding modules
+
+It's as easy as adding a module in each OS folder in `core/modules/`.
+
+You can request an issue to upload a python file with the same structure to keep it in the repo in the future!
+
+Structure of python file:
+
+```py
+class info:
+    author="AUTHOR"
+    description = "DESCRIPTION OF MODULE"
+    function = "ITS USE"
+    parameters = [ "IP", "PORT" ]
+    content = """\
+DUCKY
+COMMANDS
+HERE\
+"""
+```
+
+### Disclaimer
+
+Do not attempt to violate the law with the framework. If you plan to use it for illegal purposes, then please be sure you have explicit permission, else deny doing it.
+
+I will not hold responsibility for any of your actions.
 
 Don't stick the DigiSpark to the PC for now!
 
-### Uploading the code
+## Uploading the code
 
-And it will open the script compiled in .ino with Arduino, so to upload the script to DigiSpark, click this button:
+And it will open the script compiled in .ino with Arduino, now to upload the script to DigiSpark, click this button:
 
 {{< img "arduino_upload.png" "How to upload the code" "border" >}}
 
 And then plug the DigiSpark 🐦️
 
 And that's it for this project tutorial!
-
-### End
-
-I'm planning on doing a Python framework that generates different payloads, it takes a python script with the actual payload programmed and is run to 
