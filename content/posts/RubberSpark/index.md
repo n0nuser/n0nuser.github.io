@@ -1,7 +1,7 @@
 ---
 title: "RubberSpark"
 description: "BadUSB with a cheap Arduino DigiSpark! (4€)"
-date: 2019-11-21
+date: 2021-03-23
 lastmod: 2021-03-23
 author: "Pablo Jesús González Rubio"
 cover: "digispark.jpg"

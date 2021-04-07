@@ -7,7 +7,7 @@ enableEmoji = false # It transcodes emojis from hex codeblock
 # Ideal solution: hardcode it in text
 enableInlineShortcodes = true
 
-paginate = 6
+paginate = 8
 
 
 [markup]

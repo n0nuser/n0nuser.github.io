@@ -7,6 +7,7 @@ author: "Pablo Jesús González Rubio"
 cover: "cover.jpg"
 coverAlt: "P4wnP1 ALOA"
 toc: true
+draft: true
 tags: [ "Red-Team", "Projects" ]
 ---
 
