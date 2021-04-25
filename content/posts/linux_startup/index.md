@@ -12,7 +12,7 @@ tags: [ "SysAdmin", "Linux" ]
 ---
 
 
-## Arranque
+## Boot
 
 - `dmesg`: Vuelva en pantalla la información del arranque del sistema. Si ponemos un periférico y el sistema no arranca, es aquí donde se mira.
   - Parecido es `journalctl -f`

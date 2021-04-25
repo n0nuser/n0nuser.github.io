@@ -119,7 +119,7 @@ paginate = 8
     isDark = true
   
     # Accent colors for light and dark mode respectively
-    lightAccent  = "#006666" # Default is "#225670"
+    lightAccent  = "#536dfe" # Default is "#225670", "#006666
     darkAccent   = "#66CC99" # Default is "#dd587c", GREEN: #3eff3f
 
     # More colors, pick as many as you want (not really sure if there's a limit)

@@ -9,13 +9,18 @@ disableTitleSeparator = true
 
 <!-- ![Cat programming](programmingCat.gif) -->
 
-This a Cybersecurity and Programming blog 👽️
+This a Cybersecurity and SysAdmin blog 👽️
 
 I usually upload different sort of things to ease our life when we have a task in front of us:
 
 * [Cheatsheets](tags/cheatsheet/) about penetration testing and programming 💲
-* [System Administration](tags/sysadmin) 📄
-* Concepts of [Linux Administration](tags/linux) 🐧
+* [System Administration](tags/sysadmin): how to set up different services and apps 📄
+* [Linux Administration](tags/linux) 🐧
+  * [Filesystem](posts/linux_filesystem)
+  <!--* [Startup and shutdown](posts/linux_startup)-->
+  <!--* [Disk management - Quotas](posts/linux_diskmanagement)-->
+  <!--* [Backups](posts/linux_backup)-->
+  * [Monitoring Processes](posts/linux_processes)
 * [DIY Projects](tags/projects) such as a Rubber Ducky or a Rogue AP 🔨
 * [Writeups](writeups) for [HTB](writeups/htb) or [THM](writeups/thm) machines 👹
 
