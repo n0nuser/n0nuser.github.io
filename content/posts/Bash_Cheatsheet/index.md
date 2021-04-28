@@ -10,9 +10,7 @@ toc: true
 tags: [ "Cheatsheet", "Bash" ]
 ---
 
-You can download the cheatsheet as a pdf from [here](./bash.pdf)!
-
-This is a rapid guide to look at when doing some scripts as it may help when forgetting something.
+This is a fast guide to look at when doing some scripts as it may help when forgetting something.
 
 It is oriented to a beginner-intermediate level of usage. So I will take for granted you know some things about it.
 
@@ -141,18 +139,35 @@ Otherwise, the program will not work.
 ### Loop: for
 
 ```bash
-for VARIABLE in 1 2 3 4 5 .. N
+for i in 1 2 3 4 5
 do
-  command1
-  //...
-  commandN
+  echo "Hi for the $i time!"
 done
 ```
 
-- `$@` Is an array with all the arguments.
-- `$#` Is the number or passed arguments.
+Or
+
+```bash
+for i in {1..10}
+do
+  echo "Hi for the $i time!"
+done
+```
+
+Or
+
+```bash
+for (( i=1; i<=10; i++ ))
+do
+  shell_COMMANDS
+done
+```
+
+This last one allows for an easy reverse loop.
+
+- `$@` is an array with all the arguments.
+- `$#` os the number or passed arguments.
 - `$1` Selects the first argument.
-- `$i` Calls the value of *i* variable.
 
 ### Loop: while/until
 

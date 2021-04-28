@@ -15,12 +15,14 @@ I usually upload different sort of things to ease our life when we have a task i
 
 * [Cheatsheets](tags/cheatsheet/) about penetration testing and programming 💲
 * [System Administration](tags/sysadmin): how to set up different services and apps 📄
-* [Linux Administration](tags/linux) 🐧
+* [Linux Course](tags/linux) 🐧
   * [Filesystem](posts/linux_filesystem)
   <!--* [Startup and shutdown](posts/linux_startup)-->
   <!--* [Disk management - Quotas](posts/linux_diskmanagement)-->
+  <!--* [User and group management](posts/linux_users)-->
   <!--* [Backups](posts/linux_backup)-->
   * [Monitoring Processes](posts/linux_processes)
+  * [System Auditing](posts/linux_audit)
 * [DIY Projects](tags/projects) such as a Rubber Ducky or a Rogue AP 🔨
 * [Writeups](writeups) for [HTB](writeups/htb) or [THM](writeups/thm) machines 👹
 
@@ -57,6 +59,15 @@ You can find me at:
     <ul class="posts">
         {{< contentButton src="https://now-playing-profile.n0nuser.vercel.app/now-playing" alt="Spotify Now Playing" width="350">}}
     </ul>
+</div>
+
+**Steam** 🎮
+<div class="list">
+    <a href="https://steamcommunity.com/id/n0nuser">
+        <ul class="posts">
+            {{< contentButton src="https://steam-stat.vercel.app/api?profileName=n0nuser" alt="Spotify Now Playing" width="350">}}
+        </ul>
+    </a>
 </div>
 
 **Hacking Ranks** 💻
