@@ -1,211 +1,220 @@
 ---
 title: "Linux - Backup"
-description: ""
+description: "A backup or backup is the safe copy of a digital file, a set of files, or all of the data considered important enough to be preserved."
 date: 2021-04-07
 lastmod: 2021-04-07
 author: "Pablo Jesús González Rubio"
 cover: "cover.png"
 coverAlt: "Tux!"
 toc: true
-draft: true
+draft: false
 tags: [ "SysAdmin", "Linux" ]
 ---
 
+A backup or backup is the safe copy of a digital file, a set of files, or all of the data considered important enough to be preserved.
+
 ## Why is it important
 
-- Recuperar los sistemas informáticos y los datos de una catástrofe informática.
-- Natural o ataque
-  - En un incendio:
-    - Sistemas que liberan gases y consumen el oxígeno para apagar el fuego.
-    - Sistemas de hormigón anti-incendio
-  - Inundación
-  - Terremoto
-  - Coche que se empotra contra el edificio.
-- Restaurar una información que se ha eliminado de forma accidental.
-  - Fotos familiares
-  - Echan de menos algo que no existe
-- Información corrupta
-- Ataque informático: ramsonware,...
-- Guardar información histórica en formas más económicas que un disco duro.
-  - Información más antigua en peores discos duros (más lentos) y la más reciente en los más nuevos (más rápidos).
-- Traslado a otras ubicaciones y réplicas.
+- Recover computer systems and data from a computer disaster.
+- Natural or attack
+  - In a fire:
+    - Systems that release gases and consume oxygen to put out the fire.
+    - Concrete anti-fire systems
+  - Floods
+  - Earthquakes
+  - Car crashing against the building.
+- Restore information that has been accidentally deleted.
+  - Family photos
+  - They miss something that does not exist
+- Corrupt information
+- Computer attack: ramsonware, ...
+- Save historical information in ways cheaper than a hard disk.
+  - Oldest information on worst hard drives (slower) and newer on newer (faster).
+- Transfer to other locations and replicas.
 
-En cuanto a localización suelen estar en un edificio en la última planta baja.
+### Things to take in count
 
-Las copias de seguridad (pendrives, discos duros, cintas magnéticas) se almacenan en cajas fuertes ignífugas.
+In terms of location, they are usually in a building on the top ground floor.
 
-## Commands
+When selecting what content to save, we must always think about the level of importance of the information.
 
-### Low level
+The periodicity to make the backup copies of our data will depend on the greater or lesser movement of the information that we carry out.
 
-- `tar`
-- `cpio`: Está en desuso.
-- `dd`
-- `dump` y `restore`
+Backup copies (pen drives, hard drives, magnetic tapes) are usually stored in fireproof safes.
 
-### High level
-
-- `amanda`: 
-- `bacula`: 
-- `rsync`: 
-- `unison`: 
-
-## Strategys
+## Strategies
 
 ### Full Copy
 
-Copiar directamente todos los archivos seleccionados cada vez que se lanza el proceso.
+Directly copy all selected files every time the process is launched.
 
-Si pesa mucho, tardará mucho tiempo en ejecutarlo y por eso se haría una vez a la semana o al mes.
+If it weighs a lot, it will take a long time to run, and that is why it would be done once a week or a month.
 
-Esta información aunque no se modifique, se sigue copiando. Por lo que satura el almacenamiento.
+Even if this information is not modified, it continues to be copied. So it's redundant and saturates the storage.
 
-El espacio y el tiempo son dinero, y es mejor no malgastarlos.
+Think it this way, for a company like Google Drive or Dropbox, storage and time are money, so it's better not to waste them. And it would be nonsense to store the same information without modification every time they do the copy.
 
-### Copia diferencial o acumulativa
+### Differential or cumulative copy
 
-*Sólo* copia los ficheros que han sido *creados o modificados* desde la *última copia completa* (copia de referencia).
+*Only* copy files that have been *created or modified* since the *last complete copy* (reference copy).
 
-El domingo se hace una copia completa. El lunes se crea un archivo y hace su copia. El martes se crea otro archivo, entonces se copia el del lunes y del martes.
+A *complete copy* is made on Sunday.<br>On Monday, a file is created and made its copy. On Tuesday, another file is created.<br>Then both files from Monday and Tuesday are copied.
 
-Esto con cambios pequeños es una maravilla, pero con cambios grandes y continuos es igual prácticamente que la full copy. Por eso se le llama acumulativa.
+Differential copies are best when small changes are made, but with large and continuous changes it is practically the same as a full copy. That is why it is called *cumulative*.
 
-"foto muñeco matrioska"
+{{< img "matrioska.jpg" "Matrioskas" "border" >}}
 
-Para recuperar la información de un día se necesita la primera full copy y la copia (diferencial) de ese día.
+**To retrieve the information** of a day you need the first full copy and the copy (differential) of that day.
 
-El problema que tiene esto es que si se corrompe algo en la copia, es el doble de díficil de recuperarlo.
+The **problem** with this is that if some part of the copy is corrupted, it is twice as difficult to recover it.
 
-### Copia incremental
+### Incremental copy
 
-*Sólo* copia los ficheros *creados o modificados* desde el *último backup*.
+*Only* copies files *created or modified* since the *last backup*.
 
-Para recuperar los datos se necesita la primera full copy y todos los cambios (copias) hechos hasta ese día.
+To recover the data from the backup, we need the first complete copy and all the incremental copies made up to that day.
 
-Esto es lo que hace Google Drive y otras empresas de este tipo.
+Google Drive and other similar companies do this.
 
-### Resumen
+### Summary
 
-El tipo de copia que se va a hacer depende del volumen de datos que se va a manejar.
+The type of copy to be made depends on the volume of data to be handled.
 
-Volumen pequeño -> full copy; volumen grande -> diferencial e incremental.
+- Small volume -> full copy
+- Large volume -> differential and incremental.
 
-### Problemas
+When planning a backup is better to make 4 complete copies every week and 7 incremental/differential copies (with its respective 7 devices to store the copies), than 1 full copy monthly and 30 devices for the incremental/differential copies.
 
-Que la copia de seguridad esté bien hecha. Si está mal hecha y utilizamos un método incremental y alguna está mal hecha, toda la información se esa copia se pierde.
+This is because there is a good chance that one of those 30 devices can break down.
 
-Entonces se utilizan métodos como el CRC, hash, checksum y demás para comprobar la integridad de los ficheros.
+### Problems
 
-### Caso práctico
+If the backup is badly done and we use an incremental/differential method, all the information will be lost.
 
-Mejor 4 copias completas semanales y 7 dispositivos en los que guardar la información, que 1 en el que hacer la copia completa y 30 para guardar los cambios.
+There are methods such as CRC, hash, checksum, and others that are used to check the integrity of the files.
 
-Esto es porque de esos 30 hay muchas probabilidades de que alguno se pueda estropear.
+## Tools
 
-## Tar (Tape ARchiver)
+### Tar (Tape ARchiver)
 
-Las copias de seguridad no se hacen en discos duros por la tasa de fallo que tiene y la probabilidad de pérdida de los ficheros. En las grandes empresas se utilizan cintas magnéticas para soportar esto.
+Important backups aren't made to hard drives due to the failure rate and the probability of file loss. Magnetic tapes are used in large companies to support this and [Tar](https://linux.die.net/man/1/tar) is used for this purpose.
 
-Tar permite hacer una copia de un directorio directamente a una cinta magnética.
+Tar allows you to make a copy of a directory directly to a magnetic tape.
 
 ```bash
-# Crear una copia de seguridad: -c
-# Modo fichero (no cinta magnetica): -f 
-# Comprimir con GZip: -z
-# Modo verbose: -v
+# Create a backup: -c
+# File mode (not magnetic tape): -f
+# Compress with GZip: -z
+# Verbose mode: -v
 tar -cfzv myBackup.tar directory
 ```
 
-Para listar los ficheros que hay dentro de un ".tar":
+To list the files inside a ".tar":
 
 ```bash
-# Para listar: -t
+# To list: -t
 tar -tf myBackup.tar
 ```
 
-Para extraer algo de un fichero ".tar":
+To extract something from a ".tar" file:
 
 ```bash
-# Extrae todo
+# Extract everything
 tar -xfv myBackup.tar
-# Extrae algo en particular
+# Extract something in particular
 tar -xfv myBackup.tar myfile
 ```
 
-Cuando se comprimen directorios absolutos (e.g: `/home`) se eliminan la barra del directorio absoluto por seguridad. Y cuando se descomprime se hace en un directorio aparte y es el usuario el que tiene que sobrescribir los datos.
+When absolute directories are compressed (e.g: `/ home`), the directory slash is removed as a security measure. When it's decompressed, it is done in a separate directory and is the user who has to overwrite the data.
 
-Esto se hace para evitar que alguien modifique un fichero passwd, por poner un ejemplo, y este se sobrescriba en nuestro sistema.
+This is done to prevent someone from modifying the "passwd" file, for example, and it being overwritten on our system.
 
-## DD
+### DD
 
-Clonar un fichero: `dd if=pagos.pdf of=pagos2.pdf`
-Clonar una partición: `dd if=/dev/sda1 of=/dev/sdb1`
-Clonar un disco: `dd if=/dev/sdX of=/dev/sdY`
-Para hacer un ISO de un CD-Rom: `dd if=/dev/cdrom of=micd.iso`
+[DD - Convert and copy a file](https://linux.die.net/man/1/dd).
 
-Para mandar una cinta a un robot de copia de seguridad en otro lado del mundo que guarde los ficheros en una cinta magnética y luego en una caja fuerte:
+It's widely known and used for copying entire filesystems into files and viceversa.
+
+Clone a file: `dd if = payments.pdf of = payments2.pdf`
+
+Clone a partition: `dd if = / dev / sda1 of = / dev / sdb1`
+
+Clone a disk: `dd if = / dev / sdX of = / dev / sdY`
+
+To make an ISO of a CD-Rom: `dd if = / dev / cdrom of = micd.iso`
+
+To send a tape to a backup robot on the other side of the world that saves the files on magnetic tape, and then in a safe:
 
 ```bash
 tar cf -. | ssh 192.168.0.165 dd of=/dev/sr0
 ```
 
-## Dump y Restore
+### Dump and Restore
 
-Permiten copias de sistemas de ficheros incrementales.
+[Dump](https://linux.die.net/man/8/dump) and [Restore](https://linux.die.net/man/8/restore) allow copies of incremental filesystems.
 
 ```bash
 dump [-level] [options] [files2save]
 ```
 
 ```bash
-# Hace el full copy
-dump -0uf /backups/backup.dump /dev/sda78
-# Hace la copia incremental
-dump -1uf /backups/backup.dump /dev/sda78
+# Do the full copy
+dump -0uf /backups/backup.dump / dev / sda78
+# Make incremental copy
+dump -1uf /backups/backup.dump / dev / sda78
 ```
 
 ```bash
-# Modo interactivo
+# Interactive mode
 restore -if backup.dump
 
-# Listar contenidos
+# List contents
 restore -tf backup.dump
 
-# Extraer directamente
+# Extract directly
 restore -xf backup.dump
 ```
 
-Comandos consola interactiva:
+Interactive console commands:
 
-- ls : moverse por el sistema de ficheros
-- add : añadir fichero/directorio a recuperar
-- extract : Se extrae de la copia de seguridad. Al pedir número de volumen: 1.
+- ls: move around the filesystem.
+- add: add file/directory to recover.
+- extract: extract from the backup. When ordering volume number: 1.
 
-## Rsync
+### Rsync
 
-**Incremental** remoto.
+[Rsync](https://linux.die.net/man/1/rsync) is a fast, versatile, remote (and local) **Incremental** file-copying tool.
 
 ```bash
-# Modo simulación: -n
-rsync -anv origen/ destino
-# Lo manda directamente
+# Simulation mode: -n
+rsync -anv source/ destination
+# Send it directly
 rsync -av
 ```
 
-Remoto SSH:
+Remote SSH:
 
 ```bash
 # Progress Bar: -P
-rsync -azP origen/ n0nuser@192.168.1.15:folder
+rsync -azP source/ n0nuser@192.168.1.15:folder
 ```
 
-Cuando detecta la diferencia del fichero, no reemplaza ese fichero si no que cambia automáticamente la parte del contenido modificado.
-Lo utiliza Google Drive, Dropbox, AlFresco...
-Funciona muy muy bien.
+When it detects the difference of the file, it does not replace that file but automatically changes the part of the modified content.
+It's used by companies such as Google Drive, Dropbox, AlFresco...
+It works very very well.
 
-## Ejercicios
+### High level
 
-### Sincronizar contenido al cerrar sesión
+- [`amanda`](http://www.amanda.org/)
+- [`bacula`](https://www.bacula.org/)
+- [`rsync`](https://linux.die.net/man/1/rsync)
+- [`unison`](https://github.com/bcpierce00/unison)
+
+## Exercise
+
+### Synchronize content on logout
+
+We can run this Perl script in the logout script: `/home/myUser/.bash_logout`
 
 ```perl
 use File::Rsync;
