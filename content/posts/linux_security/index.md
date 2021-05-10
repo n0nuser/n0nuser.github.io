@@ -7,7 +7,7 @@ author: "Pablo Jesús González Rubio"
 cover: "cover.png"
 coverAlt: "Tux!"
 toc: true
-draft: false
+draft: true
 tags: [ "SysAdmin", "Linux" ]
 ---
 

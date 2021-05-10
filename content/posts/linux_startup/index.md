@@ -1,80 +1,90 @@
 ---
 title: "Linux - System Startup and Shutdown"
-description: ""
-date: 2021-03-21
-lastmod: 2021-03-21
+description: "In this post I'll explain with detail how Unix uses *initd* or *systemd* to manage the boot/shutdown process: runlevels, targets, and how to run a script/program at certain points like boot or shutdown."
+date: 2021-05-10
+lastmod: 2021-05-10
 author: "Pablo Jesús González Rubio"
 cover: "cover.png"
 coverAlt: "Tux!"
 toc: true
-draft: true
+draft: false
 tags: [ "SysAdmin", "Linux" ]
 ---
 
 
-## Boot
+## Introduction
 
-- `dmesg`: Vuelva en pantalla la información del arranque del sistema. Si ponemos un periférico y el sistema no arranca, es aquí donde se mira.
-  - Parecido es `journalctl -f`
-- `inittab`: Se puede modificar el tipo de arranque para que se inicie sin que se arranque ninguna aplicación. **Fichero en el que se modifica el runlevel.**
-- `shutdown`: Poner el sistema en modo Mantenimiento. Permite programar un mantenimiento avisando a los usuarios con un mensaje de ese mantenimiento. Se puede utilizar también para reiniciar. Hace un `telinit 1`.
-  - e.g.: `shutdown +5 "El sistema se va a apagar"`
-- `halt`: Pone al SO en estado mínimo. Deja a las CPUs con casi ninguna tarea. Estado de reposo sin cortar la energía.
-- `poweroff`: Manda un mensaje ACPI a la BIOS que obliga a cortar la energía.
-- `init`: PID 1, primer proceso que se arranca y se encarga de arrancar todo, montar el sistema de ficheros, comprobar errores, arrancar demonios (udev), habilita perifericos.
-- `telinit`: Permite arrancar en un modo de arranque u otro.
-- `runlevel`: Informa en qué modo ha arrancado el ordenador.
-  - El número que aparece a la izquierda es el runlevel anterior (si aparece una N es que no había ninguno), y el de la derecha es el actual.
-- `insserv`: Utilidad que ya no existe y permite al inicio del arranque, ejecutar distintos programas, lo que se llama el startup.
+In this post I'll explain with detail how Unix uses *initd* or *systemd* to manage the boot/shutdown process: runlevels, targets, and how to run a script/program at certain points like boot or shutdown.
 
-Hay 7 niveles de arranque. Se puede configurar el SO para que arranque en cualquiera de estos modos:
+We can check the startup log with `dmesg` as it displays the system boot information. If we put a peripheral and the system does not start, this is where we look. A similar tool is `journalctl -f`.
 
-- 0: Estado de *parada* (apara el sistema por completo).
-  - Apagar el SO, es arrancar el SO en un modo. Gestiona la finalización de los programas.
-  - Si se pone por defecto este modo, el ordenador arranca y se apaga. Está feo ajja.
-- 1: Modo mono-usuario. Sirve para hacer tareas de administración muy bruscas.
-  - En un sistema comprometido lo primero que hay que hacer es expulsar a todos los usuarios.
-  - El modo +1 gestiona el SO de tal forma que corta el acceso a red y sólo permite el acceso físico a un usuario. Por eso se utiliza en sistemas comprometidos.
-- 2: Modo multi-usuario.
-- 3: Modo multi-usuario con acceso a línea de comandos.
-- 4: Igual que el 3. No se utiliza. Se pensó para usos futuros.
-- 5: Igual que el 3 pero además permite sesión gráfico SI LO TIENE.
-- 6: Reinicia el sistema.
-  - Si se pone que sea el runlevel por defecto, el sisetema se arranca y se reinicia continuamente. Broma de mal gusto.
+## Startup Commands
 
-## Sistemas de arranque
+- `shutdown`: Put the system in Maintenance mode. It allows scheduling maintenance by notifying users with a maintenance message. It can also be used to reboot. Does a `telinit 1`.
+  - For example:
+    ```bash
+    shutdown +5 "The system is going to shut down"
+    ```
+- `halt`: Puts the OS in the minimum state. Leaves CPUs with almost no task. Rest state without cutting off the power.
+- `poweroff`: Sends an ACPI message to the BIOS that forces the power off.
+- `insserv`: Utility that no longer exists and allows, at startup, to execute different programs. Now, crons or systemd services/timers are used instead.
+
+## Runlevels
+
+A runlevel is the mode in which the OS booted, and there are seven boot levels in total.
+
+Running `runlevel` shows which runlevel was the last used and which is using now. The number that appears on the left is the previous runlevel (if an N appears, there was none), and the one on the right is the current one.
+
+{{< img "runlevel.png" "Runlevel command" "border" >}}
+
+The OS can be configured to start in any of these modes:
+
+- ***`0`*** : *Stop* status (shuts down the system completely).
+  - Shut down the OS, is to boot the OS in a mode. Manage the completion of programs.
+  - If this mode is set by default, the computer starts up and shuts down. A bad joke.
+- ***`1`*** : Single user mode. It is used to do very rough administration tasks.
+  - In a compromised system the first thing to do is to expel all users. The +1 mode manages the OS in such a way that it cuts off-network access and only allows physical access to one user. This is why it is used on compromised systems.
+  - Adding new hardware to the system configuration or suspicion of hardware failure.
+  - Administrative tasks such as update some applications, perform system backups or manage quotas.
+- ***`2`*** : Multi-user mode.
+- ***`3`*** : Multi-user mode with command-line access.
+- ***`4`*** : Same as 3. Not used. It was intended for future uses.
+- ***`5`*** : Same as 3 but also allows graphic session IF YOU HAVE IT, else is the same as 3.
+- ***`6`*** : Restart the system.
+  - If it is set to be the default runlevel, the system boots and restarts continuously. Another bad joke.
+
+`telinit` allows you instantly switch between levels.
+
+`inittab` file had the configuration for which level was to run at boot, but has now been replaced by systemd's feature `set-default`.
+
+## Startup systems
 
 ### SysVinit
 
-1. La BIOS se encarga de verificar que la integridad de los periféricos y hardware está en un estado seguro.
+1. The BIOS is in charge of verifying that the integrity of the peripherals and hardware is in a safe state.
+2. Then load the Bootloader (it is in a partition of the hard disk and stores the information of the partitions to boot)
+3. After, the kernel is started in RAM, and it calls `init`.
+4. `init` is the first process and loads the most basic things (`rcS.d`). Things like the clock, udev, mounting the filesystem, checking for errors, starting daemons, enabling peripherals...
+5. It also checks the runlevel (`rcX.d` with X from 0 to 6), and depending on this, it starts some things or others.
+6. The console (`getty`) is started.
 
-2. A continuación carga el Bootloader (está en una partición del disco duro y almacena la información de las particiones a arrancar)
+The files in `/ etc / rcS.d /` are always executed. And depending on the runlevel we are in, the rc1, rc5... programs are loaded.
 
-3. Después se arranca el Kernel en memoria RAM y este llama a `init`.
+That is, if I am in runlevel 5, the programs in the rc5 directory will be executed.
 
-4. `init` carga las cosas más básicas (`rcS.d`). Cosas tipo el reloj, udev, etc...
+#### Example
 
-5. También comprueba el runlevel (`rcX.d` con X del 0 al 6) y dependiendo de este arranca unas cosas u otras.
+I want to start Spotify at startup (startup), put the Spotify startup script in `init.d`, and then depending on the runlevel at which we want it to run, we would make a symbolic link in the `rcX` to the `script init.d`.
 
-6. Se arranca la consola (`getty`).
+These scripts start with an *S* (Start) or a *K* (Kill) and a number after that indicates the priority (from 01 to 99).
 
-Los ficheros de `/etc/rcS.d/` se ejecutan siempre. Y dependiendo de los runlevel en los que nos encontremos, se cargan los programas del rc1, rc5, etc...
+If you want Spotify to start in runlevel 2, you should put S in rc2, but if you change to runlevel 3 or 4, you should put K.
 
-Es decir, si yo estoy en el runlevel 5, se ejecutarán los programas del directorio rc5.
+If we have two numbers with the same priority number, it is executed first in alphabetical order.
 
-#### Ejemplo
+There is a Debian 6 command that does all of this: `update-rc.d / path / script start 90 2 3 4 5. stop 0 1 6`. Where 90 is the priority, but this has to be calculated.
 
-Yo quiero arrancar Spotify al inicio (startup), se mete el script de arranque de Spotify en `init.d` y a continuación dependiendo del runlevel en el que queramos que se ejecute, haríamos un enlace simbólico en el `rcX` al script del `init.d`.
-
-Estos scripts, empiezan con una *S* (Start) o una *K* (Kill) y un número a continuación que indica la prioridad (de 01 a 99).
-
-Si quieres que Spotify se arranque en el runlevel 2, habría que poner el S en el rc2, pero si cambias al runlevel 3 o al 4, en ellos habría que poner la K.
-
-Si tenemos dos números con el mismo número de prioridad, se ejecuta antes por orden alfabético.
-
-Hay un comando de Debian 6 que hace todo esto: `update-rc.d /ruta/script start 90 2 3 4 5 . stop 0 1 6`. Donde 90 es la prioridad, pero esto hay que calcularlo.
-
-Con Debian 7 se hace con `insserv`. Todo lo anterior del update que se pasa por parámetro, ahora se añade como una cabecera dentro del script, en la que no hay que asignar una prioridad porque lo gestiona algo llamado *facilities*:
+With Debian 7 it is done with `insserv`. All the above of the "update" that was passed by parameter, is now added as a header within the script, in which you don't have to assign a priority because it is managed by something called *facilities*:
 
 - $local_fs
 - $network
@@ -83,17 +93,17 @@ Con Debian 7 se hace con `insserv`. Todo lo anterior del update que se pasa por 
 - $remote_fs
 - $syslog
 - $time
-- $all: Tiene todas las dependencias.
+- $all: Have all the dependencies.
 
 ### Systemd
 
-RedHat crea `systemd`. Muchos sistemas lo adoptan y lo cambian por `init` y otros lo rechazan.
+Red Hat creates `systemd`. Many systems adopt it in exchange for `init`, and others reject it.
 
-Ventaja de `systemd` en comparación con `init.d` (la forma tradicional) es que carga los procesos que serían los de `rcS.d` y `rcX.d` en paralelo.
+An advantage of `systemd` compared to `init.d` (the traditional way) is that it loads the processes that would be those of `rcS.d` and `rcX.d` in parallel.
 
-Systemd en vez de llamar a los scripts, scripts, los llama unidades, y pueden ser servicios, puntos de montaje (en vez de `/etc/fstab`), dispositivos, sockets, targets (el runlevel vaya).
+Systemd instead of calling scripts, it calls them units, and they can be: services, mount points (instead of `/ etc / fstab`), devices, sockets and targets (runlevel).
 
-En vez de llamar a los runlevel por sus números, usan:
+Instead of calling the runlevels by their numbers, they use:
 
 - `runlevel0.target` ó `poweroff.target`
 - `runlevel1.target` ó `rescue.target`
@@ -102,15 +112,15 @@ En vez de llamar a los runlevel por sus números, usan:
 - `runlevel4.target` ó `multi-user.target` ó `graphical.target`
 - `runlevel5.target` ó `reboot.target`
 
-Para ver el runlevel en el que estamos: `systemctl get-default`
+To see the runlevel we are using, we can use: `systemctl get-default`
 
-Para cambiar de runlevel en vez de usar `telinit`, se usa `systemctl isolate rescue.target`.
+To switch the runlevel instead of using `telinit`, we can use `systemctl isolate rescue.target`.
 
-Para cambiar el runlevel por defecto se usa: `systemctl set-default graphical.target`.
+To change the default runlevel use: `systemctl set-default graphical.target`.
 
-Si se quiere hacer un script de arranque con systemd, se crea un fichero `miscript.service` en `/lib/systemd/system/`. Un ejemplo del servicio `fail2ban`:
+If you want to make a systemd startup script, create a `miscript.service` file in` / lib / systemd / system / `. An example of the `fail2ban` service:
 
-```txt
+```service
 [Unit]
 Description=Fail2Ban Service
 Documentation=man:fail2ban(1)
@@ -133,45 +143,31 @@ RestartPreventExitStatus=0 255
 WantedBy=multi-user.target
 ```
 
-El parámetro `After` se refiere a la prioridad.
+The `After` parameter refers to the priority.
 
-Como `multi-user.target` referencia a los runlevel 2, 3, 4 y 5, si se quisiera que se arrancara en uno de esos modos, habría que utiliza el otro nombre del que dispone (e.g.: `runlevel2.target`).
+As `multi-user.target` refers to runlevel 2, 3, 4, and 5, if you wanted it to start in one of those modes, you would have to use the other name you have (eg: `runlevel2.target`).
 
-Para ver las unidades activas: `systemctl`.
+## Common commands
 
-Para ver las unidades instaladas:  `systemctl list-unit-files`.
+- To see active units: `systemctl`.
+- To see the installed units: `systemctl list-unit-files`.
+- To see the units that have failed: `systemctl --failed`.
+- To view SSH dependencies: `systemctl list-dependencies ssh.service`.
+- To see what parameters a unit has: `systemctl show cron.service`
+  > Systemd to avoid startup delays, avoid all screen printing (stdout), to overwrite this, there is a parameter (you have to look for it).
+`systemctl is enabled cron.service`.
+- To view boot messages: `journalctl -b`.
+- To view new messages: `journalctl -f`.
+- To view new messages for a drive: `journalctl -u`.
 
-Para ver las unidades que han fallado: `systemctl --failed`.
+|                                  |       SysVinit       |             Systemd             |
+|:--------------------------------:|:--------------------:|:-------------------------------:|
+| Start a service                  | `service cron start` | `systemctl start cron.service`  |
+| Enable a service                 | `chkconfig cron on`  | `systemctl enable cron.service` |
+| Check if a service<br>is enabled | `chkconfig cron`     | `systemctl is enabled cron.service`<br><br>`systemctl status cron.service` |
 
-Para ver las dependencias de SSH: `systemctl list-dependencies ssh.service`.
+There is a parameter in systemd to specify when a script is to run (timer). The difference between a `timer` and a `cron`, is that the timer can be resource-specific at boot, which cron doesn't.
 
-Para ver los parámetros que tiene una unidad: `systemctl show cron.service`
+## Creating a Systemd service
 
-> Systemd para evitar retrasos en el arranque, evita toda impresión por pantalla (stdout), para sobrescribir esto hay un parámetro (hay que buscarlo).
-
-En SysVinit para arrancar un servicio se usaba `service cron start` y ahora `systemctl start cron.service`.
-
-En SysVinit para habilitar un servicio se usaba `chkconfig cron on` y ahora `systemctl enable cron.service`.
-
-En SysVinit para verificar si un servicio está habilitado `chkconfig cron` y ahora `systemctl is enabled cron.service`.
-
-Para ver los mensajes del boot: `journalctl -b`.
-
-Para ver los mensajes nuevos: `journalctl -f`.
-
-Para ver los mensajes nuevos de una unidad: `journalctl -u`.
-
-Hay un parámetro en systemd para especifica cuándo se va a ejecutar un script (timer). Diferencia entre `timer` y `cron`, que timer puede ejecutarse en el arranque.
-
-### EJERCICIO - Bot Telegram
-
-- BotFather
-- Mandar mensaje por telegram desde Linux
-- Sólo se puede hacer cuando la red está conectada: `After=network.target` supongo.
-- Script en bash con switch-case (start, stop,...) que va en `/usr/bin/tarara` o demás parecidos.
-- Crear servicio en `/lib/systemd/system/tarara.service`
-
-Reproducir sonido con el speaker del sistema: `beep`.
-
-Cómo se crea un programa de arranque, estructura del fichero, dónde se crea, SÓLO con systemd.
-
+I've a post explaining on [how to create a Telegram bot](../telegrambot) with a service and a timer.

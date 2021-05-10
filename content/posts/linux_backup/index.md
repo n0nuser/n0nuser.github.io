@@ -1,8 +1,8 @@
 ---
 title: "Linux - Backup"
 description: "A backup or backup is the safe copy of a digital file, a set of files, or all of the data considered important enough to be preserved."
-date: 2021-04-07
-lastmod: 2021-04-07
+date: 2021-05-09
+lastmod: 2021-05-09
 author: "Pablo Jesús González Rubio"
 cover: "cover.png"
 coverAlt: "Tux!"
