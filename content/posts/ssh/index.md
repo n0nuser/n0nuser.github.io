@@ -242,13 +242,21 @@ sudo ufw status
 
 ---
 
+### Login Grace Time
+
+The `logingracetime` parameter is the max time the user is allowed to try to log in. By default is at 2 minutes but can be modified.
+
+### Chroot Directory
+
+By default, `ChrootDirectory` is set to "none". Setting a Chroot directory allows to restraint a user from accessing any other folder than the specified (but can move freely in that directory), in common words we could say that is a jail.
+
 ### Disabling Root Login
 
-Root is the superuser with all privileges. Unsupervised access to that user can cause a lot of harm if a cybercriminal could take access, basically because they can do whatever they want with your server.
+One of the most important reasons it should be disabled is that sending the root password via common traffic is not wise. Instead, is best to log in as a normal user, and then do privilege escalation to the root user as the access is local.
 
 We need to modify the `PermitRootLogin` parameter from `prohibit-password` to `no`.
 
-```
+```bash
 sudo nano /etc/ssh/sshd_config
 ```
 
