@@ -1,13 +1,13 @@
 ---
 title: "Apache Web Server"
 description: ""
-date: 2021-05-10
-lastmod: 2021-05-10
+date: 2021-05-16
+lastmod: 2021-05-16
 author: "Pablo Jesús González Rubio"
 cover: "cover.png"
 coverAlt: "Tux!"
 toc: true
-draft: true
+draft: false
 tags: [ "SysAdmin", "Linux" ]
 ---
 
@@ -273,13 +273,13 @@ For all of the directives, [Apache's page](https://httpd.apache.org/docs/trunk/m
 
 ## Modules
 
-To enable a module we can use `a2enmod` which stands for "Apache2 Enable Module".
+To enable a module, we can use `a2enmod`, which stands for “Apache2 Enable Module”.
 
-There a lot of modules (when I did this there was 140):
+There are a lot of modules (when I did this, there were 140).
 
 {{< img "modules.png" "List of modules" "border" >}}
 
-But more can be installed from the apt manager; you can search all of the installable Apache2's modules with:
+But more can be installed from the apt manager; you can search all of the installable Apache2’s modules with:
 
 ```bash
 apt search libapache2-mod-*
@@ -287,7 +287,7 @@ apt search libapache2-mod-*
 
 ### User Directories
 
-It allows local users to have their own webpage. They can usually edit it in a folder called `public_html` (which can be modified in the config file of the module) in their own user directory.
+It allows local users to have their own webpage. They can usually edit it in a folder called `public_html` in their own user directory. This folder can be modified in the config file of the module.
 
 This website can be accessed from the "master" one. For example: `https://mywebpage.com/~peter`.
 
@@ -317,7 +317,7 @@ admin@rpi:~$ cat /etc/apache2/mods-available/userdir.conf
 
 ### CGIs
 
-It allows to use scripts (perl, bash, python... you name it) in the webpage. It can be very useful to show data, process data or even allow logins to the webpage with PAM modules or LDAP modules.
+It allows using scripts (Perl, Bash, Python… you name it) in the webpage. It can be very useful to show data, process data, or even allow logins to the webpage with PAM modules or LDAP modules.
 
 To enable it:
 
@@ -325,6 +325,97 @@ To enable it:
 sudo a2enmod cgid
 ```
 
-To be able to use any script, first we need to put it in the `
+To be able to use any script, first we need to place it in the `/usr/lib/cgi-bin` directory and its extension must end in `.cgi`.
 
-## Hardening
+Now we can try it by going to our webpage `mydomain.com/cgi-bin/myscript.cgi`. Except that it throws an Internal Server Error, to solve this we can follow the next steps:
+
+1. Give it execution permissions
+   ```bash
+   sudo chmod a+x myscript.cgi
+   ```
+2. Change owner to www-data
+   ```bash
+   sudo chown www-data:www-data myscript.cgi
+   ```
+3. Insert a header-type in the top of the file to allow the browser know what it's going to open
+   ```perl
+   #!/usr/bin/perl
+   print "Content-Type: text/html\n\n"; # <- This line!!!
+   print "The rest of my script!\n";
+   ```
+
+#### Security
+
+CGIs are safe since even if a cybercriminal hacked www-data user, in the `passwd` file we should have for him the `nologin` option, so they could never do anything.
+
+```txt
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+```
+
+Another reason it's secure, is that even the cgi script is owned by root, it will always be launched by www-data user.
+
+#### Example - Login Form
+
+Consider the next login form (taken from [purecss.io](https://purecss.io/forms/)):
+
+```html
+<form class="pure-form">
+    <fieldset>
+        <legend>A compact inline form</legend>
+        <input type="email" placeholder="Email" />
+        <input type="password" placeholder="Password" />
+        <label for="default-remember">
+            <input type="checkbox" id="default-remember" /> Remember me</label>
+        <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+    </fieldset>
+</form>
+```
+
+We can modify it to allow processing it with CGIs:
+
+```html
+<form class="pure-form" action="/cgi-bin/login.cgi" method="Post">
+    <fieldset>
+        <legend>A compact inline form</legend>
+        <input name="email" type="email" placeholder="Email" />
+        <input name="password" type="password" placeholder="Password" />
+        <label for="default-remember">
+            <input type="checkbox" id="default-remember" /> Remember me</label>
+        <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+    </fieldset>
+</form>
+```
+
+And then, use PAM with the `login.cgi` script and a redirection depending on login success.
+
+**The most secure option to store a user and its password** isn't a database, but `shadow` file which even though is a simple plain text file, actually is a database with passwords encrypted and that only `root` user can access.<br>So use PAM authentication to actually log in; with Perl, we can do it with [SimplePam module](https://metacpan.org/pod/Authen::SimplePam).
+
+## HTTPS - Let's Encrypt
+
+Enabling HTTPS on our webpage allows users to connect securely as the packets transmitted between both stations are encrypted. Also, it's a relevant factor in the SEO aspect because indexers try to show only safe, trusty content.
+
+For the SSL certificate, we can build our own with OpenSSL, but since it’s not trusted by browsers (Chrome, Firefox, Safari, etc.) we’ll create one free certificate with [Let's Encrypt](https://letsencrypt.org/).
+
+1. Enable SSL
+   ```bash
+   sudo a2enmod ssl
+   ```
+2. Install Certbot
+   ```bash
+   sudo apt update && sudo apt install certbot python-certbot-apache -y
+   ```
+3. Run Certbot
+   ```bash
+   certbot  --apache --redirect -d mydomain.com -d www.mydomain.com -m admin@mydomain.com --agree-tos
+   ```
+   >`--redirect`: Redirects every HTTP request to HTTPS
+   ><br>`-d mydomain.com -d www.mydomain.com`: We can use the same certificate for multiple domains, but only up to 100 domains.
+4. Answer "Y"
+5. Done!
+
+Our certificate files will be located at:
+
+```txt
+root@proventure:~# ls /etc/letsencrypt/live/mydomain.com/
+cert.pem  chain.pem  fullchain.pem  privkey.pem  README
+```
