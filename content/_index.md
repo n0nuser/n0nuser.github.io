@@ -5,10 +5,6 @@ imgPath = "."
 disableTitleSeparator = true
 +++
 
-<!-- ![Spongebob Happy](https://media.tenor.com/images/6d2f936160eb65153b72f0bcd74dca82/tenor.gif) -->
-
-<!-- ![Cat programming](programmingCat.gif) -->
-
 This a Cybersecurity and SysAdmin blog 👽️
 
 I usually upload different sort of things to ease our life when we have a task in front of us:
@@ -27,7 +23,7 @@ I usually upload different sort of things to ease our life when we have a task i
   * Services
     * [SSH Server](posts/ssh)
     * [Apache HTTP Server](posts/apache)
-  <!--  * [Postfix, Dovecot and Roundcube - Email Server](posts/email)-->
+    * [Postfix, Dovecot and Roundcube - Email Server](posts/email)
 * [DIY Projects](tags/projects) such as a Rubber Ducky or a Rogue AP 🔨
 * [Writeups](writeups) for [HTB](writeups/htb) or [THM](writeups/thm) machines 👹
 
@@ -38,3 +34,5 @@ You can stay tuned for upcoming posts with the [RSS feed](index.xml)!
 You can find me at:
 
 {{< social >}}
+
+After some scam attempts, I decided to remove some of my social links. But I'll be glad to talk with you on the other social media above!

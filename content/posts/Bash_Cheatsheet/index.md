@@ -97,6 +97,11 @@ if [ conditions ]
 then
   commands
 fi
+
+# You can concatenate conditions
+if [ conditions ] && [ conditions ] || [ conditions ]; then
+  commands
+fi
 ```
 
 - `elif` (If the condition before this one hasn't matched)
@@ -141,7 +146,7 @@ Otherwise, the program will not work.
 ```bash
 for i in 1 2 3 4 5
 do
-  echo "Hi for the $i time!"
+  echo "Hi for the $i time"
 done
 ```
 
@@ -150,7 +155,11 @@ Or
 ```bash
 for i in {1..10}
 do
-  echo "Hi for the $i time!"
+  if [ $i -eq 5 ]; then
+    # Omits code below condition and continues on next iteration
+    continue
+  fi
+  echo "Hi for the $i time"
 done
 ```
 
@@ -159,7 +168,11 @@ Or
 ```bash
 for (( i=1; i<=10; i++ ))
 do
-  shell_COMMANDS
+  if [ $i -eq 3 ]; then
+    # Stops for loop
+    break
+  fi
+  echo "Hi for the $i time"
 done
 ```
 

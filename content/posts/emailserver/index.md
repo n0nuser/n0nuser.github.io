@@ -1,13 +1,13 @@
 ---
 title: "Email Server - Postfix, Dovecot and Roundcube"
 description: ""
-date: 2021-05-10
-lastmod: 2021-05-10
+date: 2021-05-21
+lastmod: 2021-05-21
 author: "Pablo Jesús González Rubio"
 cover: "cover.png"
 coverAlt: "Tux!"
 toc: true
-draft: true
+draft: false
 tags: [ "SysAdmin", "Linux" ]
 ---
 
@@ -68,7 +68,7 @@ smtpd_sasl_path = private/auth
 home_mailbox = Maildir/
 ```
 
-To be able to receive emails from outside the server, we need to map the domain to localhost. With this, every email that comes to our server directed to "user@mydomain" will be received by "user@localhost", and thus, will be received by the system user (local user).
+To receive emails from outside the server, we need to map the domain to localhost. With this, every email that is sent to "user@mydomain" will be received by "user@localhost" (local user).
 
 File **/etc/postfix/vmailbox**:
 
@@ -80,7 +80,7 @@ Then, to map the domains just run:
 sudo postmap /etc/postfix/vmailbox
 ```
 
-To enable other clients such as Gmail to access the server configuration, we have to enable the following configuration by uncommenting the parameters in the following file.
+To enable other clients such as Gmail to access the server configuration, we have to uncomment some lines in the following file.
 
 File **/etc/postfix/master.cf**:
 
@@ -157,7 +157,7 @@ inet_listener imaps {
   }
 ```
 
-The standard unencrypted IMAP port is 143 (in Gmail it uses STARTTLS encryption), but it is recommended to use SSL encryption, which corresponds to port 993 (in Gmail it uses SSL encryption).
+The standard unencrypted IMAP port is 143 (Gmail uses STARTTLS encryption), but it is recommended to use SSL encryption, which corresponds to port 993 (Gmail uses SSL encryption).
 
 We enable port 587, used for outgoing messages:
 
@@ -229,7 +229,7 @@ Adding the "login":
 auth_mechanisms = plain login
 ```
 
-We must also check that SSL is enabled so that connections are encrypted. Gmail needs to have this enabled in order to use our mail server.
+We must also check that SSL is enabled so that connections are encrypted. Gmail needs to have this enabled to use our mail server.
 
 **/etc/dovecot/conf.d/10-ssl.conf** file.
 
@@ -281,7 +281,7 @@ sudo apt install roundcube -y
 
 You'll need to have installed Apache2 for Roundcube to work, and have enabled the "rewrite" module: `sudo a2enmod rewrite`.
 
-In order for us to access the mail interface we will have to make a symbolic link from the original Roundcube directory to the web page.
+To access the mail interface, we will have to make a symbolic link from the original Roundcube directory to the web page.
 
 ```bash
 sudo ln -s /usr/share/roundcube/ /var/www/html/webmail
@@ -291,15 +291,20 @@ To access the webmail now you can use this address: [https://mydomain.com/webmai
 
 ## Port forwarding
 
-To be able to receive messages we'll need to open a port for SMTP (port 25) in our router, redirecting every petition to our server.
+To receive emails we’ll need to **open a port for SMTP (port 25)** in our router, redirecting every petition to our server.
 
-Once all of the above is configured, we will be able to send messages from inside the system to users local to the system, and outside; also, thanks to the address mapping we did in Postfix, we will be able to receive mails from outside the network.
+Once all of the above is configured, we will be able to send messages:
+
+* From inside the system to other local users.
+* To other users from other domains.
+
+Thanks to the address mapping we did in Postfix, we will be able to receive emails from outside the network.
 
 ## Send emails with Gmail via IMAP
 
-To be able to use our email server with Gmail we'll need to open another two ports, one for fetching the emails and another in case we want to send an email from Gmail, called the submission port.
+To use our email server with Gmail we’ll need to open another two ports, one for fetching the emails and another to send emails from Gmail, called the submission port.
 
-We can do it with POP3 too, but the whole installation we have been configuring it for IMAP. To use POP3 you just need to modify the Dovecot file **/etc/dovecot/conf.d/10-master.conf** and allowing POP3 and POP3s (in case you want to use SSL).
+We can do it with POP3 too, but the whole installation we have been configuring for IMAP. To use POP3, you just need to modify the Dovecot file **/etc/dovecot/conf.d/10-master.conf** and allowing POP3 and POP3s (in case you want to use SSL).
 
 * **Without SSL**: Open ports 143 (IMAP) and 587 (submission) in your router.
 * **With SSL**: Open ports 993 (IMAPs) and 587 (submission) in your router.
@@ -324,6 +329,6 @@ Then follow these steps:
    {{< img "gmail8.jpg" "" "border" >}}
 9. Done!
 
-Sometimes this screens doesn't appear in the same order, it may ask for some security settings like using STARTTLS (without SSL) or SSL, selecting one or another will modify the port to use.
+Sometimes this screens doesn’t appear in the same order, it may ask for some security settings like using STARTTLS (without SSL) or SSL, selecting one or another will modify the port to use.
 
-If you followed the steps in every config file of the different services, you shouldn't encounter any problem with this. But if that's the case, feel free to [contact](../../#contact) me!
+If you followed the steps in every config file of the different services, you shouldn’t encounter any problem with this. But if that's the case, feel free to [contact](../../#contact) me!

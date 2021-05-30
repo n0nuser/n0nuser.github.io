@@ -234,6 +234,15 @@
     }
   },
   {
+    "entry": "tryhackme",
+    "label": "Try Hack Me",
+    "base": "https://tryhackme.com/p/",
+    "icon": {
+      "id": "box",
+      "source": "Font-Awesome"
+    }
+  },
+  {
     "entry": "discord",
     "label": "Discord",
     "base": "https://discordapp.com/users/",
