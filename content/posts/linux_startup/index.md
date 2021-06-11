@@ -53,7 +53,7 @@ The OS can be configured to start in any of these modes:
 - ***`6`*** : Restart the system.
   - If it is set to be the default runlevel, the system boots and restarts continuously. Another bad joke.
 
-`telinit` allows you instantly switch between levels.
+`telinit` command allows you instantly switch between levels.
 
 `inittab` file had the configuration for which level was to run at boot, but has now been replaced by systemd's feature `set-default`.
 
@@ -68,7 +68,7 @@ The OS can be configured to start in any of these modes:
 5. It also checks the runlevel (`rcX.d` with X from 0 to 6), and depending on this, it starts some things or others.
 6. The console (`getty`) is started.
 
-The files in `/ etc / rcS.d /` are always executed. And depending on the runlevel we are in, the rc1, rc5... programs are loaded.
+The files in `/etc /rcS.d /` are always executed. And depending on the runlevel we are in, the rc1, rc5... programs are loaded.
 
 That is, if I am in runlevel 5, the programs in the rc5 directory will be executed.
 
@@ -82,9 +82,15 @@ If you want Spotify to start in runlevel 2, you should put S in rc2, but if you 
 
 If we have two numbers with the same priority number, it is executed first in alphabetical order.
 
-There is a Debian 6 command that does all of this: `update-rc.d / path / script start 90 2 3 4 5. stop 0 1 6`. Where 90 is the priority, but this has to be calculated.
+There is a Debian 6 command that does all of this:
 
-With Debian 7 it is done with `insserv`. All the above of the "update" that was passed by parameter, is now added as a header within the script, in which you don't have to assign a priority because it is managed by something called *facilities*:
+```bash
+update-rc.d /path/script start 90 2 3 4 5. stop 0 1 6
+```
+
+Where 90 is the priority, but this has to be calculated.
+
+With Debian 7 it is done with `insserv`.<br>All of the above of the “update” that was passed by parameter, is now added as a header within the script.  In the header you don’t have to assign a priority because it is managed by something called facilities:
 
 - $local_fs
 - $network
@@ -101,73 +107,110 @@ Red Hat creates `systemd`. Many systems adopt it in exchange for `init`, and oth
 
 An advantage of `systemd` compared to `init.d` (the traditional way) is that it loads the processes that would be those of `rcS.d` and `rcX.d` in parallel.
 
-Systemd instead of calling scripts, it calls them units, and they can be: services, mount points (instead of `/ etc / fstab`), devices, sockets and targets (runlevel).
+Systemd instead of calling scripts, it calls them units, and they can be: services, mount points (instead of `/etc/fstab`), devices, sockets and targets (runlevel).
 
 Instead of calling the runlevels by their numbers, they use:
 
-- `runlevel0.target` ó `poweroff.target`
-- `runlevel1.target` ó `rescue.target`
-- `runlevel2.target` ó `multi-user.target`
-- `runlevel3.target` ó `multi-user.target`
-- `runlevel4.target` ó `multi-user.target` ó `graphical.target`
-- `runlevel5.target` ó `reboot.target`
+|||
+|:-:|:-:|
+| `runlelel0.target` | `poweroff.target` |
+| `runlevel1.target` | `rescue.target` |
+| `runlevel2.target` | `multi-user.target` |
+| `runlevel3.target` | `multi-user.target` |
+| `runlevel4.target` | `multi-user.target`<br><br>`graphical.target` |
+| `runlevel5.target` | `reboot.target` |
 
-To see the runlevel we are using, we can use: `systemctl get-default`
+## Systemd service
 
-To switch the runlevel instead of using `telinit`, we can use `systemctl isolate rescue.target`.
+If you want to make a systemd startup script, create a `myscriptd.service` file in `/lib/systemd/system/`.
 
-To change the default runlevel use: `systemctl set-default graphical.target`.
+Once the service is located in that directory, we can enable the service with:
 
-If you want to make a systemd startup script, create a `miscript.service` file in` / lib / systemd / system / `. An example of the `fail2ban` service:
+```bash
+systemctl enable myscript
+```
+
+### Example - Getting the weather
+
+This script will always get the weather of the specified location and send it to a file, in the specified directory. The file will have as a filename the date of that day.
+
+Service */lib/systemd/system/weatherd.service*:
 
 ```service
 [Unit]
-Description=Fail2Ban Service
-Documentation=man:fail2ban(1)
-After=network.target iptables.service firewalld.service ip6tables.service ipset.service
-PartOf=firewalld.service
+Description=Get the weather
+After=network.target network-online.target
+Requires=network-online.target
 
 [Service]
-Type=simple
-ExecStartPre=/bin/mkdir -p /var/run/fail2ban
-ExecStart=/usr/bin/fail2ban-server -xf start
-# if should be logged in systemd journal, use following line or set logtarget to sysout in fail2ban.local
-# ExecStart=/usr/bin/fail2ban-server -xf --logtarget=sysout start
-ExecStop=/usr/bin/fail2ban-client stop
-ExecReload=/usr/bin/fail2ban-client reload
-PIDFile=/var/run/fail2ban/fail2ban.pid
-Restart=on-failure
-RestartPreventExitStatus=0 255
-
+RemainAfterExit=false
+ExecStart=/usr/bin/weather "Spain" /root
 [Install]
 WantedBy=multi-user.target
 ```
 
-The `After` parameter refers to the priority.
+Script */usr/bin/weather*:
 
-As `multi-user.target` refers to runlevel 2, 3, 4, and 5, if you wanted it to start in one of those modes, you would have to use the other name you have (eg: `runlevel2.target`).
+```bash
+date=$(date +%Y%m%dT%H%M%S)
+curl wttr.in/$1 > $2/$date
+```
+
+Once those files are in their directories and the script has execution permissions, we can enable the service:
+
+```bash
+systemctl enable weatherd
+```
+
+> The `RemainAfterExit` set to false, is due to the script only executing once. If it was set to true, the service would still be activated even when the script has finished a while ago.
 
 ## Common commands
 
-- To see active units: `systemctl`.
-- To see the installed units: `systemctl list-unit-files`.
-- To see the units that have failed: `systemctl --failed`.
-- To view SSH dependencies: `systemctl list-dependencies ssh.service`.
-- To see what parameters a unit has: `systemctl show cron.service`
-  > Systemd to avoid startup delays, avoid all screen printing (stdout), to overwrite this, there is a parameter (you have to look for it).
-`systemctl is enabled cron.service`.
-- To view boot messages: `journalctl -b`.
-- To view new messages: `journalctl -f`.
-- To view new messages for a drive: `journalctl -u`.
+- To see active units: 
+  ```bash
+  systemctl
+  ```
+- To see installed units:
+  ```bash
+  systemctl list-unit-files
+  ```
+- To see units that have failed:
+  ```bash
+  systemctl --failed
+  ```
+- To view SSH dependencies:
+  ```bash
+  systemctl list-dependencies ssh.service
+  ```
+- To see what parameters a unit has:
+  ```bash
+  systemctl show cron.service
+  ```
+- To view boot messages:
+  ```bash
+  journalctl -b
+  ```
+- To view new messages:
+  ```bash
+  journalctl -f
+  ```
+- To view new messages for a drive:
+  ```bash
+  journalctl -u
+  ```
 
 |                                  |       SysVinit       |             Systemd             |
 |:--------------------------------:|:--------------------:|:-------------------------------:|
-| Start a service                  | `service cron start` | `systemctl start cron.service`  |
-| Enable a service                 | `chkconfig cron on`  | `systemctl enable cron.service` |
-| Check if a service<br>is enabled | `chkconfig cron`     | `systemctl is enabled cron.service`<br><br>`systemctl status cron.service` |
+| **Start a service**                  | `service cron start` | `systemctl start cron.service`  |
+| **Enable a service**                 | `chkconfig cron on`  | `systemctl enable cron.service` |
+| **Check if a service is enabled** | `chkconfig cron`     | `systemctl status cron.service` |
+| **Check runlevel** | `runlevel` | `systemctl get-default` |
+| **Change runlevel** | `telinit 1` | `systemctl isolate runlevel1.target` |
+| **Change default runlevel** | (before was done with inittab file) | `systemctl set-default graphical.target` |
 
 There is a parameter in systemd to specify when a script is to run (timer). The difference between a `timer` and a `cron`, is that the timer can be resource-specific at boot, which cron doesn't.
 
-## Creating a Systemd service
+<!-- ## Creating a Systemd service
 
 I've a post explaining on [how to create a Telegram bot](../telegrambot) with a service and a timer.
+-->

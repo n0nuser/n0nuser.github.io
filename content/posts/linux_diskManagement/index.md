@@ -1,6 +1,6 @@
 ---
 title: "Linux - Disk Space Management with Quotas"
-description: "Quotes are necessary as in a multi-user system limits allow to distribute space to each user. This way, everyone has the same conditions. As administrators, we don't want a user to upload all his movies to the system and block system resources for other users."
+description: "Quotas are necessary as in a multi-user system limits allow to distribute space to each user. This way, everyone has the same conditions. As administrators, we don't want a user to upload all his movies to the system and block system resources for other users."
 date: 2021-05-10
 lastmod: 2021-05-10
 author: "Pablo Jesús González Rubio"
@@ -13,17 +13,17 @@ tags: [ "SysAdmin", "Linux" ]
 
 ## Introduction
 
-Any resource that’s going to be shared has to be administrated, and it varies depending on how many users use it.
+Any resource that is going to be shared has to be administrated, and it varies depending on how many users use it.
 
-Establishing a Quote System allows restricting/limiting the abuse of the resources. i.e.: Google Drive free plan limits normal users to 15 Gb., while educational organizations don’t have this restriction.
+Establishing a Quote System allows restricting/limiting the abuse of the resources. For example, Google Drive free plan limits users to 15 Gb., while educational organizations doesn't have this restriction.
 
-This Quotes can be CPU or Storage measured.
+This Quotas can be CPU or Storage measured.
 
 > Every OS needs at least between 10% and 15% of free disk space to work fine.
 
 ## Checking storage
 
-## Commands
+### Commands
 
 The following commands are used to check the used/free space of filesystems:
 
@@ -35,11 +35,9 @@ The following commands are used to check the used/free space of filesystems:
 
 {{< img "du.png" "du" >}}
 
-
-
 ### Exercises
 
-To check the max free number of files (i-nodes) and the blocks that can still be written we can check the superblock with:
+To check the max free number of files (inodes) and the blocks that can still be written we can check the superblock with:
 
 ```bash
 $ sudo tune2fs -l /dev/sda2 | grep "Free "
@@ -56,19 +54,19 @@ $ du -sh /home
 
 ## Quote System
 
-Quotes are necessary as in a multi-user system limits allow to distribute space to each user. This way, everyone has the same conditions. As administrators, we don't want a user to upload all his movies to the system and block system resources for other users.
+Quotas are necessary as in a multi-user system limits allow to distribute space to each user. This way, everyone has the same conditions. As administrators, we don't want a user to upload all his movies to the system and block system resources for other users.
 
 Quote Systems are only for filesystems, not directories, and can be applied to users or groups.
 
 They have two modes to limit the use of the disk:
 
-* **i-nodes**: Max number of files.
+* **inodes**: Max number of files.
 * **blocks**: Max size.
 
 There are two limits:
 
 * **Soft limit**: Informative limit. Where the user is told to be careful of how much data they have. Less than *Hard Limit*.
-* **Hard limit**: Real limit. At this point, user is not allowed to write any data on the filesystem.
+* **Hard limit**: Real limit. At this point, the user is not allowed to write any data on the filesystem.
 
 ### Grace period
 
@@ -80,23 +78,26 @@ To set the maximum time after the user surpassed the soft limit:
 edquota -t
 ```
 
+If the grace period is set to 0, the user can pass the Soft limit all the way to the Hard limit. If the grace period is set to any value other than 0, the user that surpasses the Soft limit will have a limited time to keep those files until the system stops him.
+
 ### Inconvenients
 
 When a quota system is implemented, more or less a **30% of performance loss is expected** due to  constantly checking the space usage of a logged-in user.
 
-To solve this, it's important to have a good division of the filesystem, limiting the loss of performance.
+To solve this is important to have a good division of the filesystem, limiting performance loss.
 
-If a user doesn't have a quota assigned, it’s assumed that it doesn’t have delimited storage.
+If a user doesn't have a quota assigned, is assumed that it doesn’t have delimited storage.
 
 ### Commands
 
 * `quotaon`: Sets on the quota.
 * `quotaoff`: Sets off the quota.
 * `setquota`: Sets a quota.
-* `edquota`: Allows to edit "*adquota*" files (in `/`) to set quotes. It's easier to use compared with `setquota`.
-* `quota` and `repquota`: They show info about quotes and a report of the space consumed by each user and group.
+  * `setquota -u peter 100M 200M 0 0 /`
+* `edquota`: Allows to edit "*adquota*" files (in `/`) to set quotas. It's easier to use compared with `setquota`.
+* `quota` and `repquota`: They show info about quotas and a report of the space consumed by each user and group.
   * `quota -u user` shows info about space used of a specific user.
-* `quotacheck`: Runs over the filesystem block by block checking free and occupied i-nodes. Usually runs at boot.
+* `quotacheck`: Runs over the filesystem block by block checking free and occupied inodes. Usually runs at boot.
 
 ### Installation
 
@@ -106,7 +107,7 @@ Install quota:
 sudo apt install quota
 ```
 
-Edit `etc/fstab`, adding `usrquota,grpquota` before the `errors=...`. There can't be any blank spaces!!
+Edit `etc/fstab`, adding `usrquota,grpquota` before the `errors=...`. Leave no blank spaces!!
 
 ```conf
 # /etc/fstab: static file system information.
@@ -135,7 +136,7 @@ To set a quota to a user:
 edquota -u user
 ```
 
-> Change here the soft and the hard limit of the blocks or the i-nodes. As blocksize is measured in Kb, so 50 Mb are 51200 blocks.<br>Use this formula: `nº of blocks = nº of Mb · 1024`
+> Change here the soft and the hard limit of the blocks or the inodes. As blocksize is measured in Kb, so 50 Mb are 51200 blocks.<br>Use this formula: `nº of blocks = nº of Mb · 1024`
 
 To copy a quota from a user to another user:
 
@@ -150,7 +151,7 @@ edquota -u -p firstUser endUser
 sudo repquota -u user
 ```
 
-To check the soft/hard limit is applied we can generate a file with a similar space:
+To check the soft/hard limit is applied, we can generate a file with a similar space:
 
 ```bash
 dd if=/dev/zero of=BIGFILE.iso bs=1M count=30000 # 30 Gb
