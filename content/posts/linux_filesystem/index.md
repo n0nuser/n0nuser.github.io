@@ -45,6 +45,7 @@ It is .
 * `/bin`: Basic executables files
 * `/boot`: Boot loader files
 * `/dev`: Device files (`/dev/sda1`, `/dev/tty`, `/dev/null`, ...)
+  * It's a virtual file system that only exists in RAM. Then, each time we reboot, UDev is in charge of generating device files.
 * `/etc`: Most of the system config files
   * `etc/skel`: All files contained in this directory will be copied to the new user's $HOME.
 * `/home`: User home directories

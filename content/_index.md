@@ -19,7 +19,7 @@ I usually upload different sort of things to ease our life when we have a task i
   * [Backups](posts/linux_backup)
   * [Monitoring Processes](posts/linux_processes)
   * [System Auditing](posts/linux_audit)
-  <!--* [Security](posts/linux_security)-->
+  * [System Security](posts/linux_security)
   * Services
     * [SSH Server](posts/ssh)
     * [Apache HTTP Server](posts/apache)

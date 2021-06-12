@@ -210,6 +210,10 @@ systemctl enable weatherd
 
 There is a parameter in systemd to specify when a script is to run (timer). The difference between a `timer` and a `cron`, is that the timer can be resource-specific at boot, which cron doesn't.
 
+<!--
+cron.allow specifies user that can use cron. Root is always included.
+-->
+
 <!-- ## Creating a Systemd service
 
 I've a post explaining on [how to create a Telegram bot](../telegrambot) with a service and a timer.

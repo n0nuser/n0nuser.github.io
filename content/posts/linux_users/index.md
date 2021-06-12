@@ -10,3 +10,11 @@ toc: true
 draft: true
 tags: [ "SysAdmin", "Linux" ]
 ---
+
+Search every file/directory that has no owner nor group owner:
+
+```bash
+find / -nouser -o -nogroup
+```
+
+This can happen when a user is deleted, its files are then orphans.
