@@ -163,11 +163,11 @@ paginate = 8
     #facebook      = [ "<username>", "Zuckerburg" ]
     #flickr        = [ "<username>" ]
     github        = [ "n0nuser" ]
-    hackthebox    = [ "72782" ]
-    tryhackme     = [ "nonuser" ]
+    #hackthebox    = [ "72782" ]
+    #tryhackme     = [ "nonuser" ]
     linkedin      = [ "nonuser" ]
     twitter       = [ "n0nuser_", "" ]
-    telegram      = [ "n0nuser" ]
+    #telegram      = [ "n0nuser" ]
     #discord   = [ "494558292752728079" ]
     #gitlab        = [ "<username>" ]
     #instagram     = [ "_n0nuser_" ]
@@ -276,19 +276,19 @@ paginate = 8
         weight = 4
         url = "writeups/"
 
-      [[languages.en.menu.main]]
-        identifier = "htb"
-        name = "HTB"
-        url = "writeups/htb"
-        parent = "writeups"
-        weight = 1
+      #[[languages.en.menu.main]]
+      #  identifier = "htb"
+      #  name = "HTB"
+      #  url = "writeups/htb"
+      #  parent = "writeups"
+      #  weight = 1
 
-      [[languages.en.menu.main]]
-        identifier = "thm"
-        name = "THM"
-        url = "writeups/thm"
-        parent = "writeups"
-        weight = 2
+      #[[languages.en.menu.main]]
+      #  identifier = "thm"
+      #  name = "THM"
+      #  url = "writeups/thm"
+      #  parent = "writeups"
+      #  weight = 2
 
       [[languages.en.menu.main]]
         identifier = "contact"

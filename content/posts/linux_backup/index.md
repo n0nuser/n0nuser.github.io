@@ -125,7 +125,7 @@ tar -xfv myBackup.tar
 tar -xfv myBackup.tar myfile
 ```
 
-When absolute directories are compressed (e.g: `/ home`), the directory slash is removed as a security measure. When it's decompressed, it is done in a separate directory and is the user who has to overwrite the data.
+When absolute directories are compressed (e.g: `/home`), the directory slash is removed as a security measure. When it's decompressed, it is done in a separate directory and is the user who has to overwrite the data.
 
 This is done to prevent someone from modifying the "passwd" file, for example, and it being overwritten on our system.
 
@@ -135,13 +135,13 @@ This is done to prevent someone from modifying the "passwd" file, for example, a
 
 It's widely known and used for copying entire filesystems into files and viceversa.
 
-Clone a file: `dd if = payments.pdf of = payments2.pdf`
+Clone a file: `dd if=payments.pdf of=payments2.pdf`
 
-Clone a partition: `dd if = / dev / sda1 of = / dev / sdb1`
+Clone a partition: `dd if=/dev/sda1 of=/dev/sdb1`
 
-Clone a disk: `dd if = / dev / sdX of = / dev / sdY`
+Clone a disk: `dd if=/dev/sdX of=/dev/sdY`
 
-To make an ISO of a CD-Rom: `dd if = / dev / cdrom of = micd.iso`
+To make an ISO of a CD-Rom: `dd if=/dev/cdrom of=micd.iso`
 
 To send a tape to a backup robot on the other side of the world that saves the files on magnetic tape, and then in a safe:
 
@@ -159,9 +159,9 @@ dump [-level] [options] [files2save]
 
 ```bash
 # Do the full copy
-dump -0uf /backups/backup.dump / dev / sda78
+dump -0uf/backups/backup.dump/dev/sda78
 # Make incremental copy
-dump -1uf /backups/backup.dump / dev / sda78
+dump -1uf/backups/backup.dump/dev/sda78
 ```
 
 ```bash
@@ -187,7 +187,7 @@ Interactive console commands:
 
 ```bash
 # Simulation mode: -n
-rsync -anv source/ destination
+rsync -anv source/destination
 # Send it directly
 rsync -av
 ```
@@ -196,7 +196,7 @@ Remote SSH:
 
 ```bash
 # Progress Bar: -P
-rsync -azP source/ n0nuser@192.168.1.15:folder
+rsync -azP source/n0nuser@192.168.1.15:folder
 ```
 
 When it detects the difference of the file, it does not replace that file but automatically changes the part of the modified content.
@@ -219,7 +219,7 @@ We can run this Perl script in the logout script: `/home/myUser/.bash_logout`
 ```perl
 use File::Rsync;
  
-$obj = File::Rsync->new(
+$obj=File::Rsync->new(
     archive      => 1,
     compress     => 1,
     rsh          => '/usr/local/bin/ssh',

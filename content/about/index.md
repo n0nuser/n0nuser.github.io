@@ -29,15 +29,6 @@ I’m Pablo Jesús González Rubio and I was born in Salamanca (Spain) in 02/200
     </ul>
 </div>
 
-**Steam** 🎮
-<div class="list">
-    <a href="https://steamcommunity.com/id/n0nuser">
-        <ul class="posts">
-            {{< contentButton src="https://steam-stat.vercel.app/api?profileName=n0nuser" alt="Spotify Now Playing" width="350">}}
-        </ul>
-    </a>
-</div>
-
 **Hacking Ranks** 💻
 
 [![n0nuser](https://www.hackthebox.eu/badge/image/72782)](https://app.hackthebox.eu/profile/72782)
