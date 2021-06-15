@@ -141,8 +141,6 @@ Clone a partition: `dd if=/dev/sda1 of=/dev/sdb1`
 
 Clone a disk: `dd if=/dev/sdX of=/dev/sdY`
 
-To make an ISO of a CD-Rom: `dd if=/dev/cdrom of=micd.iso`
-
 To send a tape to a backup robot on the other side of the world that saves the files on magnetic tape, and then in a safe:
 
 ```bash
@@ -210,7 +208,7 @@ It works very very well.
 - [`rsync`](https://linux.die.net/man/1/rsync)
 - [`unison`](https://github.com/bcpierce00/unison)
 
-## Exercise
+## Useful things
 
 ### Synchronize content on logout
 
@@ -229,3 +227,39 @@ $obj=File::Rsync->new(
 $obj->exec( src => '~/myFolder', dest => '/mnt/pendrive' )
     or warn "rsync failed\n";
 ```
+
+### Copying a CD with DD
+
+1. Read the block size and the volume size of the CD
+    ```bash
+    ➜  ~ isoinfo -d -i /dev/cdrom | grep -i -E 'block size|volume size' 
+    Logical block size is: 2048
+    Volume size is: 6248
+    ```
+2. Clone the CD
+    ```bash
+    dd if=/dev/cdrom of=CopyOfMyDisk.iso bs=2048 count=6248 status=progress
+    ```
+
+To make an ISO of a CD-Rom: `dd if=/dev/cdrom of=micd.iso`
+
+### Backup of a Raspberry Pi
+
+1. Insert the SD in a PC with Linux
+2. Check its partition
+    ```bash
+    sudo blkid
+    ```
+3. Clone it and compress it
+    ```bash
+    sudo dd bs=4M if=/dev/mmcblk0 | gzip > ~/myImage.gz
+    ```
+4. Restore it
+    ```bash
+    gzip -dc ~/myImage.gz | sudo dd bs=4M of=/dev/mmcblk0
+    ```
+
+I highly recommend using **[pishrink](https://github.com/Drewsif/PiShrink)** after you get the backup image. Mainly because you are getting a 32 Gb., 64Gb. (your SD card size) image and you may not necessarily occupied that much space. This tool allows to shrink that image, into its real size.
+
+In my case, I had a Retropie with lots of ROMs that I wanted to keep as a single image. Just to have it and know I can copy the image into the RPi with all the ROMs and erase the hassle of sending it again over Samba or FTP. It's really useful!!
+

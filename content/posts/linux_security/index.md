@@ -137,19 +137,14 @@ Example case: a directory where my friends can upload movies; they have all of t
 
 Managing user accounts in Linux is one of the most critical jobs for Linux system administrators. Password security should be considered the primary concern for any secure Linux system.
 
-With the PAM module (Pluggable Authentication Modules) you can configure and improve password policies in Linux:
-
-* Prevent using old passwords
-* Set minimum password length
-* Define password complexity
-* Define the period in which the password expires
-
-And so on.
-
 ### BIOS
 
 * Deactivate in the BIOS the USB ports and the rest of the peripherals like (CD/DVD rom.)
-* Add a password to the grub.
+  * To deactivate USB ports with Linux, we can create (as root) a file in modprobe's configuration directory:
+    ```bash
+    echo "install usb-storage /bin/true" > /etc/modprobe.d/no-usb
+    ```
+* Add a password to the GRUB.
 
 ### Rhost files
 
@@ -178,6 +173,13 @@ find /home -name .rhost >> rhost_files.log
 
 ### PAM
 
+With the PAM module (Pluggable Authentication Modules) you can configure and improve password policies in Linux:
+
+* Prevent using old passwords
+* Set minimum password length
+* Define password complexity
+* Define the period in which the password expires
+
 The type of passwords allowed and some other characteristic associated with them is configured in the file: /etc/pam.d/common-password. The default configuration uses the pam unix module.
 
 **To avoid use of weak passwords**, it contains a feature called pam cracklib that forces the user to use strong and secure passwords. It would be enough to add to the file */etc/pam.d/common-password* (Debian based distros) the following directive:
@@ -205,16 +207,16 @@ password sufficient pam_unix.so nullok use authtok md5 shadow remember = 5
 
 * **Verify accounts without passwords**. Any user account with an empty password means a open door for unauthorized access from anywhere in the world. It must be ensured that all user accounts have strong and secure passwords. To check if accounts with empty passwords exists, the following set of commands can be used:
   ```bash
-  cat / etc / shadow | awk -F: ’($ 2 ==) print $ 1’
+  cat /etc/shadow | awk -F: ’($ 2 ==) print $ 1’
   ```
   This command will obtain the entire list of users in the system and will show those that their password is empty.
 * **Manual locking and unlocking of accounts**. This feature is very useful to avoid deleting user accounts, as it is used to specify a period of time in which user accounts will be locked. This is done with the command:
   ```bash
-  # passwd -l username
+  passwd -l username
   ```
   To unlock the user, use the command:
   ```bash
-  # passwd -u username
+  passwd -u username
   ```
   Or, we can set the **Expiration Date to 0**:
   ```bash
