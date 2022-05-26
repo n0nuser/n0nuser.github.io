@@ -1,0 +1,39 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+  commit_messages:
+    create: 'Create {{collection}} "{{slug}}"'
+    update: 'Update {{collection}} "{{slug}}"'
+    delete: 'Delete {{collection}} "{{slug}}"'
+    uploadMedia: '[skip ci] Upload "{{path}}"'
+    deleteMedia: '[skip ci] Delete "{{path}}"'
+
+publish_mode: editorial_workflow
+# media_folder: static/img
+media_folder: img
+# public_folder: /img
+public_folder: img
+
+site_url: https://nonuser.es
+
+
+collections:
+  - name: 'posts'
+    label: 'Blog'
+    folder: 'content/posts'
+    create: true
+    preview_path: "posts/{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Description', name: 'description', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime', default: "", date_format: "YYYY-MM-DD"}
+      - { label: 'Modification Date', name: 'lastmod', widget: 'datetime' }
+      - { label: 'Author', name: 'author', widget: 'string', default: "Pablo Jesús González Rubio"}
+      - { label: 'Cover', name: 'cover', widget: image, required: false }
+      - { label: 'Cover Alt', name: 'coverAlt', widget: 'string', required: false }
+      - { label: 'Include TOC', name: 'toc', widget: 'boolean', required: false }
+      - { label: 'Tags', name: 'tags', widget: 'list' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }

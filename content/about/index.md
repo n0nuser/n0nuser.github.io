@@ -4,12 +4,12 @@ description = "Some things about me!"
 author = "Pablo Jesús González Rubio"
 +++
 
-{{< imgRounded "me.jpg" "Me!" "border" "350" >}}
+{{< imgRounded "me.jpeg" "Me!" "border" "350" >}}
 
 I’m Pablo Jesús González Rubio and I was born in Salamanca (Spain) in 02/2000.
 
 * I’ve been playing and tinkering with computers since I was 8, from there my passion for this field.
-* I'm very passionate about Red-Teaming operations, Pentesting, System Administration, and automating easy and complex tasks via scripting. Much of that can be seen in my [Github](https://github.com/n0nuser/).
+* I'm System Administration, Cibersecurity and automating easy and complex tasks via scripting. Much of that can be seen in my [Github](https://github.com/n0nuser/).
 
 ## **_Curriculum_** 📂
 
