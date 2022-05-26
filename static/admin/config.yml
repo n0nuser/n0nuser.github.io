@@ -9,11 +9,10 @@ backend:
     uploadMedia: '[skip ci] Upload "{{path}}"'
     deleteMedia: '[skip ci] Delete "{{path}}"'
 
-publish_mode: editorial_workflow
 # media_folder: static/img
-media_folder: img
+media_folder: "img"
 # public_folder: /img
-public_folder: img
+public_folder: "img"
 
 site_url: https://nonuser.es
 
@@ -21,6 +20,7 @@ site_url: https://nonuser.es
 collections:
   - name: 'posts'
     label: 'Blog'
+    publish_mode: editorial_workflow
     folder: 'content/posts'
     create: true
     preview_path: 'posts/{{slug}}'
