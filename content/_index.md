@@ -5,17 +5,13 @@ imgPath = "."
 disableTitleSeparator = true
 +++
 
-This a Cybersecurity and SysAdmin blog 👽️
+Take a look!
 
-I usually upload different sort of things to ease our life when we have a task in front of us:
-
-* [Cheatsheets](tags/cheatsheet/) about penetration testing and programming 💲
-* [System Administration](tags/sysadmin): how to set up different services and apps 📄
+* [Cheatsheets](tags/cheatsheet/) 📄
+* [System Administration](tags/sysadmin) 💲
 * [Linux Course](tags/linux) 🐧
-* [DIY Projects](tags/projects) such as a Rubber Ducky or a Rogue AP 🔨
+* [DIY Projects](tags/projects) 🔨
 * [Writeups](writeups) for [HTB](writeups/htb) or [THM](writeups/thm) machines 👹
-
-You can stay tuned for upcoming posts with the [RSS feed](index.xml)!
 
 ## Contact
 

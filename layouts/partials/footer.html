@@ -33,6 +33,22 @@
   <button class="outline-dashed" title="{{ T "change_mode" }}"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><use xlink:href="#adjust"/></svg></button><input class="outline-dashed" type="color" list="presets" value="{{ if .Site.Params.Style.isDark }}{{ $darkAccent }}{{ else }}{{ $lightAccent }}{{ end }}" title="{{ T "change_accent" }}" aria-label="{{ T "change_accent" }}"><datalist id="presets"><option value="{{ $lightAccent }}"><option value="{{ $darkAccent }}"><!-- Extra colors -->{{- range .Site.Params.style.presets -}}<option value="{{ . }}">{{ end }}</datalist>
 </section>
 
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+        .register('/sw.js', { scope: '/' })
+        .then(() => {
+            console.info('Service Worker Registered');
+        }, err => console.error("Service Worker registration failed: ", err));
+  
+    navigator.serviceWorker
+        .ready
+        .then(() => {
+            console.info('Service Worker Ready');
+        });
+  }
+</script>
+
 <!-- noscript notice -->
 {{ if .Site.Params.hasNoscriptNotice }}
   <noscript>
