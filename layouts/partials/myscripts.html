@@ -1,15 +1,3 @@
-{{ $googleID := (printf "%#s" $.Site.Params.ga4 ) }}
-{{ $googleURL := (printf "https://www.googletagmanager.com/gtag/js?id=%s" $googleID) }}
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-{{ with $googleURL }}<script async src="{{ . }}"></script>{{ end }}
-{{ with $googleID }}<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', '{{ . }}');
-</script> {{ end }}
-
 <!-- Icon SEO -->
 <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114.png" />
