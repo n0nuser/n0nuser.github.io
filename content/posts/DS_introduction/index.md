@@ -1,7 +1,7 @@
 ---
 title: "Distributed Systems - Introduction"
 description: ""
-date: 2022-05-31
+date: 2022-05-31T10:00:00+02:00
 author: "Pablo Jesús González Rubio"
 cover: "cover.jpg"
 coverAlt: "Distributed Systems"
