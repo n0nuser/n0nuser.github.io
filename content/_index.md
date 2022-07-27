@@ -8,7 +8,6 @@ disableTitleSeparator = true
 Take a look!
 
 * [Cheatsheets](tags/cheatsheet/) 📄
-* [Distributed Systems](tags/distributed-systems/) 📶
 * [System Administration](tags/sysadmin/) 💲
 * [Linux Course](tags/linux/) 🐧
 * [DIY Projects](tags/projects/) 🔨

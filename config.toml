@@ -291,7 +291,13 @@ paginate = 7
       #  weight = 2
 
       [[languages.en.menu.main]]
+        identifier = "tags"
+        name = "Tags"
+        weight = 5
+        url = "tags/"
+
+      [[languages.en.menu.main]]
         identifier = "contact"
         name = "Contact"
-        weight = 5
+        weight = 6
         url = "#contact"
