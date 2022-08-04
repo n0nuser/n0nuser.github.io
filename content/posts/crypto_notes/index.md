@@ -1,5 +1,5 @@
 ---
-title: "Cryptocurrencies notes"
+title: "Cryptocurrency notes"
 description: "My personal notes on Cryptocurrencies."
 date: 2021-11-22
 lastmod: 2021-11-22T11:11:52+02:00

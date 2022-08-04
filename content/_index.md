@@ -1,11 +1,9 @@
 +++
 title = "Hi there! 👨‍💻"
-mainTitle = "n0nuser 👽 • Cybersecurity personal blog"
+mainTitle = "n0nuser 👽"
 imgPath = "."
 disableTitleSeparator = true
 +++
-
-Take a look!
 
 * [Cheatsheets](tags/cheatsheet/) 📄
 * [System Administration](tags/sysadmin/) 💲

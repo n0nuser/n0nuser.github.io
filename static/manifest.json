@@ -8,7 +8,26 @@
     "start_url": "/",
     "scope": "/",
     "icons": [
-        
+        {
+            "src": "/android-chrome-512x512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "/android-chrome-192x192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/apple-touch-icon.png",
+            "type": "image/png",
+            "sizes": "180x180"
+        },
+        {
+            "src": "/apple-touch-icon-180x180.png",
+            "type": "image/png",
+            "sizes": "180x180"
+        },
         {
             "src": "/apple-touch-icon-152x152.png",
             "type": "image/png",
@@ -19,7 +38,6 @@
             "type": "image/png",
             "sizes": "144x144"
         },
-        
         {
             "src": "/apple-touch-icon-120x120.png",
             "type": "image/png",
@@ -52,21 +70,6 @@
             "sizes": "57x57"
         },
         {
-            "src": "/favicon-196x196.png",
-            "type": "image/png",
-            "sizes": "196x196"
-        },
-        {
-            "src": "/favicon-128x128.png",
-            "type": "image/png",
-            "sizes": "128x128"
-        },
-        {
-            "src": "/favicon-96x96.png",
-            "type": "image/png",
-            "sizes": "96x96"
-        },
-        {
             "src": "/favicon-32x32.png",
             "type": "image/png",
             "sizes": "32x32"
@@ -79,32 +82,12 @@
         {
             "src": "/favicon.ico",
             "type": "image/x-icon",
-            "sizes": "64x64"
-        },
-        {
-            "src": "/mstile-310x310.png",
-            "type": "image/png",
-            "sizes": "558x558"
-        },
-        {
-            "src": "/mstile-310x150.png",
-            "type": "image/png",
-            "sizes": "558x270"
+            "sizes": "48x48"
         },
         {
             "src": "/mstile-150x150.png",
             "type": "image/png",
-            "sizes": "270x270"
-        },
-        {
-            "src": "/mstile-144x144.png",
-            "type": "image/png",
-            "sizes": "144x144"
-        },
-        {
-            "src": "/mstile-70x70.png",
-            "type": "image/png",
-            "sizes": "128x128"
+            "sizes": "150x150"
         }
     ]
 }

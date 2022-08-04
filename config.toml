@@ -27,18 +27,18 @@ paginate = 7
   GA4 = "G-X02P25XWHJ" # Google Analytics 4
 
   # Site description
-  description = "Cybersecurity personal blog with some helpful pentest and programming cheatsheets, project guides and HTB writeups."
+  description = "Personal tech blog with some helpful cheatsheets, projects and HTB writeups."
   
   # Author
   author      = "Pablo Jesús González Rubio"
-  authorDesc  = 'Computer Science Student and InfoSec 👽. "n0nuser" is my alias'
+  authorDesc  = 'Python Developer. "n0nuser" is my alias'
   
   # Site cover, for Open Graph, Twitter Cards and Schema.org
   # It will be used if the current page doesn't have a image cover
   # File will be picked from the "assets" directory
   # Comment the lines if you don't want to use it
   cover     = "img/cover.jpeg"
-  coverAlt  = "Personal blog with some helpful pentest, linux administration and programming cheatsheets and guides"
+  coverAlt  = "Personal tech blog with some helpful cheatsheets, projects and HTB writeups."
   
   # Shows a message in the footer about JavaScript being disabled
   # The default is false
