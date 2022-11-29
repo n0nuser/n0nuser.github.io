@@ -1,9 +1,9 @@
 [build]
-  command = "hugo --gc --minify"
+  command = "hugo --gc"
   publish = "public"
 
 [dev]
-  command = "hugo server --gc --minify"
+  command = "hugo server --gc"
   publish = "public"
 
 [build.environment]
