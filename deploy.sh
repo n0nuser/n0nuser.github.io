@@ -10,7 +10,7 @@ printf "\033[0;32mDeploying updates to GitHub...\033[0m\n"
 
 # Run Hugo for folder Resources
 
-hugo --gc
+hugo --gc --minify
 
 # Add changes to git.
 git add .
