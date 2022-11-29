@@ -220,6 +220,7 @@
 
 <!-- PWA Manifest -->
 <link rel="manifest" href="/manifest.json">
+<link rel="manifest" href="manifest.json" />
 
 <!-- Feed -->
 <link rel="alternate" type="application/rss+xml" href="{{ "index.xml" | relURL }}" title="{{ .Site.Title }}">
@@ -400,19 +401,8 @@
 {{ end }}
 
 
-<!--
-  Priority JavaScript
-  If not using Hugo server, remove every "console.log()"
--->
-
-{{ with resources.Get "js/prepone.js" | resources.ExecuteAsTemplate .Page . | minify | resources.Fingerprint "sha512" }}
-
+{{ with resources.Get "js/prepone.js" | resources.ExecuteAsTemplate .Page . | minify }}
   <script>
-    {{ if $.Site.IsServer }}
-      {{ .Content | safeJS }}
-    {{ else }}
-      {{ .Content | replaceRE "console.log(.*?);" "" | safeJS }}
-    {{ end }}
+    {{ .Content | safeJS }}
   </script>
-
 {{ end }}
