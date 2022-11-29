@@ -1,4 +1,4 @@
-const CACHE_VERSION = 1;
+const CACHE_VERSION = 1.1;
 
 const BASE_CACHE_FILES = [
     '/css/main.min.css',
@@ -9,10 +9,9 @@ const BASE_CACHE_FILES = [
     '/images/icons/icon-128x128.png',
     '/images/icons/icon-144x144.png',
     '/',
-    '/posts',
-    '/about',
-    '/writeups/htb',
-    '/writeups/thm',
+    '/posts/',
+    '/writeups/htb/',
+    '/writeups/thm/',
 ];
 
 const OFFLINE_CACHE_FILES = [

@@ -2,3 +2,6 @@
 public/
 nohup.out
 .hugo_build.lock
+
+# Local Netlify folder
+.netlify
