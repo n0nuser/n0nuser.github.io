@@ -101,15 +101,17 @@ body {
 
   a {
     color: var(--accent);
-    
+
+    text-decoration-thickness: 2px;
+
     outline-offset: 2px;
 
     transition:
       opacity .2s ease-in-out,
       outline-color .2s ease-in-out;
-
-    word-break: break-word;
-    
+      
+      word-break: break-word;
+      
     &:hover {
       opacity: .75;
     }
@@ -156,13 +158,13 @@ body {
           word-break: keep-all;
           
           margin: 0 7.5px 15px;
-          padding: 9px 21px 12px;
+          padding: 9px 30px 12px;
 
-          font-size: .75rem;
+          font-size: .9rem;
           font-weight: $body-bold-weight;
           text-transform: uppercase;
         }
-        
+
         .toggle {
           display: block;
         }
@@ -340,7 +342,7 @@ article > header {
   h#{$i} {
     @extend %heading-base;
     
-    font-size: 1rem + $heading-scaling * (6 - $i);
+    font-size: 0.4rem + $heading-scaling * (6 - $i);
   }
 }
 
@@ -361,7 +363,7 @@ code {
   body > header {
     > a {
       font-family: $heading-font;
-      font-size: 2.1rem;
+      font-size: 150%; //2.1rem
       font-weight: $heading-weight;
       
       transition:
@@ -1293,7 +1295,7 @@ summary {
       
       margin: 0 12px;
       
-      font-size: .75rem;
+      font-size: .90rem;
       font-weight: bold;
       text-transform: uppercase;
       
@@ -1448,14 +1450,14 @@ kbd {
 
 // RESPONSIVENESS
 main {
-  margin: 90px auto;
+  margin: 0 auto;
   padding: 0 15px;
   
-  max-width: 660px;
+  max-width: 55rem;
 }
 
 article {
-  margin: 90px auto 120px;
+  margin: 0 auto 120px;
 }
 
 

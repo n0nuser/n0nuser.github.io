@@ -1,3 +1,4 @@
 .vscode/
 public/
 nohup.out
+.hugo_build.lock

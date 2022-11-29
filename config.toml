@@ -1,6 +1,6 @@
 baseURL = "https://nonuser.es"
 languageCode = "en"
-title = "n0nuser"
+title = "Pablo González | Computer Engineer"
 copyright = "Copyright © 2022, Pablo Jesús González Rubio\n All rights reserved."
 
 enableEmoji = false # It transcodes emojis from hex codeblock
@@ -27,7 +27,7 @@ paginate = 7
   GA4 = "G-X02P25XWHJ" # Google Analytics 4
 
   # Site description
-  description = "Personal tech blog with some helpful cheatsheets, projects and HTB writeups."
+  description = "Hi there! I'm a backend web developer based in Salamanca, Spain specializing in Python and Django."
   
   # Author
   author      = "Pablo Jesús González Rubio"
@@ -38,7 +38,7 @@ paginate = 7
   # File will be picked from the "assets" directory
   # Comment the lines if you don't want to use it
   cover     = "img/cover.jpeg"
-  coverAlt  = "Personal tech blog with some helpful cheatsheets, projects and HTB writeups."
+  coverAlt  = "Hi there! I'm a backend web developer based in Salamanca, Spain specializing in Python and Django."
   
   # Shows a message in the footer about JavaScript being disabled
   # The default is false
@@ -257,12 +257,6 @@ paginate = 7
         name = "CV"
         weight = 1
         url = "https://resume.nonuser.es"
-
-      [[languages.en.menu.main]]
-        identifier = "whoami"
-        name = "whoami"
-        weight = 2
-        url = "about/"
 
       [[languages.en.menu.main]]
         identifier = "posts"

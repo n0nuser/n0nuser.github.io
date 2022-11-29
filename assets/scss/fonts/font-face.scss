@@ -1,45 +1,10 @@
 // "A Hassle-Free Way to Self-Host Google Fonts" by Mario Ranftl
-// https://google-webfonts-helper.herokuapp.com/fonts
+// https://gwfh.mranftl.com/fonts
 
 // NOTE
 // Added the font-display afterwards
 
 $font-display: swap;
-
-/* oswald-700 - latin */
-@font-face {
-  font-family: 'Oswald';
-  font-style: normal;
-  font-weight: 700;
-  font-display: $font-display;
-  src: local('Oswald'),
-       url('../fonts/oswald-v29-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('../fonts/oswald-v29-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-
-/* ubuntu-mono-regular - latin */
-@font-face {
-  font-family: 'Ubuntu Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: $font-display;
-  src: local(''),
-       url('../fonts/ubuntu-mono-v15-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('../fonts/ubuntu-mono-v15-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-
-
-/* roboto-mono-regular - latin */
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: $font-display;
-  src: local(''),
-       url('../fonts/roboto-mono-v13-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('../fonts/roboto-mono-v13-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-
 
 /* jetbrains-mono-regular - latin */
 @font-face {
@@ -51,4 +16,3 @@ $font-display: swap;
        url('../fonts/jetbrains-mono-v12-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
        url('../fonts/jetbrains-mono-v12-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-
