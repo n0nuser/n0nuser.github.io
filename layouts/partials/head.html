@@ -401,8 +401,12 @@
 {{ end }}
 
 
-{{ with resources.Get "js/prepone.js" | resources.ExecuteAsTemplate .Page . | minify }}
+{{ with resources.Get "js/prepone.js" | resources.ExecuteAsTemplate .Page . }}
   <script>
-    {{ .Content | safeJS }}
+    {{ if $.Site.IsServer }}
+      {{ .Content | safeJS }}
+    {{ else }}
+      {{ .Content | replaceRE "console.log(.*?);" "" | safeJS }}
+    {{ end }}
   </script>
 {{ end }}

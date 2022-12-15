@@ -168,23 +168,27 @@ paginate = 7
     linkedin      = [ "nonuser" ]
     twitter       = [ "n0nuser_", "" ]
     #telegram      = [ "n0nuser" ]
-    #discord   = [ "494558292752728079" ]
+    #discord       = [ "494558292752728079" ]
     #gitlab        = [ "<username>" ]
     #instagram     = [ "_n0nuser_" ]
     #keybase       = [ "<username>" ]
     #medium        = [ "<username>" ]
     #reddit        = [ "pjgr234" ]
     #soundcloud    = [ "n0nuser" ]
-    #spotify      = [ "orl1r6ro371sob7h4jvk06sse" ]
+    #spotify       = [ "orl1r6ro371sob7h4jvk06sse" ]
     #stackOverflow = [ "<username>" ]
     #strava        = [ "<username>" ]
     #twitch        = [ "pjgr234" ]
-    #steam         = [ "n0nuser" ]
+    steam         = [ "n0nuser" ]
     #vimeo         = [ "<username>" ]
     #whatsapp      = [ "<number>" ]
     #youtube       = [ "<channelid>" ]
+    gmail         = [ "gonzrubio.pablo@gmail.com" ]
     #entry         = [ "username", "label (optional)" ]
-    #lichess   = [ "pjgr234" ]
+    #lichess       = [ "pjgr234" ]
+    goodreads     = [ "n0nuser" ]
+    manualofme    = [ "manual.nonuser.es" ]
+    resume        = [ "resume.nonuser.es" ]
     
     # The "entry" here IS important. It's used to load the data.
 
@@ -253,22 +257,28 @@ paginate = 7
     [languages.en.menu]
 
       [[languages.en.menu.main]]
+        identifier = "manual"
+        name = "Manual of Me"
+        weight = 1
+        url = "https://manual.nonuser.es"
+
+      [[languages.en.menu.main]]
         identifier = "cv"
         name = "CV"
-        weight = 1
+        weight = 2
         url = "https://resume.nonuser.es"
 
       [[languages.en.menu.main]]
         identifier = "posts"
         name = "Posts"
-        weight = 2
+        weight = 3
         url = "posts/"
       
       [[languages.en.menu.main]]
         identifier = "writeups"
         name = "Writeups"
-        weight = 3
-        url = "writeups/"
+        weight = 4
+        url = "writeups/htb/"
 
       #[[languages.en.menu.main]]
       #  identifier = "htb"
@@ -287,11 +297,11 @@ paginate = 7
       [[languages.en.menu.main]]
         identifier = "tags"
         name = "Tags"
-        weight = 4
+        weight = 5
         url = "tags/"
 
       [[languages.en.menu.main]]
         identifier = "contact"
         name = "Contact"
-        weight = 5
+        weight = 6
         url = "#contact"

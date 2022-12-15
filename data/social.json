@@ -268,5 +268,41 @@
       "id": "steam",
       "source": "Font-Awesome"
     }
+  },
+  {
+    "entry": "goodreads",
+    "label": "Goodreads",
+    "base": "https://www.goodreads.com/",
+    "icon": {
+      "id": "goodreads",
+      "source": "Font-Awesome"
+    }
+  },
+  {
+    "entry": "gmail",
+    "label": "Gmail",
+    "base": "mailto:",
+    "icon": {
+      "id": "google",
+      "source": "Font-Awesome"
+    }
+  },
+  {
+    "entry": "manualofme",
+    "label": "Manual of Me",
+    "base": "https://",
+    "icon": {
+      "id": "book-solid",
+      "source": "Font-Awesome"
+    }
+  },
+  {
+    "entry": "resume",
+    "label": "Resume",
+    "base": "https://",
+    "icon": {
+      "id": "file-solid",
+      "source": "Font-Awesome"
+    }
   }
 ]
