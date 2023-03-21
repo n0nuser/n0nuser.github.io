@@ -272,7 +272,7 @@ paginate = 7
         identifier = "professional_experience"
         name = "Professional Experience"
         weight = 3
-        url = "https://nonuser.es/professional-experience"
+        url = "professional-experience/"
 
       [[languages.en.menu.main]]
         identifier = "posts"
