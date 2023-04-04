@@ -1,6 +1,6 @@
 baseURL = "https://nonuser.es"
 languageCode = "en"
-title = "Pablo González | Computer Engineer"
+title = "Pablo González | Python Engineer"
 copyright = "Copyright © 2022, Pablo Jesús González Rubio\n All rights reserved."
 
 enableEmoji = false # It transcodes emojis from hex codeblock
@@ -27,7 +27,7 @@ paginate = 7
   GA4 = "G-X02P25XWHJ" # Google Analytics 4
 
   # Site description
-  description = "Hi there! I'm a backend web developer based in Salamanca, Spain specializing in Python and Django."
+  description = "Hi there! I'm a Python Engineer and Web Developer based in Salamanca, Spain."
   
   # Author
   author      = "Pablo Jesús González Rubio"
@@ -62,7 +62,7 @@ paginate = 7
   # You can disabled it PER PAGE by using "disableTitleSeparator" at front
   # matter or disable it entirely by commenting the line below
   # ie.: | ❚ - – — • ⚫ 
-  titleSeparator = "•"
+  # titleSeparator = "•"
   
   
   # Contact form shortcode
@@ -258,7 +258,7 @@ paginate = 7
 
       [[languages.en.menu.main]]
         identifier = "manual"
-        name = "Manual of Me"
+        name = "Manual"
         weight = 1
         url = "https://manual.nonuser.es"
 
@@ -266,18 +266,24 @@ paginate = 7
         identifier = "cv"
         name = "CV"
         weight = 2
-        url = "https://resume.nonuser.es"
+        url = "resume.pdf"
+      
+      [[languages.en.menu.main]]
+        identifier = "professional_experience"
+        name = "Professional Experience"
+        weight = 3
+        url = "professional-experience/"
 
       [[languages.en.menu.main]]
         identifier = "posts"
         name = "Posts"
-        weight = 3
+        weight = 4
         url = "posts/"
       
       [[languages.en.menu.main]]
-        identifier = "writeups"
-        name = "Writeups"
-        weight = 4
+        identifier = "htb"
+        name = "HTB"
+        weight = 5
         url = "writeups/htb/"
 
       #[[languages.en.menu.main]]
@@ -297,11 +303,11 @@ paginate = 7
       [[languages.en.menu.main]]
         identifier = "tags"
         name = "Tags"
-        weight = 5
+        weight = 6
         url = "tags/"
 
       [[languages.en.menu.main]]
         identifier = "contact"
         name = "Contact"
-        weight = 6
+        weight = 7
         url = "#contact"

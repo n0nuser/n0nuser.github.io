@@ -1,5 +1,6 @@
 .vscode/
 public/
+resources/
 nohup.out
 .hugo_build.lock
 

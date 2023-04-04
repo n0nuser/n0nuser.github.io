@@ -5,7 +5,9 @@
   <main class="index">
     {{ if .Content }}
       <article>
-        <h1>{{ .Title | emojify }}</h1>
+        {{ if not .Params.hideTitle }}
+          <h1>{{ .Title | emojify }}</h1>
+        {{ end }}
         
         {{ partial "processed-content" . }}
       </article>
