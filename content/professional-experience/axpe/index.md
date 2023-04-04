@@ -16,15 +16,15 @@ Here is listed a comprehensive list of the projects that I have contributed to d
 
 ### Reservation Manager
 
-As the backend developer for an API-first reservation management system that handles workstations in multiple offices, I was responsible for designing the entity-relationship diagram and implementing it using [SQLAlchemy 2.0](https://docs.sqlalchemy.org/en/20/). Additionally, I implemented a file structure that allows for multiple microservices, each matching its [OpenAPI specification](https://www.openapis.org/). For virtual environment and package management, I utilized Poetry. For version history management, I used Git with Github, and for the SCRUM Methodology, I utilized MS Teams.
+As the backend developer for an API-first reservation management system that handles workstations in multiple offices, I was responsible for designing the entity-relationship diagram and implementing it using [SQLAlchemy 2.0](https://docs.sqlalchemy.org/en/20/). Additionally, I implemented a FastAPI archetype that allows for multiple microservices, each matching its [OpenAPI specification](https://www.openapis.org/). For virtual environment and package management, I utilized Poetry. For version history management, I used Git with Github, and for the SCRUM Methodology, I utilized MS Teams.
 
 The reservation management system is built on top of [FastAPI](https://fastapi.tiangolo.com/), ensuring seamless integration with the OpenAPI schema. I utilized SQLAlchemy 2.0 with [PostgreSQL](https://www.postgresql.org/) and [Alembic](https://alembic.sqlalchemy.org/en/latest/) for efficient database management, and [OAuth](https://oauth.net/) with [Keycloak](https://www.keycloak.org/) for security. The system is deployed using a [Dockerfile](https://www.docker.com/), ensuring ease of use and accessibility.
 
-Working closely with both the API and frontend teams, I gained an understanding of the project requirements and provided the best possible solutions. My contributions helped streamline the client's workflow and improve the efficiency of their reservation management processes.
+As something to highlight, I implemented generic functions for CRUD operations and Pagination with SQLAlchemy 2.0 to adapt the best to the endpoints I generated from the OpenAPI specification. I also implemented a generic method for the creation of tests for the CRUD operations with different HTTP errors, which allowed me to reduce the amount of code and improve the readability and maintainability of the code.
 
 ### Insomnia Config Generator
 
-I also refactored and optimized an existing Python script that generates an [Insomnia](https://insomnia.rest/) configuration file from a YAML template and a properties file. The updated script is now faster, more readable, and easier to maintain.
+I refactored and optimized an existing Python script that generates an [Insomnia](https://insomnia.rest/) configuration file from a YAML template and a properties file. The updated script with OOP paradigm is now faster, more readable, and easier to maintain.
 
 ## Quant AI Lab. (12.2022 - Present)
 
@@ -42,4 +42,4 @@ As a Full-Stack Developer at QuarterBack, I was instrumental in refactoring an A
 
 By restructuring the files and the code into classes, I was able to significantly enhance the readability and maintainability of the code, which helped streamline the development process and reduce the likelihood of errors.
 
-Additionally, I led the redevelopment of a existing application using these functionalities from the library, by implementing a new backend using FastAPI and a new frontend using Next.JS. and Tailwind CSS with Flowbite.
+Additionally, I led the redevelopment of a existing application using these functionalities from the library, by implementing a new backend using FastAPI with OpenAPI first in mind, and a new frontend using Next.JS and Tailwind CSS with Flowbite.
