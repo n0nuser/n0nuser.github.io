@@ -266,7 +266,7 @@ paginate = 7
         identifier = "cv"
         name = "CV"
         weight = 2
-        url = "https://resume.nonuser.es"
+        url = "resume.pdf"
       
       [[languages.en.menu.main]]
         identifier = "professional_experience"
