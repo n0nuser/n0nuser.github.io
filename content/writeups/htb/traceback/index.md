@@ -95,7 +95,7 @@ It lists some files, included a PHP reverse shell which is the [pentest monkey o
 
 I downloaded it and called it `reverse_shell.php`. I modified it and uploaded it, so what's left is to enter the url: `traceback.htb/reverse_shell.php` and we have a connection (listening with `nc -lnvp 4444`).
 
-Then began with the [TTY procedure](https://nonuser.es/posts/pentest_cheatsheet/#tty) with python3 as python seems to not be installed.
+Then began with the [TTY procedure](https://pablogonzalez.me/posts/pentest_cheatsheet/#tty) with python3 as python seems to not be installed.
 
 ## Privilege Escalation
 

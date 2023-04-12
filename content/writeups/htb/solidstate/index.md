@@ -89,7 +89,7 @@ $ setpassword mailadmin mailadmin
 Password for mailadmin reset
 ```
 
-I then begin listing mails from within the [POP3 port (110)](https://nonuser.es/posts/port_cheatsheet/#110---pop3) with:
+I then begin listing mails from within the [POP3 port (110)](https://pablogonzalez.me/posts/port_cheatsheet/#110---pop3) with:
 
 ```
 telnet solidstate.htb 110
@@ -138,7 +138,7 @@ When I try to `cd` to other directories it doesn't let us, it's a restricted she
 ssh mindy@solidstate.htb bash
 ```
 
-And then the [TTY procedure](https://nonuser.es/posts/pentest_cheatsheet/#tty).
+And then the [TTY procedure](https://pablogonzalez.me/posts/pentest_cheatsheet/#tty).
 
 I [uploaded](/posts/data_exfiltration) `linenum` but didn't find anything interesting, so I continued and uploaded `pspy` to check crons and this appears:
 

@@ -9,17 +9,15 @@ cover: "me.jpeg"
 coverAlt: "Me!"
 ---
 
-<div class="row align-items-center">
-    <div class="col-auto col-md-auto">
-        {{< imgRounded "me.jpeg" "Me!" "borderless" "350" >}}
-    </div>
-    <div class="col">
+{{< imgRounded "me.jpeg" "Photo of Pablo" "borderless" "400" >}}
 
-Hey there! I'm **Pablo González**, a **Computer Engineer** at **Axpe Consulting**. My passion lies in **back-end engineering** and **web service development**, where I utilize **Python** with **Django** or **FastAPI** to create flexible, efficient, and versatile web applications.
+<span style="font-size:3em; font-weight:500">Hello, I'm **Pablo González**</span>
 
-I'm always excited to deliver top-notch solutions for our clients and team. If you're interested, check out **[my work experience](/professional-experience)**. I'd love to connect and answer any questions you may have!
-    </div>
-</div>
+I'm a **Computer Engineer** at **Axpe Consulting**. My passion lies in **back-end engineering** and **web service development**, where I utilize **Python** with **Django** or **FastAPI** to create flexible, efficient, and versatile web applications.
+
+I'm always excited to deliver top-notch solutions for our clients and team. If you're interested, check out **[my professional experience](/professional-experience)** or my **[resume](/resume.pdf)**. I'd love to connect and answer any questions you may have!
+
+If you would like to know about the personal me, you can check out my [manual](https://manual.pablogonzalez.me).
 
 You can check my [blog](/posts) for posts like these:
 

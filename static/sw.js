@@ -1,4 +1,4 @@
-const version = "1.2.0";
+const version = "1.0.0";
 
 /* https://wbaer.net/2022/05/setting-up-a-service-worker-with-hugo/ */
 const BASE_CACHE_FILES = [
@@ -25,6 +25,18 @@ const BASE_CACHE_FILES = [
   '/favicon-16x16.png',
   '/favicon.ico',
   '/mstile-150x150.png',
+  '/fonts/inter-v12-latin-regular.woff',
+  '/fonts/inter-v12-latin-regular.woff2',
+  '/fonts/inter-v12-latin-500.woff',
+  '/fonts/inter-v12-latin-500.woff2',
+  '/fonts/inter-v12-latin-600.woff',
+  '/fonts/inter-v12-latin-600.woff2',
+  '/fonts/inter-v12-latin-700.woff',
+  '/fonts/inter-v12-latin-700.woff2',
+  '/fonts/inter-v12-latin-800.woff',
+  '/fonts/inter-v12-latin-800.woff2',
+  '/fonts/inter-v12-latin-900.woff',
+  '/fonts/inter-v12-latin-900.woff2',
   '/fonts/jetbrains-mono-v12-latin-regular.woff',
   '/fonts/jetbrains-mono-v12-latin-regular.woff2',
 ]

@@ -1,13 +1,13 @@
 <!-- Custom or default site title -->
-{{ if or (templates.Exists "partials/custom/site-title") (templates.Exists "partials/custom/site-title.html") }}
+{{/*  {{ if or (templates.Exists "partials/custom/site-title") (templates.Exists "partials/custom/site-title.html") }}
   {{ partial "custom/site-title" . }}
 {{ else }}
-  <a href="{{ .Site.BaseURL | relLangURL }}">{{ .Site.Title }}</a>
-{{ end }}
+  <a href="{{ .Site.BaseURL | relLangURL }}" style="text-transform:uppercase">{{ .Site.Params.Author }}</a>
+{{ end }}  */}}
 
 <!-- Menu -->
 {{ if .Site.Menus.main }}
-    <nav aria-label="{{ T "main_menu" }}">
+    <nav class="mt-4" aria-label="{{ T "main_menu" }}">
       <ul>
         {{ range .Site.Menus.main }}
           {{ if .HasChildren }} <!-- Submenu if children in config.toml-->

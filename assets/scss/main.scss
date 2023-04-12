@@ -5,11 +5,8 @@
         'fonts/_all',
         'colors/variables';
 
-
 // Get transition for color changes
 $change-transition: {{ .Site.Params.Style.changeTransition | default .Site.Data.default.style.changeTransition }};
-
-
 
 // Default font size
 :root {
@@ -89,8 +86,6 @@ html {
   }
 }
 
-
-
 body {
   
   // Some reset
@@ -98,6 +93,10 @@ body {
   padding: 0;
 
   font-family: $body-font;
+
+  strong {
+    color: var(--accent);
+  }
 
   a {
     color: var(--accent);
@@ -266,7 +265,6 @@ body {
   }
 }
 
-
 // footer button,
 // footer input,
 // input[type=submit],
@@ -281,12 +279,10 @@ body a,
   }
 }
 
-
 ol,
 ul {
   list-style: none;
 }
-
 
 // Heading 1
 h1 {
@@ -314,8 +310,6 @@ hr {
   justify-content: center;
 }
 
-
-
 article > header {
   h1 {
     line-height: 3rem;
@@ -331,7 +325,6 @@ article > header {
   }
 }
 
-
 // Typography
 %heading-base {
   font-family: $heading-font;
@@ -346,7 +339,6 @@ article > header {
   }
 }
 
-
 main {
   p {
     line-height: 1.65rem;
@@ -356,7 +348,6 @@ main {
 code {
   font-family: $code-font;
 }
-
 
 // If there's no "custom/site-title" partial, style a default one
 {{ if not (or (templates.Exists "partials/custom/site-title") (templates.Exists "partials/custom/site-title.html")) }}
@@ -378,7 +369,6 @@ code {
     }
   }
 {{ end }}
-
 
 // WHITE SPACE
 article > header {
@@ -430,7 +420,6 @@ video {
   margin: 1.8rem auto;
 }
 
-
 // ANCHOR LINKS
 .anchor {
   background-image: none;
@@ -443,7 +432,6 @@ video {
     @include squared(24px);
   }
 }
-
 
 // Resize the anchor SVG depending on the heading level
 // Also minor spacing ajustment
@@ -459,7 +447,6 @@ video {
   }
 }
 
-
 // Avoid accidental selection
 label,
 summary,
@@ -468,7 +455,6 @@ summary,
   user-select: none;
 }
 
-
 // Lists in general
 article ol,
 article ul {
@@ -476,7 +462,6 @@ article ul {
     margin-bottom: .45rem;
   }
 }
-
 
 ol {
   counter-reset: a-counter;
@@ -591,7 +576,6 @@ sup {
   }
 }
 
-
 // For mode change animation
 code,
 .chroma {
@@ -599,7 +583,6 @@ code,
     background-color $change-transition,
     color $change-transition;
 }
-
 
 article > pre,
 .scroll,
@@ -620,7 +603,6 @@ article > pre,
     outline-color: var(--accent);
   }
 }
-
 
 // TABLE
 .scroll {
@@ -679,7 +661,6 @@ article > pre,
   }
 }
 
-
 .highlight > div table {
   padding: 0 24px;
   max-height: $box-max-height;
@@ -705,7 +686,6 @@ article > pre,
   max-height: $box-max-height;
 }
 
-
 mark,
 p code,
 li code {
@@ -716,7 +696,6 @@ li code {
 li a {
   word-break: break-all;
 }
-
 
 article > header {
   .terms {
@@ -739,8 +718,6 @@ article > header {
     }
   }
 }
-
-
 
 .posts {
   padding: 0;
@@ -798,8 +775,6 @@ article > header {
   }
 }
 
-
-
 .katex-display {
   border: 1px dashed var(--alt-fg);
   
@@ -810,9 +785,6 @@ article > header {
     border: 1px solid $box-border;
   }
 }
-
-
-
 
 // MEDIA
 img {
@@ -1021,15 +993,11 @@ article > ul {
   }
 }
 
-
-
 // Animation
 @keyframes smoothReveal {
   0%    { opacity: 0; }
   100%  { opacity: 1; }
 }
-
-
 
 // BUTTONS
 .btn,
@@ -1062,16 +1030,12 @@ summary {
   cursor: pointer;
 }
 
-
-
 // Categories
 {{ if .Site.Taxonomies.categories }}
   .category a {
     font-weight: bold;
   }
 {{ end }}
-
-
 
 .terms {
   display: flex;
@@ -1106,8 +1070,6 @@ summary {
     }
   }
 }
-
-
 
 .pagination { 
   font-family: $body-font;
@@ -1168,9 +1130,6 @@ summary {
   }
 }
 
-
-
-
 .label-form {
   margin-top: 1rem;
   
@@ -1201,9 +1160,6 @@ summary {
     outline-color: var(--accent);
   }
 }
-
-
-
 
 // SEARCH
 .search-box {
@@ -1308,7 +1264,6 @@ summary {
   }
 }
 
-
 // CONTACT FORM
 #contact {
 
@@ -1389,8 +1344,6 @@ summary {
   }
 }
 
-
-
 .error {
   color: var(--err);
 }
@@ -1447,7 +1400,6 @@ kbd {
   }
 }
 
-
 // RESPONSIVENESS
 main {
   margin: 0 auto;
@@ -1459,7 +1411,6 @@ main {
 article {
   margin: 0 auto 120px;
 }
-
 
 html {
   --blk-mg: 1.05rem .75rem;
@@ -1476,7 +1427,6 @@ html {
     --hl-pad: 21px 24px;
   }
 }
-
 
 {{ if .Site.Params.Style.hideAnchors }}
 
@@ -1505,14 +1455,12 @@ html {
   }
 {{ end }}
 
-
 // Rich Content
 {{ if (fileExists "static/css/rich-content.css") }}
   @import '/css/rich-content.css';
 {{ else if (resources.Get "scss/rich-content.scss") }}
   @import 'rich-content';
 {{ end }}
-
 
 // TODO
 // Custom user stuff

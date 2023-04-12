@@ -301,7 +301,7 @@ And listening with netcat...
 
 {{< img "wwwdata.png" "WWW-Data" >}}
 
-Let's upgrade the shell to a [TTY](https://nonuser.es/posts/pentest_cheatsheet/#tty).
+Let's upgrade the shell to a [TTY](https://pablogonzalez.me/posts/pentest_cheatsheet/#tty).
 
 I was curious at how did the creator had so many subdomains:
 
