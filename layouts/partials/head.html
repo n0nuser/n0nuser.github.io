@@ -335,12 +335,15 @@
 {{ $googleID := (printf "%#s" $.Site.Params.ga4 ) }}
 {{ $googleURL := (printf "https://www.googletagmanager.com/gtag/js?id=%s" $googleID) }}
 
-{{ with $googleID }}<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', '{{ . }}');
-</script> {{ end }}
+{{ with $googleID }}
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('set', { 'cookie_flags': 'SameSite=None;Secure' });
+    gtag('config', '{{ . }}');
+</script>
+{{ end }}
 
 <!-- Main CSS -->
 {{ $main := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | toCSS | minify }}
