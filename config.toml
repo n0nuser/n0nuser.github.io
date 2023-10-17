@@ -11,309 +11,324 @@ paginate = 7
 
 
 [markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
 
-  [markup.highlight]
-    # To make use of the custom Chroma, this should be false
-    # The default is true
-    noClasses = false
+[markup.highlight]
+# To make use of the custom Chroma, this should be false
+# The default is true
+noClasses = false
 
 
 [params]
 
-  # Google Analytics ID
-  GA4 = "G-GWC49NSYGC" # Google Analytics 4
+# Google Analytics ID
+GA4 = "G-GWC49NSYGC" # Google Analytics 4
 
-  # Site description
-  description = "Hi there! I'm a Python Engineer and Web Developer based in Salamanca, Spain."
-  
-  # Author
-  author      = "Pablo Jesús González Rubio"
-  authorDesc  = 'Python Developer. "n0nuser" is my alias'
-  
-  # Site cover, for Open Graph, Twitter Cards and Schema.org
-  # It will be used if the current page doesn't have a image cover
-  # File will be picked from the "assets" directory
-  # Comment the lines if you don't want to use it
-  cover     = "img/cover.jpeg"
-  coverAlt  = "Hi there! I'm a backend web developer based in Salamanca, Spain specializing in Python and Django."
-  
-  # Shows a message in the footer about JavaScript being disabled
-  # The default is false
-  hasNoscriptNotice = false
-  
-  # Default path for images in posts
-  # ie.: "content/some-post/img"
-  # Can also be set PER PAGE
-  # It can be used to reduce repetition
-  # There's no default value
-  imgPath = "img"
-  
-  # Default classes for markup image 
-  # Modifies the default behavior of images placed via markdown
-  # Can also be set PER PAGE via front matter
-  # Available classes are: border and borderless
-  # There's no default value
-  markupImgClass = ""
-  
-  # This will append a separator (of your choice) along the site title to your <title>
-  # You can disabled it PER PAGE by using "disableTitleSeparator" at front
-  # matter or disable it entirely by commenting the line below
-  # ie.: | ❚ - – — • ⚫ 
-  # titleSeparator = "•"
-  
-  
-  # Contact form shortcode
-  [params.contact]
-  
-    # formspree.io Form ID
-    formspreeFormId = "xpzybypb"
-    
-    # Autocomplete [on/off] and min character length for message
-    autoComplete      = false # Default is false
-    messageMinLength  = 140   # Default is 140
-    
-    # Subject
-    # You can set a single value below (and it will cease to be a dropdown),
-    # BUT KEEP IT AS AN ARRAY
-    # It can also be disabled entirely (and it will turn into a text field)
-    subject = [ 'Just saying "Hi!"', "Correction in post", "Addings to post", "Post Request" ]
+# Site description
+description = "Hi there! I'm a Python Engineer and Web Developer based in Salamanca, Spain."
 
-    # Text placeholders. As usual, comment the lines if you don't want use them
-    # The "subject" below will only be used if the "subject" above doesn't exist (ie.: commented/deleted)
-    [params.contact.placeholder]
-      name    = "Donald Duck"
-      email   = "email@example.com"
-      subject = 'Just saying "Hi!"'
-      message = "Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla nullam quis risus."
+# Author
+author = "Pablo Jesús González Rubio"
+authorDesc = 'Python Developer. "n0nuser" is my alias'
+
+# Site cover, for Open Graph, Twitter Cards and Schema.org
+# It will be used if the current page doesn't have a image cover
+# File will be picked from the "assets" directory
+# Comment the lines if you don't want to use it
+cover = "img/cover.jpeg"
+coverAlt = "Hi there! I'm a backend web developer based in Salamanca, Spain specializing in Python and Django."
+
+# Shows a message in the footer about JavaScript being disabled
+# The default is false
+hasNoscriptNotice = false
+
+# Default path for images in posts
+# ie.: "content/some-post/img"
+# Can also be set PER PAGE
+# It can be used to reduce repetition
+# There's no default value
+imgPath = "img"
+
+# Default classes for markup image 
+# Modifies the default behavior of images placed via markdown
+# Can also be set PER PAGE via front matter
+# Available classes are: border and borderless
+# There's no default value
+markupImgClass = ""
+
+# This will append a separator (of your choice) along the site title to your <title>
+# You can disabled it PER PAGE by using "disableTitleSeparator" at front
+# matter or disable it entirely by commenting the line below
+# ie.: | ❚ - – — • ⚫ 
+# titleSeparator = "•"
 
 
-  [params.search]
-  
-    # Enable search form (at the post list)
-    # The default value is false
-    enable = true
-  
-    # Limit search results
-    # The default value is 30
-    maxResults = 30
-    
-    # Limit search field input and pattern matching
-    minLength = 2   # Default is 3
-    maxLength = 32  # Default is 32
-    
-    # Optional placeholder for search field
-    placeholder = "ie.: lorem ipsum"
-    
-    # Stop word filter list
-    # Can also be set PER PAGE via front matter
-    # There's no default value
-    stopWords = [ "a", "an", "and", "in", "the", "to", "was", "were", "with" ]
+# Contact form shortcode
+[params.contact]
 
-  [params.style]
-  
-    # Dark mode as default
-    # The default is false
-    isDark = true
-  
-    # Accent colors for light and dark mode respectively
-    lightAccent  = "#536dfe" # Default is "#225670", "#006666
-    darkAccent   = "#66CC99" # Default is "#dd587c", GREEN: #3eff3f
+# formspree.io Form ID
+formspreeFormId = "xpzybypb"
 
-    # More colors, pick as many as you want (not really sure if there's a limit)
-    # Apparently these may not show up on every modern browser (ie. Firefox)
-    # There's no default value. Used here just as example
-    presets = [ "#1f676b", "#f3a530", "#902b37", "#1dbc91", "#754e85", "#7fc121", "#a8314a", "#ff7433", "#3e6728", "#c063bd" ]
-    
-    # Use an icon or text for footnote return links
-    # The default is false
-    hasIconAsFootnoteReturnLink = true
-    
-    # For the social shortcode
-    # Use flexbox (with flex-grow) or grid (equal width)
-    # The default is false
-    socialIsFlex = false
-    
-    # Keep anchor links hidden until it's focused/hovered
-    # They will always be visible in mobile devices, regardless the option
-    # The default is false
-    hideAnchors = true
-    
-    # To make use of the custom Chroma, this should be true
-    # and "noClasses" (at markup.highlight) should be false
-    # The default is true
-    useCustomChroma = true
+# Autocomplete [on/off] and min character length for message
+autoComplete = false   # Default is false
+messageMinLength = 140 # Default is 140
 
-    # CSS animation transition when changing colors
-    # The default is ".5s ease"
-    changeTransition = ".3s ease"
-    
-    
-  # For a simple 404
-  [params.notFound]
-    title         = "Page not found"
-    description   = "This page was not found."
-    paragraph     = 'Pepe cries in 404.'
-    #Image is taken from static folder, but when compiled it will be in root directory
-    image         = "/error.png"
-    
-  [params.social.centralized]
-    #facebook      = [ "<username>", "Zuckerburg" ]
-    #flickr        = [ "<username>" ]
-    github        = [ "n0nuser" ]
-    hackthebox    = [ "72782" ]
-    tryhackme     = [ "nonuser" ]
-    linkedin      = [ "nonuser" ]
-    # twitter       = [ "n0nuser_", "" ]
-    #telegram      = [ "n0nuser" ]
-    discord       = [ "494558292752728079" ]
-    #gitlab        = [ "<username>" ]
-    #instagram     = [ "_n0nuser_" ]
-    #keybase       = [ "<username>" ]
-    #medium        = [ "<username>" ]
-    reddit        = [ "pjgr234" ]
-    #soundcloud    = [ "n0nuser" ]
-    spotify       = [ "orl1r6ro371sob7h4jvk06sse" ]
-    #stackOverflow = [ "<username>" ]
-    #strava        = [ "<username>" ]
-    #twitch        = [ "pjgr234" ]
-    steam         = [ "n0nuser" ]
-    #vimeo         = [ "<username>" ]
-    #whatsapp      = [ "<number>" ]
-    #youtube       = [ "<channelid>" ]
-    gmail         = [ "hello@pablogonzalez.me" ]
-    #entry         = [ "username", "label (optional)" ]
-    #lichess       = [ "pjgr234" ]
-    goodreads     = [ "n0nuser" ]
-    manualofme    = [ "manual.pablogonzalez.me" ]
-    resume        = [ "pablogonzalez.me/resume.pdf" ]
-    
-    # The "entry" here IS important. It's used to load the data.
+# Subject
+# You can set a single value below (and it will cease to be a dropdown),
+# BUT KEEP IT AS AN ARRAY
+# It can also be disabled entirely (and it will turn into a text field)
+subject = [
+    'Just saying "Hi!"',
+    "Correction in post",
+    "Addings to post",
+    "Post Request",
+]
 
-  [params.social.decentralized]
-  
-    [params.social.decentralized.element]
-      #1 = [ "https://app.element.io/#/user/<username>:matrix.org", "matrix.org" ]
-      #entry = [ "full url", "label (required)" ]
-      
-    [params.social.decentralized.funkwhale]
-      #1 = [ "https://open.audio/<username>", "open.audio" ]
-      
-    [params.social.decentralized.mastodon]
-      #1 = [ "https://mastodon.social/<username>", "mastodon.social" ]
-      #2 = [ "https://mastodon.too/<username>", "mastodon.too" ]
-      #3 = [ "https://yet.another.one/<username>", "yet.another.one" ]
-      
-    [params.social.decentralized.matrix]
-      #1 = [ "https://matrix.to/#/<username>:matrix.org", "matrix.org" ]
-      #2 = [ "https://matrix.to/#/<username>:other.org", "other.org" ]
-      
-    [params.social.decentralized.peertube]
-      #1 = [ "https://peertube.something/accounts/<username>", "peertube.something" ]
-      
-    [params.social.decentralized.pixelfed]
-      #1 = [ "https://pixelfed.social/<username>", "pixelfed.social" ]
-      
-    # The "entry" here ISN'T important. It's used for nothing.
-    
-    
+# Text placeholders. As usual, comment the lines if you don't want use them
+# The "subject" below will only be used if the "subject" above doesn't exist (ie.: commented/deleted)
+[params.contact.placeholder]
+name = "Donald Duck"
+email = "email@example.com"
+subject = 'Just saying "Hi!"'
+message = "Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla nullam quis risus."
+
+
+[params.search]
+
+# Enable search form (at the post list)
+# The default value is false
+enable = true
+
+# Limit search results
+# The default value is 30
+maxResults = 30
+
+# Limit search field input and pattern matching
+minLength = 2  # Default is 3
+maxLength = 32 # Default is 32
+
+# Optional placeholder for search field
+placeholder = "ie.: lorem ipsum"
+
+# Stop word filter list
+# Can also be set PER PAGE via front matter
+# There's no default value
+stopWords = ["a", "an", "and", "in", "the", "to", "was", "were", "with"]
+
+[params.style]
+
+# Dark mode as default
+# The default is false
+isDark = true
+
+# Accent colors for light and dark mode respectively
+lightAccent = "#536dfe" # Default is "#225670", "#006666
+darkAccent = "#66CC99"  # Default is "#dd587c", GREEN: #3eff3f
+
+# More colors, pick as many as you want (not really sure if there's a limit)
+# Apparently these may not show up on every modern browser (ie. Firefox)
+# There's no default value. Used here just as example
+presets = [
+    "#1f676b",
+    "#f3a530",
+    "#902b37",
+    "#1dbc91",
+    "#754e85",
+    "#7fc121",
+    "#a8314a",
+    "#ff7433",
+    "#3e6728",
+    "#c063bd",
+]
+
+# Use an icon or text for footnote return links
+# The default is false
+hasIconAsFootnoteReturnLink = true
+
+# For the social shortcode
+# Use flexbox (with flex-grow) or grid (equal width)
+# The default is false
+socialIsFlex = false
+
+# Keep anchor links hidden until it's focused/hovered
+# They will always be visible in mobile devices, regardless the option
+# The default is false
+hideAnchors = true
+
+# To make use of the custom Chroma, this should be true
+# and "noClasses" (at markup.highlight) should be false
+# The default is true
+useCustomChroma = true
+
+# CSS animation transition when changing colors
+# The default is ".5s ease"
+changeTransition = ".3s ease"
+
+
+# For a simple 404
+[params.notFound]
+title = "Page not found"
+description = "This page was not found."
+paragraph = 'Pepe cries in 404.'
+#Image is taken from static folder, but when compiled it will be in root directory
+image = "/error.png"
+
+[params.social.centralized]
+#facebook      = [ "<username>", "Zuckerburg" ]
+#flickr        = [ "<username>" ]
+github = ["n0nuser"]
+hackthebox = ["72782"]
+tryhackme = ["nonuser"]
+linkedin = ["nonuser"]
+# twitter       = [ "n0nuser_", "" ]
+#telegram      = [ "n0nuser" ]
+discord = ["494558292752728079"]
+#gitlab        = [ "<username>" ]
+#instagram     = [ "_n0nuser_" ]
+#keybase       = [ "<username>" ]
+#medium        = [ "<username>" ]
+reddit = ["pjgr234"]
+#soundcloud    = [ "n0nuser" ]
+spotify = ["orl1r6ro371sob7h4jvk06sse"]
+#stackOverflow = [ "<username>" ]
+#strava        = [ "<username>" ]
+#twitch        = [ "pjgr234" ]
+steam = ["n0nuser"]
+#vimeo         = [ "<username>" ]
+#whatsapp      = [ "<number>" ]
+#youtube       = [ "<channelid>" ]
+gmail = ["hello@pablogonzalez.me"]
+#entry         = [ "username", "label (optional)" ]
+#lichess       = [ "pjgr234" ]
+goodreads = ["n0nuser"]
+manualofme = ["manual.pablogonzalez.me"]
+resume = ["pablogonzalez.me/resume.pdf"]
+
+# The "entry" here IS important. It's used to load the data.
+
+[params.social.decentralized]
+
+[params.social.decentralized.element]
+#1 = [ "https://app.element.io/#/user/<username>:matrix.org", "matrix.org" ]
+#entry = [ "full url", "label (required)" ]
+
+[params.social.decentralized.funkwhale]
+#1 = [ "https://open.audio/<username>", "open.audio" ]
+
+[params.social.decentralized.mastodon]
+#1 = [ "https://mastodon.social/<username>", "mastodon.social" ]
+#2 = [ "https://mastodon.too/<username>", "mastodon.too" ]
+#3 = [ "https://yet.another.one/<username>", "yet.another.one" ]
+
+[params.social.decentralized.matrix]
+#1 = [ "https://matrix.to/#/<username>:matrix.org", "matrix.org" ]
+#2 = [ "https://matrix.to/#/<username>:other.org", "other.org" ]
+
+[params.social.decentralized.peertube]
+#1 = [ "https://peertube.something/accounts/<username>", "peertube.something" ]
+
+[params.social.decentralized.pixelfed]
+#1 = [ "https://pixelfed.social/<username>", "pixelfed.social" ]
+
+# The "entry" here ISN'T important. It's used for nothing.
+
+
 [privacy]
 
-  [privacy.vimeo]
-    disabled = false
-    simple = true
+[privacy.vimeo]
+disabled = false
+simple = true
 
-  [privacy.twitter]
-    disabled = false
-    enableDNT = true
-    simple = true
+[privacy.twitter]
+disabled = false
+enableDNT = true
+simple = true
 
-  [privacy.instagram]
-    disabled = false
-    simple = true
+[privacy.instagram]
+disabled = false
+simple = true
 
-  [privacy.youtube]
-    disabled = false
-    privacyEnhanced = true
+[privacy.youtube]
+disabled = false
+privacyEnhanced = true
 
 [services]
 
-  [services.instagram]
-    disableInlineCSS = true
+[services.instagram]
+disableInlineCSS = true
 
-  [services.twitter]
-    disableInlineCSS = true
-
+[services.twitter]
+disableInlineCSS = true
 
 
 [languages]
 
-  [languages.en]
-  
-    languageName = "English"
+[languages.en]
 
-    [languages.en.menu]
+languageName = "English"
 
-      [[languages.en.menu.main]]
-        identifier = "home"
-        name = "Home"
-        weight = 1
-        url = "/"
+[languages.en.menu]
 
-      [[languages.en.menu.main]]
-        identifier = "manual"
-        name = "Manual"
-        weight = 2
-        url = "https://manual.pablogonzalez.me"
+[[languages.en.menu.main]]
+identifier = "home"
+name = "Home"
+weight = 1
+url = "/"
 
-      [[languages.en.menu.main]]
-        identifier = "cv"
-        name = "CV"
-        weight = 3
-        url = "resume.pdf"
-      
-      [[languages.en.menu.main]]
-        identifier = "background"
-        name = "Background"
-        weight = 4
-        url = "professional-experience/"
+[[languages.en.menu.main]]
+identifier = "manual"
+name = "Manual"
+weight = 2
+url = "https://manual.pablogonzalez.me"
 
-      [[languages.en.menu.main]]
-        identifier = "posts"
-        name = "Posts"
-        weight = 5
-        url = "posts/"
-      
-      [[languages.en.menu.main]]
-        identifier = "htb"
-        name = "HTB"
-        weight = 6
-        url = "writeups/htb/"
+[[languages.en.menu.main]]
+identifier = "cv"
+name = "CV"
+weight = 3
+url = "resume.pdf"
 
-      #[[languages.en.menu.main]]
-      #  identifier = "htb"
-      #  name = "HTB"
-      #  url = "writeups/htb"
-      #  parent = "writeups"
-      #  weight = 1
+[[languages.en.menu.main]]
+identifier = "background"
+name = "Background"
+weight = 4
+url = "professional-experience/"
 
-      #[[languages.en.menu.main]]
-      #  identifier = "thm"
-      #  name = "THM"
-      #  url = "writeups/thm"
-      #  parent = "writeups"
-      #  weight = 2
+[[languages.en.menu.main]]
+identifier = "posts"
+name = "Posts"
+weight = 5
+url = "posts/"
 
-      [[languages.en.menu.main]]
-        identifier = "tags"
-        name = "Tags"
-        weight = 7
-        url = "tags/"
+[[languages.en.menu.main]]
+identifier = "htb"
+name = "HTB"
+weight = 6
+url = "writeups/htb/"
 
-      [[languages.en.menu.main]]
-        identifier = "contact"
-        name = "Contact"
-        weight = 8
-        url = "#contact"
+#[[languages.en.menu.main]]
+#  identifier = "htb"
+#  name = "HTB"
+#  url = "writeups/htb"
+#  parent = "writeups"
+#  weight = 1
+
+#[[languages.en.menu.main]]
+#  identifier = "thm"
+#  name = "THM"
+#  url = "writeups/thm"
+#  parent = "writeups"
+#  weight = 2
+
+[[languages.en.menu.main]]
+identifier = "tags"
+name = "Tags"
+weight = 7
+url = "tags/"
+
+[[languages.en.menu.main]]
+identifier = "contact"
+name = "Contact"
+weight = 8
+url = "#contact"
