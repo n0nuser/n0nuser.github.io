@@ -36,8 +36,8 @@ $dark-letterpress:        rgba(255,255,255,.2);
 
 // Lazy way to deter images that can be too bright
 $img-filter:
-  contrast(.85)
-  grayscale(.3);
+  contrast(.85);
+//   grayscale(.3);
 
 // General purpose
 $box-border:    #222;

@@ -1,5 +1,5 @@
 ---
-title: "Software Development Best Practices"
+title: "Software Development Best Practices - WIP"
 description: "Software Development Best Practices including Agile, DevOps, CI/CD, TDD, BDD, DDD, Clean Code, SOLID, Design Patterns, Refactoring, Code Smells, Code Review, Pair Programming, Mob Programming, etc."
 date: 2023-10-17
 lastmod: 2023-10-17
