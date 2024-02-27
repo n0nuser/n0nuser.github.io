@@ -116,6 +116,27 @@ placeholder = "ie.: lorem ipsum"
 # Can also be set PER PAGE via front matter
 # There's no default value
 stopWords = ["a", "an", "and", "in", "the", "to", "was", "were", "with"]
+[params.search]
+
+# Enable search form (at the post list)
+# The default value is false
+enable = true
+
+# Limit search results
+# The default value is 30
+maxResults = 30
+
+# Limit search field input and pattern matching
+minLength = 2  # Default is 3
+maxLength = 32 # Default is 32
+
+# Optional placeholder for search field
+placeholder = "ie.: lorem ipsum"
+
+# Stop word filter list
+# Can also be set PER PAGE via front matter
+# There's no default value
+stopWords = ["a", "an", "and", "in", "the", "to", "was", "were", "with"]
 
 [params.style]
 
@@ -124,8 +145,8 @@ stopWords = ["a", "an", "and", "in", "the", "to", "was", "were", "with"]
 isDark = true
 
 # Accent colors for light and dark mode respectively
-lightAccent = "#536dfe" # Default is "#225670", "#006666
-darkAccent = "#66CC99"  # Default is "#dd587c", GREEN: #3eff3f
+lightAccent = "#0c66e4" # Default is "#225670", "#006666
+darkAccent = "#4bce97"  # Default is "#dd587c", GREEN: #3eff3f
 
 # More colors, pick as many as you want (not really sure if there's a limit)
 # Apparently these may not show up on every modern browser (ie. Firefox)
@@ -276,24 +297,17 @@ identifier = "home"
 name = "Home"
 weight = 1
 url = "/"
+[[languages.en.menu.main]]
+identifier = "home"
+name = "Home"
+weight = 1
+url = "/"
 
 [[languages.en.menu.main]]
-identifier = "manual"
-name = "Manual"
+identifier = "about"
+name = "About"
 weight = 2
-url = "https://manual.pablogonzalez.me"
-
-[[languages.en.menu.main]]
-identifier = "cv"
-name = "CV"
-weight = 3
-url = "resume.pdf"
-
-[[languages.en.menu.main]]
-identifier = "background"
-name = "Background"
-weight = 4
-url = "professional-experience/"
+url = "about/"
 
 [[languages.en.menu.main]]
 identifier = "posts"
@@ -301,11 +315,11 @@ name = "Posts"
 weight = 5
 url = "posts/"
 
-[[languages.en.menu.main]]
-identifier = "htb"
-name = "HTB"
-weight = 6
-url = "writeups/htb/"
+# [[languages.en.menu.main]]
+# identifier = "htb"
+# name = "HTB"
+# weight = 6
+# url = "writeups/htb/"
 
 #[[languages.en.menu.main]]
 #  identifier = "htb"
