@@ -1,45 +1,44 @@
 // Light mode palette
-$light-background:        #ddd;
-$light-foreground:        #444;
+$light-background: #ddd;
+$light-foreground: #444;
 
-$light-alt-background:    #d6d6d6;
-$light-alt-foreground:    #333;
-  
-$light-details:           #fdfdfd;
-$light-error-color:       #c70000;
+$light-alt-background: #d6d6d6;
+$light-alt-foreground: #333;
 
-$light-bg-modifier:       rgba(0,0,0,.3);
+$light-details: #fdfdfd;
+$light-error-color: #c70000;
 
-$light-input-background:  #fefefe;
-$light-input-foreground:  #111;
-$light-input-border:      #ccc;
+$light-bg-modifier: rgba(0, 0, 0, .3);
 
-$light-letterpress:       rgba(0,0,0,.2);
+$light-input-background: #fefefe;
+$light-input-foreground: #111;
+$light-input-border: #ccc;
+
+$light-letterpress: rgba(0, 0, 0, .2);
 
 // Dark mode palette
-$dark-background:         #282828; // #1d1d1d
-$dark-foreground:         #ebdebe; // #bbb
-  
-$dark-alt-background:     #282828; // #1d1d1d
-$dark-alt-foreground:     #ebdebe; // #ddd
-  
-$dark-details:            #1a1a1a;
-$dark-error-color:        #ff3131;
+$dark-background: #22272b; // # Body - before: 282828, 22272b
+$dark-foreground: #ebdebe; // #bbb
 
-$dark-bg-modifier:        rgba(255,255,255,.3);
+$dark-alt-background: #161a1d; // # Header and footer background - before: 161a1d
+$dark-alt-foreground: #ebdebe; // #ddd
 
-$dark-input-background:   #222;
-$dark-input-foreground:   #f0f0f0;
-$dark-input-border:       #262626;
+$dark-details: #1a1a1a;
+$dark-error-color: #ff3131;
 
-$dark-letterpress:        rgba(255,255,255,.2);
+$dark-bg-modifier: rgba(255, 255, 255, .3);
+
+$dark-input-background: #222;
+$dark-input-foreground: #f0f0f0;
+$dark-input-border: #262626;
+
+$dark-letterpress: rgba(255, 255, 255, .2);
 
 // Lazy way to deter images that can be too bright
-$img-filter:
-  contrast(.85);
+$img-filter: contrast(.85);
 //   grayscale(.3);
 
 // General purpose
-$box-border:    #222;
-$error-color:   red;
-$selected-fg:   #282828; // #f0f0f0
+$box-border: #222;
+$error-color: red;
+$selected-fg: #282828; // #f0f0f0
