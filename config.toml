@@ -116,27 +116,6 @@ placeholder = "ie.: lorem ipsum"
 # Can also be set PER PAGE via front matter
 # There's no default value
 stopWords = ["a", "an", "and", "in", "the", "to", "was", "were", "with"]
-[params.search]
-
-# Enable search form (at the post list)
-# The default value is false
-enable = true
-
-# Limit search results
-# The default value is 30
-maxResults = 30
-
-# Limit search field input and pattern matching
-minLength = 2  # Default is 3
-maxLength = 32 # Default is 32
-
-# Optional placeholder for search field
-placeholder = "ie.: lorem ipsum"
-
-# Stop word filter list
-# Can also be set PER PAGE via front matter
-# There's no default value
-stopWords = ["a", "an", "and", "in", "the", "to", "was", "were", "with"]
 
 [params.style]
 
