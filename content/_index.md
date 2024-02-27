@@ -6,9 +6,11 @@ author: "Pablo Jesús González Rubio"
 imgPath: "."
 disableTitleSeparator: false
 cover: "me.jpg"
+cover: "me.jpg"
 coverAlt: "Me!"
 ---
 
+{{< imgRounded "me.jpg" "Photo of Pablo" "borderless" "400" >}}
 {{< imgRounded "me.jpg" "Photo of Pablo" "borderless" "400" >}}
 
 <span style="font-size:3em; font-weight:500">Hello, I'm **Pablo González**</span>

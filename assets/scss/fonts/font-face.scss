@@ -8,6 +8,10 @@
 // Woff is used for Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+
 
 /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+// Woff2 is used for Chrome 36+, Opera 23+, Firefox 39+
+// Woff is used for Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+
+
+/* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
 $font-display: swap;
 
 /* inter-regular - latin */
@@ -31,6 +35,11 @@ $font-display: swap;
 
 /* jetbrains-mono-regular - latin */
 @font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-display: $font-display;
+    src: url('../fonts/jetbrains-mono-v12-latin-regular.woff2') format('woff2'), url('../fonts/jetbrains-mono-v12-latin-regular.woff') format('woff');
     font-family: 'JetBrains Mono';
     font-style: normal;
     font-weight: 400;
