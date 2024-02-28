@@ -6,7 +6,6 @@ author: "Pablo Jesús González Rubio"
 imgPath: "."
 disableTitleSeparator: false
 cover: "me.jpg"
-cover: "me.jpg"
 coverAlt: "Me!"
 ---
 
