@@ -1,308 +1,308 @@
 [
-  {
-    "entry": "facebook",
-    "label": "Facebook",
-    "base": "https://facebook.com/",
-    "icon": {
-      "id": "facebook",
-      "source": "Font-Awesome"
+    {
+        "entry": "linkedin",
+        "label": "LinkedIn",
+        "base": "https://www.linkedin.com/in/",
+        "icon": {
+            "id": "linkedin",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "gmail",
+        "label": "Gmail",
+        "base": "mailto:",
+        "icon": {
+            "id": "google",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "resume",
+        "label": "Resume",
+        "base": "https://",
+        "icon": {
+            "id": "file-solid",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "manualofme",
+        "label": "Manual of Me",
+        "base": "https://",
+        "icon": {
+            "id": "book-solid",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "github",
+        "label": "GitHub",
+        "base": "https://github.com/",
+        "icon": {
+            "id": "github",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "gitlab",
+        "label": "GitLab",
+        "base": "https://gitlab.com/",
+        "icon": {
+            "id": "gitlab",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "stackOverflow",
+        "label": "Stack Overflow",
+        "base": "https://stackoverflow.com/users/",
+        "icon": {
+            "id": "stack-overflow",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "twitter",
+        "label": "Twitter",
+        "base": "https://twitter.com/",
+        "icon": {
+            "id": "twitter",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "facebook",
+        "label": "Facebook",
+        "base": "https://facebook.com/",
+        "icon": {
+            "id": "facebook",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "instagram",
+        "label": "Instagram",
+        "base": "https://www.instagram.com/",
+        "icon": {
+            "id": "instagram",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "flickr",
+        "label": "Flickr",
+        "base": "https://www.flickr.com/",
+        "icon": {
+            "id": "flickr",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "keybase",
+        "label": "Keybase",
+        "base": "https://keybase.io/",
+        "icon": {
+            "id": "keybase",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "mastodon",
+        "label": "Mastodon",
+        "decentralized": true,
+        "icon": {
+            "id": "mastodon",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "matrix",
+        "label": "Matrix",
+        "decentralized": true,
+        "icon": {
+            "id": "matrix-org",
+            "source": "Fork-Awesome"
+        }
+    },
+    {
+        "entry": "medium",
+        "label": "Medium",
+        "base": "https://medium.com/",
+        "icon": {
+            "id": "medium",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "peertube",
+        "label": "PeerTube",
+        "decentralized": true,
+        "icon": {
+            "id": "peertube",
+            "source": "Fork-Awesome"
+        }
+    },
+    {
+        "entry": "pixelfed",
+        "label": "PixelFed",
+        "decentralized": true,
+        "icon": {
+            "id": "pixelfed",
+            "source": "Fork-Awesome"
+        }
+    },
+    {
+        "entry": "reddit",
+        "label": "Reddit",
+        "base": "https://www.reddit.com/user/",
+        "icon": {
+            "id": "reddit",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "element",
+        "label": "Element",
+        "decentralized": true,
+        "icon": {
+            "id": "element-logo",
+            "source": "Element"
+        }
+    },
+    {
+        "entry": "lichess",
+        "label": "Lichess",
+        "base": "https://lichess.org/@/",
+        "icon": {
+            "id": "chess",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "steam",
+        "label": "Steam",
+        "base": "https://steamcommunity.com/id/",
+        "icon": {
+            "id": "steam",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "goodreads",
+        "label": "Goodreads",
+        "base": "https://www.goodreads.com/",
+        "icon": {
+            "id": "goodreads",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "spotify",
+        "label": "Spotify",
+        "base": "https://open.spotify.com/user/",
+        "icon": {
+            "id": "spotify",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "soundcloud",
+        "label": "SoundCloud",
+        "base": "https://soundcloud.com/",
+        "icon": {
+            "id": "soundcloud",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "funkwhale",
+        "label": "Funkwhale",
+        "decentralized": true,
+        "icon": {
+            "id": "funkwhale",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "strava",
+        "label": "Strava",
+        "base": "https://www.strava.com/athletes/",
+        "icon": {
+            "id": "strava",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "telegram",
+        "label": "Telegram",
+        "base": "https://t.me/",
+        "icon": {
+            "id": "telegram",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "whatsapp",
+        "label": "WhatsApp",
+        "base": "https://wa.me/",
+        "icon": {
+            "id": "whatsapp",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "discord",
+        "label": "Discord",
+        "base": "https://discordapp.com/users/",
+        "icon": {
+            "id": "discord",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "twitch",
+        "label": "Twitch",
+        "base": "https://www.twitch.tv/",
+        "icon": {
+            "id": "twitch",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "vimeo",
+        "label": "Vimeo",
+        "base": "https://vimeo.com/",
+        "icon": {
+            "id": "vimeo",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "youtube",
+        "label": "YouTube",
+        "base": "https://youtube.com/channel/",
+        "icon": {
+            "id": "youtube",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "hackthebox",
+        "label": "Hack The Box",
+        "base": "https://app.hackthebox.eu/profile/",
+        "icon": {
+            "id": "box",
+            "source": "Font-Awesome"
+        }
+    },
+    {
+        "entry": "tryhackme",
+        "label": "Try Hack Me",
+        "base": "https://tryhackme.com/p/",
+        "icon": {
+            "id": "box",
+            "source": "Font-Awesome"
+        }
     }
-  },
-  {
-    "entry": "flickr",
-    "label": "Flickr",
-    "base": "https://www.flickr.com/",
-    "icon": {
-      "id": "flickr",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "funkwhale",
-    "label": "Funkwhale",
-    "decentralized": true,
-    "icon": {
-      "id": "funkwhale",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "github",
-    "label": "GitHub",
-    "base": "https://github.com/",
-    "icon": {
-      "id": "github",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "gitlab",
-    "label": "GitLab",
-    "base": "https://gitlab.com/",
-    "icon": {
-      "id": "gitlab",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "instagram",
-    "label": "Instagram",
-    "base": "https://www.instagram.com/",
-    "icon": {
-      "id": "instagram",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "keybase",
-    "label": "Keybase",
-    "base": "https://keybase.io/",
-    "icon": {
-      "id": "keybase",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "linkedin",
-    "label": "LinkedIn",
-    "base": "https://www.linkedin.com/in/",
-    "icon": {
-      "id": "linkedin",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "mastodon",
-    "label": "Mastodon",
-    "decentralized": true,
-    "icon": {
-      "id": "mastodon",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "matrix",
-    "label": "Matrix",
-    "decentralized": true,
-    "icon": {
-      "id": "matrix-org",
-      "source": "Fork-Awesome"
-    }
-  },
-  {
-    "entry": "medium",
-    "label": "Medium",
-    "base": "https://medium.com/",
-    "icon": {
-      "id": "medium",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "peertube",
-    "label": "PeerTube",
-    "decentralized": true,
-    "icon": {
-      "id": "peertube",
-      "source": "Fork-Awesome"
-    }
-  },
-  {
-    "entry": "pixelfed",
-    "label": "PixelFed",
-    "decentralized": true,
-    "icon": {
-      "id": "pixelfed",
-      "source": "Fork-Awesome"
-    }
-  },
-  {
-    "entry": "reddit",
-    "label": "Reddit",
-    "base": "https://www.reddit.com/user/",
-    "icon": {
-      "id": "reddit",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "element",
-    "label": "Element",
-    "decentralized": true,
-    "icon": {
-      "id": "element-logo",
-      "source": "Element"
-    }
-  },
-  {
-    "entry": "soundcloud",
-    "label": "SoundCloud",
-    "base": "https://soundcloud.com/",
-    "icon": {
-      "id": "soundcloud",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "stackOverflow",
-    "label": "Stack Overflow",
-    "base": "https://stackoverflow.com/users/",
-    "icon": {
-      "id": "stack-overflow",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "strava",
-    "label": "Strava",
-    "base": "https://www.strava.com/athletes/",
-    "icon": {
-      "id": "strava",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "telegram",
-    "label": "Telegram",
-    "base": "https://t.me/",
-    "icon": {
-      "id": "telegram",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "twitch",
-    "label": "Twitch",
-    "base": "https://www.twitch.tv/",
-    "icon": {
-      "id": "twitch",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "twitter",
-    "label": "Twitter",
-    "base": "https://twitter.com/",
-    "icon": {
-      "id": "twitter",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "vimeo",
-    "label": "Vimeo",
-    "base": "https://vimeo.com/",
-    "icon": {
-      "id": "vimeo",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "whatsapp",
-    "label": "WhatsApp",
-    "base": "https://wa.me/",
-    "icon": {
-      "id": "whatsapp",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "youtube",
-    "label": "YouTube",
-    "base": "https://youtube.com/channel/",
-    "icon": {
-      "id": "youtube",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "spotify",
-    "label": "Spotify",
-    "base": "https://open.spotify.com/user/",
-    "icon": {
-      "id": "spotify",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "hackthebox",
-    "label": "Hack The Box",
-    "base": "https://app.hackthebox.eu/profile/",
-    "icon": {
-      "id": "box",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "tryhackme",
-    "label": "Try Hack Me",
-    "base": "https://tryhackme.com/p/",
-    "icon": {
-      "id": "box",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "discord",
-    "label": "Discord",
-    "base": "https://discordapp.com/users/",
-    "icon": {
-      "id": "discord",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "lichess",
-    "label": "Lichess",
-    "base": "https://lichess.org/@/",
-    "icon": {
-      "id": "chess",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "steam",
-    "label": "Steam",
-    "base": "https://steamcommunity.com/id/",
-    "icon": {
-      "id": "steam",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "goodreads",
-    "label": "Goodreads",
-    "base": "https://www.goodreads.com/",
-    "icon": {
-      "id": "goodreads",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "gmail",
-    "label": "Gmail",
-    "base": "mailto:",
-    "icon": {
-      "id": "google",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "manualofme",
-    "label": "Manual of Me",
-    "base": "https://",
-    "icon": {
-      "id": "book-solid",
-      "source": "Font-Awesome"
-    }
-  },
-  {
-    "entry": "resume",
-    "label": "Resume",
-    "base": "https://",
-    "icon": {
-      "id": "file-solid",
-      "source": "Font-Awesome"
-    }
-  }
 ]
