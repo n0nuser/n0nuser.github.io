@@ -304,5 +304,14 @@
             "id": "box",
             "source": "Font-Awesome"
         }
+    },
+    {
+        "entry": "rss",
+        "label": "RSS",
+        "base": "https://",
+        "icon": {
+            "id": "rss",
+            "source": "Font-Awesome"
+        }
     }
 ]
