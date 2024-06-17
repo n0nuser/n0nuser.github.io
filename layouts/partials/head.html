@@ -406,7 +406,7 @@
 
 {{ with resources.Get "js/prepone.js" | resources.ExecuteAsTemplate .Page . }}
   <script>
-    {{ if $.Site.IsServer }}
+    {{ if hugo.IsServer }}
       {{ .Content | safeJS }}
     {{ else }}
       {{ .Content | replaceRE "console.log(.*?);" "" | safeJS }}

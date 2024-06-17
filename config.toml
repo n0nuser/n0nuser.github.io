@@ -1,7 +1,7 @@
 baseURL = "https://pablogonzalez.me"
 languageCode = "en"
 title = "Pablo González | Python Engineer"
-copyright = "Copyright © 2023, Pablo Jesús González Rubio\n All rights reserved."
+copyright = "Copyright © 2024, Pablo Jesús González Rubio\n All rights reserved."
 
 enableEmoji = false # It transcodes emojis from hex codeblock
 # Ideal solution: hardcode it in text
@@ -27,7 +27,7 @@ noClasses = false
 GA4 = "G-GWC49NSYGC" # Google Analytics 4
 
 # Site description
-description = "Hi there! I'm a Python Engineer and Web Developer based in Salamanca, Spain."
+description = "Hi there! I'm Pablo Jesús González Rubio, a Python Engineer and Web Developer based in Salamanca, Spain."
 
 # Author
 author = "Pablo Jesús González Rubio"

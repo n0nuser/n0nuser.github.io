@@ -102,7 +102,6 @@ SHEET.setProperty('--accent', activeAccent);
 // Also meta-theme cuz, why not
 META_THEME_COLOR.setAttribute('content', activeAccent);
 
-
 function updateAccent() {
   var activeAccent = getAccent();
 
@@ -110,7 +109,6 @@ function updateAccent() {
   PALETTE.value = activeAccent;
   META_THEME_COLOR.setAttribute('content', activeAccent);
 };
-
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -147,20 +145,18 @@ document.addEventListener('DOMContentLoaded', function () {
     updateAccent()
   };
 
-  
   // TEST
   // Keyboard shortcut for mode change, here for testing purposes only
   // CTRL + ALT + M
-  {{ if .Site.IsServer }}
+  {{ if hugo.IsServer }}
     document.addEventListener('keydown', (event) => {
       const E = event || window.event;
-      if (E.keyCode === 77 && E.ctrlKey && E.altKey) {
+      if (E.code === 77 && E.ctrlKey && E.altKey) {
         userModeChange();
         return;
       }
     }, false);
   {{ end }}
-
 
   // Runs when OS changes light/dark mode. Changes only if you were on default
   // color state (light on light mode, dark on dark mode).
@@ -187,7 +183,6 @@ document.addEventListener('DOMContentLoaded', function () {
   // Listeners for when you change OS setting for light/dark mode
   PREFERS_LIGHT.addListener(OSModeChange);
   PREFERS_DARK.addListener(OSModeChange);
-  
   
   // Mode change button
   document.querySelector('footer button')

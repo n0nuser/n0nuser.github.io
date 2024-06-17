@@ -78,7 +78,7 @@
     {{ with resources.Get "js/postpone.js" | resources.ExecuteAsTemplate .Page . | minify }}
 
       <script>
-        {{ if $.Site.IsServer }}
+        {{ if hugo.IsServer }}
           {{ .Content | safeJS }}
         {{ else }}
           {{ .Content | replaceRE "console.log(.*?);" "" | safeJS }}
