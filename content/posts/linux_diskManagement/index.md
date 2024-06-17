@@ -8,7 +8,7 @@ cover: "cover.png"
 coverAlt: "Tux!"
 toc: true
 draft: false
-tags: [ "SysAdmin", "Linux" ]
+tags: [ "Linux" ]
 ---
 
 ## Introduction
@@ -49,7 +49,7 @@ To check how much space is used by `/home` directory:
 
 ```bash
 $ du -sh /home
-8,4G	/home
+8,4G /home
 ```
 
 ## Quote System

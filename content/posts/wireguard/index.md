@@ -8,7 +8,7 @@ cover: "cover.png"
 coverAlt: "WireGuard"
 toc: true
 draft: false
-tags: [ "SysAdmin", "Linux" ]
+tags: [ "Linux" ]
 ---
 
 ## Wireguard Server Setup

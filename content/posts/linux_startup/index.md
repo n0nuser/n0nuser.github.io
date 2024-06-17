@@ -8,7 +8,7 @@ cover: "cover.png"
 coverAlt: "Tux!"
 toc: true
 draft: false
-tags: [ "SysAdmin", "Linux" ]
+tags: [ "Linux" ]
 ---
 
 
@@ -22,9 +22,11 @@ We can check the startup log with `dmesg` as it displays the system boot informa
 
 - `shutdown`: Put the system in Maintenance mode. It allows scheduling maintenance by notifying users with a maintenance message. It can also be used to reboot. Does a `telinit 1`.
   - For example:
+
     ```bash
     shutdown +5 "The system is going to shut down"
     ```
+
 - `halt`: Puts the OS in the minimum state. Leaves CPUs with almost no task. Rest state without cutting off the power.
 - `poweroff`: Sends an ACPI message to the BIOS that forces the power off.
 - `insserv`: Utility that no longer exists and allows, at startup, to execute different programs. Now, crons or systemd services/timers are used instead.
@@ -166,35 +168,50 @@ systemctl enable weatherd
 
 ## Common commands
 
-- To see active units: 
+- To see active units:
+
   ```bash
   systemctl
   ```
+
 - To see installed units:
+
   ```bash
   systemctl list-unit-files
   ```
+
 - To see units that have failed:
+
   ```bash
   systemctl --failed
   ```
+
 - To view SSH dependencies:
+
   ```bash
   systemctl list-dependencies ssh.service
   ```
+
 - To see what parameters a unit has:
+
   ```bash
   systemctl show cron.service
   ```
+
 - To view boot messages:
+
   ```bash
   journalctl -b
   ```
+
 - To view new messages:
+
   ```bash
   journalctl -f
   ```
+
 - To view new messages for a drive:
+
   ```bash
   journalctl -u
   ```

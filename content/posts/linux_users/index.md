@@ -8,7 +8,7 @@ cover: "cover.png"
 coverAlt: "Tux!"
 toc: true
 draft: true
-tags: [ "SysAdmin", "Linux" ]
+tags: [ "Linux" ]
 ---
 
 Search every file/directory that has no owner nor group owner:

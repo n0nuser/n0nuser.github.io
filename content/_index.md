@@ -23,8 +23,7 @@ You might also like to visit my [blog](/posts) 📝, where I talk about:
 
 * [Software Development](tags/software-development/): My approach and insights 💻
 * [Cheatsheets](tags/cheatsheet/): Helpful tips I've gathered 📋
-* [Linux Course](tags/linux/): Navigating the world of Linux with ease 🐧
-* [Linux System Administration](tags/sysadmin/): Experiences and advice 🛠️
+* [Linux Posts](tags/linux/): Navigating the world of Linux with ease 🐧
 * [Hack The Box Writeups](writeups/htb/): Challenges and fun in cybersecurity 🔒
 
 Hope you find something useful or interesting, and I'm always here if you want to get in touch! 😊

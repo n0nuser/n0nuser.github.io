@@ -7,7 +7,7 @@ author: "Pablo Jesús González Rubio"
 cover: "cover.jpg"
 coverAlt: "Fail2Ban"
 toc: true
-tags: [ "SysAdmin" ]
+tags: [ "Linux" ]
 ---
 
 As the description says:
@@ -1172,10 +1172,13 @@ backend = %(sshd_backend)s
 ### Number of retries
 
 - <u>**maxretry**</u>: Max number of retries. It's reasonable to set it to the same value as `MaxAuthTries` in the `sshd_config`.<br>It can be done directly through command-line with:
+
   ```
   fail2ban-client set JAIL maxretry 5
   ```
+
 - <u>**findtime**</u>: Max time for all of the retries. If they occur in that period, that host gets banned. <br>*i.E.*: Let's say we have 3 retries at max, and 600 seconds (10 minutes) for the findtime; if the user tries unsuccessfully to login after 3 tries within 10 minutes, that host is banned.<br>It can be done directly through command-line with:
+
   ```
   fail2ban-client set JAIL findtime 600
   ```
@@ -1183,19 +1186,24 @@ backend = %(sshd_backend)s
 ### Ban time
 
 - <u>**bantime**</u>: The number of seconds that host is banned.<br>It can be done directly through command-line with:
+
   ```
   fail2ban-client set JAIL bantime 600
   ```
+
 - <u>**bantime.increment**</u>: If the ban time increases (true) or not (false) by a multiplier or a formula with a factor.
 - <u>**bantime.rndtime**</u>: Max time in seconds that will be used for random ban time.
 - <u>**bantime.maxtime**</u>: Max time in seconds that the ban can reach, that is, the limit.
 - <u>**bantime.multipliers**</u>: Multipliers for the ban time considering the original ban time. Supossing 10 minutes of ban time (600 seconds), second ban will be 20 minutes, third 40 minutes, fourth 1h 20 minutes and so on. Example: `bantime.multipliers = 1 2 4 8 16 32 64`.
 
 ### Ignore/Ban IP
+
 - <u>**ignoreip**</u>: IPs or ranges of IPs that won't get banned.<br>It can be done directly through command-line with:
+
   ```
   fail2ban-client set JAIL addignoreip 192.168.1.0/24
   ```
+
 - An IP can directly be banned through command line with: `fail2ban-client set JAIL banip 254.3.6.18`.
 - It can also be unbanned with: `fail2ban-client set JAIL unbanip 254.3.6.18`.
 
@@ -1204,6 +1212,7 @@ backend = %(sshd_backend)s
 The `action` parameter in `jail.conf` rules the action done when an IP gets banned. Default value is: `action = %(action_)s`.
 
 Below there's a list with more actions (only one can be used):
+
 - Ban only: `action = %(action_)s`
 - Ban and send email with whois report: `action = %(action_mw)s`
 - Ban and send email with whois report and relevant log lines: `action = %(action_mwl)s`

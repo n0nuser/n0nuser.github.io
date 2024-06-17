@@ -8,7 +8,7 @@ cover: "cover.png"
 coverAlt: "Tux!"
 toc: true
 draft: false
-tags: [ "SysAdmin", "Linux" ]
+tags: [ "Linux" ]
 ---
 
 ## Introduction
@@ -317,7 +317,7 @@ Then follow these steps:
    {{< img "gmail2.jpg" "" "border" >}}
 3. Select "Another service".
    {{< img "gmail3.jpg" "" "border" >}}
-4. Write your email ("myuser@mydomain.com").
+4. Write your email ("<myuser@mydomain.com>").
    {{< img "gmail4.jpg" "" "border" >}}
 5. Select IMAP.
    {{< img "gmail5.jpg" "" "border" >}}

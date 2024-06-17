@@ -8,7 +8,7 @@ cover: "cover.png"
 coverAlt: "Tux!"
 toc: true
 draft: false
-tags: [ "SysAdmin", "Linux" ]
+tags: [ "Linux" ]
 ---
 
 ## Introduction
@@ -141,9 +141,11 @@ Managing user accounts in Linux is one of the most critical jobs for Linux syste
 
 * Deactivate in the BIOS the USB ports and the rest of the peripherals like (CD/DVD rom.)
   * To deactivate USB ports with Linux, we can create (as root) a file in modprobe's configuration directory:
+
     ```bash
     echo "install usb-storage /bin/true" > /etc/modprobe.d/no-usb
     ```
+
 * Add a password to the GRUB.
 
 ### Rhost files
@@ -167,6 +169,7 @@ find /home -name .rhost >> rhost_files.log
 * **Change the password encryption system** for one that is more complex and difficult to break. Debian offers passwords per SHA512 (by default).
 * Use of strong passwords: Many users use weak passwords that can be discovered through a brute force attack.
 * **Check the validity time of user passwords**. To set the expiration date of the password of a user, you need to use the chage command. To know the time of use, validity or days since the last password change, the command:
+
   ```bash
   chage -l username
   ```
@@ -206,23 +209,32 @@ password sufficient pam_unix.so nullok use authtok md5 shadow remember = 5
 ### Managing users
 
 * **Verify accounts without passwords**. Any user account with an empty password means a open door for unauthorized access from anywhere in the world. It must be ensured that all user accounts have strong and secure passwords. To check if accounts with empty passwords exists, the following set of commands can be used:
+
   ```bash
   cat /etc/shadow | awk -F: ’($ 2 ==) print $ 1’
   ```
+
   This command will obtain the entire list of users in the system and will show those that their password is empty.
 * **Manual locking and unlocking of accounts**. This feature is very useful to avoid deleting user accounts, as it is used to specify a period of time in which user accounts will be locked. This is done with the command:
+
   ```bash
   passwd -l username
   ```
+
   To unlock the user, use the command:
+
   ```bash
   passwd -u username
   ```
+
   Or, we can set the **Expiration Date to 0**:
+
   ```bash
   chage -E 0 username
   ```
+
   To unlock it:
+
   ```bash
   chage -E -1 username
   ```
@@ -253,27 +265,33 @@ Install tools to improve security such as:
 
 * [Chkrootkit](https://www.chkrootkit.org)<br>
   It allows to check with a checksum if our versions of services and applications are safe.
+
   ```bash
   sudo apt install chkrootkit -y
   chkrootkit
   chkrootkit -q # Show menaces
   ```
+
 * [Rkhunter](http://rkhunter.sourceforge.net/)<br>
   It is much more advanced and more detailed than *chkrootkit* as it detects troyans and worms.
+
   ```bash
   sudo apt install rkhunter -y
   rkhunter --list tests #check the different types of tests that this tool executes
   rkhunter --check # complete scan of the system
   ```
+
   Can be configured in the config file to send emails. Can be used in a cron for daily checkups.
 * [Tripwire](https://www.tripwire.com/)<br>
   It generates an encrypted database with the properties of each element of our file system. This database is used to check the changes that have occurred in the file system. If these modifications have been made and / or authorized by us, the database will be updated, otherwise, it would be necessary to investigate what happened.
+
   ```bash
   sudo apt install tripwire -y # It will ask 4 times the password
   tripwire -m i # Database creation
   tripwire -m c # Testing the integrity of the database
   tripwire --check > report.txt # Report creation
   ```
+
   Every time a file is changed it reports it.
 * [Fail2Ban](https://www.fail2ban.org/wiki/index.php/Main_Page)
   * I have a [post about it](../fail2ban).

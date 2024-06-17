@@ -7,7 +7,7 @@ author: "Pablo Jesús González Rubio"
 cover: "cover.jpg"
 coverAlt: "SSH"
 toc: true
-tags: [ "SysAdmin" ]
+tags: [ "Linux" ]
 ---
 
 ## Introduction
@@ -71,7 +71,7 @@ You have the list [here](#TableOfContents).
 Here is the default SSH config file from `/etc/ssh/sshd_config`:
 
 ```
-#	$OpenBSD: sshd_config,v 1.103 2018/04/09 20:41:22 tj Exp $
+# $OpenBSD: sshd_config,v 1.103 2018/04/09 20:41:22 tj Exp $
 
 # This is the sshd server system-wide configuration file.  See
 # sshd_config(5) for more information.
@@ -112,7 +112,7 @@ Include /etc/ssh/sshd_config.d/*.conf
 #PubkeyAuthentication yes
 
 # Expect .ssh/authorized_keys2 to be disregarded by default in future.
-#AuthorizedKeysFile	.ssh/authorized_keys .ssh/authorized_keys2
+#AuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys2
 
 #AuthorizedPrincipalsFile none
 
@@ -186,14 +186,14 @@ PrintMotd no
 AcceptEnv LANG LC_*
 
 # override default of no subsystems
-Subsystem	sftp	/usr/lib/openssh/sftp-server
+Subsystem sftp /usr/lib/openssh/sftp-server
 
 # Example of overriding settings on a per-user basis
 #Match User anoncvs
-#	X11Forwarding no
-#	AllowTcpForwarding no
-#	PermitTTY no
-#	ForceCommand cvs server
+# X11Forwarding no
+# AllowTcpForwarding no
+# PermitTTY no
+# ForceCommand cvs server
 ```
 
 We will review some of these settings.
@@ -282,7 +282,7 @@ To generate these keys we just run this command:
 ssh-keygen
 ```
 
-It will ask us for the location where the keys `id_rsa` (*Private Key*) and `id_rsa.pub` (*Public Key*) will be saved, the default is `.ssh` folder. 
+It will ask us for the location where the keys `id_rsa` (*Private Key*) and `id_rsa.pub` (*Public Key*) will be saved, the default is `.ssh` folder.
 
 {{< img "keygen.png" "Keygen" "border" >}}
 
@@ -445,7 +445,6 @@ sudo systemctl enable endlessh
 ```
 
 What this does, is copying the service file to the services folder, and then enable Endlessh to run on boot.
-
 
 #### Configuration
 

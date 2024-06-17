@@ -8,7 +8,7 @@ cover: "cover.png"
 coverAlt: "Tux!"
 toc: true
 draft: false
-tags: [ "SysAdmin", "Linux" ]
+tags: [ "Linux" ]
 ---
 
 A backup or backup is the safe copy of a digital file, a set of files, or all of the data considered important enough to be preserved.
@@ -231,12 +231,15 @@ $obj->exec( src => '~/myFolder', dest => '/mnt/pendrive' )
 ### Copying a CD with DD
 
 1. Read the block size and the volume size of the CD
+
     ```bash
     ➜  ~ isoinfo -d -i /dev/cdrom | grep -i -E 'block size|volume size' 
     Logical block size is: 2048
     Volume size is: 6248
     ```
+
 2. Clone the CD
+
     ```bash
     dd if=/dev/cdrom of=CopyOfMyDisk.iso bs=2048 count=6248 status=progress
     ```
@@ -247,14 +250,19 @@ To make an ISO of a CD-Rom: `dd if=/dev/cdrom of=micd.iso`
 
 1. Insert the SD in a PC with Linux
 2. Check its partition
+
     ```bash
     sudo blkid
     ```
+
 3. Clone it and compress it
+
     ```bash
     sudo dd bs=4M if=/dev/mmcblk0 | gzip > ~/myImage.gz
     ```
+
 4. Restore it
+
     ```bash
     gzip -dc ~/myImage.gz | sudo dd bs=4M of=/dev/mmcblk0
     ```
@@ -262,4 +270,3 @@ To make an ISO of a CD-Rom: `dd if=/dev/cdrom of=micd.iso`
 I highly recommend using **[pishrink](https://github.com/Drewsif/PiShrink)** after you get the backup image. Mainly because you are getting a 32 Gb., 64Gb. (your SD card size) image and you may not necessarily occupied that much space. This tool allows to shrink that image, into its real size.
 
 In my case, I had a Retropie with lots of ROMs that I wanted to keep as a single image. Just to have it and know I can copy the image into the RPi with all the ROMs and erase the hassle of sending it again over Samba or FTP. It's really useful!!
-

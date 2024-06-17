@@ -7,7 +7,7 @@ author: "Pablo Jesús González Rubio"
 cover: "cover.png"
 coverAlt: "Tux!"
 toc: true
-tags: [ "SysAdmin", "Linux" ]
+tags: [ "Linux" ]
 ---
 
 ## Introduction
@@ -72,7 +72,7 @@ It is .
 * `/var`: Variable files. Files that are continuesly being modified such as logs
   * `/var/cache`: Application cache data
   * `/var/crash`
-  * `/var/games` 
+  * `/var/games`
   * `/var/lock`: Files keeping track of resources currently in use.
   * `/var/log`
   * `/var/mail`
@@ -325,7 +325,7 @@ Lifetime writes:          23 GB
 Reserved blocks uid:      0 (user root)
 Reserved blocks gid:      0 (group root)
 First inode:              11
-Inode size:	          256
+Inode size:           256
 Required extra isize:     32
 Desired extra isize:      32
 Journal inode:            8
@@ -370,15 +370,20 @@ UUID=C2C0-9B5E  /boot/efi       vfat    umask=0077      0       1
 To automatically mount a drive follow this steps:
 
 * Create a folder in the `/mnt` directory. This folder is going to be used to allocate the new mounted drive.
+
 ```bash
 sudo mkdir /mnt/myDrive
 ```
+
 * Give yourself access to that folder:
+
 ```bash
 sudo chown myUser:myUser /mnt/myDrive
 ```
+
 * Plug the drive and get its UUID with `sudo blkid`.
-* Edit the fstab file 
+* Edit the fstab file
+
 ```conf
 UUID=YOUR_UUID /mnt/myDrive    auto nosuid,nodev,nofail,x-gvfs-show 0 0
 ```
@@ -411,17 +416,22 @@ Read   Write  Execute
 
 This numbers are useful because `chmod` uses them to manage file permissions.
 
-For instance a file with: 
+For instance a file with:
 
 * `rwxrwxrwx` can be read, written and executed by anyone.
+
 ```bash
 chmod 777 myFile
 ```
+
 * `rw-------` can be read and written (not executed) by the user who created, groups that are associated with that user and the rest of the users can't touch that file.
+
 ```bash
 chmod 600 myFile
 ```
+
 * `r-xr-x---` can be read and executed by the user and group that owns the file/directory.
+
 ```bash
 chmod 550 myDirectory
 ```

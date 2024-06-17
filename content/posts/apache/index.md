@@ -8,7 +8,7 @@ cover: "cover.png"
 coverAlt: "Tux!"
 toc: true
 draft: false
-tags: [ "SysAdmin", "Linux" ]
+tags: [ "Linux" ]
 ---
 
 ## Introduction
@@ -56,16 +56,16 @@ Default config from file `/etc/apache2/apache2.conf`:
 # It is split into several files forming the configuration hierarchy outlined
 # below, all located in the /etc/apache2/ directory:
 #
-#	/etc/apache2/
-#	|-- apache2.conf
-#	|	`--  ports.conf
-#	|-- mods-enabled
-#	|	|-- *.load
-#	|	`-- *.conf
-#	|-- conf-enabled
-#	|	`-- *.conf
-# 	`-- sites-enabled
-#	 	`-- *.conf
+# /etc/apache2/
+# |-- apache2.conf
+# | `--  ports.conf
+# |-- mods-enabled
+# | |-- *.load
+# | `-- *.conf
+# |-- conf-enabled
+# | `-- *.conf
+#  `-- sites-enabled
+#   `-- *.conf
 #
 #
 # * apache2.conf is the main configuration file (this file). It puts the pieces
@@ -197,26 +197,26 @@ Include ports.conf
 # your system is serving content from a sub-directory in /srv you must allow
 # access here, or in any related virtual host.
 <Directory />
-	Options FollowSymLinks
-	AllowOverride None
-	Require all denied
+ Options FollowSymLinks
+ AllowOverride None
+ Require all denied
 </Directory>
 
 <Directory /usr/share>
-	AllowOverride None
-	Require all granted
+ AllowOverride None
+ Require all granted
 </Directory>
 
 <Directory /var/www/>
-	Options Indexes FollowSymLinks
-	AllowOverride None
-	Require all granted
+ Options Indexes FollowSymLinks
+ AllowOverride None
+ Require all granted
 </Directory>
 
 #<Directory /srv/>
-#	Options Indexes FollowSymLinks
-#	AllowOverride None
-#	Require all granted
+# Options Indexes FollowSymLinks
+# AllowOverride None
+# Require all granted
 #</Directory>
 
 
@@ -233,7 +233,7 @@ AccessFileName .htaccess
 # viewed by Web clients.
 #
 <FilesMatch "^\.ht">
-	Require all denied
+ Require all denied
 </FilesMatch>
 
 
@@ -302,14 +302,14 @@ Example of the config file (`/etc/apache2/mods-available/userdir.conf`):
 ```txt
 admin@rpi:~$ cat /etc/apache2/mods-available/userdir.conf 
 <IfModule mod_userdir.c>
-	UserDir public_html
-	UserDir disabled root
+ UserDir public_html
+ UserDir disabled root
 
-	<Directory /home/*/public_html>
-		AllowOverride FileInfo AuthConfig Limit Indexes
-		Options MultiViews Indexes SymLinksIfOwnerMatch IncludesNoExec
-		Require method GET POST OPTIONS
-	</Directory>
+ <Directory /home/*/public_html>
+  AllowOverride FileInfo AuthConfig Limit Indexes
+  Options MultiViews Indexes SymLinksIfOwnerMatch IncludesNoExec
+  Require method GET POST OPTIONS
+ </Directory>
 </IfModule>
 
 # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
@@ -330,14 +330,19 @@ To be able to use any script, first we need to place it in the `/usr/lib/cgi-bin
 Now we can try it by going to our webpage `mydomain.com/cgi-bin/myscript.cgi`. Except that it throws an Internal Server Error, to solve this we can follow the next steps:
 
 1. Give it execution permissions
+
    ```bash
    sudo chmod a+x myscript.cgi
    ```
+
 2. Change owner to www-data
+
    ```bash
    sudo chown www-data:www-data myscript.cgi
    ```
+
 3. Insert a header-type in the top of the file to allow the browser know what it's going to open
+
    ```perl
    #!/usr/bin/perl
    print "Content-Type: text/html\n\n"; # <- This line!!!
@@ -397,17 +402,23 @@ Enabling HTTPS on our webpage allows users to connect securely as the packets tr
 For the SSL certificate, we can build our own with OpenSSL, but since it’s not trusted by browsers (Chrome, Firefox, Safari, etc.) we’ll create one free certificate with [Let's Encrypt](https://letsencrypt.org/).
 
 1. Enable SSL
+
    ```bash
    sudo a2enmod ssl
    ```
+
 2. Install Certbot
+
    ```bash
    sudo apt update && sudo apt install certbot python-certbot-apache -y
    ```
+
 3. Run Certbot
+
    ```bash
    certbot  --apache --redirect -d mydomain.com -d www.mydomain.com -m admin@mydomain.com --agree-tos
    ```
+
    >`--redirect`: Redirects every HTTP request to HTTPS
    ><br>`-d mydomain.com -d www.mydomain.com`: We can use the same certificate for multiple domains, but only up to 100 domains.
 4. Answer "Y"

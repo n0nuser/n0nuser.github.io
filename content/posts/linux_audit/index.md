@@ -8,7 +8,7 @@ cover: "cover.png"
 coverAlt: "Tux!"
 toc: true
 draft: false
-tags: [ "SysAdmin", "Linux" ]
+tags: [ "Linux" ]
 ---
 
 ## Introduction
@@ -102,22 +102,22 @@ These are like groups by which rsyslog creates log files. Example of `50-default
 ```conf
 # First some standard log files.  Log by facility.
 #
-auth,authpriv.*			/var/log/auth.log
-*.*;auth,authpriv.none		-/var/log/syslog
-#cron.*				/var/log/cron.log
-#daemon.*			-/var/log/daemon.log
-kern.*				-/var/log/kern.log
-#lpr.*				-/var/log/lpr.log
-mail.*				-/var/log/mail.log
-#user.*				-/var/log/user.log
+auth,authpriv.*   /var/log/auth.log
+*.*;auth,authpriv.none  -/var/log/syslog
+#cron.*    /var/log/cron.log
+#daemon.*   -/var/log/daemon.log
+kern.*    -/var/log/kern.log
+#lpr.*    -/var/log/lpr.log
+mail.*    -/var/log/mail.log
+#user.*    -/var/log/user.log
 
 #
 # Logging for the mail system.  Split it up so that
 # it is easy to write scripts to parse these files.
 #
-#mail.info			-/var/log/mail.info
-#mail.warn			-/var/log/mail.warn
-mail.err			/var/log/mail.err
+#mail.info   -/var/log/mail.info
+#mail.warn   -/var/log/mail.warn
+mail.err   /var/log/mail.err
 ```
 
 Severity levels:
