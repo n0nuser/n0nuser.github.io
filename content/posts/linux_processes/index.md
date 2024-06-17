@@ -1,6 +1,6 @@
 ---
 title: "Linux - Monitoring processes"
-description: "Systems Monitoring is in charge of continuously monitoring different resources and services of the computer, to guarantee the required level of availability and alert administrators in case of failure.<br>Its objective is to ensure that the system works correctly and to minimize the downtime of a service."
+description: "Systems Monitoring is in charge of continuously monitoring different resources and services of the computer, to guarantee the required level of availability and alert administrators in case of failure. Its objective is to ensure that the system works correctly and to minimize the downtime of a service."
 date: 2021-04-25
 lastmod: 2021-04-25
 author: "Pablo Jesús González Rubio"
@@ -28,7 +28,7 @@ Depending on the type of information they present, they can be classified into:
 * **Network**: Provides statistics on the use of network interfaces.
 * **Versatile**: They show information about different subsystems of the computer.
 
-## Processes 
+## Processes
 
 ### Attributes
 
