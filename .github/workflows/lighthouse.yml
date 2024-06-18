@@ -1,4 +1,4 @@
-name: Lighthouse Audit
+name: Lighthouse CI
 on:
   # Runs on pushes targeting the default branch
   push:
@@ -8,15 +8,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  audit:
+  lighthouse:
     runs-on: ubuntu-latest
     steps:
-    - name: Audit live URL
-      uses: jakejarvis/lighthouse-action@v0.3.2
-      with:
-        url: 'https://pablogonzalez.me'
-    - name: Upload results as an artifact
-      uses: actions/upload-artifact@master
-      with:
-        name: report
-        path: './report'
+      - uses: actions/checkout@v4
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          urls: |
+            https://pablogonzalez.me
+            https://pablogonzalez.me/about/
+            https://pablogonzalez.me/posts/
+          uploadArtifacts: true # save results as an action artifacts
+          temporaryPublicStorage: true # upload lighthouse report to the temporary storage
