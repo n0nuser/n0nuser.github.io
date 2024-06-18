@@ -329,31 +329,12 @@
   </script>
 {{ end }}
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<link rel="preconnect dns-prefetch" href="https://www.googletagmanager.com">
-<link rel="preconnect dns-prefetch" href="https://www.google-analytics.com">
-{{ $googleID := (printf "%#s" $.Site.Params.ga4 ) }}
-{{ $googleURL := (printf "https://www.googletagmanager.com/gtag/js?id=%s" $googleID) }}
-
-{{ with $googleID }}
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('set', { 'cookie_flags': 'SameSite=None;Secure' });
-    gtag('config', '{{ . }}');
-</script>
-{{ end }}
-
 <!-- Main CSS -->
 {{ $main := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | toCSS | minify }}
 <link rel="stylesheet" href="{{ $main.RelPermalink }}" integrity="{{ $main.Data.Integrity }}">
 
 {{ $bootstrap_grid:= resources.Get "scss/bootstrap-grid.scss" | resources.ExecuteAsTemplate "css/bootstrap-grid.scss" . | toCSS | minify }}
 <link rel="stylesheet" href="{{ $bootstrap_grid.RelPermalink }}" integrity="{{ $bootstrap_grid.Data.Integrity }}">
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-{{ with $googleURL }}<script async src="{{ . }}"></script>{{ end }}
 
 <!-- If JS is disabled -->
 <noscript>

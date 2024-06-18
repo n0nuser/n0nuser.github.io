@@ -24,7 +24,7 @@ noClasses = false
 [params]
 
 # Google Analytics ID
-GA4 = "G-GWC49NSYGC" # Google Analytics 4
+# GA4 = "G-GWC49NSYGC" # Google Analytics 4
 
 # Site description
 description = "Hi there! I'm Pablo Jesús González Rubio, a Python Engineer and Web Developer based in Salamanca, Spain."
