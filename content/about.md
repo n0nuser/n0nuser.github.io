@@ -5,7 +5,7 @@ description: "A little bit about me"
 author: "Pablo Jesús González Rubio"
 imgPath: "."
 disableTitleSeparator: false
-cover: "me.jpg"
+cover: "me.webp"
 coverAlt: "Me!"
 ---
 

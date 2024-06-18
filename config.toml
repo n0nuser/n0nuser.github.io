@@ -37,7 +37,7 @@ authorDesc = 'Python Developer. "n0nuser" is my alias'
 # It will be used if the current page doesn't have a image cover
 # File will be picked from the "assets" directory
 # Comment the lines if you don't want to use it
-cover = "img/cover.jpg"
+cover = "img/cover.webp"
 coverAlt = "Hi there! I'm a backend web developer based in Salamanca, Spain specializing in Python and Django."
 
 # Shows a message in the footer about JavaScript being disabled
