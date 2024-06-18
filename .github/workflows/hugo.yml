@@ -40,7 +40,7 @@ jobs:
       - name: Cache Hugo
         uses: actions/cache@v3
         with:
-          path: ~/hugo
+          path: ~/.hugo
           key: ${{ runner.os }}-hugo-${{ env.HUGO_VERSION }}
           restore-keys: |
             ${{ runner.os }}-hugo-
@@ -48,10 +48,10 @@ jobs:
       - name: Install Hugo CLI
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          wget -O hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
-          && sudo dpkg -i hugo.deb \
-          && mkdir -p ~/hugo \
-          && mv hugo /usr/local/bin/hugo
+          wget -O hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
+          sudo dpkg -i hugo.deb
+          mkdir -p ~/.hugo
+          mv /usr/local/bin/hugo ~/.hugo/hugo
 
       - name: Setup Pages
         id: pages
