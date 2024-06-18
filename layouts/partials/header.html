@@ -7,7 +7,7 @@
 
 <!-- Menu -->
 {{ if .Site.Menus.main }}
-    <nav class="mt-4" aria-label="{{ T "main_menu" }}">
+    <nav style="margin-top: 1.5rem !important" aria-label="{{ T "main_menu" }}">
       <ul>
         {{ range .Site.Menus.main }}
           {{ if .HasChildren }} <!-- Submenu if children in config.toml-->

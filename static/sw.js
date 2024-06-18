@@ -8,7 +8,6 @@ const BASE_CACHE_FILES = [
     '/writeups/htb/',
     // Add files to the cache here
     '/css/main.min.css',
-    '/css/bootstrap-grid.min.css',
     '/manifest.json',
     '/android-chrome-192x192.png',
     '/android-chrome-512x512.png',

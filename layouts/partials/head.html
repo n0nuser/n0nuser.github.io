@@ -333,9 +333,6 @@
 {{ $main := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | toCSS | minify }}
 <link rel="stylesheet" href="{{ $main.RelPermalink }}" integrity="{{ $main.Data.Integrity }}">
 
-{{ $bootstrap_grid:= resources.Get "scss/bootstrap-grid.scss" | resources.ExecuteAsTemplate "css/bootstrap-grid.scss" . | toCSS | minify }}
-<link rel="stylesheet" href="{{ $bootstrap_grid.RelPermalink }}" integrity="{{ $bootstrap_grid.Data.Integrity }}">
-
 <!-- If JS is disabled -->
 <noscript>
 
