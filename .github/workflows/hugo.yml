@@ -38,7 +38,7 @@ jobs:
           submodules: recursive
 
       - name: Cache Hugo
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/hugo
           key: ${{ runner.os }}-hugo-${{ env.HUGO_VERSION }}
@@ -86,3 +86,16 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          urls: |
+            https://pablogonzalez.me
+            https://pablogonzalez.me/about/
+          uploadArtifacts: true # save results as an action artifacts
+          temporaryPublicStorage: true # upload lighthouse report to the temporary storage
