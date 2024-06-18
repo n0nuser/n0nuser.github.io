@@ -37,7 +37,7 @@ authorDesc = 'Python Developer. "n0nuser" is my alias'
 # It will be used if the current page doesn't have a image cover
 # File will be picked from the "assets" directory
 # Comment the lines if you don't want to use it
-cover = "img/cover.jpeg"
+cover = "img/cover.jpg"
 coverAlt = "Hi there! I'm a backend web developer based in Salamanca, Spain specializing in Python and Django."
 
 # Shows a message in the footer about JavaScript being disabled
@@ -124,13 +124,14 @@ stopWords = ["a", "an", "and", "in", "the", "to", "was", "were", "with"]
 isDark = true
 
 # Accent colors for light and dark mode respectively
-lightAccent = "#0c66e4" # Default is "#225670", "#006666
-darkAccent = "#4bce97"  # Default is "#dd587c", GREEN: #3eff3f
+lightAccent = "#161a1d" # 
+darkAccent = "#f7f7f7"  # GREEN: #4bce97
 
 # More colors, pick as many as you want (not really sure if there's a limit)
 # Apparently these may not show up on every modern browser (ie. Firefox)
 # There's no default value. Used here just as example
 presets = [
+    "#4bce97",
     "#1f676b",
     "#f3a530",
     "#902b37",
