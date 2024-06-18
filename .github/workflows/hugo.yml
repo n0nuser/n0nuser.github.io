@@ -4,7 +4,7 @@ name: Deploy Hugo site to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["master"]
+    branches: [$default-branch]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -32,17 +32,31 @@ jobs:
     env:
       HUGO_VERSION: 0.127.0
     steps:
-      - name: Install Hugo CLI
-        run: |
-          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
-          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
+
+      - name: Cache Hugo
+        uses: actions/cache@v3
+        with:
+          path: ~/hugo
+          key: ${{ runner.os }}-hugo-${{ env.HUGO_VERSION }}
+          restore-keys: |
+            ${{ runner.os }}-hugo-
+
+      - name: Install Hugo CLI
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          wget -O hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
+          && sudo dpkg -i hugo.deb \
+          && mkdir -p ~/hugo \
+          && mv hugo /usr/local/bin/hugo
+
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v5
+
       - name: Build with Hugo
         env:
           # For maximum backward compatibility with Hugo modules
@@ -53,12 +67,13 @@ jobs:
             --gc \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
+
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
-  # Deployment job
+# Deployment job
   deploy:
     environment:
       name: github-pages
@@ -68,4 +83,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
