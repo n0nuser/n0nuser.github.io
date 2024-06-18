@@ -14,23 +14,12 @@
 /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
 $font-display: swap;
 
-/* inter-regular - latin */
+/* Geist Variable */
 @font-face {
     font-display: $font-display;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../fonts/inter-v12-latin-regular.woff2') format('woff2'), url('../fonts/inter-v12-latin-regular.woff') format('woff');
-}
-
-/* nunito-700 - latin */
-@font-face {
-    font-display: $font-display;
-    font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 700;
-    src: url('../fonts/nunito-v26-latin-700.woff2') format('woff2'),
-        url('../fonts/nunito-v26-latin-700.woff') format('woff');
+    font-family: 'Geist Sans';
+    src: url('../fonts/GeistVF.woff') format('woff');
+    font-weight: 100 1000;
 }
 
 /* jetbrains-mono-regular - latin */
@@ -39,10 +28,5 @@ $font-display: swap;
     font-style: normal;
     font-weight: 400;
     font-display: $font-display;
-    src: url('../fonts/jetbrains-mono-v12-latin-regular.woff2') format('woff2'), url('../fonts/jetbrains-mono-v12-latin-regular.woff') format('woff');
-    font-family: 'JetBrains Mono';
-    font-style: normal;
-    font-weight: 400;
-    font-display: $font-display;
-    src: url('../fonts/jetbrains-mono-v12-latin-regular.woff2') format('woff2'), url('../fonts/jetbrains-mono-v12-latin-regular.woff') format('woff');
+    src: url('../fonts/jetbrains-mono-v12-latin-regular.woff') format('woff');
 }
