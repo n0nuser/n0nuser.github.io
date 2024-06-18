@@ -45,7 +45,6 @@
 
   <img
     class="lazyload {{ $class }} roundedImage"
-    loading="lazy"
     data-srcset='{{ delimit $outputSet ", " }}'
     src="{{ $encodedPlaceholder }}"
     data-src="{{ (.Resize $mediumRes).RelPermalink }}"
@@ -56,7 +55,6 @@
   <noscript>
     <img
       {{ with $class }}class="{{ . }} roundedImage"{{ end }}
-      loading="lazy"
       srcset='{{ delimit $outputSet ", " }}'
       src="{{ $encodedPlaceholder }}"
       {{ with $altText }}alt="{{ . }}"{{ end }}

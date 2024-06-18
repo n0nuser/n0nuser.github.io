@@ -31,7 +31,6 @@
 
   <img
     class="lazyload cover"
-    loading="lazy"
     data-srcset='{{ delimit $outputSet ", " }}'
     src="{{ $encodedPlaceholder }}"
     data-src="{{ (.Resize $mediumRes).RelPermalink }}"
@@ -41,7 +40,6 @@
   <noscript>
     <img
       class="cover"
-      loading="lazy"
       srcset='{{ delimit $outputSet ", " }}'
       src="{{ $encodedPlaceholder }}"
       {{ with $altText }}alt="{{ . }}"{{ end }}

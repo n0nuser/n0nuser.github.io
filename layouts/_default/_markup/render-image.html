@@ -29,7 +29,6 @@
   
     <img
       class="lazyload {{ $class }}"
-      loading="lazy"
       data-srcset="{{ (.Resize (index $imageProc.highRes 0)).RelPermalink }} {{ index $imageProc.highRes 1 }}, {{ (.Resize (index $imageProc.mediumRes 0)).RelPermalink }} {{ index $imageProc.mediumRes 1 }}, {{ (.Resize (index $imageProc.lowRes 0)).RelPermalink }} {{ index $imageProc.lowRes 1 }}"
       src="{{ $encodedPlaceholder }}"
       data-src="{{ (.Resize (index $imageProc.mediumRes 0)).RelPermalink }}"
@@ -39,7 +38,6 @@
     <noscript>
       <img
         {{ with $class }}class="{{ . }}"{{ end }}
-        loading="lazy"
         srcset="{{ (.Resize (index $imageProc.highRes 0)).RelPermalink }} {{ index $imageProc.highRes 1 }}, {{ (.Resize (index $imageProc.mediumRes 0)).RelPermalink }} {{ index $imageProc.mediumRes 1 }}, {{ (.Resize (index $imageProc.lowRes 0)).RelPermalink }} {{ index $imageProc.lowRes 1 }}"
         src="{{ $encodedPlaceholder }}"
         {{ with $altText }}alt="{{ . }}"{{ end }}
@@ -58,7 +56,6 @@
 
     <img
       class="lazyload {{ $class }}"
-      loading="lazy"
       src="{{ $encodedPlaceholder }}"
       data-src="{{ .RelPermalink }}"
       {{ with $altText }}alt="{{ . }}"{{ end }}
@@ -67,7 +64,6 @@
     <noscript>
       <img
         {{ with $class }}class="{{ . }}"{{ end }}
-        loading="lazy"
         src="{{ .RelPermalink }}"
         {{ with $altText }}alt="{{ . }}"{{ end }}
       />
@@ -80,7 +76,6 @@
   {{ with (.Destination | safeURL) }}
     <img
       class="lazyload {{ $class }}"
-      loading="lazy"
       src="{{ $encodedPixel }}"
       data-src="{{ . }}"
       {{ with $altText }}alt="{{ . }}"{{ end }}
@@ -89,7 +84,6 @@
     <noscript>
       <img
         {{ with $class }}class="{{ . }}"{{ end }}
-        loading="lazy"
         src="{{ . }}"
         {{ with $altText }}alt="{{ . }}"{{ end }}
       />

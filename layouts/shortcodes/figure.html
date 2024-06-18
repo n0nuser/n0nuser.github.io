@@ -47,7 +47,6 @@
   <figure>
     <img
       class="lazyload {{ $class }}"
-      loading="lazy"
       data-srcset='{{ delimit $outputSet ", " }}'
       src="{{ $encodedPlaceholder }}"
       data-src="{{ (.Resize $mediumRes).RelPermalink }}"
@@ -57,7 +56,6 @@
     <noscript>
       <img
         {{ with $class }}class="{{ . }}"{{ end }}
-        loading="lazy"
         srcset='{{ delimit $outputSet ", " }}'
         src="{{ $encodedPlaceholder }}"
         {{ with $alt }}alt="{{ . }}"{{ end }}
