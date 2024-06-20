@@ -1,35 +1,34 @@
 ---
 title: "Pablo González"
 hideTitle: true
-description: ""
+description: "Hi there! I'm Pablo Jesús González Rubio, a Python Engineer and Web Developer based in Salamanca, Spain."
 author: "Pablo Jesús González Rubio"
 imgPath: "."
 disableTitleSeparator: false
 cover: "me.webp"
-coverAlt: "Me!"
+coverAlt: "Pablo González Image"
 ---
 
-{{< imgRounded "me.jpg" "Photo of Pablo" "borderless" "300" >}}
+{{< imgRounded "me.webp" "Photo of Pablo" "borderless" "300" >}}
 
-<span style="font-size:3em; font-weight:500">Hello, I'm **Pablo González**</span>
+<span style="font-size:3em; font-weight:500">👋 Hello, I'm **Pablo González**</span>
 
-I'm a Computer Engineer with a focus on backend development and microservices [@uXcale](https://www.uxcale.com/). My work revolves around using Python 🐍, Django 🌐, and FastAPI 🚀 to build web applications and microservices that are not only effective but also straightforward and maintainable.
+I'm a Computer Engineer passionate about backend development in Python 🐍 and a Clean Code advocate 🥑. As a developer, I specialize in OOP (mainly with DDD), system architecture, developing API-First systems (primarily with FastAPI), and leading backend projects from start to finish 💻🚀.
 
-I enjoy the process of solving problems 🧩 and delivering quality solutions to our clients and team. If you're curious about my professional journey or want to see my [resume](/resume.pdf) 📄, feel free to take a look. I'm always open to questions and happy to chat about potential collaborations 🤝 or just share knowledge 💡.
+If you would like to know more about me, feel free to explore the following sections:
 
-If you're interested in getting to know me beyond my work, check out my [manual](https://manual.pablogonzalez.me) 📘. It's a little peek into who I am outside of engineering. You can also [see the platforms](#contact) 🌐 I'm active on and reach out to me if you want to connect.
+* 🙍🏻‍♂️ [About Me](/about)
+* 📄 [Resume](/resume.pdf)
 
 You might also like to visit my [blog](/posts) 📝, where I talk about:
 
-* [Software Development](tags/software-development/): My approach and insights 💻
+* [Software Development](tags/software-development/): Development guides and approaches 💻
 * [Cheatsheets](tags/cheatsheet/): Helpful tips I've gathered 📋
-* [Linux Posts](tags/linux/): Navigating the world of Linux with ease 🐧
-* [Hack The Box Writeups](writeups/htb/): Challenges and fun in cybersecurity 🔒
+* [Linux Posts](tags/linux/): Learn and use Linux with ease 🐧
+* [Hack The Box Writeups](writeups/htb/): Cybersecurity challenges I've tackled in the past 🔒
 
 Hope you find something useful or interesting, and I'm always here if you want to get in touch! 😊
 
 ## Contact
-
-You can find me at:
 
 {{< social >}}
