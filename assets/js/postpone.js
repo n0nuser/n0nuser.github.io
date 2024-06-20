@@ -1,27 +1,6 @@
 'use strict';
 
 // =================================================
-// Accent color palette
-// =================================================
-
-const PALETTE = document.querySelector('footer input');
-
-PALETTE.onchange = function () {
-
-  const PICK = PALETTE.value;
-
-  SHEET.setProperty('--accent', PICK);
-  
-  if (ROOT.dataset.mode === 'light') {
-    localStorage.setItem('lightAccent', PICK)
-  } else {
-    localStorage.setItem('darkAccent', PICK)
-  };
-  
-  updateAccent()
-};
-
-// =================================================
 // Basic search functionality via Fuse.js
 // Based on: https://gist.github.com/eddiewebb/735feb48f50f0ddd65ae5606a1cb41ae#gistcomment-2987774
 // =================================================

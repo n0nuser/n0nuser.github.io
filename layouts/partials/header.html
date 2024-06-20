@@ -7,21 +7,10 @@
 
 <!-- Menu -->
 {{ if .Site.Menus.main }}
-    <nav style="margin-top: 1.5rem !important" aria-label="{{ T "main_menu" }}">
+    <nav aria-label="{{ T "main_menu" }}">
       <ul>
         {{ range .Site.Menus.main }}
-          {{ if .HasChildren }} <!-- Submenu if children in config.toml-->
-          <li>
-            <ul class="toggle">
-              <a class="btn" href="{{ .URL | relLangURL }}">{{ .Name }}</a>
-              {{ range .Children }}
-              <li><a class="btn togglebtn" href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
-              {{ end }}
-            </ul>
-          </li> 
-          {{ else }} <!-- No children -->
-            <li><a class="btn" href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
-          {{ end }}
+          <li><a class="btnHeader" href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
         {{ end }}
       </ul>
     </nav>

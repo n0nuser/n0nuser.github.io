@@ -106,14 +106,10 @@ function updateAccent() {
   var activeAccent = getAccent();
 
   SHEET.setProperty('--accent', activeAccent);
-  PALETTE.value = activeAccent;
   META_THEME_COLOR.setAttribute('content', activeAccent);
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-
-  // Update the color picker with the active accent color 
-  PALETTE.value = activeAccent;
 
   // Smooth transition, only when changing modes (and not loading pages)
   function smoothTransition() {

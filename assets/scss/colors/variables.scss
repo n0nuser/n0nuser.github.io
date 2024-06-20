@@ -1,27 +1,27 @@
 // Light mode palette
-$light-background: #ddd;
+$light-background: #faf9f6; // before: #ddd
 $light-foreground: #444;
 
-$light-alt-background: #d6d6d6;
+$light-alt-background: #f4f1ea;
 $light-alt-foreground: #333;
 
-$light-details: #fdfdfd;
+$light-details: #faf9f6; // before: #fdfdfd
 $light-error-color: #c70000;
 
 $light-bg-modifier: rgba(0, 0, 0, .3);
 
-$light-input-background: #fefefe;
+$light-input-background: #faf9f6;
 $light-input-foreground: #111;
 $light-input-border: #ccc;
 
 $light-letterpress: rgba(0, 0, 0, .2);
 
 // Dark mode palette
-$dark-background: #22272b; // # Body - before: 282828, 22272b
-$dark-foreground: #ebdebe; // #bbb
+$dark-background: #1f1f1f; // # Body - before: 282828, 22272b
+$dark-foreground: #b1b1b1; // #bbb
 
-$dark-alt-background: #161a1d; // # Header and footer background - before: 161a1d
-$dark-alt-foreground: #ebdebe; // #ddd
+$dark-alt-background: #232323; // # Header and footer background - before: 161a1d
+$dark-alt-foreground: #f1f1f1; // #ddd
 
 $dark-details: #1a1a1a;
 $dark-error-color: #ff3131;
