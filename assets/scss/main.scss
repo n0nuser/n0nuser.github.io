@@ -440,7 +440,7 @@ video {
       margin: 0 0 0 (.25rem + .1 * (6 - $i));
       
       svg {
-        transform: scale(1 + .175 * (6 - $i));
+        transform: scale(1 + .05 * (6 - $i));
       }
     }
   }
