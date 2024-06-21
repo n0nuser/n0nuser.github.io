@@ -9,7 +9,7 @@ cover: "me.webp"
 coverAlt: "Pablo González Image"
 ---
 
-{{< imgRounded "me.webp" "Photo of Pablo" "borderless" "300" >}}
+{{< imgRounded "me.webp" "Photo of Pablo" "borderless" "400" >}}
 
 <span style="font-size:3em; font-weight:500">👋 Hello, I'm **Pablo González**</span>
 
@@ -19,6 +19,8 @@ If you would like to know more about me, feel free to explore the following sect
 
 * 🙍🏻‍♂️ [About Me](/about)
 * 📄 [Resume](/resume.pdf)
+* ⏳ [Now](/now)
+* 🛠️ [What I Use](/uses)
 
 You might also like to visit my [blog](/posts) 📝, where I talk about:
 
