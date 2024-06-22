@@ -36,6 +36,6 @@ Writing this made me hungry... 🤤😅
 
 ## Say hi
 
-I'm always up for connecting with fellow tech enthusiasts, whether it’s for project collaboration, sharing Python tips, or just a friendly chat. Feel free to reach out, and let’s see what we can build together 🌟.
+I'm always up for connecting with fellow tech enthusiasts, whether it’s for project collaboration, sharing Python tips, or just a friendly chat. Feel free to reach out! ☀️
 
 {{< social >}}
