@@ -371,8 +371,6 @@ code {
 
 // WHITE SPACE
 article > header {
-  margin: 0 0 2rem;
-
   h1 {
     margin: 9px 0;
   }
@@ -387,10 +385,6 @@ article {
   h3 {
     margin: 2rem 0 1rem;
   }
-  
-  p {
-    margin: 1.5rem 0;
-  }
 }
 
 %reset-top {
@@ -400,16 +394,6 @@ article {
 @for $i from 1 through 6 {
   h#{$i} + p {
     @extend %reset-top;
-  }
-}
-
-%padding-top {
-  padding-top: 1rem;
-}
-
-@for $i from 2 through 6 {
-  h#{$i} {
-    @extend %padding-top;
   }
 }
 
