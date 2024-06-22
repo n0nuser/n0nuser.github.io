@@ -46,10 +46,10 @@ This page is taken as a reference from [uses.tech](https://uses.tech/), a websit
 ### 🖥️ **Desktop PC**
   
 * **Case**: [Lian Li LANCOOL II Mesh RGB C Type](https://lian-li.com/product/lancool-ii-mesh-rgb)
-* **Motherboard**: [MSI MAG Z690 TOMAHAWK WIFI DDR4 Socket 1700]((https://es.msi.com/Motherboard/MAG-Z690-TOMAHAWK-WIFI-DDR4))
-* **CPU**: [Intel Core i5-13600K 5.1GHz Socket 1700]((https://www.intel.com/content/www/us/en/products/sku/230493/intel-core-i513600k-processor-24m-cache-up-to-5-10-ghz/specifications.html))
-* **GPU**: [Asus GeForce TUF Gaming RTX 4070 Ti OC 12GB GDDR6X]((https://www.asus.com/motherboards-components/graphics-cards/tuf-gaming/tuf-rtx4070ti-o12g-gaming/))
-* **RAM**: [Corsair Vengeance LPX Black 32GB (2x16GB) 3600MHz (PC4-28800) CL18 DDR4]((https://www.corsair.com/us/en/p/memory/cmk32gx4m2d3600c18/vengeancea-lpx-32gb-2-x-16gb-ddr4-dram-3600mhz-c18-memory-kit-black-cmk32gx4m2d3600c18))
+* **Motherboard**: [MSI MAG Z690 TOMAHAWK WIFI DDR4 Socket 1700](https://es.msi.com/Motherboard/MAG-Z690-TOMAHAWK-WIFI-DDR4)
+* **CPU**: [Intel Core i5-13600K 5.1GHz Socket 1700](https://www.intel.com/content/www/us/en/products/sku/230493/intel-core-i513600k-processor-24m-cache-up-to-5-10-ghz/specifications.html)
+* **GPU**: [Asus GeForce TUF Gaming RTX 4070 Ti OC 12GB GDDR6X](https://www.asus.com/motherboards-components/graphics-cards/tuf-gaming/tuf-rtx4070ti-o12g-gaming/)
+* **RAM**: [Corsair Vengeance LPX Black 32GB (2x16GB) 3600MHz (PC4-28800) CL18 DDR4](https://www.corsair.com/us/en/p/memory/cmk32gx4m2d3600c18/vengeancea-lpx-32gb-2-x-16gb-ddr4-dram-3600mhz-c18-memory-kit-black-cmk32gx4m2d3600c18)
 * **Storage**:
   * [Samsung SSD 980 PRO Series PCIe 4.0 NVMe 1TB M.2](https://www.samsung.com/es/memory-storage/nvme-ssd/980-pro-pcle-4-0-nvme-m-2-ssd-1tb-mz-v8p1t0bw/)
   * [Kingston NV2 2TB PCIe x4 NVMe M.2](https://www.kingston.com/en/ssd/nv2-nvme-pcie-ssd?capacity=2tb)
