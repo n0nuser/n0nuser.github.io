@@ -1,5 +1,5 @@
 ---
-title: "About me"
+title: "About Me"
 hideTitle: false
 description: "A little bit about me"
 author: "Pablo Jesús González Rubio"
@@ -34,8 +34,17 @@ Also, thinking of it now... Spanish omelette 🍳, Hornazo 🥪, Farinato, a goo
 
 Writing this made me hungry... 🤤😅
 
-## Say hi
+**Edit\*\*\*\*** Forgot to say that I'm a big chugger of music, I listen to almost anything, but there are some music styles that aren't really known and I love them:
 
-I'm always up for connecting with fellow tech enthusiasts, whether it’s for project collaboration, sharing Python tips, or just a friendly chat. Feel free to reach out! ☀️
+* [Phonk](https://open.spotify.com/playlist/2Vyaj3fSShTPTsQyDZHX7e) and [Hard Phonk](https://open.spotify.com/playlist/3NoOfDRiNDTEqcJiWyF7oa) 🎌
+* [G-House](https://open.spotify.com/playlist/51TYvBYIBk0wvGyNubhJCD) 🥵
+* [Nordic](https://open.spotify.com/playlist/7Df8RvCjCf5bx1PP2lroZ7) 🇳🇴
+* [Peace](https://open.spotify.com/playlist/3HUq2YvDGQFppevbmFnRyH) and [Chill](https://open.spotify.com/playlist/18HfFl8gx4etyuOjjPXWSG) 🕊️
+* [Sci-Fi](https://open.spotify.com/playlist/2KMP2mCrKF0MTG7QPLFJA6) 🚀
+* [Hyper-Pop](https://open.spotify.com/playlist/51GQ3RJTejomooBzBHvLJN) 🤯
+
+You can see the rest of my playlists [here](https://open.spotify.com/user/orl1r6ro371sob7h4jvk06sse/playlists) 🎧
+
+## Say hi
 
 {{< social >}}
