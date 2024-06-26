@@ -1,6 +1,6 @@
 baseURL = "https://pablogonzalez.me"
 languageCode = "en"
-title = "Pablo González | Python Engineer"
+title = "Pablo González"
 copyright = "Copyright © 2024, Pablo Jesús González Rubio\n All rights reserved."
 
 enableEmoji = false # It transcodes emojis from hex codeblock
@@ -8,7 +8,6 @@ enableEmoji = false # It transcodes emojis from hex codeblock
 enableInlineShortcodes = true
 
 paginate = 7
-
 
 [markup]
 [markup.goldmark]
@@ -62,7 +61,7 @@ markupImgClass = ""
 # You can disabled it PER PAGE by using "disableTitleSeparator" at front
 # matter or disable it entirely by commenting the line below
 # ie.: | ❚ - – — • ⚫ 
-# titleSeparator = "•"
+titleSeparator = "•"
 
 
 # Contact form shortcode
