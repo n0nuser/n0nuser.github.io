@@ -1,5 +1,5 @@
 ---
-title: "Pablo González"
+title: "Home"
 hideTitle: true
 description: "Hi there! I'm Pablo Jesús González Rubio, a Python Engineer and Web Developer based in Salamanca, Spain."
 author: "Pablo Jesús González Rubio"
@@ -18,7 +18,7 @@ I'm a Computer Engineer passionate about backend development in Python 🐍 and 
 If you would like to know more about me, feel free to explore the following sections:
 
 * 🙍🏻‍♂️ [About Me](/about)
-* 📄 [Resume](/resume.pdf)
+* 📄 [Resume](/resume)
 * ⏳ [Now](/now)
 * 🛠️ [What I Use](/uses)
 
