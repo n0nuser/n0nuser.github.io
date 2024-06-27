@@ -22,6 +22,8 @@ If you would like to know more about me, feel free to explore the following sect
 * ⏳ [Now](/now)
 * 🛠️ [What I Use](/uses)
 
+I know that you may not be interested in viewing the analytics of this site, but if you are, [they are public!](https://cloud.umami.is/share/sMn2hgzqZZ0lEpde/pablogonzalez.me)
+
 You might also like to visit my [blog](/posts) 📝, where I talk about:
 
 * [Software Development](tags/software-development/): Development guides and approaches 💻
