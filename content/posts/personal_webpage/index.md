@@ -137,6 +137,8 @@ hugo server --minify --bind $IP --baseURL http://$IP:1313
 
 You could even make an alias in your `.bashrc` or `.zshrc` file to make it easier to run the command.
 
+For more Hugo CLI commands, check the [Hugo CLI documentation](https://gohugo.io/commands/).
+
 ## Registering Your Domain with Namecheap
 
 Although I use Namecheap, you can choose any domain registrar that you prefer. The steps will be similar.
@@ -162,7 +164,11 @@ References:
 ## Deploying with Cloudflare Pages
 
 1. **Create a Cloudflare Pages Project**: In the Cloudflare dashboard, navigate to the **Workers & Pages** section and create a new project. Connect it to your GitHub repository where your Hugo site is hosted.
-2. **Build Settings**: Configure the build settings for Hugo. Typically, this involves setting the build command to `hugo --minify -b $CF_PAGES_URL` and specifying the output directory as `public`.
+2. **Build Settings**: Configure the build settings for Hugo.
+   1. Typically, this involves setting the build command to `hugo --minify -b YOUR_DOMAIN`
+      1. If you were to use CloudFlare domain, it would be `hugo --minify -b $CF_PAGES_URL`
+      2. In my case it would be `hugo --minify -b https://pablogonzalez.me/`
+   2. And specifying the output directory as `public`.
 3. **Set Environment Variables**: As Hugo evolves, I like to set the `HUGO_VERSION` environment variable to the version I'm using. This ensures that the build process uses the correct Hugo version. Check the releases page on the [Hugo GitHub repository](https://github.com/gohugoio/hugo/releases/) to find the latest version. Be sure that your website works with the latest version before updating it.
 
 ## Integrating Umami for Analytics
