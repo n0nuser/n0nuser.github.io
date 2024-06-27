@@ -115,7 +115,7 @@ Any way, this is just my experience, in case you prefer to deploy the site in an
 
 ## Choosing and Setting Up Your Hugo Template
 
-I initially built my website using the **Cuppy** template and later transitioned to the **Color Your World** template from Hugo. Over the years, I've made various aesthetic changes to keep the site fresh and engaging.
+I initially built my website using the [**Cupper**](https://github.com/zwbetz-gh/cupper-hugo-theme) template and later transitioned to the [**Color Your World**](https://github.com/rmaguiar/hugo-theme-color-your-world) template from Hugo. Over the years, I've made various aesthetic changes to keep the site fresh and engaging.
 
 1. **Select a Hugo Template**: Start by choosing a Hugo template that suits your needs. You can find many free templates in the [Hugo themes](https://themes.gohugo.io/) directory. There are a lot of them, it just depends on what you are trying to build.
 2. **Install Hugo**: Follow the official [Hugo installation guide](https://gohugo.io/getting-started/installing/) to set up Hugo on your local machine.
