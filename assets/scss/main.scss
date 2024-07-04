@@ -297,7 +297,7 @@ hr {
 // Selection
 ::selection {
   background: var(--accent);
-  color: $selected-fg;
+  color: var(--bg);
   text-shadow: none;
 }
 
