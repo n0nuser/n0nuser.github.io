@@ -13,7 +13,7 @@ coverAlt: "Me!"
 
 Hello there! I’m Pablo 👋, a Computer Engineer with a deep dive into backend development, microservices, a passion for crafting performant systems 🚀 and a Clean Code advocate 🥑. My professional life is driven by a love for Python 🐍, a desire for creating robust system architectures 🏗️, and a continuous quest for improving code quality ✨.
 
-For a more detailed look into my professional journey, skills, and personal interests, you can [check my resume](/resume.pdf)! 📄
+For a more detailed look into my professional journey, skills, and personal interests, you can [check my resume](/resume)! 📄
 
 ## Beyond the Screen
 
