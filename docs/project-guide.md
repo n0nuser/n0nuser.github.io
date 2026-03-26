@@ -17,7 +17,7 @@ It describes architecture, workflows, conventions, and operational history at a 
 
 ### Core
 
-- Hugo static site generator
+- Hugo static site generator (current version: v0.159.1)
 - Go-template based Hugo layouts/shortcodes
 - Markdown content in leaf bundles and page files
 - Theme customization based on Color Your World
