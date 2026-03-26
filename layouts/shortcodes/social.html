@@ -1,56 +1,56 @@
 <!-- Reduce repetition... -->
-{{ $centralizedOnPage   := $.Page.Params.Social.Centralized }}
-{{ $centralizedOnSite   := $.Site.Params.Social.Centralized }}
+{{ $centralizedOnPage := $.Page.Params.Social.Centralized }}
+{{ $centralizedOnSite := $.Site.Params.Social.Centralized }}
 {{ $decentralizedOnPage := $.Page.Params.Social.Decentralized }}
 {{ $decentralizedOnSite := $.Site.Params.Social.Decentralized }}
 
 <section class="social">
 
-  {{ range .Site.Data.social }}
+  {{ range hugo.Data.social }}
 
-    {{ $currentEntry  := .entry }}
-    {{ $currentLabel  := .label }}
-    {{ $currentBase   := .base }}
-    {{ $currentIcon   := .icon.id }}
+  {{ $currentEntry := .entry }}
+  {{ $currentLabel := .label }}
+  {{ $currentBase := .base }}
+  {{ $currentIcon := .icon.id }}
 
-    {{ if not .decentralized }}
+  {{ if not .decentralized }}
 
-      {{ with (index (or $centralizedOnPage $centralizedOnSite) $currentEntry) }}
+  {{ with (index (or $centralizedOnPage $centralizedOnSite) $currentEntry) }}
 
-        {{ $url   := printf "%s%s" $currentBase (index . 0) }}
-        {{ $label := $currentLabel }}
-      
-        {{ with (index . 1) }}
-          {{ $label = . }}
-        {{ end }}
-        
-        <a class="btn" href="{{ $url }}" rel="me nofollow" title="{{ $label }}">
-          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <use xlink:href="#{{ $currentIcon }}"/>
-          </svg>
+  {{ $url := printf "%s%s" $currentBase (index . 0) }}
+  {{ $label := $currentLabel }}
 
-          <p>{{ $label }}</p>
-        </a>
+  {{ with (index . 1) }}
+  {{ $label = . }}
+  {{ end }}
 
-      {{ end }}
+  <a class="btn" href="{{ $url }}" rel="me nofollow" title="{{ $label }}">
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <use xlink:href="#{{ $currentIcon }}" />
+    </svg>
 
-    {{ else }}
+    <p>{{ $label }}</p>
+  </a>
 
-      {{ if (index (or $decentralizedOnPage $decentralizedOnSite) $currentEntry) }}
+  {{ end }}
 
-        {{ range (index (or $decentralizedOnPage $decentralizedOnSite) $currentEntry) }}
-          <a class="btn" href="{{ index . 0 }}" rel="me nofollow" title="{{ printf "%s (%s)" (index . 1) $currentLabel }}">
-            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <use xlink:href="#{{ $currentIcon }}"/>
-            </svg>
+  {{ else }}
 
-            <p>{{ index . 1 | truncate 15 }}</p>
-          </a>
-        {{ end }}
-        
-      {{ end }}
-      
-    {{ end }}
+  {{ if (index (or $decentralizedOnPage $decentralizedOnSite) $currentEntry) }}
+
+  {{ range (index (or $decentralizedOnPage $decentralizedOnSite) $currentEntry) }}
+  <a class="btn" href="{{ index . 0 }}" rel="me nofollow" title="{{ printf " %s (%s)" (index . 1) $currentLabel }}">
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <use xlink:href="#{{ $currentIcon }}" />
+    </svg>
+
+    <p>{{ index . 1 | truncate 15 }}</p>
+  </a>
+  {{ end }}
+
+  {{ end }}
+
+  {{ end }}
 
   {{ end }}
 

@@ -1,0 +1,17 @@
+{{- $arg0 := .Get 0 -}}
+{{- if not $arg0 -}}
+{{- errorf "gist shortcode requires at least a gist ID/URL argument" -}}
+{{- end -}}
+
+{{- $src := "" -}}
+{{- if strings.HasPrefix $arg0 "http" -}}
+{{- $src = printf "%s.js" ($arg0 | strings.TrimSuffix "/") -}}
+{{- else if ge (len .Params) 3 -}}
+{{- $src = printf "https://gist.github.com/%s/%s.js?file=%s" $arg0 (.Get 1) (.Get 2) -}}
+{{- else if eq (len .Params) 2 -}}
+{{- $src = printf "https://gist.github.com/%s/%s.js" $arg0 (.Get 1) -}}
+{{- else -}}
+{{- $src = printf "https://gist.github.com/%s.js" $arg0 -}}
+{{- end -}}
+
+<script src="{{ $src }}"></script>
