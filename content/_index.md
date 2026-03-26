@@ -1,7 +1,7 @@
 ---
 title: "Home"
 hideTitle: true
-description: "Hi there! I'm Pablo Jesús González Rubio, a Python Engineer and Web Developer based in Salamanca, Spain."
+description: "Personal website of Pablo González, Python backend engineer sharing software development guides, Linux notes, and cybersecurity writeups."
 author: "Pablo Jesús González Rubio"
 imgPath: "."
 disableTitleSeparator: false

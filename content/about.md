@@ -1,7 +1,7 @@
 ---
 title: "About Me"
 hideTitle: false
-description: "A little bit about me"
+description: "About Pablo González: backend-focused computer engineer, current work, interests, and links to resume and contact."
 author: "Pablo Jesús González Rubio"
 imgPath: "."
 disableTitleSeparator: false

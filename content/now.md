@@ -1,7 +1,7 @@
 ---
 title: "Now"
 hideTitle: false
-description: "Things I'm focused on at this point of my life"
+description: "What Pablo González is focused on right now: work, projects, learning, and personal updates."
 author: "Pablo Jesús González Rubio"
 imgPath: "."
 disableTitleSeparator: false
