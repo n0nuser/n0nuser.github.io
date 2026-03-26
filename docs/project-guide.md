@@ -95,6 +95,12 @@ n0nuser.github.io/
 
 - Primary operational target: Cloudflare Pages
 - GitHub Pages workflow has been removed/deactivated to avoid parallel deployment paths
+- Typical Cloudflare deployment time is about 2 minutes
+
+### SEO and Search Operations
+
+- Google Search Console property has been added for this site.
+- Ads policy: no ads are served on this site; keep `ads.txt` aligned with this policy if published.
 
 ### Existing Automation and Scripts
 

@@ -104,7 +104,7 @@
 <!-- Canon -->
 {{ if ne .Kind "404" }}
 {{ if .Params.canonicalURL }}
-<link rel="canonical" href="{{ .Params.canonicalURL }}">
+<link rel="canonical" href="{{ .Params.canonicalURL | absURL }}">
 {{ else if and (eq .Kind "section") (gt .Paginator.TotalPages 0) }}
 <link rel="canonical" href="{{ .Paginator.URL | absURL }}">
 {{ else if ne .Params.sitemapExclude true }}

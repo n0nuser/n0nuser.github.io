@@ -1,6 +1,7 @@
 ---
-title: "Home"
-hideTitle: true
+title: "Pablo Gonzalez - Backend Developer"
+hideTitle: false
+mainTitle: "Backend Development, Linux, and Security Posts"
 description: "Personal website of Pablo González, Python backend engineer sharing software development guides, Linux notes, and cybersecurity writeups."
 author: "Pablo Jesús González Rubio"
 imgPath: "."
@@ -11,27 +12,29 @@ coverAlt: "Pablo González Image"
 
 {{< imgRounded "me.webp" "Photo of Pablo" "borderless" "400" >}}
 
-<span style="font-size:3em; font-weight:500">👋 Hello, I'm **Pablo González**</span>
+I'm a Computer Engineer focused on backend development with Python. I enjoy building API-first services, improving software architecture, and keeping codebases maintainable with practical clean code habits.
 
-I'm a Computer Engineer passionate about backend development in Python 🐍 and a Clean Code advocate 🥑. As a developer, I specialize in OOP (mainly with DDD), system architecture, developing API-First systems (primarily with FastAPI), and leading backend projects from start to finish 💻🚀.
+This website is my technical space where I publish posts and notes about software development, Linux administration, and security topics that I use in real projects and hands-on labs. I write in a practical format so I can revisit each guide quickly, and so other developers can apply the same ideas without too much setup.
 
-If you would like to know more about me, feel free to explore the following sections:
+If you want a quick overview of my background, current focus, and tools, start here:
 
 * 🙍🏻‍♂️ [About Me](/about)
 * 📄 [Resume](/resume)
 * ⏳ [Now](/now)
 * 🛠️ [What I Use](/uses)
 
-I know that you may not be interested in viewing the analytics of this site, but if you are, [they are public!](https://cloud.umami.is/share/sMn2hgzqZZ0lEpde/pablogonzalez.me)
+## Posts and Development Topics
 
-You might also like to visit my [blog](/posts) 📝, where I talk about:
+You can also browse the [blog](/posts) 📝 by topic:
 
-* [Software Development](tags/software-development/): Development guides and approaches 💻
-* [Cheatsheets](tags/cheatsheet/): Helpful tips I've gathered 📋
-* [Linux Posts](tags/linux/): Learn and use Linux with ease 🐧
-* [Hack The Box Writeups](writeups/htb/): Cybersecurity challenges I've tackled in the past 🔒
+* [Software Development](tags/software-development/): backend engineering practices, architecture decisions, and coding workflows.
+* [Cheatsheets](tags/cheatsheet/): concise command references and troubleshooting shortcuts.
+* [Linux Posts](tags/linux/): system administration notes, hardening basics, and server operations.
+* [Hack The Box Writeups](writeups/htb/): security challenge writeups and exploitation walkthroughs.
 
-Hope you find something useful or interesting, and I'm always here if you want to get in touch! 😊
+If you are curious about traffic, [public site analytics are available](https://cloud.umami.is/share/sMn2hgzqZZ0lEpde/pablogonzalez.me).
+
+I update this site whenever I discover a better approach, fix an old process, or learn something worth documenting. If a post helps you, feel free to reach out and share improvements or corrections.
 
 ## Contact
 
