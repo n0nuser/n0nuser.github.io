@@ -1,6 +1,6 @@
 ---
 title: "Data Exfiltration"
-description: "In the infiltration process, attackers often need to download and execute code through commands that helps them: Collect information, Extract credentials and data, Create persistence, Privilege Escalation and lateral movement, Bypass defense methods..."
+description: "Data exfiltration techniques and command patterns used in post-exploitation to collect files, credentials, and sensitive host information."
 date: 2020-09-03
 lastmod: 2020-09-03
 author: "Pablo Jesús González Rubio"

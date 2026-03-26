@@ -1,6 +1,6 @@
 ---
 title: "Cryptocurrency notes"
-description: "My personal notes on Cryptocurrencies."
+description: "Beginner-friendly cryptocurrency notes covering risk management, strategy basics, and practical lessons learned."
 date: 2021-11-22
 lastmod: 2021-11-22T11:11:52+02:00
 author: "Pablo Jesús González Rubio"

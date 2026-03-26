@@ -1,6 +1,6 @@
 ---
 title: "Low Frequency (125 KHz)"
-description: "RFID is seen today in many scenarios: the bus card, the sub ticket, gym access, access cards, payments via NFC… In this post we’ll talk only about one of the most common ones: 125 KHz"
+description: "Introduction to 125 KHz low-frequency RFID basics, attack surface, and practical cloning/testing notes for common access-control tags."
 date: 2020-06-28
 lastmod: 2020-08-06T00:50:52+02:00
 author: "Pablo Jesús González Rubio"

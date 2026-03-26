@@ -1,6 +1,6 @@
 ---
 title: "Rogue AP"
-description: "A Rogue AP or Rogue Access Point is a hostspot that simulates a network like if it was a router, but instead it replicates the signal of an existing one and performs sniffing and Man In The Middle on every user that connects to that AP."
+description: "Rogue Access Point walkthrough covering fake hotspot setup, credential-capture flow, and practical wireless MITM testing considerations."
 date: 2019-11-24
 lastmod: 2020-08-06T00:50:52+02:00
 author: "Pablo Jesús González Rubio"

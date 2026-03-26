@@ -43,7 +43,7 @@ Writing this made me hungry... 🤤😅
 * [Sci-Fi](https://open.spotify.com/playlist/2KMP2mCrKF0MTG7QPLFJA6) 🚀
 * [Hyper-Pop](https://open.spotify.com/playlist/51GQ3RJTejomooBzBHvLJN) 🤯
 
-You can see the rest of my playlists [here](https://open.spotify.com/user/orl1r6ro371sob7h4jvk06sse/playlists) 🎧
+You can see the rest of my playlists on [my Spotify playlists page](https://open.spotify.com/user/orl1r6ro371sob7h4jvk06sse/playlists) 🎧
 
 ## Say hi
 

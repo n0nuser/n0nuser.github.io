@@ -1,6 +1,6 @@
 ---
 title: "High Frequency (13.56 MHz)"
-description: "RFID is seen today in many scenarios: the bus card, the sub ticket, gym access, access cards, payments via NFC… In this post we’ll talk only about one of the most common ones: 13.56 MHz"
+description: "Practical 13.56 MHz RFID overview covering common card technologies, attack surface, and cloning/testing techniques for NFC access systems."
 date: 2020-06-28
 lastmod: 2020-08-06T01:33:10+02:00
 author: "Pablo Jesús González Rubio"

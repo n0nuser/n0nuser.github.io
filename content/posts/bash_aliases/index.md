@@ -1,6 +1,6 @@
 ---
 title: "My Bash Aliases"
-description: "Lots of useful Bash alises I've done along my Linux journey."
+description: "Curated Bash aliases to speed up daily Linux workflows, reduce repetitive commands, and improve terminal productivity."
 date: 2020-10-12
 lastmod: 2020-10-12
 author: "Pablo Jesús González Rubio"

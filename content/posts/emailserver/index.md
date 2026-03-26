@@ -1,6 +1,6 @@
 ---
 title: "Email Server - Postfix, Dovecot and Roundcube"
-description: ""
+description: "Step-by-step Linux email server setup with Postfix, Dovecot, and Roundcube, including installation, configuration, and security basics."
 date: 2021-05-21
 lastmod: 2021-05-21
 author: "Pablo Jesús González Rubio"

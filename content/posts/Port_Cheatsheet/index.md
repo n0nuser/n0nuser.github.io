@@ -1,6 +1,6 @@
 ---
 title: "Port Cheatsheet"
-description: "How to investigate and pentest most common ports"
+description: "Port pentesting cheatsheet for common services, with quick enumeration and exploitation tips for FTP, SSH, web, SMB, DNS, and database targets."
 date: 2019-10-09
 lastmod: 2020-09-12
 author: "Pablo Jesús González Rubio"
