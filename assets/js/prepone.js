@@ -1,11 +1,11 @@
 'use strict';
 
 // Get default accent colors
-{ { $darkAccent:= .Site.Params.Style.darkAccent | default hugo.Data.default.style.darkAccent } }
-{ { $lightAccent:= .Site.Params.Style.lightAccent | default hugo.Data.default.style.lightAccent } }
+{{ $darkAccent:= .Site.Params.Style.darkAccent | default hugo.Data.default.style.darkAccent }}
+{{ $lightAccent:= .Site.Params.Style.lightAccent | default hugo.Data.default.style.lightAccent }}
 
 // Get CSS transition
-{ { $changeTransition:= .Site.Params.Style.changeTransition | default hugo.Data.default.style.changeTransition } }
+{{ $changeTransition:= .Site.Params.Style.changeTransition | default hugo.Data.default.style.changeTransition }}
 
 // =================================================
 // Mode switcher + Custom accent color
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // TEST
   // Keyboard shortcut for mode change, here for testing purposes only
   // CTRL + ALT + M
-  { { if hugo.IsServer } }
+  {{ if hugo.IsServer }}
   document.addEventListener('keydown', (event) => {
     const E = event || window.event;
     if (E.code === 77 && E.ctrlKey && E.altKey) {
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
   }, false);
-  { { end } }
+  {{ end }}
 
   // Runs when OS changes light/dark mode. Changes only if you were on default
   // color state (light on light mode, dark on dark mode).

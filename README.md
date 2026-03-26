@@ -12,3 +12,15 @@
 My IT Personal Blog built with [GoHugo](https://gohugo.io/) `v0.159.1` using a modified version of the [Color Your World](https://themes.gohugo.io/hugo-theme-color-your-world/) theme.
 
 It's a Progressive Web Application: it can be installed on your device.
+
+## Local Cloudflare-like build
+
+To run a Linux build that matches Cloudflare Pages more closely, use Docker:
+
+`.\build-cf.ps1`
+
+Optional: use a different Hugo version:
+
+`.\build-cf.ps1 -HugoVersion 0.159.1`
+
+The script uses a pinned `hugomods/hugo` image variant with Hugo, Dart Sass, Node, and Git.

@@ -86,6 +86,8 @@ n0nuser.github.io/
 
 - Standard production build:
   - `hugo --gc --minify`
+- Cloudflare-like local Linux build via Docker:
+  - `.\build-cf.ps1`
 
 ### Deployment Source of Truth
 
@@ -96,6 +98,7 @@ n0nuser.github.io/
 
 - Local script `deploy.sh` includes build + git add/commit/push to `master`
 - Local script `editBlog.sh` includes LAN preview and editor/browser helpers
+- Local script `build-cf.ps1` runs `hugo --gc --minify` in Docker (`hugomods/hugo:debian-dart-sass-node-git-non-root-0.159.1`) to mirror Cloudflare Pages build behavior
 
 ## Quality and Validation
 

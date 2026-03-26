@@ -423,10 +423,10 @@ $highRes 0)).Permalink)) }}
 
 {{ with resources.Get "js/prepone.js" | resources.ExecuteAsTemplate .Page . }}
 <script>
-  { { if hugo.IsServer } }
-  { { .Content | safeJS } }
-  { { else } }
-  { { .Content | replaceRE "console.log(.*?);" "" | safeJS } }
-  { { end } }
+  {{ if hugo.IsServer }}
+  {{ .Content | safeJS }}
+  {{ else }}
+  {{ .Content | replaceRE "console.log(.*?);" "" | safeJS }}
+  {{ end }}
 </script>
 {{ end }}
