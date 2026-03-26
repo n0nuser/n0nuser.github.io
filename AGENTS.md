@@ -47,3 +47,7 @@ Before finalizing work:
 - Main config: `config.toml`
 - CI workflow: `.github/workflows/hugo.yml`
 - Scripts: `deploy.sh`, `editBlog.sh`
+
+## Deployment Note
+
+- Typical Cloudflare deployment time is about 2 minutes.

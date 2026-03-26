@@ -30,7 +30,7 @@ noClasses = false
 # GA4 = "G-GWC49NSYGC" # Google Analytics 4
 
 # Site description
-description = "Hi there! I'm Pablo Jesús González Rubio, a Python Engineer and Web Developer based in Salamanca, Spain."
+description = "Backend development, Linux, and cybersecurity posts by Pablo González. Practical guides, cheatsheets, and project notes for developers and security learners."
 
 # Author
 author = "Pablo Jesús González Rubio"
