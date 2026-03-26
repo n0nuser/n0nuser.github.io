@@ -88,6 +88,8 @@ n0nuser.github.io/
   - `hugo --gc --minify`
 - Cloudflare-like local Linux build via Docker:
   - `.\build-cf.ps1`
+- Lint and validation suite:
+  - `npm run lint`
 
 ### Deployment Source of Truth
 
@@ -99,6 +101,7 @@ n0nuser.github.io/
 - Local script `deploy.sh` includes build + git add/commit/push to `master`
 - Local script `editBlog.sh` includes LAN preview and editor/browser helpers
 - Local script `build-cf.ps1` runs `hugo --gc --minify` in Docker (`hugomods/hugo:debian-dart-sass-node-git-non-root-0.159.1`) to mirror Cloudflare Pages build behavior
+- Node-based lint scripts in `package.json` include template sanity checks, SCSS linting, markdown linting, and native Hugo build validation
 
 ## Quality and Validation
 

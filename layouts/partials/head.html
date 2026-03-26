@@ -355,37 +355,7 @@ $highRes 0)).Permalink)) }}
 
   <style>
     html {
-      --accent: {
-          {
-          if .Site.Params.Style.isDark
-        }
-      }
-
-        {
-          {
-          $darkAccent
-        }
-      }
-
-        {
-          {
-          else
-        }
-      }
-
-        {
-          {
-          $lightAccent
-        }
-      }
-
-        {
-          {
-          end
-        }
-      }
-
-      ;
+      --accent: {{ if .Site.Params.Style.isDark }}{{ $darkAccent }}{{ else }}{{ $lightAccent }}{{ end }};
     }
 
     .req-js,

@@ -6,13 +6,7 @@
 'colors/variables';
 
 // Get transition for color changes
-$change-transition: {
-    {
-    .Site.Params.Style.changeTransition | default hugo.Data.default.style.changeTransition
-  }
-}
-
-;
+$change-transition: {{ .Site.Params.Style.changeTransition | default hugo.Data.default.style.changeTransition }};
 
 // Default font size
 :root {
@@ -43,39 +37,15 @@ html {
     --rlpress: #{$dark-letterpress};
 
     // Custom Chroma stylesheet
-      {
-        {
-        if .Site.Params.Style.useCustomChroma | default true
-      }
-    }
-
-      {
-        {
-        if (fileExists "static/css/chroma/light.css")
-      }
-    }
-
+      {{ if .Site.Params.Style.useCustomChroma | default true }}
+      {{ if (fileExists "static/css/chroma/light.css") }}
     @import '/css/chroma/light.css';
 
-      {
-        {
-        else if (resources.Get "scss/colors/chroma/light.scss")
-      }
-    }
-
+      {{ else if (resources.Get "scss/colors/chroma/light.scss") }}
     @import 'colors/chroma/light';
 
-      {
-        {
-        end
-      }
-    }
-
-      {
-        {
-        end
-      }
-    }
+      {{ end }}
+      {{ end }}
   }
 
   // Dark mode
@@ -104,39 +74,15 @@ html {
     }
 
     // Custom Chroma stylesheet
-      {
-        {
-        if .Site.Params.Style.useCustomChroma | default true
-      }
-    }
-
-      {
-        {
-        if (fileExists "static/css/chroma/dark.css")
-      }
-    }
-
+      {{ if .Site.Params.Style.useCustomChroma | default true }}
+      {{ if (fileExists "static/css/chroma/dark.css") }}
     @import '/css/chroma/dark.css';
 
-      {
-        {
-        else if (resources.Get "scss/colors/chroma/dark.scss")
-      }
-    }
-
+      {{ else if (resources.Get "scss/colors/chroma/dark.scss") }}
     @import 'colors/chroma/dark';
 
-      {
-        {
-        end
-      }
-    }
-
-      {
-        {
-        end
-      }
-    }
+      {{ end }}
+      {{ end }}
   }
 }
 
@@ -403,12 +349,7 @@ code {
 }
 
 // If there's no "custom/site-title" partial, style a default one
-  {
-    {
-    if not (or (templates.Exists "partials/custom/site-title") (templates.Exists "partials/custom/site-title.html"))
-  }
-}
-
+  {{ if not (or (templates.Exists "partials/custom/site-title") (templates.Exists "partials/custom/site-title.html")) }}
 body>header {
   >a {
     font-family: $heading-font;
@@ -427,12 +368,7 @@ body>header {
   }
 }
 
-  {
-    {
-    end
-  }
-}
-
+  {{ end }}
 // WHITE SPACE
 article>header {
   h1 {
@@ -560,19 +496,10 @@ ol {
 
     // HACK
     // This should be useless out of development if using minification (that should strip the white space)
-      {
-        {
-        if hugo.IsServer
-      }
-    }
-
+      {{ if hugo.IsServer }}
     margin-left: -6px;
 
-      {
-        {
-        end
-      }
-    }
+      {{ end }}
   }
 
   // HACK
@@ -583,12 +510,7 @@ ol {
   .footnote-backref {
     margin: 0 0 0 9px;
 
-      {
-        {
-        if .Site.Params.Style.hasIconAsFootnoteReturnLink
-      }
-    }
-
+      {{ if .Site.Params.Style.hasIconAsFootnoteReturnLink }}
     padding: 0 9px;
     vertical-align: middle;
 
@@ -601,12 +523,7 @@ ol {
       @include squared(18px);
     }
 
-      {
-        {
-        else
-      }
-    }
-
+      {{ else }}
     padding: 0 15px 4.5px;
     vertical-align: top;
 
@@ -615,11 +532,7 @@ ol {
 
     word-break: break-word;
 
-      {
-        {
-        end
-      }
-    }
+      {{ end }}
   }
 
   // HACK
@@ -1112,22 +1025,12 @@ summary {
 }
 
 // Categories
-  {
-    {
-    if .Site.Taxonomies.categories
-  }
-}
-
+  {{ if .Site.Taxonomies.categories }}
 .category a {
   font-weight: bold;
 }
 
-  {
-    {
-    end
-  }
-}
-
+  {{ end }}
 .terms {
   display: flex;
   flex-wrap: wrap;
@@ -1299,47 +1202,22 @@ summary {
 
 .social {
 
-    {
-      {
-      if .Site.Params.Style.socialIsFlex
-    }
-  }
-
+    {{ if .Site.Params.Style.socialIsFlex }}
   display: flex;
   flex-wrap: wrap;
 
-    {
-      {
-      else
-    }
-  }
-
+    {{ else }}
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 
-    {
-      {
-      end
-    }
-  }
-
+    {{ end }}
   a {
     display: flex;
 
-      {
-        {
-        if .Site.Params.Style.socialIsFlex
-      }
-    }
-
+      {{ if .Site.Params.Style.socialIsFlex }}
     flex: 1;
 
-      {
-        {
-        end
-      }
-    }
-
+      {{ end }}
     align-items: center;
 
     margin: 0 9px 9px 0;
@@ -1538,12 +1416,7 @@ html {
   }
 }
 
-  {
-    {
-    if .Site.Params.Style.hideAnchors
-  }
-}
-
+  {{ if .Site.Params.Style.hideAnchors }}
 @include respond-above($mobile-breakpoint) {
   a.anchor:not(:focus) {
     opacity: 0;
@@ -1562,72 +1435,28 @@ html {
   }
 }
 
-  {
-    {
-    end
-  }
-}
-
-  {
-    {
-    if .Site.Params.hasNoscriptNotice
-  }
-}
-
+  {{ end }}
+  {{ if .Site.Params.hasNoscriptNotice }}
 .noscript {
   font-weight: bold;
 }
 
-  {
-    {
-    end
-  }
-}
-
+  {{ end }}
 // Rich Content
-  {
-    {
-    if (fileExists "static/css/rich-content.css")
-  }
-}
-
+  {{ if (fileExists "static/css/rich-content.css") }}
 @import '/css/rich-content.css';
 
-  {
-    {
-    else if (resources.Get "scss/rich-content.scss")
-  }
-}
-
+  {{ else if (resources.Get "scss/rich-content.scss") }}
 @import 'rich-content';
 
-  {
-    {
-    end
-  }
-}
-
+  {{ end }}
 // TODO
 // Custom user stuff
 // This isn't good enough
-  {
-    {
-    if (fileExists "static/css/custom.css")
-  }
-}
-
+  {{ if (fileExists "static/css/custom.css") }}
 @import '/css/custom.css';
 
-  {
-    {
-    else if (resources.Get "scss/custom.scss")
-  }
-}
-
+  {{ else if (resources.Get "scss/custom.scss") }}
 @import 'custom';
 
-  {
-    {
-    end
-  }
-}
+  {{ end }}

@@ -6,3 +6,7 @@ nohup.out
 
 # Local Netlify folder
 .netlify
+
+# Node / npm
+node_modules/
+npm-debug.log*

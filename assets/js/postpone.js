@@ -5,10 +5,10 @@
 // Based on: https://gist.github.com/eddiewebb/735feb48f50f0ddd65ae5606a1cb41ae#gistcomment-2987774
 // =================================================
 
-{ { if eq.Layout "search" } }
+{{ if eq .Layout "search" }}
 
 // Get latest Fuse.js (basic build) available
-{ { (index(last 1(resources.Match "libs/fuse.js@*/dist/fuse.basic.min.js")) 0).Content | safeJS } }
+{{ (index (last 1 (resources.Match "libs/fuse.js@*/dist/fuse.basic.min.js")) 0).Content | safeJS }}
 
 const fuseOptions = {
   includeMatches: true,
@@ -17,7 +17,7 @@ const fuseOptions = {
   threshold: 0,
   ignoreLocation: true,
   maxPatternLength: {{ .Site.Params.Search.maxLength | default hugo.Data.default.search.maxLength }},
-minMatchCharLength: { { .Site.Params.Search.minLength | default hugo.Data.default.search.minLength } },
+minMatchCharLength: {{ .Site.Params.Search.minLength | default hugo.Data.default.search.minLength }},
 keys: [
   { name: 'title', weight: .4 },
   { name: 'tags', weight: .1 },
@@ -154,4 +154,4 @@ function htmlToElement(html) {
   return template.content.firstChild
 };
 
-{ { end } }
+{{ end }}

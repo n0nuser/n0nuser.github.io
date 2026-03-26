@@ -1,0 +1,37 @@
+{
+  "name": "n0nuser.github.io",
+  "version": "1.0.0",
+  "description": "[![Hugo v0.159.1](https://img.shields.io/badge/hugo-0.159.1-ff4088?logo=hugo&logoColor=white)](https://github.com/gohugoio/hugo)\r [![GitHub repo size](https://img.shields.io/github/repo-size/n0nuser/n0nuser.github.io?color=009cdf&label=repo%20size&logo=git&logoColor=white)](https://github.com/n0nuser/n0nuser.github.io)\r ![Maintenance](https://img.shields.io/maintenance/yes/2026?color=009cdf&logoColor=white)\r ![Last Commit](https://img.shields.io/github/last-commit/n0nuser/n0nuser.github.io?color=009cdf&logoColor=white)",
+  "scripts": {
+    "lint": "npm run lint:templates && npm run lint:scss && npm run lint:js && npm run lint:md && npm run lint:hugo",
+    "lint:templates": "node scripts/lint-hugo-templates.mjs",
+    "lint:scss": "stylelint \"assets/scss/**/*.scss\" --ignore-pattern \"assets/scss/main.scss\"",
+    "lint:js": "eslint \"scripts/**/*.mjs\"",
+    "lint:md": "markdownlint-cli2 \"README.md\" \"AGENTS.md\" \"docs/**/*.md\"",
+    "lint:hugo": "hugo --gc --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n0nuser/n0nuser.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/n0nuser/n0nuser.github.io/issues"
+  },
+  "homepage": "https://github.com/n0nuser/n0nuser.github.io#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.1.0",
+    "glob": "^13.0.6",
+    "globals": "^17.4.0",
+    "markdownlint-cli2": "^0.22.0",
+    "postcss": "^8.5.8",
+    "postcss-scss": "^4.0.9",
+    "stylelint": "^17.6.0",
+    "stylelint-config-recommended-scss": "^17.0.0",
+    "stylelint-config-standard-scss": "^17.0.0"
+  }
+}

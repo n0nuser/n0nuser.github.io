@@ -24,3 +24,21 @@ Optional: use a different Hugo version:
 `.\build-cf.ps1 -HugoVersion 0.159.1`
 
 The script uses a pinned `hugomods/hugo` image variant with Hugo, Dart Sass, Node, and Git.
+
+## Lint checks
+
+Install lint dependencies:
+
+`npm install`
+
+Run all checks:
+
+`npm run lint`
+
+Available checks:
+
+- `npm run lint:templates` (Hugo template delimiter sanity checks)
+- `npm run lint:scss` (SCSS style checks)
+- `npm run lint:js` (lint custom Node scripts)
+- `npm run lint:md` (docs markdown checks)
+- `npm run lint:hugo` (native Hugo production build validation)

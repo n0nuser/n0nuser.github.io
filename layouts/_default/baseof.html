@@ -86,11 +86,11 @@ hugo.Data.default.imageProc.markupAutoResizeWidth)) }}
   {{ with resources.Get "js/postpone.js" | resources.ExecuteAsTemplate .Page . | minify }}
 
   <script>
-    { { if hugo.IsServer } }
-    { { .Content | safeJS } }
-    { { else } }
-    { { .Content | replaceRE "console.log(.*?);" "" | safeJS } }
-    { { end } }
+    {{ if hugo.IsServer }}
+    {{ .Content | safeJS }}
+    {{ else }}
+    {{ .Content | replaceRE "console.log(.*?);" "" | safeJS }}
+    {{ end }}
   </script>
 
   {{ end }}
