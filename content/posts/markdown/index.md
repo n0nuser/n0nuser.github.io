@@ -1,6 +1,6 @@
 ---
 title: "Markdown Cheatsheet"
-description: "How to easily write beautiful formatted text with Markdown."
+description: "Markdown cheatsheet with practical syntax examples for headings, links, tables, code blocks, and everyday technical writing workflows."
 date: 2020-10-11
 lastmod: 2020-10-11
 author: "Pablo Jesús González Rubio"
@@ -13,7 +13,7 @@ tags: ["Cheatsheet"]
 
 ## Introduction
 
-You can download the cheatsheet as a pdf from [here](./markdown.pdf)!
+You can download the [Markdown cheatsheet PDF](./markdown.pdf).
 
 Writing a Word document sometimes might be a bit boring and tough as you have to select the text to be **bold**, _cursive_, or to create a bulleted/numbered list and such. With Markdown everything is reduced to a simple text file such as the typical `txt` file, but formatted. One example is the above one, which is this exact page!
 

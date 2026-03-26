@@ -1,6 +1,6 @@
 ---
 title: "Apache Web Server"
-description: ""
+description: "Practical Apache web server guide covering installation, core configuration, virtual hosts, TLS basics, and hardening on Linux."
 date: 2021-05-16
 lastmod: 2021-05-16
 author: "Pablo Jesús González Rubio"

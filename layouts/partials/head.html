@@ -97,21 +97,22 @@
 <meta name="description" content="{{ . }}">{{ end }}
 
 
-<meta name="robots" content="{{ if and (ne .Kind " 404") (ne .Params.noindex true) }}index follow{{ else }}noindex
-  follow{{ end }}">
+<meta name="robots" content="{{ if and (ne .Kind "404") (ne .Params.noindex true) }}index follow{{ else }}noindex follow{{ end }}">
 <meta name="referrer" content="no-referrer-when-downgrade">
 
 
 <!-- Canon -->
-{{ if and (.IsPage) (not .Params.sitemapExclude) }}
+{{ if ne .Kind "404" }}
 {{ if .Params.canonicalURL }}
 <link rel="canonical" href="{{ .Params.canonicalURL }}">
-{{ else if and (ne .Kind "404") (ne .Params.sitemapExclude true) }}
+{{ else if and (eq .Kind "section") (gt .Paginator.TotalPages 0) }}
+<link rel="canonical" href="{{ .Paginator.URL | absURL }}">
+{{ else if ne .Params.sitemapExclude true }}
 <link rel="canonical" href="{{ .Permalink }}">
 {{ end }}
-{{ else if (eq .Kind "section") }}
-<link rel="canonical" href="{{ .Paginator.URL | absURL }}">
+{{ end }}
 
+{{ if (eq .Kind "section") }}
 {{ if .Paginator.HasPrev }}
 <link rel="prev" href="{{ .Paginator.Prev.URL | absURL }}">
 {{ end }}
@@ -133,6 +134,9 @@
 <meta property="og:title" content="{{ $currentTitle }}">
 {{ with $currentDesc }}
 <meta property="og:description" content="{{ . }}">{{ end }}
+<meta name="twitter:title" content="{{ $currentTitle }}">
+{{ with $currentDesc }}
+<meta name="twitter:description" content="{{ . }}">{{ end }}
 
 {{- if ne .Kind "404" }}
 <meta property="og:url" content="{{ .Permalink }}">
@@ -228,10 +232,9 @@ $highRes 0)).Permalink)) }}
 
 <!-- PWA Manifest -->
 <link rel="manifest" href="/manifest.json">
-<link rel="manifest" href="manifest.json" />
 
 <!-- Feed -->
-<link rel="alternate" type="application/rss+xml" href="{{ " index.xml" | relURL }}" title="{{ .Site.Title }}">
+<link rel="alternate" type="application/rss+xml" href="{{ "index.xml" | relURL }}" title="{{ .Site.Title }}">
 
 <!-- i18n -->
 {{ if .IsTranslated }}
@@ -300,8 +303,8 @@ $highRes 0)).Permalink)) }}
       "@context": "https://schema.org",
       "@type": "Article",
       "mainEntityOfPage": {
-        "@type": "WebSite",
-        "@id": "{{ .Site.BaseURL }}"
+        "@type": "WebPage",
+        "@id": "{{ .Permalink }}"
       },
       "headline": {{ $currentTitle }},
       "description": {{ $currentDesc }},
@@ -332,7 +335,10 @@ $highRes 0)).Permalink)) }}
       "inLanguage": "{{ .Site.Language.Lang }}",
       "name": {{ .Site.Title }},
       "description": {{ .Site.Params.description | emojify }},
-      "publisher": "{{ .Site.Params.author }}"
+      "publisher": {
+        "@type": "Person",
+        "name": "{{ .Site.Params.author }}"
+      }
     }
   </script>
 {{ end }}

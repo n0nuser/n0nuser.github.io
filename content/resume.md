@@ -1,7 +1,7 @@
 ---
 title: "Resume"
 hideTitle: false
-description: "Pablo Jesús González Rubio's Resume"
+description: "Resume of Pablo González, backend engineer with experience in Python, APIs, system architecture, and software delivery."
 author: "Pablo Jesús González Rubio"
 imgPath: "."
 disableTitleSeparator: false

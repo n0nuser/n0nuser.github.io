@@ -1,6 +1,6 @@
 ---
 title: "Linux - Filesystem"
-description: ""
+description: "Linux filesystem fundamentals: inodes, directory hierarchy, partitions, and essential commands for navigating and managing storage."
 date: 2021-04-07
 lastmod: 2021-04-07
 author: "Pablo Jesús González Rubio"

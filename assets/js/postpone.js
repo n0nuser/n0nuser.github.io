@@ -56,13 +56,18 @@ function getJSON(url, fn) {
     if (request.status >= 200 && request.status < 400) {
       const data = JSON.parse(request.responseText);
       fn(data)
+    } else {
+      info.innerHTML = '<p class=error>{{ T "search_no_page_found" }}</p>';
     }
+  };
+  request.onerror = function () {
+    info.innerHTML = '<p class=error>{{ T "search_no_page_found" }}</p>';
   };
   request.send()
 };
 
 function executeSearch(searchQuery) {
-  getJSON('index.json', function (data) {
+  getJSON('{{ with .OutputFormats.Get "json" }}{{ .RelPermalink }}{{ else }}index.json{{ end }}', function (data) {
 
     // Limit results and throw an error if too many pages are found
     const limit = {{ .Site.Params.Search.maxResults | default 30

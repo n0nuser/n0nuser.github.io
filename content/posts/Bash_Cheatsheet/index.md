@@ -1,6 +1,6 @@
 ---
 title: "Bash Scripting Cheatsheet"
-description: "A rapid guide to look at when doing some scripts as it may help when forgetting something."
+description: "Bash scripting cheatsheet with common syntax, conditionals, loops, functions, and command-line patterns for quick shell automation tasks."
 date: 2019-10-22
 lastmod: 2020-08-06T00:50:52+02:00
 author: "Pablo Jesús González Rubio"
