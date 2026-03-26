@@ -1,11 +1,11 @@
 'use strict';
 
 // Get default accent colors
-{{ $darkAccent   := .Site.Params.Style.darkAccent   | default .Site.Data.default.style.darkAccent }}
-{{ $lightAccent  := .Site.Params.Style.lightAccent  | default .Site.Data.default.style.lightAccent }}
+{ { $darkAccent:= .Site.Params.Style.darkAccent | default hugo.Data.default.style.darkAccent } }
+{ { $lightAccent:= .Site.Params.Style.lightAccent | default hugo.Data.default.style.lightAccent } }
 
 // Get CSS transition
-{{ $changeTransition := .Site.Params.Style.changeTransition | default .Site.Data.default.style.changeTransition }}
+{ { $changeTransition:= .Site.Params.Style.changeTransition | default hugo.Data.default.style.changeTransition } }
 
 // =================================================
 // Mode switcher + Custom accent color
@@ -46,13 +46,13 @@ if(localStorage.getItem('isDark') == 'true'){
 };
 */
 
-if(localStorage.getItem('isDark') == 'true'){
+if (localStorage.getItem('isDark') == 'true') {
   setDark();
-} else if(localStorage.getItem('isDark') == 'false'){
+} else if (localStorage.getItem('isDark') == 'false') {
   setLight();
-} else if(PREFERS_DARK.matches) {
+} else if (PREFERS_DARK.matches) {
   setDark()
-} else if(PREFERS_LIGHT.matches) {
+} else if (PREFERS_LIGHT.matches) {
   setLight()
 };
 
@@ -61,35 +61,35 @@ console.log('Light/dark mode loaded.');
 // TODO
 function getAccent() {
   if (ROOT.dataset.mode === 'dark') {
-  
+
     if (localStorage.getItem('darkAccent') === null) {
       console.log("The user never used the palette while in the 'dark' mode.");
       console.log("As the mode is 'dark', loading the 'default accent color' for the dark mode.");
-      
+
       var currentAccent = "{{ $darkAccent }}"
     } else {
-    
+
       var currentAccent = localStorage.getItem('darkAccent')
-      
+
       console.log("The user previously used the palette while in the 'dark' mode.");
       console.log("As the mode is 'dark', loading the 'dark accent color' chosen by the user.");
     }
   } else if (ROOT.dataset.mode === 'light') {
 
     if (localStorage.getItem('lightAccent') === null) {
-  
+
       console.log("The user never used the palette while in the 'light' mode.");
       console.log("As the mode is 'light', loading the 'default accent color' for the light mode.");
 
       var currentAccent = "{{ $lightAccent }}"
     } else {
       var currentAccent = localStorage.getItem('lightAccent')
-      
+
       console.log("The user previously used the palette while in the 'light' mode.");
       console.log("As the mode is 'light', loading the 'light accent color' chosen by the user.");
     }
   };
-  
+
   return currentAccent
 };
 
@@ -113,15 +113,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Smooth transition, only when changing modes (and not loading pages)
   function smoothTransition() {
-    document.body.style.transition 
-    = document.querySelector('header').style.transition
-    = document.querySelector('footer').style.transition
-    = '{{ printf "background-color %[1]s, color %[1]s" $changeTransition }}'
+    document.body.style.transition
+      = document.querySelector('header').style.transition
+      = document.querySelector('footer').style.transition
+      = '{{ printf "background-color %[1]s, color %[1]s" $changeTransition }}'
   };
-  
+
   // Give the user a choice
   function userModeChange() {
-  
+
     smoothTransition();
 
     if (ROOT.dataset.mode == 'light') {
@@ -129,57 +129,57 @@ document.addEventListener('DOMContentLoaded', function () {
       localStorage.setItem('isDark', 'true')
 
       console.log("Mode changed to 'dark' by the user.");
-      
+
     } else {
       setLight();
       localStorage.setItem('isDark', 'false')
-      
+
       console.log("Mode changed to 'light' by the user.");
-      
+
     };
-    
+
     updateAccent()
   };
 
   // TEST
   // Keyboard shortcut for mode change, here for testing purposes only
   // CTRL + ALT + M
-  {{ if hugo.IsServer }}
-    document.addEventListener('keydown', (event) => {
-      const E = event || window.event;
-      if (E.code === 77 && E.ctrlKey && E.altKey) {
-        userModeChange();
-        return;
-      }
-    }, false);
-  {{ end }}
+  { { if hugo.IsServer } }
+  document.addEventListener('keydown', (event) => {
+    const E = event || window.event;
+    if (E.code === 77 && E.ctrlKey && E.altKey) {
+      userModeChange();
+      return;
+    }
+  }, false);
+  { { end } }
 
   // Runs when OS changes light/dark mode. Changes only if you were on default
   // color state (light on light mode, dark on dark mode).
   function OSModeChange() {
-  
+
     smoothTransition();
-    
+
     if (PREFERS_LIGHT.matches) {
       setLight();
       localStorage.setItem('isDark', 'false')
 
       console.log("Mode changed to 'light' in OS level.");
-      
+
     } else if (PREFERS_DARK.matches) {
       setDark();
       localStorage.setItem('isDark', 'true')
-      
+
       console.log("Mode changed to 'dark' in OS level.");
     };
-    
+
     updateAccent()
   };
 
   // Listeners for when you change OS setting for light/dark mode
   PREFERS_LIGHT.addListener(OSModeChange);
   PREFERS_DARK.addListener(OSModeChange);
-  
+
   // Mode change button
   document.querySelector('footer button')
     .addEventListener('click', userModeChange)

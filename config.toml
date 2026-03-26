@@ -1,5 +1,5 @@
 baseURL = "https://pablogonzalez.me"
-languageCode = "en"
+locale = "en"
 title = "Pablo González"
 copyright = "Copyright © 2024, Pablo Jesús González Rubio\n All rights reserved."
 
@@ -7,7 +7,11 @@ enableEmoji = false # It transcodes emojis from hex codeblock
 # Ideal solution: hardcode it in text
 enableInlineShortcodes = true
 
-paginate = 7
+[pagination]
+pagerSize = 7
+
+[minify.tdewolff.svg]
+keepNamespaces = ["", "x-bind"]
 
 [markup]
 [markup.goldmark]
@@ -242,7 +246,7 @@ goodreads = ["n0nuser"]
 disabled = false
 simple = true
 
-[privacy.twitter]
+[privacy.x]
 disabled = false
 enableDNT = true
 simple = true
@@ -260,7 +264,7 @@ privacyEnhanced = true
 [services.instagram]
 disableInlineCSS = true
 
-[services.twitter]
+[services.x]
 disableInlineCSS = true
 
 
@@ -268,7 +272,7 @@ disableInlineCSS = true
 
 [languages.en]
 
-languageName = "English"
+label = "English"
 
 [languages.en.menu]
 

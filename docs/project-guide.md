@@ -31,7 +31,7 @@ It describes architecture, workflows, conventions, and operational history at a 
 ### Configuration
 
 - Main site configuration in `config.toml`
-- CI/CD workflow in `.github/workflows/hugo.yml`
+- Deployment/build behavior is Cloudflare-first (no active GitHub Pages workflow)
 - Ignore/build artifact policy in `.gitignore`
 
 ## Repository Structure
@@ -44,7 +44,7 @@ n0nuser.github.io/
 ├── static/           # Static files (PWA assets, media, misc)
 ├── assets/           # Processed assets and vendored JS libs
 ├── archetypes/       # Content templates/front matter defaults
-├── .github/workflows/# CI/CD definitions
+├── .github/workflows/# CI/CD definitions (currently inactive/empty for Hugo deploy)
 ├── config.toml       # Site configuration
 └── README.md         # Top-level project summary
 ```
@@ -90,18 +90,16 @@ n0nuser.github.io/
 ### Deployment Source of Truth
 
 - Primary operational target: Cloudflare Pages
-- Historical/secondary automation present in repo: GitHub Pages workflow (`.github/workflows/hugo.yml`)
+- GitHub Pages workflow has been removed/deactivated to avoid parallel deployment paths
 
 ### Existing Automation and Scripts
 
-- CI workflow builds with:
-  - `hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"`
 - Local script `deploy.sh` includes build + git add/commit/push to `master`
 - Local script `editBlog.sh` includes LAN preview and editor/browser helpers
 
 ## Quality and Validation
 
-- Lighthouse audit stage exists in GitHub workflow as post-deploy quality check
+- No active in-repo CI quality workflow is currently configured
 - No centralized test suite file was detected in root-level package tooling
 - Expected validation baseline:
   - Hugo build succeeds
@@ -125,7 +123,7 @@ n0nuser.github.io/
 The following milestones were extracted with a low-cost strategy (recent window + keyword pivots), not full-history exhaustive diff ingestion.
 
 - Migration direction toward Cloudflare Pages is documented in project content/history
-- Workflow evolution around Hugo CI and Lighthouse audits
+- Workflow evolution historically included Hugo CI and Lighthouse audits
 - Analytics transitions:
   - removed Google Analytics
   - later adoption of Umami-related analytics
@@ -143,7 +141,6 @@ The following milestones were extracted with a low-cost strategy (recent window 
 
 - `README.md`
 - `config.toml`
-- `.github/workflows/hugo.yml`
 - `deploy.sh`
 - `editBlog.sh`
 - `archetypes/default.md`
