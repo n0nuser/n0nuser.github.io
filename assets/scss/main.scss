@@ -447,29 +447,14 @@ article ul {
   }
 }
 
-ol {
-  counter-reset: a-counter;
+article>ol,
+article>ol ol {
+  list-style: decimal;
+}
 
-  li {
-    counter-increment: a-counter;
-
-    &::before {
-      content: counter(a-counter) '';
-
-      font-size: .85rem;
-      font-weight: $body-bold-weight;
-
-      @include letterpress(var(--lpress));
-
-      background: var(--fg);
-      border: 1px solid var(--lpress);
-      border-radius: $border-radius;
-      color: var(--bg);
-
-      margin-right: 12px;
-      padding: 2px 7.5px;
-    }
-  }
+article>ol li::before {
+  content: none;
+  display: none;
 }
 
 // FOOTNOTES
@@ -955,24 +940,28 @@ article>ol ol {
   padding: 0 24px 0;
 }
 
-#TableOfContents ul,
+#TableOfContents ul {
+  list-style: disc;
+}
+
 article>ul {
+  list-style: disc;
+}
 
-  li:before {
-    content: '';
-    margin-right: 12px;
+article>ul ul {
+  list-style: circle;
+}
 
-    background: var(--fg);
-    border-radius: $border-radius;
+article>ul li:before {
+  content: none;
+  display: none;
+}
 
-    @include squared(18px);
-
-    display: inline-block;
-
-    // HACK
-    // Cheap vertical align
-    margin-bottom: -3px;
-  }
+article>ul li::marker,
+article>ol li::marker,
+#TableOfContents li::marker,
+.footnotes ol li::marker {
+  color: var(--fg);
 }
 
 // Animation
