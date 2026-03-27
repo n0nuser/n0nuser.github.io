@@ -16,6 +16,8 @@
 const PREFERS_LIGHT = window.matchMedia('(prefers-color-scheme: light)');
 const PREFERS_DARK = window.matchMedia('(prefers-color-scheme: dark)');
 const ROOT = document.documentElement;
+const MODE_KEY = 'isDark';
+const MODE_SOURCE_KEY = 'isDarkSource';
 
 const SHEET = document.documentElement.style;
 const META_THEME_COLOR = document.querySelector('meta[name=theme-color]');
@@ -46,9 +48,12 @@ if(localStorage.getItem('isDark') == 'true'){
 };
 */
 
-if (localStorage.getItem('isDark') == 'true') {
+const storedMode = localStorage.getItem(MODE_KEY);
+const storedModeSource = localStorage.getItem(MODE_SOURCE_KEY);
+
+if (storedModeSource === 'user' && storedMode == 'true') {
   setDark();
-} else if (localStorage.getItem('isDark') == 'false') {
+} else if (storedModeSource === 'user' && storedMode == 'false') {
   setLight();
 } else if (PREFERS_DARK.matches) {
   setDark()
@@ -126,13 +131,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (ROOT.dataset.mode == 'light') {
       setDark();
-      localStorage.setItem('isDark', 'true')
+      localStorage.setItem(MODE_KEY, 'true')
+      localStorage.setItem(MODE_SOURCE_KEY, 'user')
 
       console.log("Mode changed to 'dark' by the user.");
 
     } else {
       setLight();
-      localStorage.setItem('isDark', 'false')
+      localStorage.setItem(MODE_KEY, 'false')
+      localStorage.setItem(MODE_SOURCE_KEY, 'user')
 
       console.log("Mode changed to 'light' by the user.");
 
@@ -162,13 +169,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (PREFERS_LIGHT.matches) {
       setLight();
-      localStorage.setItem('isDark', 'false')
 
       console.log("Mode changed to 'light' in OS level.");
 
     } else if (PREFERS_DARK.matches) {
       setDark();
-      localStorage.setItem('isDark', 'true')
 
       console.log("Mode changed to 'dark' in OS level.");
     };

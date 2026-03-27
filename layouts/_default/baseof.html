@@ -64,8 +64,8 @@ hugo.Data.default.imageProc.markupAutoResizeWidth)) }}
     {{ if and (or (index (or $centralizedOnPage $centralizedOnSite) .entry) (index (or $decentralizedOnPage
     $decentralizedOnSite) .entry)) .icon }}
     {{ $iconId := .icon.id }}
-    {{ $svgEssential := `(?:<svg (?:.*?)(viewBox="(?:.*?)" )(?:.*?)>((?:.|\n)+?)(?:</svg>))` }}
-    {{ $asSymbol := printf `<symbol ${1} id="%s">${2}</symbol>` $iconId }}
+    {{ $svgEssential := `(?s)<svg[^>]*viewBox="([^"]+)"[^>]*>(.*?)</svg>` }}
+    {{ $asSymbol := printf `<symbol viewBox="${1}" id="%s">${2}</symbol>` $iconId }}
 
     <!-- Get the required SVG file and insert here as a symbol -->
     {{ with (resources.Get (printf "svg/%s.svg" $iconId)) }}
