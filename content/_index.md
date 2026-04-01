@@ -1,6 +1,6 @@
 ---
 title: "Pablo Gonzalez - Backend Developer"
-hideTitle: false
+hideTitle: true
 mainTitle: "Backend Development, Linux, and Security Posts"
 description: "Personal website of Pablo González, Python backend engineer sharing software development guides, Linux notes, and cybersecurity writeups."
 author: "Pablo Jesús González Rubio"
@@ -10,9 +10,23 @@ cover: "me.webp"
 coverAlt: "Pablo González Image"
 ---
 
-{{< imgRounded "me.webp" "Photo of Pablo" "borderless" "400" >}}
-
-I'm a Computer Engineer focused on backend development with Python. I enjoy building API-first services, improving software architecture, and keeping codebases maintainable with practical clean code habits.
+<section class="home-hero">
+  <div class="home-hero-photo">
+    {{< imgRounded "me.webp" "Photo of Pablo" "borderless" "400" "high" >}}
+  </div>
+  <div class="home-hero-copy">
+    <p class="home-hero-kicker">
+      <span class="home-highlight home-highlight--yellow">Hey there!</span>
+    </p>
+    <h2 class="home-hero-title">
+      <span class="home-highlight home-highlight--mint">My name is Pablo,</span><br />
+      <span class="home-highlight home-highlight--pink">and this is my little home on the internet.</span>
+    </h2>
+    <p class="home-hero-lede">
+      I'm a Computer Engineer focused on backend development with Python. I enjoy building API-first services, improving software architecture, and keeping codebases maintainable with practical clean code habits.
+    </p>
+  </div>
+</section>
 
 This website is my technical space where I publish posts and notes about software development, Linux administration, and security topics that I use in real projects and hands-on labs. I write in a practical format so I can revisit each guide quickly, and so other developers can apply the same ideas without too much setup.
 
