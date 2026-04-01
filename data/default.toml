@@ -6,7 +6,7 @@
 
 [imageProc]
   highRes   = [ "1280x", "1280w" ]
-  mediumRes = [ "960x", "960w" ]
+  mediumRes = [ "720x", "720w" ]
   lowRes    = [ "640x q90", "640w" ]
   
   markupAutoResizeWidth = 1280

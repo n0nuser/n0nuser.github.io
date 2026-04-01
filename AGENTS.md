@@ -18,6 +18,44 @@ Detailed project documentation lives in `@docs/project-guide.md`.
 - Preserve existing content and style conventions unless explicitly asked to change them.
 - Prefer consistency with existing files over introducing new patterns.
 
+## Blog Post Writing Style
+
+Use this style when creating or editing files under `content/posts/`.
+
+### Distinctive Style Profile (from existing posts)
+
+- **Tone**: practical, friendly, and mentor-like; write as a hands-on peer explaining real usage, not as an academic textbook.
+- **Vocabulary**: plain technical English, command-first language, security/Linux/web-dev terms; avoid unnecessary jargon and explain uncommon terms in one line.
+- **Sentence structure**: mostly short/medium sentences with direct guidance, then occasional longer explanatory paragraphs for context or tradeoffs.
+- **Rhetorical devices**: direct second-person address ("you"), light emphasis (`**bold**`, *italics*), occasional rhetorical questions, caution notes, and occasional light humor.
+- **Pacing**: fast start, then step-by-step execution blocks; alternate between explanation and actionable snippets; close with a concise wrap-up and optional invitation for questions.
+
+### Authoring Rules for New Posts
+
+- Start with a short intro explaining what the reader will achieve and for whom the post is intended.
+- Organize with clear `##` and `###` sections in execution order (install/setup/configure/test/troubleshoot/conclusion).
+- Prefer practical commands, config snippets, and examples over theory-heavy exposition.
+- Add one short explanation before or after each code block to clarify purpose and expected result.
+- Use concise lists/tables/checklists to improve scanability for operators and quick reference readers.
+- Include caveats and safety notes when a command is risky, privileged, destructive, or security-sensitive.
+- Keep language approachable and direct; avoid overly corporate or overly academic phrasing.
+- End with a compact conclusion, practical next step, or reference links for deeper reading.
+
+### Prompt Template (Style Mimic)
+
+Use this prompt when generating a new post draft:
+
+> Write a technical blog post in the style of this site:
+>
+> - Voice: friendly, practical mentor; direct but not formal.
+> - Audience: beginner-to-intermediate technical readers.
+> - Structure: intro -> step-by-step sections -> conclusion.
+> - Writing pattern: alternate short explanations with actionable commands/config snippets.
+> - Tone details: use "you" language, occasional light humor, and concise caution notes for risky steps.
+> - Vocabulary: plain technical English; explain uncommon terms briefly.
+> - Pacing: keep momentum high with clear progression and minimal fluff.
+> - Output quality: accurate, reproducible instructions with concrete examples and expected outcomes.
+
 ## Safety Rules
 
 - Never run destructive git commands without explicit approval.

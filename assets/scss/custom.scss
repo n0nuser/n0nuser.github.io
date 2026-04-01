@@ -1,0 +1,121 @@
+// Home hero highlights (colorines estilo carol.gg)
+
+.index {
+  .home-hero {
+    margin: 2.5rem 0 3rem;
+    display: grid;
+    gap: 1.5rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+      align-items: center;
+    }
+
+    .home-hero-photo {
+      max-width: 260px;
+      margin: 0 auto;
+    }
+
+    .home-hero-copy {
+      max-width: 40rem;
+    }
+  }
+
+  .home-hero-kicker {
+    font-family: $heading-font;
+    font-weight: $heading-weight;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin: 0 0 0.75rem;
+  }
+
+  .home-hero-title {
+    font-family: $heading-font;
+    font-weight: $heading-bold-weight;
+    line-height: 1.2;
+    font-size: clamp(2.1rem, 4vw, 2.6rem);
+    margin: 0 0 1rem;
+  }
+
+  .home-hero-lede {
+    margin: 0;
+    line-height: 1.7;
+  }
+}
+
+// Big underline highlight behind text
+.home-highlight {
+  position: relative;
+  font-weight: $heading-bold-weight;
+  text-decoration: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+// Light mode highlight colors (only underline, not text)
+html[data-mode='light'] {
+  .home-highlight--yellow {
+    background-image: linear-gradient(
+      to bottom,
+      transparent 55%,
+      $home-underline-yellow-light 55%,
+      $home-underline-yellow-light 90%,
+      transparent 90%
+    );
+  }
+
+  .home-highlight--mint {
+    background-image: linear-gradient(
+      to bottom,
+      transparent 55%,
+      $home-underline-mint-light 55%,
+      $home-underline-mint-light 90%,
+      transparent 90%
+    );
+  }
+
+  .home-highlight--pink {
+    background-image: linear-gradient(
+      to bottom,
+      transparent 55%,
+      $home-underline-pink-light 55%,
+      $home-underline-pink-light 90%,
+      transparent 90%
+    );
+  }
+}
+
+// Dark mode underline colors (slightly stronger to be visible)
+html[data-mode='dark'] {
+  .home-highlight--yellow {
+    background-image: linear-gradient(
+      to bottom,
+      transparent 55%,
+      $home-underline-yellow-dark 55%,
+      $home-underline-yellow-dark 90%,
+      transparent 90%
+    );
+  }
+
+  .home-highlight--mint {
+    background-image: linear-gradient(
+      to bottom,
+      transparent 55%,
+      $home-underline-mint-dark 55%,
+      $home-underline-mint-dark 90%,
+      transparent 90%
+    );
+  }
+
+  .home-highlight--pink {
+    background-image: linear-gradient(
+      to bottom,
+      transparent 55%,
+      $home-underline-pink-dark 55%,
+      $home-underline-pink-dark 90%,
+      transparent 90%
+    );
+  }
+}
+

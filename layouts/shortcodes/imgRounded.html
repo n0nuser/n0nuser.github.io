@@ -1,9 +1,21 @@
 <!--
-  Usage:
-    img "weird_cat.jpg" "Something that can (or not) be a cat."
-    img src="weird_cat.jpg" alt="Something that can (or not) be a cat."
-    img class="border" src="weird_cat.jpg" alt="Something that can (or not) be a cat."
-    img "weird_cat.jpg" "Something that can (or not) be a cat." "border"
+  Usage (positional):
+    imgRounded "weird_cat.jpg" "Something that can (or not) be a cat."
+    imgRounded "weird_cat.jpg" "Alt text" "border"
+    imgRounded "weird_cat.jpg" "Alt text" "border" "400"
+    imgRounded "weird_cat.jpg" "Alt text" "border" "400" "high"
+
+  Usage (named params):
+    imgRounded src="weird_cat.jpg" alt="Alt text"
+    imgRounded src="weird_cat.jpg" alt="Alt text" class="borderless" width="400"
+    imgRounded src="weird_cat.jpg" alt="Alt text" class="borderless" width="400" priority="high"
+
+  Params:
+    src / 0      : image filename (looked up in page resources, optionally under .Params.imgPath)
+    alt / 1      : alt text
+    class / 2    : extra CSS classes ("border", "borderless", etc.)
+    width / 3    : width attribute value (string, e.g. "400")
+    priority / 4 : if "high", LCP-friendly image (no lazyload, loading="eager", fetchpriority="high")
 
   Default available classes:
     border
@@ -14,6 +26,7 @@
 {{ $altText := .Get "alt" | default (.Get 1) }}
 {{ $class := .Get "class" | default (.Get 2) }}
 {{ $width := .Get "width" | default (.Get 3) }}
+{{ $priority := .Get "priority" | default (.Get 4) }}
 
 <!-- Image processing options -->
 {{ $imageProc := (dict "highRes" (.Site.Params.imageProc.highRes | default hugo.Data.default.imageProc.highRes)
@@ -46,6 +59,15 @@
 {{ $outputSet = $outputSet | append (printf "%s %s" (($inputFile.Resize (index . 0)).RelPermalink) (index . 1)) }}
 {{ end }}
 
+{{ if eq $priority "high" }}
+<img class="{{ $class }} roundedImage"
+  srcset='{{ delimit $outputSet ", " }}'
+  src="{{ (.Resize $mediumRes).RelPermalink }}"
+  loading="eager"
+  fetchpriority="high"
+  {{ with $altText }}alt="{{ . }}"{{ end }}
+  {{ with $width }}width="{{ . }}"{{ end }} />
+{{ else }}
 <img class="lazyload {{ $class }} roundedImage" data-srcset='{{ delimit $outputSet ", " }}'
   src="{{ $encodedPlaceholder }}" data-src="{{ (.Resize $mediumRes).RelPermalink }}" {{ with $altText }}alt="{{ . }}" {{
   end }} {{ with $width }}width="{{ . }}" {{ end }} />
@@ -54,4 +76,5 @@
   <img {{ with $class }}class="{{ . }} roundedImage" {{ end }} srcset='{{ delimit $outputSet ", " }}'
     src="{{ $encodedPlaceholder }}" {{ with $altText }}alt="{{ . }}" {{ end }} />
 </noscript>
+{{ end }}
 {{ end }}
