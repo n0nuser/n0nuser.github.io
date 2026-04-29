@@ -143,6 +143,8 @@ The following milestones were extracted with a low-cost strategy (recent window 
 
 ## Recommended Contributor Workflow
 
+For branch strategy, PR order (`feature` → `develop` → `main`), and merge-based integration as used in this repo, see [contributing.md](../contributing.md).
+
 1. Create or edit content using existing archetype/front matter patterns.
 2. Preview with Hugo locally.
 3. Validate generated output and key pages.
@@ -151,6 +153,7 @@ The following milestones were extracted with a low-cost strategy (recent window 
 
 ## Canonical References
 
+- [contributing.md](../contributing.md)
 - `README.md`
 - `config.toml`
 - `deploy.sh`
