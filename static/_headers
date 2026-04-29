@@ -1,0 +1,10 @@
+# Cloudflare Pages headers configuration
+# Docs: https://developers.cloudflare.com/pages/configuration/headers/
+#
+# HSTS hardening: bump max-age from 30 days (Cloudflare default) to 1 year.
+# `includeSubDomains` and `preload` are intentionally omitted until all
+# subdomains are confirmed HTTPS-ready and a deliberate preload submission
+# is approved (preload is effectively irreversible).
+
+/*
+  Strict-Transport-Security: max-age=31536000
