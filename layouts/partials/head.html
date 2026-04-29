@@ -22,9 +22,9 @@
 .Paginator.TotalPages) }}
 {{ end }}
 
-{{ else if (and (ne .Kind "taxonomyTerm") (eq .Type "tags")) }}
+{{ else if (and (eq .Kind "term") (eq .Type "tags")) }}
 
-<!-- If it's a post list for a tag -->
+<!-- Single tag term page (e.g., /tags/linux/) -->
 {{ $currentTitle = printf "%s: \"%s\"" (T "tag") .Title }}
 
 {{ if gt .Paginator.TotalPages 1 }}
@@ -34,15 +34,25 @@
 {{ $mainTitle = printf "%s: \"%s\"" (T "tag") .Title }}
 {{ end }}
 
-{{ else if (and (eq .Kind "taxonomyTerm") (eq .Type "tags")) }}
+{{ else if (and (or (eq .Kind "taxonomy") (eq .Kind "taxonomyTerm")) (eq .Type "tags")) }}
 
-<!-- /categories/ page -->
+<!-- Tags taxonomy root (e.g., /tags/) -->
 {{ $currentTitle = (T "tags") }}
 
-{{ else if (and (eq .Kind "taxonomyTerm") (eq .Type "categories")) }}
+{{ if gt .Paginator.TotalPages 1 }}
+{{ $mainTitle = printf "%s, %s %s %s %s" (T "tags") (T "page") (string .Paginator.PageNumber) (T "of") (string
+.Paginator.TotalPages) }}
+{{ end }}
 
-<!-- /tags/ page -->
+{{ else if (and (or (eq .Kind "taxonomy") (eq .Kind "taxonomyTerm")) (eq .Type "categories")) }}
+
+<!-- Categories taxonomy root (e.g., /categories/) -->
 {{ $currentTitle = (T "categories") }}
+
+{{ if gt .Paginator.TotalPages 1 }}
+{{ $mainTitle = printf "%s, %s %s %s %s" (T "categories") (T "page") (string .Paginator.PageNumber) (T "of") (string
+.Paginator.TotalPages) }}
+{{ end }}
 
 {{ else if and (.IsHome) (not .Content) }}
 
@@ -56,11 +66,11 @@
 
 {{ if .IsHome }}
 {{ $currentDesc = (.Site.Params.description | emojify) }}
-{{ else if and (ne .Kind "taxonomyTerm") (eq .Type "tags") (not .Params.description) }}
+{{ else if and (eq .Kind "term") (eq .Type "tags") (not .Params.description) }}
 {{ $currentDesc = (T "posts_under_tag" .) }}
-{{ else if and (ne .Kind "taxonomyTerm") (eq .Type "categories") (not .Params.description) }}
+{{ else if and (eq .Kind "term") (eq .Type "categories") (not .Params.description) }}
 {{ $currentDesc = (T "posts_under_category" .) }}
-{{ else if eq .Kind "taxonomyTerm" }}
+{{ else if or (eq .Kind "taxonomy") (eq .Kind "taxonomyTerm") }}
 {{ $currentDesc = printf "%s %s." (T "page_containing") ($currentTitle | lower) }}
 {{ else if (eq .Kind "404") }}
 {{ $currentDesc = .Site.Params.notFound.description | default hugo.Data.default.notFound.description }}

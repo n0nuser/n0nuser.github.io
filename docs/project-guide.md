@@ -101,6 +101,9 @@ n0nuser.github.io/
 
 - Google Search Console property has been added for this site.
 - Ads policy: no ads are served on this site; keep `ads.txt` aligned with this policy if published.
+- Crawler policy source of truth is Cloudflare's managed `robots.txt` (Content-Signal directive and AI-bot disallow list). The repo file `static/robots.txt` only carries the `Sitemap:` reference to avoid duplicate `User-agent: *` blocks in the served output.
+- Response headers are configured via `static/_headers` (Cloudflare Pages format). HSTS is set to `max-age=31536000` (1 year) without `includeSubDomains` and without `preload`. To enable `includeSubDomains`, first confirm every subdomain serves HTTPS correctly. `preload` should only be added after an explicit decision because submission to the HSTS preload list is effectively permanent.
+- If the Cloudflare dashboard HSTS setting (SSL/TLS -> Edge Certificates -> HSTS) is also enabled, align it with the `_headers` value or disable it to avoid duplicate `Strict-Transport-Security` headers in responses.
 
 ### Existing Automation and Scripts
 
