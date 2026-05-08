@@ -13,3 +13,26 @@
 <link rel="preconnect" href="https://api-gateway.umami.dev" crossorigin="anonymous">
 <link rel="dns-prefetch" href="//api-gateway.umami.dev">
 <script defer src="https://cloud.umami.is/script.js" data-website-id="a22e739e-a7c7-4a51-85a9-0b544d2906aa"></script>
+
+<!-- Mermaid diagrams -->
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script defer>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (typeof mermaid === "undefined") return;
+
+    // Hugo renders fenced mermaid blocks as code.language-mermaid.
+    // Convert them into div.mermaid so Mermaid can parse them.
+    document.querySelectorAll("pre code.language-mermaid").forEach(function (code) {
+      var pre = code.parentElement;
+      var container = document.createElement("div");
+      container.className = "mermaid";
+      container.textContent = code.textContent;
+      pre.replaceWith(container);
+    });
+
+    mermaid.initialize({
+      startOnLoad: true,
+      securityLevel: "strict"
+    });
+  });
+</script>
