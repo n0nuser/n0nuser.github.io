@@ -1,7 +1,8 @@
 baseURL = "https://pablogonzalez.me"
 locale = "en"
 title = "Pablo González"
-copyright = "Copyright © 2024, Pablo Jesús González Rubio\n All rights reserved."
+# Year range is rendered at build time in layouts/partials/custom/copyright.html
+copyright = ""
 
 enableEmoji = false # It transcodes emojis from hex codeblock
 # Ideal solution: hardcode it in text
@@ -26,6 +27,8 @@ noClasses = false
 
 [params]
 
+copyrightStartYear = 2021
+
 # Google Analytics ID
 # GA4 = "G-GWC49NSYGC" # Google Analytics 4
 
@@ -34,6 +37,7 @@ description = "Backend development, Linux, and cybersecurity posts by Pablo Gonz
 
 # Author
 author = "Pablo Jesús González Rubio"
+brandName = "Pablo González"
 authorDesc = 'Python Developer. "n0nuser" is my alias'
 
 # Site cover, for Open Graph, Twitter Cards and Schema.org
@@ -277,26 +281,33 @@ label = "English"
 [languages.en.menu]
 
 [[languages.en.menu.main]]
-identifier = "home"
-name = "Home"
-weight = 1
-url = "/"
-[[languages.en.menu.main]]
-identifier = "home"
-name = "Home"
-weight = 1
-url = "/"
-
-[[languages.en.menu.main]]
 identifier = "about"
 name = "About"
 weight = 2
 url = "about/"
 
 [[languages.en.menu.main]]
+identifier = "resume"
+name = "Resume"
+weight = 3
+url = "resume/"
+
+[[languages.en.menu.main]]
+identifier = "now"
+name = "Now"
+weight = 4
+url = "now/"
+
+[[languages.en.menu.main]]
+identifier = "uses"
+name = "Uses"
+weight = 5
+url = "uses/"
+
+[[languages.en.menu.main]]
 identifier = "posts"
 name = "Posts"
-weight = 5
+weight = 6
 url = "posts/"
 
 # [[languages.en.menu.main]]
@@ -329,4 +340,4 @@ url = "tags/"
 identifier = "contact"
 name = "Contact"
 weight = 8
-url = "#contact"
+url = "/#contact"

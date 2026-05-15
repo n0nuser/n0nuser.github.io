@@ -1,17 +1,15 @@
-<!-- Custom or default site title -->
-{{/*  {{ if or (templates.Exists "partials/custom/site-title") (templates.Exists "partials/custom/site-title.html") }}
-  {{ partial "custom/site-title" . }}
-{{ else }}
-  <a href="{{ .Site.BaseURL | relLangURL }}" style="text-transform:uppercase">{{ .Site.Params.Author }}</a>
-{{ end }}  */}}
+<div class="site-header-inner">
+  <nav class="site-nav" aria-label="{{ T "main_menu" }}">
+    {{ partial "custom/site-title" . }}
 
-<!-- Menu -->
-{{ if .Site.Menus.main }}
-    <nav aria-label="{{ T "main_menu" }}">
-      <ul>
+    {{ if .Site.Menus.main }}
+      <ul class="site-nav-links">
         {{ range .Site.Menus.main }}
-          <li><a class="btnHeader" href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
+          <li>
+            <a class="site-nav-link btnHeader" href="{{ .URL | relLangURL }}">{{ .Name }}</a>
+          </li>
         {{ end }}
       </ul>
-    </nav>
-{{ end }}
+    {{ end }}
+  </nav>
+</div>
