@@ -23,12 +23,17 @@
           </section>
         {{- end -}}
         
-        {{ if not .Date.IsZero }}
-          <p>
-            {{ if eq .PublishDate .Lastmod }}
-              {{ T "published_on" }} <time datetime="{{ .PublishDate.Format "2006-01-02" }}">{{ .PublishDate.Format "2006-01-02" }}</time>
-            {{ else }}
-              {{ T "last_updated_on" }} <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006-01-02" }}</time>
+        {{ if or (not .Date.IsZero) .RawContent }}
+          <p class="post-meta">
+            {{ if not .Date.IsZero }}
+              {{ if eq .PublishDate .Lastmod }}
+                {{ T "published_on" }} <time datetime="{{ .PublishDate.Format "2006-01-02" }}">{{ .PublishDate.Format "2006-01-02" }}</time>
+              {{ else }}
+                {{ T "last_updated_on" }} <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006-01-02" }}</time>
+              {{ end }}
+            {{ end }}
+            {{ if .RawContent }}
+              {{ if not .Date.IsZero }} · {{ end }}{{ partial "reading-time" . }}
             {{ end }}
           </p>
         {{ end }}

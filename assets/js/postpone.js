@@ -111,6 +111,10 @@ function populateResults(result) {
     // Date as it should be rendered if not null
     const formatedDate = '<time datetime=' + value.item.date + '>' + value.item.date + '</time>';
 
+    const readingTime = value.item.readingTime
+      ? '<span class=reading-time>' + value.item.readingTime + '</span>'
+      : '';
+
     // Pull template from hugo template definition
     const templateDefinition = document.getElementById('search-result-template').innerHTML;
 
@@ -118,6 +122,7 @@ function populateResults(result) {
     const output = render(templateDefinition, {
       link: value.item.permalink,
       date: value.item.date ? formatedDate : '',
+      readingTime: readingTime,
       title: value.item.title
     });
     document.getElementById('search-results').appendChild(htmlToElement(output))

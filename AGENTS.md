@@ -89,3 +89,7 @@ Before finalizing work:
 ## Deployment Note
 
 - Typical Cloudflare deployment time is about 2 minutes.
+
+## Running hugo in local
+
+Use: `hugo server --disableFastRender --noHTTPCache --ignoreCache`.

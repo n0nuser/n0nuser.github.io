@@ -1,0 +1,6 @@
+{{ $start := .Site.Params.copyrightStartYear | default 2024 }}
+{{ $year := now.Year }}
+{{ $displayYear := printf "%d" $start }}
+{{ if gt $year $start }}{{ $displayYear = printf "%d–%d" $start $year }}{{ end }}
+{{ $holder := .Site.Params.author | default .Site.Title }}
+Copyright © {{ $displayYear }}, {{ $holder }}. All rights reserved.

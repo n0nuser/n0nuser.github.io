@@ -1,0 +1,24 @@
+{{ $recent := where .Site.RegularPages "Section" "eq" "posts" }}
+{{ $recent = where $recent "Draft" "!=" true }}
+{{ $recent = $recent.ByDate.Reverse }}
+{{ $shown := 0 }}
+{{ $max := 3 }}
+
+{{ if $recent }}
+  <h2>Recent writing</h2>
+  <ul class="home-posts">
+    {{ range $recent }}
+      {{ if ge $shown $max }}{{ break }}{{ end }}
+      {{ if strings.Contains (lower .Title) "wip" }}{{ continue }}{{ end }}
+      <li>
+        <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        <span class="post-card-meta">
+          {{ if not .Date.IsZero }}<time datetime="{{ .Date | dateFormat "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>{{ end }}
+          {{ partial "reading-time" . }}
+        </span>
+      </li>
+      {{ $shown = add $shown 1 }}
+    {{ end }}
+  </ul>
+  <p><a href="{{ "posts/" | relLangURL }}">Read more</a></p>
+{{ end }}
