@@ -12,7 +12,10 @@
       {{ if strings.Contains (lower .Title) "wip" }}{{ continue }}{{ end }}
       <li>
         <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-        {{ if not .Date.IsZero }}<time datetime="{{ .Date | dateFormat "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>{{ end }}
+        <span class="post-card-meta">
+          {{ if not .Date.IsZero }}<time datetime="{{ .Date | dateFormat "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>{{ end }}
+          {{ partial "reading-time" . }}
+        </span>
       </li>
       {{ $shown = add $shown 1 }}
     {{ end }}

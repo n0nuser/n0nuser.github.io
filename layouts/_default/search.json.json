@@ -73,7 +73,7 @@
   {{- end -}}
   
   
-  {{- $.Scratch.Add "index" (dict "title" (.Title | emojify) "date" ($.Scratch.Get "date") "description" ($.Scratch.Get "description") "content" ($.Scratch.Get "uniqueContent") "permalink" .Permalink "tags" ($.Scratch.Get "tags")) -}}
+  {{- $.Scratch.Add "index" (dict "title" (.Title | emojify) "date" ($.Scratch.Get "date") "description" ($.Scratch.Get "description") "content" ($.Scratch.Get "uniqueContent") "permalink" .Permalink "tags" ($.Scratch.Get "tags") "readingTime" (partial "reading-time" (dict "page" $page "format" "value"))) -}}
   
   {{- $.Scratch.Delete "currentWords" -}}
 

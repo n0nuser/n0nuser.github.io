@@ -185,12 +185,28 @@ body > header + .filler {
       font-weight: $heading-weight;
     }
 
-    time {
+    .post-card-meta {
       display: block;
       margin-top: 0.25rem;
       font-size: 0.85rem;
       opacity: 0.7;
     }
+
+    time,
+    .reading-time {
+      display: block;
+    }
+
+    .reading-time {
+      margin-top: 0.15rem;
+    }
+  }
+}
+
+article header .post-meta {
+  .reading-time {
+    font-size: inherit;
+    opacity: 0.85;
   }
 }
 
