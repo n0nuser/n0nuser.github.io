@@ -1,0 +1,31 @@
+{{- $page := . -}}
+{{- $format := "html" -}}
+{{- if reflect.IsMap . -}}
+  {{- $page = index . "page" -}}
+  {{- with index . "format" }}{{ $format = . }}{{ end -}}
+{{- end -}}
+
+{{- $content := $page.RawContent -}}
+{{- if not $content -}}
+  {{- $content = $page.Content -}}
+  {{- $content = replaceRE "(?s)<div class=\"highlight\".*?</div>" "" $content -}}
+  {{- $content = replaceRE "(?s)<pre.*?</pre>" "" $content -}}
+{{- else -}}
+  {{- $content = replaceRE "(?s)```[\\s\\S]*?```" "" $content -}}
+  {{- $content = replaceRE "(?s)~~~[\\s\\S]*?~~~" "" $content -}}
+{{- end -}}
+
+{{- $content = $content | plainify -}}
+{{- $words := countwords $content -}}
+{{- $wpm := $page.Site.Params.readingTimeWPM | default 200 -}}
+{{- $minutes := div $words $wpm -}}
+{{- if lt $minutes 1 -}}
+  {{- $minutes = 1 -}}
+{{- end -}}
+{{- $label := printf "%d %s" $minutes (T "min_read") -}}
+
+{{- if eq $format "value" -}}
+  {{- return $label -}}
+{{- end -}}
+
+<span class="reading-time">{{ $label }}</span>
