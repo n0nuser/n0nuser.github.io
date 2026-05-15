@@ -8,6 +8,12 @@ imgPath: "."
 disableTitleSeparator: false
 cover: "me.webp"
 coverAlt: "Pablo González Image"
+social:
+  centralized:
+    github: ["n0nuser"]
+    linkedin: ["nonuser"]
+    gmail: ["contact@pablogonzalez.me"]
+    rss: ["pablogonzalez.me/index.xml"]
 ---
 
 <section class="home-hero">
@@ -16,39 +22,19 @@ coverAlt: "Pablo González Image"
   </div>
   <div class="home-hero-copy">
     <p class="home-hero-kicker">
-      <span class="home-highlight home-highlight--yellow">Hey there!</span>
+      <span class="home-highlight home-highlight--yellow">Hey there! 👋🏻</span>
     </p>
-    <h2 class="home-hero-title">
+    <h1 class="home-hero-title">
       <span class="home-highlight home-highlight--mint">My name is Pablo,</span><br />
       <span class="home-highlight home-highlight--pink">and this is my little home on the internet.</span>
-    </h2>
+    </h1>
     <p class="home-hero-lede">
-      I'm a Computer Engineer focused on backend development with Python. I enjoy building API-first services, improving software architecture, and keeping codebases maintainable with practical clean code habits.
+      I'm a computer engineer focused on backend development with Python — API-first services, maintainable architecture, and practical notes on software, Linux, and security from real projects and labs.
     </p>
   </div>
 </section>
 
-This website is my technical space where I publish posts and notes about software development, Linux administration, and security topics that I use in real projects and hands-on labs. I write in a practical format so I can revisit each guide quickly, and so other developers can apply the same ideas without too much setup.
-
-If you want a quick overview of my background, current focus, and tools, start here:
-
-* 🙍🏻‍♂️ [About Me](/about)
-* 📄 [Resume](/resume)
-* ⏳ [Now](/now)
-* 🛠️ [What I Use](/uses)
-
-## Posts and Development Topics
-
-You can also browse the [blog](/posts) 📝 by topic:
-
-* [Software Development](tags/software-development/): backend engineering practices, architecture decisions, and coding workflows.
-* [Cheatsheets](tags/cheatsheet/): concise command references and troubleshooting shortcuts.
-* [Linux Posts](tags/linux/): system administration notes, hardening basics, and server operations.
-* [Hack The Box Writeups](writeups/htb/): security challenge writeups and exploitation walkthroughs.
-
-If you are curious about traffic, [public site analytics are available](https://cloud.umami.is/share/sMn2hgzqZZ0lEpde/pablogonzalez.me).
-
-I update this site whenever I discover a better approach, fix an old process, or learn something worth documenting. If a post helps you, feel free to reach out and share improvements or corrections.
+{{< home-recent-posts >}}
 
 ## Contact
 

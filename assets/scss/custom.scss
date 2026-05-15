@@ -1,23 +1,152 @@
-// Home hero highlights (colorines estilo carol.gg)
+// Site header — mobile: brand stacked; desktop: brand row + links row
+
+body > header {
+  --header-stack-gap: 1rem;
+  --brand-font-size: 1.125rem;
+  --brand-line-height: 1.25;
+  --brand-avatar-size: 3rem;
+
+  padding: 1rem 15px;
+  border-bottom: 1px solid var(--fg);
+
+  .site-header-inner {
+    max-width: 55rem;
+    margin: 0 auto;
+  }
+
+  .site-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--header-stack-gap);
+    margin: 0;
+    padding: 0;
+  }
+
+  .site-nav-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  // Theme sets margin: 1.8rem on all img — must reset here or avatar overlaps name / spills past header
+  img.site-brand-avatar {
+    margin: 0;
+    max-height: none;
+  }
+
+  .site-brand-avatar-link {
+    display: block;
+    flex: 0 0 auto;
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    font-size: 0;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    img.site-brand-avatar {
+      display: block;
+      width: var(--brand-avatar-size);
+      height: auto;
+    }
+  }
+
+  .site-brand-name {
+    font-family: $heading-font;
+    font-size: var(--brand-font-size);
+    font-weight: $heading-bold-weight;
+    line-height: var(--brand-line-height);
+    color: var(--alt-fg);
+    text-decoration: none;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  .site-nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    a {
+      display: inline-block;
+      margin: 0;
+      padding: 0.2rem 0.1rem 0.3rem;
+      font-size: 1rem;
+      line-height: 1.15;
+      font-weight: $heading-bold-weight;
+      text-transform: lowercase;
+      color: var(--fg);
+      text-decoration: none;
+      word-break: normal;
+      border-bottom: 0.2rem solid var(--accent);
+    }
+  }
+
+  @include respond-above($mobile-breakpoint) {
+    --brand-avatar-size: 2.75rem;
+
+    padding: 1.25rem 15px;
+
+    .site-nav {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-nav-brand {
+      flex-direction: row;
+      gap: 0.75rem;
+    }
+
+    .site-nav-links {
+      justify-content: flex-end;
+    }
+  }
+}
+
+body > header + .filler {
+  padding-top: 2.5rem;
+
+  @include respond-above($mobile-breakpoint) {
+    padding-top: 3rem;
+  }
+}
+
+// Home page
 
 .index {
   .home-hero {
-    margin: 2.5rem 0 3rem;
+    margin: 2.5rem 0 2.5rem;
     display: grid;
     gap: 1.5rem;
 
     @media (min-width: 768px) {
-      grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
       align-items: center;
     }
 
     .home-hero-photo {
-      max-width: 260px;
+      max-width: 220px;
       margin: 0 auto;
     }
 
     .home-hero-copy {
-      max-width: 40rem;
+      max-width: 38rem;
     }
   }
 
@@ -42,9 +171,29 @@
     margin: 0;
     line-height: 1.7;
   }
+
+  .home-posts {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+
+    li {
+      margin-bottom: 1.25rem;
+    }
+
+    a {
+      font-weight: $heading-weight;
+    }
+
+    time {
+      display: block;
+      margin-top: 0.25rem;
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+  }
 }
 
-// Big underline highlight behind text
 .home-highlight {
   position: relative;
   font-weight: $heading-bold-weight;
@@ -53,7 +202,6 @@
   background-size: 100% 100%;
 }
 
-// Light mode highlight colors (only underline, not text)
 html[data-mode='light'] {
   .home-highlight--yellow {
     background-image: linear-gradient(
@@ -86,7 +234,6 @@ html[data-mode='light'] {
   }
 }
 
-// Dark mode underline colors (slightly stronger to be visible)
 html[data-mode='dark'] {
   .home-highlight--yellow {
     background-image: linear-gradient(

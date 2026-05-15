@@ -1,0 +1,5 @@
+{{ $home := .Site.Home }}
+<div class="site-nav-brand">
+  <a class="site-brand-avatar-link" href="{{ "/" | relLangURL }}" aria-label="Go to homepage">{{- partial "nav-avatar-img" $home -}}</a>
+  <a class="site-brand-name" href="{{ "/" | relLangURL }}">{{ .Site.Params.brandName | default .Site.Title }}</a>
+</div>
