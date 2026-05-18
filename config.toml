@@ -293,15 +293,9 @@ weight = 3
 url = "resume/"
 
 [[languages.en.menu.main]]
-identifier = "now"
-name = "Now"
-weight = 4
-url = "now/"
-
-[[languages.en.menu.main]]
 identifier = "uses"
 name = "Uses"
-weight = 5
+weight = 4
 url = "uses/"
 
 [[languages.en.menu.main]]

@@ -55,7 +55,7 @@ n0nuser.github.io/
 
 - `content/posts/` for technical articles
 - `content/writeups/htb/` for HTB writeups
-- `content/about.md`, `content/now.md`, `content/resume.md`, `content/uses.md` for standalone pages
+- `content/about.md`, `content/resume.md`, `content/uses.md` for standalone pages
 - `content/search/index.md` for search page configuration
 
 ### Front Matter Patterns
@@ -120,6 +120,30 @@ n0nuser.github.io/
   - Hugo build succeeds
   - Pages render and links resolve
   - Key routes load without runtime errors
+
+### UI/UX Validation Procedure (Current Practice)
+
+- Validate homepage and header behavior at minimum in:
+  - desktop (`~1440px`)
+  - mobile (`~390px`)
+  - both light and dark mode
+- Prefer interactive audits (Playwright or equivalent) covering:
+  - visual hierarchy
+  - spacing/alignment
+  - accessibility basics (target size, labels, contrast signals)
+  - responsive behavior
+  - console/runtime errors
+  - broken interactions
+- If automated overlays/widgets appear during testing, treat them as potential test noise and verify whether issues reproduce without overlay interference.
+
+### Current Navigation/UI Conventions (May 2026)
+
+- Mobile header uses an always-visible nav row under the brand (no collapsible menu button).
+- `/uses` stays as a top-level nav label (standard personal-site convention).
+- `/now` is optional and should only be shown when actively maintained.
+- Nav links should keep underlines visually close to text.
+- Tap targets should remain touch-friendly (`>=44px`) without creating large visual gaps.
+- Homepage recent-post metadata is shown inline as: `date · reading time`.
 
 ## Security and Privacy Notes
 
