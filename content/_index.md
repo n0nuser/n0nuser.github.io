@@ -31,6 +31,9 @@ social:
     <p class="home-hero-lede">
       I'm a computer engineer focused on backend development with Python — API-first services, maintainable architecture, and practical notes on software, Linux, and security from real projects and labs.
     </p>
+    <p class="home-hero-cta">
+      <a class="btn home-hero-cta-link" href="/posts/">Read latest posts</a>
+    </p>
   </div>
 </section>
 

@@ -20,11 +20,13 @@ hugo.Data.default.imageProc.markupAutoResizeWidth)) }}
 
 <body>
 
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
   <header>
     {{ partial "header" . }}
   </header>
 
-  <div class="filler">
+  <div id="main-content" class="filler" tabindex="-1">
     {{ block "main" . }}
     <!-- Stuff -->
     {{ end }}
