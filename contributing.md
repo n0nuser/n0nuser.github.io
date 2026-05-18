@@ -70,6 +70,8 @@ gh pr create --base develop --head feature/your-topic --title "..." --body "..."
 
 Prefer **Create a merge commit** on GitHub when merging the PR (matches existing history). If your repo settings force squash or rebase, follow the setting—but then local expectations may differ from the merge-based history above.
 
+Repository note (current behavior): GitHub merge methods for this repo currently allow **MERGE commit** and reject squash/rebase for PR merge + auto-merge operations. When using `gh pr merge`, prefer `--merge`.
+
 ### 6. After merge: promote `develop` → `main` (when ready to release)
 
 When `develop` contains what you want live:
