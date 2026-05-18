@@ -11,11 +11,18 @@ coverAlt: "Me!"
 
 {{< imgRounded "me.webp" "Photo of Pablo" "borderless" "400" "high" >}}
 
-> __Updated on May, 15rd of 2026__
+> __Updated on May 18, 2026__
 
 Hello there! I’m Pablo 👋, a Computer Engineer with a deep dive into backend development, microservices, a passion for crafting performant systems 🚀 and a Clean Code advocate 🥑. My professional life is driven by a love for Python 🐍, a desire for creating robust system architectures 🏗️, and a continuous quest for improving code quality ✨.
 
 For a more detailed look into my professional journey, skills, and personal interests, you can [check my resume](/resume)! 📄
+
+## Professional Snapshot
+
+- Python backend engineer focused on API-first microservices, reliability, and performance.
+- Current work includes high-volume backend flows, privacy-aware identity refactors, and observability improvements in production systems.
+- Recent impact includes 2-4x response-time improvements on financial endpoints through Redis caching and backend pipeline enhancements.
+- For recruiting and professional contact, email me at [contact@pablogonzalez.me](mailto:contact@pablogonzalez.me).
 
 ## Beyond the Screen
 
@@ -37,6 +44,8 @@ When I'm not working you might find me:
 
 
 ## Say hi
+
+If you email me after visiting this website, please mention that you found me here.
 
 {{< social >}}
 

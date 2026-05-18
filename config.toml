@@ -33,12 +33,12 @@ copyrightStartYear = 2021
 # GA4 = "G-GWC49NSYGC" # Google Analytics 4
 
 # Site description
-description = "Backend development, Linux, and cybersecurity posts by Pablo González. Practical guides, cheatsheets, and project notes for developers and security learners."
+description = "Personal website of Pablo Gonzalez, a Python backend engineer sharing practical guides on APIs, microservices, Linux, security, and building reliable systems."
 
 # Author
 author = "Pablo Jesús González Rubio"
 brandName = "Pablo González"
-authorDesc = 'Python Developer. "n0nuser" is my alias'
+authorDesc = "Python backend engineer focused on reliable APIs and microservices."
 
 # Site cover, for Open Graph, Twitter Cards and Schema.org
 # It will be used if the current page doesn't have a image cover
