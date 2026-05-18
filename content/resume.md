@@ -9,4 +9,4 @@ cover: "me.webp"
 coverAlt: "Me!"
 ---
 
-{{< googlepdfreader "1NVWF16sfohVuHV_1or14Q3f89Nxq41A_" >}}
+{{< googlepdfreader "1NVWF16sfohVuHV_1or14Q3f89Nxq41A_" "Resume preview" >}}

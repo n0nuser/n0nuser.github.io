@@ -30,6 +30,7 @@ Use these as default guidance unless the user asks for a different direction.
 - For homepage post metadata, render date and reading time on the same line for faster scanability.
 - When doing UX audits, validate both light and dark modes, plus desktop and mobile.
 - In Playwright checks, beware local overlays/widgets that can intercept clicks and skew interaction results.
+- The purple **Discord promo box** (`mcp-discord-container`, text like "Join Discord Community") is injected by the **Playwright MCP browser**, not this site. Do not file UX bugs or site fixes for it; ignore it during audits unless reproducing in a normal browser without Playwright.
 
 ## Blog Post Writing Style
 
@@ -91,6 +92,7 @@ Before finalizing work:
 2. Confirm references to project behavior match `@docs/project-guide.md`.
 3. Confirm no sensitive personal identifiers were introduced.
 4. Confirm changes are scoped and reversible.
+5. If the user asks to "get the score", run the project skill at `.cursor/skills/ux-scoring/SKILL.md` and return a full manual UX score report.
 
 ## Quick References
 

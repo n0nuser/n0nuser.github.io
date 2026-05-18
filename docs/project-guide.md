@@ -135,6 +135,22 @@ n0nuser.github.io/
   - console/runtime errors
   - broken interactions
 - If automated overlays/widgets appear during testing, treat them as potential test noise and verify whether issues reproduce without overlay interference.
+- **Playwright MCP only:** a purple Discord invite card (`mcp-discord-container` / "Join Discord Community") is injected by the Playwright MCP tool, not by Hugo layouts or site scripts. Exclude it from site UX scores and do not add CSS or layout workarounds unless the same overlay appears in a normal browser session.
+
+### Manual UX Scoring Workflow
+
+When the user explicitly asks to "get the score", run the project skill at `.cursor/skills/ux-scoring/SKILL.md` and return a structured score report that includes:
+
+- Nielsen's 10 heuristics with weighted scoring and recommendations
+- WCAG 2.2 AA audit results (axe-core style severity and affected elements)
+- Persona-based findings (built-in profiles plus up to five custom personas when provided)
+- Analysis mode selection (Quick, Deep, or Custom heuristic subset)
+- Vision-oriented observations from full-page screenshots (hierarchy, color harmony, CTA visibility)
+- Detailed 0-100 per-heuristic scoring with quick wins and priority matrix
+- Privacy note confirming BYOK/no telemetry assumptions when applicable
+- Optional heatmap/highlight-ready issue mapping so findings can be overlaid on-page
+
+This scoring workflow is manual and analyst-driven unless the user asks for additional automation.
 
 ### Current Navigation/UI Conventions (May 2026)
 
