@@ -12,13 +12,15 @@
       {{ if strings.Contains (lower .Title) "wip" }}{{ continue }}{{ end }}
       <li>
         <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        {{ $readingTime := partial "reading-time" (dict "page" . "format" "value") }}
         <span class="post-card-meta">
           {{ if not .Date.IsZero }}<time datetime="{{ .Date | dateFormat "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>{{ end }}
-          {{ partial "reading-time" . }}
+          {{ if and (not .Date.IsZero) $readingTime }}<span class="post-meta-sep" aria-hidden="true"> · </span>{{ end }}
+          {{ if $readingTime }}<span class="reading-time">{{ $readingTime }}</span>{{ end }}
         </span>
       </li>
       {{ $shown = add $shown 1 }}
     {{ end }}
   </ul>
-  <p><a href="{{ "posts/" | relLangURL }}">Read more</a></p>
+  <p><a class="home-posts-all" href="{{ "posts/" | relLangURL }}">View all posts</a></p>
 {{ end }}

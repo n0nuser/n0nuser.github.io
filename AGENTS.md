@@ -18,6 +18,19 @@ Detailed project documentation lives in `@docs/project-guide.md`.
 - Preserve existing content and style conventions unless explicitly asked to change them.
 - Prefer consistency with existing files over introducing new patterns.
 
+## UI/UX Working Notes (Chat-Derived)
+
+Use these as default guidance unless the user asks for a different direction.
+
+- `/uses` is a recognized personal-site convention; do not rename it to alternatives like "Gear" by default.
+- `/now` is also a recognized convention, but it should only remain in nav if the page is actively maintained.
+- For mobile nav, prefer always-visible links under the brand (no hamburger/toggle) when link count and width make this practical.
+- Keep mobile hit targets accessible (`>= 44px`) while preserving visual style.
+- Keep nav underlines close to text; add hit-area mostly via `min-height` and top/side padding instead of extra bottom gap.
+- For homepage post metadata, render date and reading time on the same line for faster scanability.
+- When doing UX audits, validate both light and dark modes, plus desktop and mobile.
+- In Playwright checks, beware local overlays/widgets that can intercept clicks and skew interaction results.
+
 ## Blog Post Writing Style
 
 Use this style when creating or editing files under `content/posts/`.
@@ -90,6 +103,9 @@ Before finalizing work:
 
 - Typical Cloudflare deployment time is about 2 minutes.
 
-## Running hugo in local
+## Running Hugo locally and on LAN
 
-Use: `hugo server --disableFastRender --noHTTPCache --ignoreCache`.
+- Localhost only:
+  - `hugo server --disableFastRender --noHTTPCache --ignoreCache`
+- Phone/LAN access (bind all interfaces + set base URL to this PC IP):
+  - `hugo server --gc --bind 0.0.0.0 --baseURL "http://<LAN-IP>:1313" --disableFastRender --noHTTPCache --ignoreCache`
