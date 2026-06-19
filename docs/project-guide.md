@@ -17,7 +17,7 @@ It describes architecture, workflows, conventions, and operational history at a 
 
 ### Core
 
-- Hugo static site generator (current version: v0.159.1)
+- Hugo static site generator (current version: v0.162.1)
 - Go-template based Hugo layouts/shortcodes
 - Markdown content in leaf bundles and page files
 - Theme customization based on Color Your World
@@ -109,7 +109,7 @@ n0nuser.github.io/
 
 - Local script `deploy.sh` includes build + git add/commit/push to `master`
 - Local script `editBlog.sh` includes LAN preview and editor/browser helpers
-- Local script `build-cf.ps1` runs `hugo --gc --minify` in Docker (`hugomods/hugo:debian-dart-sass-node-git-non-root-0.159.1`) to mirror Cloudflare Pages build behavior
+- Local script `build-cf.ps1` runs `hugo --gc --minify` in Docker (`hugomods/hugo:debian-dart-sass-node-git-non-root-0.162.1`) to mirror Cloudflare Pages build behavior
 - Node-based lint scripts in `package.json` include template sanity checks, SCSS linting, markdown linting, and native Hugo build validation
 
 ## Quality and Validation

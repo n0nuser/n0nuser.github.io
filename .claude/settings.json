@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "hugo --gc --minify || (echo 'Build Validation Failed: Fix layout syntax errors or broken shortcodes before proceeding.' && exit 2)"
+          }
+        ]
+      }
+    ]
+  }
+}

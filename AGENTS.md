@@ -23,7 +23,6 @@ Detailed project documentation lives in `@docs/project-guide.md`.
 Use these as default guidance unless the user asks for a different direction.
 
 - `/uses` is a recognized personal-site convention; do not rename it to alternatives like "Gear" by default.
-- `/now` is also a recognized convention, but it should only remain in nav if the page is actively maintained.
 - For mobile nav, prefer always-visible links under the brand (no hamburger/toggle) when link count and width make this practical.
 - Keep mobile hit targets accessible (`>= 44px`) while preserving visual style.
 - Keep nav underlines close to text; add hit-area mostly via `min-height` and top/side padding instead of extra bottom gap.

@@ -1,7 +1,7 @@
 {
   "name": "n0nuser.github.io",
   "version": "1.0.0",
-  "description": "[![Hugo v0.159.1](https://img.shields.io/badge/hugo-0.159.1-ff4088?logo=hugo&logoColor=white)](https://github.com/gohugoio/hugo)\r [![GitHub repo size](https://img.shields.io/github/repo-size/n0nuser/n0nuser.github.io?color=009cdf&label=repo%20size&logo=git&logoColor=white)](https://github.com/n0nuser/n0nuser.github.io)\r ![Maintenance](https://img.shields.io/maintenance/yes/2026?color=009cdf&logoColor=white)\r ![Last Commit](https://img.shields.io/github/last-commit/n0nuser/n0nuser.github.io?color=009cdf&logoColor=white)",
+  "description": "[![Hugo v0.162.1](https://img.shields.io/badge/hugo-0.162.1-ff4088?logo=hugo&logoColor=white)](https://github.com/gohugoio/hugo)\r [![GitHub repo size](https://img.shields.io/github/repo-size/n0nuser/n0nuser.github.io?color=009cdf&label=repo%20size&logo=git&logoColor=white)](https://github.com/n0nuser/n0nuser.github.io)\r ![Maintenance](https://img.shields.io/maintenance/yes/2026?color=009cdf&logoColor=white)\r ![Last Commit](https://img.shields.io/github/last-commit/n0nuser/n0nuser.github.io?color=009cdf&logoColor=white)",
   "scripts": {
     "lint": "npm run lint:templates && npm run lint:scss && npm run lint:js && npm run lint:md && npm run lint:hugo",
     "lint:templates": "node scripts/lint-hugo-templates.mjs",
