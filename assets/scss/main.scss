@@ -1114,6 +1114,49 @@ summary {
   }
 }
 
+// Breadcrumbs
+.breadcrumbs {
+  margin: 0 0 .9rem;
+
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    font-size: .85rem;
+    color: var(--alt-fg);
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+
+    &:not(:last-child)::after {
+      content: '/';
+      margin: 0 .4rem;
+      opacity: .6;
+    }
+  }
+
+  a {
+    color: var(--alt-fg);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: .15rem;
+    text-underline-offset: .12em;
+
+    &:hover {
+      opacity: .75;
+    }
+  }
+
+  [aria-current="page"] {
+    font-weight: $body-bold-weight;
+    word-break: break-word;
+  }
+}
+
 // Post discovery: related posts, prev/next, back-to-all
 .related-posts {
   margin: 3rem 0 1.5rem;

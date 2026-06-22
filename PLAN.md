@@ -50,14 +50,21 @@ High-impact, low-risk. Each is self-contained.
 
 ## Phase 2 — Accessibility & responsive polish
 
-- [ ] **Hero highlight contrast.** Verify dark text over mint/pink highlights and the pale-yellow
+- [x] **Hero highlight contrast.** Verify dark text over mint/pink highlights and the pale-yellow
       "HEY THERE!" meets WCAG 2.2 AA (>= 4.5:1) in light mode; adjust highlight shades if borderline.
-- [ ] **TOC on mobile.** Collapse the TOC by default on small viewports (it currently ships `open` and
-      pushes content far down on long posts). Optionally add a sticky right-rail TOC on desktop.
-- [ ] **Image formats.** Convert older `.png`/`.jpg` post screenshots and covers to WebP/AVIF via the
+      Yellow (~7.8:1) and mint (~7.7:1) already passed comfortably; pink was borderline (~5.0:1) so its
+      alpha was reduced (`#bb4afc7a` -> `#bb4afc55`), raising it to ~6.1:1.
+- [x] **TOC on mobile.** Collapse the TOC by default on small viewports (it currently ships `open` and
+      pushes content far down on long posts). Optionally add a sticky right-rail TOC on desktop. (Desktop
+      sticky rail skipped — explicitly optional.)
+- [x] **Image formats.** Convert older `.png`/`.jpg` post screenshots and covers to WebP/AVIF via the
       render-image hook (`layouts/_default/_markup/render-image.html`) or by re-encoding assets, to
-      improve LCP. Keep `coverAlt`/alt text intact.
-- [ ] **Breadcrumb UI** on deep pages (pairs with Phase 3 breadcrumb schema).
+      improve LCP. Keep `coverAlt`/alt text intact. Applied to the render hook plus the `img`,
+      `imgRounded`, `figure`, and `cover` shortcodes/partials. OG/Twitter/schema images in `head.html`
+      were deliberately left in their original format — WebP support for `og:image` is inconsistent
+      across social-platform unfurl bots.
+- [x] **Breadcrumb UI** on deep pages (pairs with Phase 3 breadcrumb schema). Added to `single.html`
+      (posts and HTB writeups); list/taxonomy pages left as-is since nav already covers those.
 
 ### Acceptance
 - axe-style pass shows no new serious/critical issues; Lighthouse/PSI LCP not regressed.

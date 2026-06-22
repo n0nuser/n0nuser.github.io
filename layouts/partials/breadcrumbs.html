@@ -1,0 +1,20 @@
+{{ if and (not .IsHome) (ne .Kind "404") }}
+  {{ $crumbs := slice (dict "name" (T "breadcrumb_home") "url" .Site.BaseURL) }}
+  {{ range .Ancestors.Reverse }}
+    {{ if not .IsHome }}
+      {{ $crumbs = $crumbs | append (dict "name" (.LinkTitle | emojify) "url" .Permalink) }}
+    {{ end }}
+  {{ end }}
+  {{ $crumbs = $crumbs | append (dict "name" (.Title | emojify) "url" .Permalink) }}
+  <nav class="breadcrumbs" aria-label="{{ T "breadcrumb_nav" }}">
+    <ol>
+      {{ range $i, $crumb := $crumbs }}
+        {{ if eq (add $i 1) (len $crumbs) }}
+          <li aria-current="page">{{ $crumb.name }}</li>
+        {{ else }}
+          <li><a href="{{ $crumb.url }}">{{ $crumb.name }}</a></li>
+        {{ end }}
+      {{ end }}
+    </ol>
+  </nav>
+{{ end }}

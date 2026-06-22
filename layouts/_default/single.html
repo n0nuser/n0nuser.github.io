@@ -2,8 +2,10 @@
 
   <main>
     <article>
+      {{ partial "breadcrumbs" . }}
+
       <header>
-        
+
         <h1>{{ .Title }}</h1>
 
         {{ if or .Params.categories .Params.tags }}
@@ -49,6 +51,12 @@
           <summary class="outline-dashed">{{ T "table_of_contents" }}</summary>
           {{ .Page.TableOfContents }}
         </details>
+        <script>
+          // 768px must match $mobile-breakpoint in assets/scss/base/variables.scss
+          if (window.matchMedia('(max-width: 768px)').matches) {
+            document.currentScript.previousElementSibling.removeAttribute('open');
+          }
+        </script>
       {{ end }}
       
       {{ partial "processed-content" . }}

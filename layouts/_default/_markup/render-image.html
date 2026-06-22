@@ -27,18 +27,22 @@
   
     {{ $encodedPlaceholder := (printf "data:image/png;base64,%s" (((resources.Get "img/pixel.gif").Resize (printf "%vx%v %s" (.Resize (index $imageProc.mediumRes 0)).Width (.Resize (index $imageProc.mediumRes 0)).Height "png")).Content | base64Encode)) | safeURL }}
   
+    {{ $highRes := .Resize (printf "%s webp" (index $imageProc.highRes 0)) }}
+    {{ $mediumRes := .Resize (printf "%s webp" (index $imageProc.mediumRes 0)) }}
+    {{ $lowRes := .Resize (printf "%s webp" (index $imageProc.lowRes 0)) }}
+
     <img
       class="lazyload {{ $class }}"
-      data-srcset="{{ (.Resize (index $imageProc.highRes 0)).RelPermalink }} {{ index $imageProc.highRes 1 }}, {{ (.Resize (index $imageProc.mediumRes 0)).RelPermalink }} {{ index $imageProc.mediumRes 1 }}, {{ (.Resize (index $imageProc.lowRes 0)).RelPermalink }} {{ index $imageProc.lowRes 1 }}"
+      data-srcset="{{ $highRes.RelPermalink }} {{ index $imageProc.highRes 1 }}, {{ $mediumRes.RelPermalink }} {{ index $imageProc.mediumRes 1 }}, {{ $lowRes.RelPermalink }} {{ index $imageProc.lowRes 1 }}"
       src="{{ $encodedPlaceholder }}"
-      data-src="{{ (.Resize (index $imageProc.mediumRes 0)).RelPermalink }}"
+      data-src="{{ $mediumRes.RelPermalink }}"
       {{ with $altText }}alt="{{ . }}"{{ end }}
     />
 
     <noscript>
       <img
         {{ with $class }}class="{{ . }}"{{ end }}
-        srcset="{{ (.Resize (index $imageProc.highRes 0)).RelPermalink }} {{ index $imageProc.highRes 1 }}, {{ (.Resize (index $imageProc.mediumRes 0)).RelPermalink }} {{ index $imageProc.mediumRes 1 }}, {{ (.Resize (index $imageProc.lowRes 0)).RelPermalink }} {{ index $imageProc.lowRes 1 }}"
+        srcset="{{ $highRes.RelPermalink }} {{ index $imageProc.highRes 1 }}, {{ $mediumRes.RelPermalink }} {{ index $imageProc.mediumRes 1 }}, {{ $lowRes.RelPermalink }} {{ index $imageProc.lowRes 1 }}"
         src="{{ $encodedPlaceholder }}"
         {{ with $altText }}alt="{{ . }}"{{ end }}
       />
@@ -53,18 +57,19 @@
 
     {{ $placeholder := (.Resize (printf "%vx %s" .Width "png")) | images.Filter (images.Contrast -100) }}
     {{ $encodedPlaceholder := (printf "data:image/png;base64,%s" ($placeholder.Content | base64Encode)) | safeURL }}
+    {{ $webp := .Resize (printf "%dx webp" .Width) }}
 
     <img
       class="lazyload {{ $class }}"
       src="{{ $encodedPlaceholder }}"
-      data-src="{{ .RelPermalink }}"
+      data-src="{{ $webp.RelPermalink }}"
       {{ with $altText }}alt="{{ . }}"{{ end }}
     />
 
     <noscript>
       <img
         {{ with $class }}class="{{ . }}"{{ end }}
-        src="{{ .RelPermalink }}"
+        src="{{ $webp.RelPermalink }}"
         {{ with $altText }}alt="{{ . }}"{{ end }}
       />
     </noscript>
