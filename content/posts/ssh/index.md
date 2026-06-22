@@ -8,6 +8,7 @@ cover: "cover.jpg"
 coverAlt: "SSH"
 toc: true
 tags: [ "Linux" ]
+howToSteps: [ "Installing", "Firewall", "Hardening" ]
 ---
 
 ## Introduction

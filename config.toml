@@ -33,7 +33,7 @@ copyrightStartYear = 2021
 # GA4 = "G-GWC49NSYGC" # Google Analytics 4
 
 # Site description
-description = "Personal website of Pablo Gonzalez, a Python backend engineer sharing practical guides on APIs, microservices, Linux, security, and building reliable systems."
+description = "Personal website of Pablo González, a Python backend engineer sharing practical guides on APIs, microservices, Linux, security, and building reliable systems."
 
 # Author
 author = "Pablo Jesús González Rubio"

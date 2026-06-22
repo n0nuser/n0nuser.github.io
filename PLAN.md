@@ -26,19 +26,19 @@
 
 High-impact, low-risk. Each is self-contained.
 
-- [ ] **Code copy-to-clipboard buttons.** Add a copy button to every fenced code block (highest-value
+- [x] **Code copy-to-clipboard buttons.** Add a copy button to every fenced code block (highest-value
       miss for a command-heavy blog). Implement in `layouts/partials/processed-content.html` or a small
       JS in `layouts/partials/myscripts.html`; style in `assets/scss`. Must work with the custom Chroma
       classes (`useCustomChroma = true`). Accessible button (`aria-label`, focus ring, "Copied" state).
-- [ ] **Post discovery loop.** At the end of `layouts/_default/single.html` add:
+- [x] **Post discovery loop.** At the end of `layouts/_default/single.html` add:
   - Related posts (by shared tags, 3 max, exclude current).
   - Prev/next navigation within the section.
   - A "Back to all posts" link.
-- [ ] **Header search affordance.** Surface search beyond `/posts/` — a header search icon/link
+- [x] **Header search affordance.** Surface search beyond `/posts/` — a header search icon/link
       (`layouts/partials/header.html`) routing to the existing search page.
-- [ ] **Second hero CTA.** In `content/_index.md` add a secondary action next to "Read latest posts"
+- [x] **Second hero CTA.** In `content/_index.md` add a secondary action next to "Read latest posts"
       (e.g. *View résumé* or *Get in touch*). Keep the existing `.btn` styling.
-- [ ] **Fix deprecated PWA meta.** In `layouts/partials/head.html` add
+- [x] **Fix deprecated PWA meta.** In `layouts/partials/head.html` add
       `<meta name="mobile-web-app-capable" content="yes">` alongside the existing
       `apple-mobile-web-app-capable` (resolves the live console warning).
 
@@ -73,16 +73,16 @@ sitemap, manifest, hreflang, sameAs). Close the gaps:
       out in `config.toml` and nothing links to them internally. Add a `/writeups` index and/or nav entry.
 - [ ] **Topic-cluster internal linking.** Cross-link the Linux series (audit, backup, processes,
       startup, users, filesystem, disk management, security) as a "series" so they reinforce each other.
-- [ ] **Schema enhancements** in `layouts/partials/head.html`:
-  - [ ] Add `SearchAction` to the WebSite JSON-LD (sitelinks search box).
-  - [ ] Add `Person` / `ProfilePage` schema on home + about (reuse the existing `sameAs` array).
-  - [ ] Add `BreadcrumbList`.
-  - [ ] Add `HowTo` schema to step-by-step posts (`ssh`, `wireguard`, `emailserver`).
-  - [ ] Resolve the `datePublished` TODO already noted in the template.
+- [x] **Schema enhancements** in `layouts/partials/head.html`:
+  - [x] Add `SearchAction` to the WebSite JSON-LD (sitelinks search box).
+  - [x] Add `Person` / `ProfilePage` schema on home + about (reuse the existing `sameAs` array).
+  - [x] Add `BreadcrumbList`.
+  - [x] Add `HowTo` schema to step-by-step posts (`ssh`, `wireguard`, `emailserver`).
+  - [x] Resolve the `datePublished` TODO already noted in the template.
 - [ ] **Title/description intent.** Rewrite terse titles toward search intent without losing voice
       (e.g. "Linux - Backup" -> "How to Back Up a Linux Server: rsync, tar, and Automated Snapshots").
 - [ ] **Freshness signals.** Add/refresh `lastmod` on cornerstone posts so they read as maintained.
-- [ ] **Config consistency.** Fix "Pablo Gonzalez" (no accent) in `config.toml` description.
+- [x] **Config consistency.** Fix "Pablo Gonzalez" (no accent) in `config.toml` description.
 
 ### Acceptance
 - Rich Results Test passes for Article, WebSite (SearchAction), Person, BreadcrumbList, and HowTo where

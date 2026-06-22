@@ -9,6 +9,7 @@ coverAlt: "Tux!"
 toc: true
 draft: false
 tags: [ "Linux" ]
+howToSteps: [ "Postfix", "Dovecot", "Roundcube", "Port forwarding", "Send emails with Gmail via IMAP" ]
 ---
 
 ## Introduction

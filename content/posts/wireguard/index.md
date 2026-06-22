@@ -9,6 +9,7 @@ coverAlt: "WireGuard"
 toc: true
 draft: false
 tags: [ "Linux" ]
+howToSteps: [ "Wireguard Server Setup", "Wireguard Client Setup" ]
 ---
 
 ## Wireguard Server Setup

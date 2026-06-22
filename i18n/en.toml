@@ -58,6 +58,9 @@ other = "Next"
 [back_to_all]
 other = "Back to all {{ .Title }}"
 
+[breadcrumb_home]
+other = "Home"
+
 [box_containing_expression]
 other = "Box containing expression."
 
