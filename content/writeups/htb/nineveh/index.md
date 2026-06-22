@@ -2,6 +2,7 @@
 title: "Nineveh"
 description: "Writeup for Nineveh machine from HTB"
 date: 2020-09-09
+lastmod: 2020-09-09
 author: "Pablo Jesús González Rubio"
 cover: "nineveh.png"
 coverAlt: "Nineveh icon"

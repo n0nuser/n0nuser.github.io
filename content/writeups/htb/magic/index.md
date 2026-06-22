@@ -2,6 +2,7 @@
 title: "Magic"
 description: "Writeup for Magic machine from HTB"
 date: 2020-08-03
+lastmod: 2020-08-03
 author: "Pablo Jesús González Rubio"
 cover: "magic.png"
 coverAlt: "Magic icon"

@@ -2,6 +2,7 @@
 title: "Lame"
 description: "Writeup for Lame machine from HTB"
 date: 2020-07-12
+lastmod: 2020-07-12
 author: "Pablo Jesús González Rubio"
 cover: "lame.png"
 coverAlt: "Lame icon"

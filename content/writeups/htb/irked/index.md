@@ -2,6 +2,7 @@
 title: "Irked"
 description: "Writeup for Irked machine from HTB"
 date: 2020-07-13
+lastmod: 2020-07-13
 author: "Pablo Jesús González Rubio"
 cover: "irked.png"
 coverAlt: "Irked icon"

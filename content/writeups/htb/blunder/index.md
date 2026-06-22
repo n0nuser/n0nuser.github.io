@@ -2,6 +2,7 @@
 title: "Blunder"
 description: "Writeup for Blunder machine from HTB"
 date: 2020-08-01
+lastmod: 2020-08-01
 author: "Pablo Jesús González Rubio"
 cover: "blunder.png"
 coverAlt: "Blunder icon"

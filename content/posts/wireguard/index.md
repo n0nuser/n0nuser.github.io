@@ -26,7 +26,7 @@ sudo usermod -aG docker $(whoami)
 exit
 ```
 
-This tutorial will considerate the following diagram:
+This tutorial will consider the following diagram:
 
 {{< img "network.jpg" "Network" "border" >}}
 
@@ -72,7 +72,7 @@ Then, create a client on the web app and give it a name.
 
 ### PC
 
-Go to the Wireguard web and [download the installer](https://www.wireguard.com/install/) for your operative system.
+Go to the Wireguard web and [download the installer](https://www.wireguard.com/install/) for your operating system.
 
 #### Windows
 
@@ -102,7 +102,7 @@ Then, enable Wireguard to start at boot:
 
 ```bash
 sudo systemctl enable wg-quick@wg0.service
-sudo systemclt start wg-quick@wg0.service
+sudo systemctl start wg-quick@wg0.service
 ```
 
 Or just start it manually:

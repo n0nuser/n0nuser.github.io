@@ -92,16 +92,19 @@ sitemap, manifest, hreflang, sameAs). Close the gaps:
 
 ## Phase 4 — Content quality & standardization
 
-- [ ] **WIP / thin content triage:**
+- [x] **WIP / thin content triage:**
   - `software_dev_best_practices` ("- WIP") is published — finish it, set `draft: true`, or `noindex`.
-  - `fyp` — add a real `description`; remove the empty `tags: [""]` (junk taxonomy page).
-  - `crypto_notes` — thin and off-brand; `noindex` or retag.
-- [ ] **Copy fixes:** `sudo systemclt` -> `systemctl` (wireguard), "operative system" -> "operating
-      system", "considerate" -> "consider", and a general typo sweep.
+    Content was already complete; dropped the stale "- WIP" suffix from the title.
+  - `fyp` — add a real `description`; remove the empty `tags: [""]` (junk taxonomy page). Done (stays `draft: true`).
+  - `crypto_notes` — thin and off-brand; `noindex` or retag. Set `noindex: true`.
+- [x] **Copy fixes:** `sudo systemclt` -> `systemctl` (wireguard), "operative system" -> "operating
+      system", "considerate" -> "consider", and a general typo sweep. Also fixed "Operative System" in
+      `Bash_Cheatsheet` and a stray duplicated-word typo in `crypto_notes`.
 - [ ] **Style standardization:** adopt the newer narrative template (homelab/microservices) as canonical;
       backfill older "class notes" Linux posts over time (intro -> ordered sections -> code + one-line
-      explainer -> tables/checklists -> "What worked well" -> conclusion).
-- [ ] **Front matter normalization:** ensure every post has `description`, `lastmod`, non-empty `tags`.
+      explainer -> tables/checklists -> "What worked well" -> conclusion). Deferred — large content
+      rewrite, not a quick pass; acceptance for this phase doesn't require it.
+- [x] **Front matter normalization:** ensure every post has `description`, `lastmod`, non-empty `tags`.
 
 ### Acceptance
 - No published post titled WIP; no empty descriptions/tags; spell-check clean.

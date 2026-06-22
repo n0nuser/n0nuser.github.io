@@ -2,6 +2,7 @@
 title: "Google Dorks Cheatsheet"
 description: "Doing advanced searches with the use of Google Operators nowadays is a must to be able to extend and improve our findings. From searching for a specific filetype such a pdf or a png image, to use it for hacking and bug bounty!"
 date: 2020-10-20
+lastmod: 2020-10-20
 author: "Pablo Jesús González Rubio"
 cover: "cover.jpg"
 coverAlt: "Google Dorks"
