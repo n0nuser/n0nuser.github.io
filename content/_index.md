@@ -36,6 +36,7 @@ social:
     </p>
     <p class="home-hero-cta">
       <a class="btn home-hero-cta-link" href="/posts/">Read latest posts</a>
+      <a class="btn home-hero-cta-link" href="/resume/">View résumé</a>
     </p>
   </div>
 </section>

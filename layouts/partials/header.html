@@ -9,6 +9,16 @@
             <a class="site-nav-link" href="{{ .URL | relLangURL }}">{{ .Name }}</a>
           </li>
         {{ end }}
+        {{ $searchPages := where .Site.RegularPages "Layout" "eq" "search" }}
+        {{ if and .Site.Params.Search.enable (gt (len $searchPages) 0) }}
+          <li>
+            <a class="site-nav-link site-nav-search" href="{{ (index $searchPages 0).RelPermalink }}" aria-label="{{ T "search_label" }}">
+              <svg aria-hidden="true">
+                <use xlink:href="#search" />
+              </svg>
+            </a>
+          </li>
+        {{ end }}
       </ul>
     {{ end }}
   </nav>
