@@ -2,6 +2,7 @@
 title: "Solidstate"
 description: "Writeup for Solidstate machine from HTB"
 date: 2020-08-10
+lastmod: 2020-08-10
 author: "Pablo Jesús González Rubio"
 cover: "solidstate.png"
 coverAlt: "Solidstate icon"

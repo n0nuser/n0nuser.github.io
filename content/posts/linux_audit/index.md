@@ -1,8 +1,8 @@
 ---
-title: "Linux - System Auditing"
+title: "Linux System Auditing: rsyslog, logrotate, and Process Accounting"
 description: "System auditing allows to save information in logs about different interactions of the system (like crashes, logins, reports of services, etc.) and use to investigate incidents on the system."
 date: 2021-04-28
-lastmod: 2021-04-28
+lastmod: 2026-06-23
 author: "Pablo Jesús González Rubio"
 cover: "cover.png"
 coverAlt: "Tux!"
@@ -10,6 +10,8 @@ toc: true
 draft: false
 tags: [ "Linux" ]
 ---
+
+> **Linux series:** Users & Groups → [Filesystem](/posts/linux_filesystem/) → [Monitoring Processes](/posts/linux_processes/) → **System Auditing** → [Backup](/posts/linux_backup/) → [Startup & Shutdown](/posts/linux_startup/) → [Disk Quotas](/posts/linux_diskmanagement/) → [Security](/posts/linux_security/)
 
 ## Introduction
 

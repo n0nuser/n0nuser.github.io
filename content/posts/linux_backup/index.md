@@ -1,8 +1,8 @@
 ---
-title: "Linux - Backup"
+title: "How to Back Up a Linux Server: rsync, tar, and dd"
 description: "A backup or backup is the safe copy of a digital file, a set of files, or all of the data considered important enough to be preserved."
 date: 2021-05-09
-lastmod: 2021-05-09
+lastmod: 2026-06-23
 author: "Pablo Jesús González Rubio"
 cover: "cover.png"
 coverAlt: "Tux!"
@@ -10,6 +10,8 @@ toc: true
 draft: false
 tags: [ "Linux" ]
 ---
+
+> **Linux series:** Users & Groups → [Filesystem](/posts/linux_filesystem/) → [Monitoring Processes](/posts/linux_processes/) → [System Auditing](/posts/linux_audit/) → **Backup** → [Startup & Shutdown](/posts/linux_startup/) → [Disk Quotas](/posts/linux_diskmanagement/) → [Security](/posts/linux_security/)
 
 A backup or backup is the safe copy of a digital file, a set of files, or all of the data considered important enough to be preserved.
 

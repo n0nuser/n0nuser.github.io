@@ -2,6 +2,7 @@
 title: "Shocker"
 description: "Writeup for Shocker machine from HTB"
 date: 2020-08-11
+lastmod: 2020-08-11
 author: "Pablo Jesús González Rubio"
 cover: "shocker.png"
 coverAlt: "Shocker icon"

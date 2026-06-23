@@ -572,6 +572,59 @@ article>pre,
   }
 }
 
+// Code copy-to-clipboard button
+.code-copy-btn {
+  background: var(--accent);
+  border-radius: $border-radius;
+  color: var(--dtl);
+
+  font-family: $body-font;
+  font-size: .75rem;
+
+  line-height: 1;
+
+  padding: 6px 10px;
+
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  z-index: 1;
+
+  opacity: 0;
+
+  transition:
+    background-color $change-transition,
+    color $change-transition,
+    opacity .2s ease-in-out,
+    outline-color .3s ease;
+
+  @include button-like;
+  @include letterpress(var(--lpress));
+
+  &:hover {
+    opacity: .75;
+  }
+
+  &.is-copied {
+    opacity: 1;
+  }
+}
+
+article>pre:hover .code-copy-btn,
+article>pre:focus-within .code-copy-btn,
+.highlight:hover .code-copy-btn,
+.highlight:focus-within .code-copy-btn,
+.code-copy-btn:focus,
+.code-copy-btn.is-copied {
+  opacity: 1;
+}
+
+@include respond-below($mobile-breakpoint) {
+  .code-copy-btn {
+    opacity: 1;
+  }
+}
+
 // TABLE
 .scroll {
 
@@ -1059,6 +1112,106 @@ summary {
       font-size: .85rem;
     }
   }
+}
+
+// Breadcrumbs
+.breadcrumbs {
+  margin: 0 0 .9rem;
+
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    font-size: .85rem;
+    color: var(--alt-fg);
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+
+    &:not(:last-child)::after {
+      content: '/';
+      margin: 0 .4rem;
+      opacity: .6;
+    }
+  }
+
+  a {
+    color: var(--alt-fg);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: .15rem;
+    text-underline-offset: .12em;
+
+    &:hover {
+      opacity: .75;
+    }
+  }
+
+  [aria-current="page"] {
+    font-weight: $body-bold-weight;
+    word-break: break-word;
+  }
+}
+
+// Post discovery: related posts, prev/next, back-to-all
+.related-posts {
+  margin: 3rem 0 1.5rem;
+
+  h2 {
+    margin-bottom: .9rem;
+  }
+}
+
+.post-pager {
+  margin: 1.5rem 0;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .9rem;
+    padding: 0;
+  }
+
+  li {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  a {
+    align-items: center;
+    display: flex;
+    gap: .6rem;
+    height: 100%;
+
+    word-break: break-word;
+  }
+
+  svg {
+    flex-shrink: 0;
+
+    fill: currentColor;
+
+    @include squared(14px);
+  }
+
+  .post-pager-next a {
+    justify-content: flex-end;
+    text-align: right;
+  }
+}
+
+@include respond-below($mobile-breakpoint) {
+  .post-pager ul {
+    flex-direction: column;
+  }
+}
+
+.back-to-all {
+  margin: 1.5rem 0 3rem;
 }
 
 .pagination {

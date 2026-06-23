@@ -1,5 +1,5 @@
 param(
-    [string]$HugoVersion = "0.159.1",
+    [string]$HugoVersion = "0.162.1",
     [switch]$PullLatest
 )
 

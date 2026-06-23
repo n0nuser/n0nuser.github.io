@@ -1,0 +1,64 @@
+{{ $page := . }}
+{{ $section := $page.CurrentSection }}
+
+<!-- Related posts: same section, shared tags, 3 max -->
+{{ $related := slice }}
+{{ with $page.Params.tags }}
+  {{ $myTags := . }}
+  {{ range where $section.RegularPages "Permalink" "!=" $page.Permalink }}
+    {{ $shared := intersect $myTags (.Params.tags | default slice) }}
+    {{ if gt (len $shared) 0 }}
+      {{ $related = $related | append (dict "page" . "shared" (len $shared)) }}
+    {{ end }}
+  {{ end }}
+  {{ $related = first 3 (sort $related "shared" "desc") }}
+{{ end }}
+
+{{ if gt (len $related) 0 }}
+  <nav class="related-posts" aria-label="{{ T "related_posts" }}">
+    <h2>{{ T "related_posts" }}</h2>
+    <ul class="posts">
+      {{ range $related }}
+        <li>
+          <a class="btn" href="{{ .page.RelPermalink }}">
+            <p><b>{{ .page.LinkTitle | emojify }}</b></p>
+            <span class="post-card-meta">
+              {{ if not .page.Date.IsZero }}<time datetime="{{ .page.Date.Format "2006-01-02" }}">{{ .page.Date.Format "2006-01-02" }}</time>{{ end }}
+              {{ partial "reading-time" .page }}
+            </span>
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+  </nav>
+{{ end }}
+
+<!-- Prev/next within section -->
+{{ $prev := $page.PrevInSection }}
+{{ $next := $page.NextInSection }}
+{{ if or $prev $next }}
+  <nav class="post-pager" aria-label="{{ T "post_navigation" }}">
+    <ul>
+      <li class="post-pager-prev">
+        {{ with $prev }}
+          <a class="btn" href="{{ .RelPermalink }}">
+            <svg aria-hidden="true" transform="rotate(180)"><use xlink:href="#angle-right"/></svg>
+            <span>{{ T "previous_post" }}<br><b>{{ .LinkTitle | emojify }}</b></span>
+          </a>
+        {{ end }}
+      </li>
+      <li class="post-pager-next">
+        {{ with $next }}
+          <a class="btn" href="{{ .RelPermalink }}">
+            <span>{{ T "next_post" }}<br><b>{{ .LinkTitle | emojify }}</b></span>
+            <svg aria-hidden="true"><use xlink:href="#angle-right"/></svg>
+          </a>
+        {{ end }}
+      </li>
+    </ul>
+  </nav>
+{{ end }}
+
+<p class="back-to-all">
+  <a class="btn" href="{{ $section.RelPermalink }}">{{ T "back_to_all" (dict "Title" $section.Title) }}</a>
+</p>

@@ -2,7 +2,7 @@
 title: "Bash Scripting Cheatsheet"
 description: "Bash scripting cheatsheet with common syntax, conditionals, loops, functions, and command-line patterns for quick shell automation tasks."
 date: 2019-10-22
-lastmod: 2020-08-06T00:50:52+02:00
+lastmod: 2026-06-23T00:00:00+02:00
 author: "Pablo Jesús González Rubio"
 cover: ""
 coverAlt: ""
@@ -227,7 +227,7 @@ FUNCTION_NAME paratemer1 ... parameterN
 
 A trap is a function to modify the program behaviour based on user keyboard combinations.
 
-i.e: When you pulse `Ctrl + C` the program usually aborts, that's because the Operative System sends a `SIGINT` signal to make it abort if it was a `SIGKILL` it would actually assassinate the program in the act without letting it finish normally. Well, with a *trap* you can alter that behaviour into calling a function. This has the advantage of doing some cleanup before the program ends for example.
+i.e: When you pulse `Ctrl + C` the program usually aborts, that's because the Operating System sends a `SIGINT` signal to make it abort if it was a `SIGKILL` it would actually assassinate the program in the act without letting it finish normally. Well, with a *trap* you can alter that behaviour into calling a function. This has the advantage of doing some cleanup before the program ends for example.
 It can also make a call to another function if it detects another type of signal like a `SIGCHLD`, when a child of a parent process has died.
 
 ```bash

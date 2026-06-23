@@ -1,8 +1,8 @@
 ---
-title: "Linux - Disk Space Management with Quotas"
+title: "How to Set Disk Quotas on Linux: Limiting User Storage"
 description: "Quotas are necessary as in a multi-user system limits allow to distribute space to each user. This way, everyone has the same conditions. As administrators, we don't want a user to upload all his movies to the system and block system resources for other users."
 date: 2021-05-10
-lastmod: 2021-05-10
+lastmod: 2026-06-23
 author: "Pablo Jesús González Rubio"
 cover: "cover.png"
 coverAlt: "Tux!"
@@ -10,6 +10,8 @@ toc: true
 draft: false
 tags: [ "Linux" ]
 ---
+
+> **Linux series:** Users & Groups → [Filesystem](/posts/linux_filesystem/) → [Monitoring Processes](/posts/linux_processes/) → [System Auditing](/posts/linux_audit/) → [Backup](/posts/linux_backup/) → [Startup & Shutdown](/posts/linux_startup/) → **Disk Quotas** → [Security](/posts/linux_security/)
 
 ## Introduction
 

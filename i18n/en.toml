@@ -37,6 +37,33 @@ other = "Return to text."
 [box_containing_code]
 other = "Box containing code sample."
 
+[copy_code]
+other = "Copy code to clipboard."
+
+[copy_code_done]
+other = "Copied!"
+
+[related_posts]
+other = "Related posts"
+
+[post_navigation]
+other = "Post navigation"
+
+[previous_post]
+other = "Previous"
+
+[next_post]
+other = "Next"
+
+[back_to_all]
+other = "Back to all {{ .Title }}"
+
+[breadcrumb_home]
+other = "Home"
+
+[breadcrumb_nav]
+other = "Breadcrumb"
+
 [box_containing_expression]
 other = "Box containing expression."
 

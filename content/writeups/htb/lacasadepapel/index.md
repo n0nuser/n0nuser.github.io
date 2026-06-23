@@ -2,6 +2,7 @@
 title: "LaCasaDePapel"
 description: "Writeup for LaCasaDePapel machine from HTB"
 date: 2020-09-04
+lastmod: 2020-09-04
 author: "Pablo Jesús González Rubio"
 cover: "lacasadepapel.png"
 coverAlt: "LaCasaDePapel icon"

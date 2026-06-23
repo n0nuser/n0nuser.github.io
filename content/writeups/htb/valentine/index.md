@@ -2,6 +2,7 @@
 title: "Valentine"
 description: "Writeup for Valentine machine from HTB"
 date: 2020-09-05
+lastmod: 2020-09-05
 author: "Pablo Jesús González Rubio"
 cover: "valentine.png"
 coverAlt: "Valentine icon"

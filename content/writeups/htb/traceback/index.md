@@ -2,6 +2,7 @@
 title: "Traceback"
 description: "Writeup for Traceback machine from HTB"
 date: 2020-08-09
+lastmod: 2020-08-09
 author: "Pablo Jesús González Rubio"
 cover: "traceback.png"
 coverAlt: "Traceback icon"

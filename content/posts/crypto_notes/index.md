@@ -2,12 +2,13 @@
 title: "Cryptocurrency notes"
 description: "Beginner-friendly cryptocurrency notes covering risk management, strategy basics, and practical lessons learned."
 date: 2021-11-22
-lastmod: 2021-11-22T11:11:52+02:00
+lastmod: 2026-06-23T00:00:00+02:00
 author: "Pablo Jesús González Rubio"
 cover: "cover.jpg"
 coverAlt: "Crypto"
 toc: true
 tags: [ "Crypto"]
+noindex: true
 ---
 
 ## Do's and Don'ts
@@ -25,7 +26,7 @@ Take into account your expenses and needs: food, electricity, vehicles, taxes, m
 > "There is no avarice without penalty" ~ Seneca
 
 Or like we say in my country: "La avaricia rompe el saco".
-your
+
 Being too greedy in an uptrend can cause to lose all benefits if it suddenly is oversold. It's **better to sell at a reasonable price** and be conservative in this aspect **and get some benefits** than lose a lot.
 
 {{< img "blok.png" "Bloktopia Graph" "border" >}}

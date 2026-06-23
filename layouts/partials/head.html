@@ -257,6 +257,7 @@ $highRes 0)).Permalink)) }}
 <!-- Will be replaced by JS anyway -->
 <meta name="theme-color" content="#222">
 
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
@@ -297,13 +298,9 @@ $highRes 0)).Permalink)) }}
 <!-- Schema Markup / Structured Data -->
 
 <!--
-  TODO
-  The lack of "datePublished" will throw an error,
-  but I don't know if leaving it as "0001-01-01" is any better.
-  
-  Also, there's something wrong with the Google's validation tool.
+  There's something wrong with the Google's validation tool.
   It's ignoring the "Person" type for https://schema.org/publisher.
-  
+
   Reference: https://www.drupal.org/project/schema_metatag/issues/3097526
 -->
 
@@ -321,7 +318,7 @@ $highRes 0)).Permalink)) }}
       {{ with .Scratch.Get "schemaCover" }}"image": {{ . }},{{ end }}
       "url": "{{ .Permalink }}",
       "inLanguage": "{{ .Site.Language.Lang }}",
-      "datePublished": "{{ .PublishDate.Format "2006-01-02" | safeHTML }}",
+      {{ if not .PublishDate.IsZero }}"datePublished": "{{ .PublishDate.Format "2006-01-02" | safeHTML }}",{{ end }}
       {{ with .Lastmod }}"dateModified": "{{ .Format "2006-01-02" | safeHTML }}",{{ end }}
       "wordCount" : "{{ .WordCount }}",
       "publisher": {
@@ -336,7 +333,29 @@ $highRes 0)).Permalink)) }}
       }
     }
   </script>
+{{ with .Params.howToSteps }}
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": {{ $currentTitle }},
+      {{ with $currentDesc }}"description": {{ . }},{{ end }}
+      "step": [
+        {{ range $i, $step := . }}
+        {{ if $i }},{{ end }}
+        {
+          "@type": "HowToStep",
+          "position": {{ add $i 1 }},
+          "name": {{ $step }},
+          "url": "{{ $.Permalink }}#{{ anchorize $step }}"
+        }
+        {{ end }}
+      ]
+    }
+  </script>
+{{ end }}
 {{ else }}
+{{ $searchPages := where .Site.RegularPages "Layout" "eq" "search" }}
 <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -345,10 +364,76 @@ $highRes 0)).Permalink)) }}
       "inLanguage": "{{ .Site.Language.Lang }}",
       "name": {{ .Site.Title }},
       "description": {{ .Site.Params.description | emojify }},
+      {{ if and .Site.Params.Search.enable (gt (len $searchPages) 0) }}
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "{{ (index $searchPages 0).Permalink }}?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      },
+      {{ end }}
       "publisher": {
         "@type": "Person",
         "name": "{{ .Site.Params.author }}"
       }
+    }
+  </script>
+{{ end }}
+
+<!-- Person / ProfilePage schema for home and about -->
+{{ if .IsHome }}
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "{{ .Site.Params.author }}",
+      {{ with .Site.Params.authorDesc }}"description": {{ . }},{{ end }}
+      "url": "{{ .Site.BaseURL }}"
+      {{ if gt (len $sameAs) 0 }},"sameAs": {{ $sameAs }}{{ end }}
+    }
+  </script>
+{{ else if and .File (eq .File.ContentBaseName "about") }}
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "{{ .Site.Params.author }}",
+        {{ with .Site.Params.authorDesc }}"description": {{ . }},{{ end }}
+        "url": "{{ .Site.BaseURL }}"
+        {{ if gt (len $sameAs) 0 }},"sameAs": {{ $sameAs }}{{ end }}
+      }
+    }
+  </script>
+{{ end }}
+
+<!-- Breadcrumb schema for deep pages -->
+{{ if and (not .IsHome) (ne .Kind "404") }}
+{{ $crumbs := slice (dict "name" (T "breadcrumb_home") "url" .Site.BaseURL) }}
+{{ range .Ancestors.Reverse }}
+  {{ if not .IsHome }}
+    {{ $crumbs = $crumbs | append (dict "name" (.LinkTitle | emojify) "url" .Permalink) }}
+  {{ end }}
+{{ end }}
+{{ $crumbs = $crumbs | append (dict "name" $currentTitle "url" .Permalink) }}
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {{ range $i, $crumb := $crumbs }}
+        {{ if $i }},{{ end }}
+        {
+          "@type": "ListItem",
+          "position": {{ add $i 1 }},
+          "name": {{ $crumb.name }},
+          "item": "{{ $crumb.url }}"
+        }
+        {{ end }}
+      ]
     }
   </script>
 {{ end }}

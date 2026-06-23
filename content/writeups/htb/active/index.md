@@ -2,6 +2,7 @@
 title: "Active"
 description: "Writeup for Active machine from HTB"
 date: 2018-10-18
+lastmod: 2018-10-18
 author: "Pablo Jesús González Rubio"
 cover: "active.png"
 coverAlt: "Active icon"
