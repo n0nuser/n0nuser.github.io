@@ -2,7 +2,7 @@
 title: "Wireguard Setup"
 description: "How to setup Wireguard server and client the easy way."
 date: 2022-07-27
-lastmod: 2022-07-27
+lastmod: 2026-06-23
 author: "Pablo Jesús González Rubio"
 cover: "cover.png"
 coverAlt: "WireGuard"

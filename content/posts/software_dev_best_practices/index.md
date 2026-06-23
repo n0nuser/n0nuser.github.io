@@ -2,7 +2,7 @@
 title: "Software Development Best Practices"
 description: "Software Development Best Practices including Agile, DevOps, CI/CD, TDD, BDD, DDD, Clean Code, SOLID, Design Patterns, Refactoring, Code Smells, Code Review, Pair Programming, Mob Programming, etc."
 date: 2023-10-17
-lastmod: 2023-10-17
+lastmod: 2026-06-23
 author: "Pablo Jesús González Rubio"
 cover: "cover.jpg"
 coverAlt: "Software Development Best Practices"

@@ -2,7 +2,7 @@
 title: "Cryptocurrency notes"
 description: "Beginner-friendly cryptocurrency notes covering risk management, strategy basics, and practical lessons learned."
 date: 2021-11-22
-lastmod: 2021-11-22T11:11:52+02:00
+lastmod: 2026-06-23T00:00:00+02:00
 author: "Pablo Jesús González Rubio"
 cover: "cover.jpg"
 coverAlt: "Crypto"

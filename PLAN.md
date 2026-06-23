@@ -76,19 +76,30 @@ High-impact, low-risk. Each is self-contained.
 Strong foundation already (titles, descriptions, canonical, OG/Twitter, Article + WebSite schema, RSS,
 sitemap, manifest, hreflang, sameAs). Close the gaps:
 
-- [ ] **Surface the 14 HTB writeups.** They exist under `content/writeups/htb/` but the nav is commented
+- [x] **Surface the 14 HTB writeups.** They exist under `content/writeups/htb/` but the nav is commented
       out in `config.toml` and nothing links to them internally. Add a `/writeups` index and/or nav entry.
-- [ ] **Topic-cluster internal linking.** Cross-link the Linux series (audit, backup, processes,
+      Uncommented/consolidated into a single top-level "HTB" nav entry -> `writeups/htb/` (weight 5); the
+      section already had a working `_index.md` list page, it just wasn't linked from the nav. Dropped the
+      dead `thm` nav stub since `content/writeups/thm/` doesn't exist.
+- [x] **Topic-cluster internal linking.** Cross-link the Linux series (audit, backup, processes,
       startup, users, filesystem, disk management, security) as a "series" so they reinforce each other.
+      Added a one-line "Linux series" breadcrumb-style blockquote at the top of each of the 8 posts,
+      ordered by date, with the current post bolded and `linux_users` (draft, unpublished) left unlinked.
 - [x] **Schema enhancements** in `layouts/partials/head.html`:
   - [x] Add `SearchAction` to the WebSite JSON-LD (sitelinks search box).
   - [x] Add `Person` / `ProfilePage` schema on home + about (reuse the existing `sameAs` array).
   - [x] Add `BreadcrumbList`.
   - [x] Add `HowTo` schema to step-by-step posts (`ssh`, `wireguard`, `emailserver`).
   - [x] Resolve the `datePublished` TODO already noted in the template.
-- [ ] **Title/description intent.** Rewrite terse titles toward search intent without losing voice
+- [x] **Title/description intent.** Rewrite terse titles toward search intent without losing voice
       (e.g. "Linux - Backup" -> "How to Back Up a Linux Server: rsync, tar, and Automated Snapshots").
-- [ ] **Freshness signals.** Add/refresh `lastmod` on cornerstone posts so they read as maintained.
+      Rewrote the 7 published Linux-series titles (left `linux_users` alone, still draft/thin). Descriptions
+      were already accurate per-post, so left as-is.
+- [x] **Freshness signals.** Add/refresh `lastmod` on cornerstone posts so they read as maintained.
+      Bumped `lastmod` to today on every post actually touched this session with a real content change:
+      the 8 Linux-series posts, `ssh`/`wireguard`/`emailserver` (got `howToSteps` in the schema pass),
+      and `Bash_Cheatsheet`/`crypto_notes`/`fyp`/`software_dev_best_practices` (copy/front-matter fixes
+      in Phase 4) — no blanket date-bumping on untouched posts.
 - [x] **Config consistency.** Fix "Pablo Gonzalez" (no accent) in `config.toml` description.
 
 ### Acceptance

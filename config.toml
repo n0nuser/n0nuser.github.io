@@ -299,30 +299,16 @@ weight = 4
 url = "uses/"
 
 [[languages.en.menu.main]]
+identifier = "htb"
+name = "HTB"
+weight = 5
+url = "writeups/htb/"
+
+[[languages.en.menu.main]]
 identifier = "posts"
 name = "Posts"
 weight = 6
 url = "posts/"
-
-# [[languages.en.menu.main]]
-# identifier = "htb"
-# name = "HTB"
-# weight = 6
-# url = "writeups/htb/"
-
-#[[languages.en.menu.main]]
-#  identifier = "htb"
-#  name = "HTB"
-#  url = "writeups/htb"
-#  parent = "writeups"
-#  weight = 1
-
-#[[languages.en.menu.main]]
-#  identifier = "thm"
-#  name = "THM"
-#  url = "writeups/thm"
-#  parent = "writeups"
-#  weight = 2
 
 [[languages.en.menu.main]]
 identifier = "tags"
