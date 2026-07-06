@@ -1212,6 +1212,13 @@ summary {
 
 .back-to-all {
   margin: 1.5rem 0 3rem;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 7.5px 18px 10.5px;
+  }
 }
 
 .pagination {
