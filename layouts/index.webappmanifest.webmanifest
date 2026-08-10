@@ -1,0 +1,34 @@
+{{- /*
+  Web app manifest, generated so the installed app's name and description stay
+  in sync with the site config instead of drifting in a hand-edited
+  static/manifest.json. Registered as the WebAppManifest output format in
+  config.toml; the <link rel=manifest> in head.html points at the result.
+
+  theme_color and background_color must agree with params.style.isDark, or the
+  splash screen flashes the wrong colour before the site paints.
+*/ -}}
+{{- $m := .Site.Params.manifest -}}
+{{- $dark := .Site.Params.Style.isDark -}}
+{{- $themeColor := $m.themeColor | default (cond $dark "#1f1f1f" "#faf9f6") -}}
+{{- $backgroundColor := $m.backgroundColor | default $themeColor -}}
+{{ dict
+  "name" (or $m.name .Site.Title)
+  "short_name" (or $m.shortName .Site.Title)
+  "description" (or $m.description .Site.Params.description)
+  "lang" .Site.Language.Lang
+  "theme_color" $themeColor
+  "background_color" $backgroundColor
+  "display" "standalone"
+  "orientation" "portrait"
+  "start_url" "/"
+  "scope" "/"
+  "icons" (slice
+    (dict "src" "/android-chrome-192x192.png" "type" "image/png" "sizes" "192x192" "purpose" "any")
+    (dict "src" "/android-chrome-512x512.png" "type" "image/png" "sizes" "512x512" "purpose" "any")
+    (dict "src" "/apple-touch-icon.png" "type" "image/png" "sizes" "180x180")
+    (dict "src" "/favicon-32x32.png" "type" "image/png" "sizes" "32x32")
+    (dict "src" "/favicon-16x16.png" "type" "image/png" "sizes" "16x16")
+    (dict "src" "/favicon.ico" "type" "image/x-icon" "sizes" "48x48")
+  )
+  | jsonify (dict "indent" "  ")
+}}

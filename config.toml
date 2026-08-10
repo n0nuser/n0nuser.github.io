@@ -11,6 +11,22 @@ enableInlineShortcodes = true
 [pagination]
 pagerSize = 7
 
+# The web app manifest is generated from this config rather than hand-edited in
+# static/, so the app name and description cannot drift from the site's own.
+# Template: layouts/index.webappmanifest.webmanifest
+[mediaTypes."application/manifest+json"]
+suffixes = ["webmanifest"]
+
+[outputFormats.WebAppManifest]
+mediaType = "application/manifest+json"
+baseName = "manifest"
+rel = "manifest"
+isPlainText = true
+notAlternative = true
+
+[outputs]
+home = ["HTML", "RSS", "WebAppManifest"]
+
 [minify.tdewolff.svg]
 keepNamespaces = ["", "x-bind"]
 
@@ -123,6 +139,14 @@ placeholder = "ie.: lorem ipsum"
 # Can also be set PER PAGE via front matter
 # There's no default value
 stopWords = ["a", "an", "and", "in", "the", "to", "was", "were", "with"]
+
+# Web app manifest. Consumed by layouts/index.webappmanifest.webmanifest.
+# name falls back to the site title; shortName is the label under an installed
+# home-screen icon, where roughly 12 characters survive before truncation.
+[params.manifest]
+shortName = "Pablo G."
+themeColor = "#1f1f1f"      # $dark-background in assets/scss/colors/variables.scss
+backgroundColor = "#1f1f1f"
 
 [params.style]
 

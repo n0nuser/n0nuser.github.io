@@ -243,8 +243,10 @@ $highRes 0)).Permalink)) }}
 <meta name="twitter:dnt" content="on">
 {{ end }}
 
-<!-- PWA Manifest -->
-<link rel="manifest" href="/manifest.json">
+<!-- PWA Manifest, generated from config.toml via layouts/index.webappmanifest.webmanifest -->
+{{ with .Site.GetPage "/" }}{{ with .OutputFormats.Get "WebAppManifest" }}
+<link rel="manifest" href="{{ .RelPermalink }}">
+{{ end }}{{ end }}
 
 <!-- Feed -->
 <link rel="alternate" type="application/rss+xml" href="{{ "index.xml" | relURL }}" title="{{ .Site.Title }}">
@@ -257,8 +259,25 @@ $highRes 0)).Permalink)) }}
 {{ end }}
 
 
-<!-- Will be replaced by JS anyway -->
-<meta name="theme-color" content="#222">
+<!--
+  Browser chrome colour before any JS runs. prepone.js later overwrites the
+  content of the FIRST theme-color meta with the active accent, so the value
+  emitted here must be the accent this page will settle on. Otherwise mobile
+  paints one colour and then visibly repaints to another.
+
+  The site default wins for the initial paint; the other scheme is offered as
+  a media-queried fallback for visitors whose OS preference differs and who
+  have not yet chosen a mode.
+-->
+{{ $darkAccent := .Site.Params.Style.darkAccent | default hugo.Data.default.style.darkAccent }}
+{{ $lightAccent := .Site.Params.Style.lightAccent | default hugo.Data.default.style.lightAccent }}
+{{ if .Site.Params.Style.isDark }}
+<meta name="theme-color" content="{{ $darkAccent }}">
+<meta name="theme-color" content="{{ $lightAccent }}" media="(prefers-color-scheme: light)">
+{{ else }}
+<meta name="theme-color" content="{{ $lightAccent }}">
+<meta name="theme-color" content="{{ $darkAccent }}" media="(prefers-color-scheme: dark)">
+{{ end }}
 
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">

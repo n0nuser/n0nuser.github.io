@@ -1,4 +1,4 @@
-const version = "1.0.0";
+const version = "1.1.0";
 
 /* https://wbaer.net/2022/05/setting-up-a-service-worker-with-hugo/ */
 const BASE_CACHE_FILES = [
@@ -8,7 +8,7 @@ const BASE_CACHE_FILES = [
     '/writeups/htb/',
     // Add files to the cache here
     '/css/main.min.css',
-    '/manifest.json',
+    '/manifest.webmanifest',
     '/android-chrome-192x192.png',
     '/android-chrome-512x512.png',
     '/apple-touch-icon.png',
