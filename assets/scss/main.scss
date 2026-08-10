@@ -1618,3 +1618,24 @@ html {
 @import 'custom';
 
   {{ end }}
+
+// Accessibility: honour the OS "reduce motion" preference.
+// People enable this for vestibular disorders, migraine triggers and motion
+// sensitivity. Near-zero durations rather than `none` keep `transitionend`
+// handlers firing, so anything waiting on a transition callback still runs.
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  // Anchor links in posts and the TOC should jump rather than smooth-scroll
+  html {
+    scroll-behavior: auto !important;
+  }
+}
