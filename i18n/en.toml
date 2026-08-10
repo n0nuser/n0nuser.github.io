@@ -162,3 +162,21 @@ other = "Run search."
 
 [search_input_title]
 other = "Search field. Accepts from {{ .minLength }} to {{ .maxLength }} characters."
+
+[not_found_explanation]
+other = "The page may have moved, or the address may have a typo."
+
+[not_found_recovery_heading]
+other = "Where to go next"
+
+[not_found_home_link]
+other = "Go to the homepage"
+
+[not_found_posts_link]
+other = "Browse all posts"
+
+[not_found_tags_link]
+other = "Browse by tag"
+
+[not_found_recent_posts]
+other = "Recent posts"

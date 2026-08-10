@@ -3,8 +3,42 @@
 <main>
   <h1>{{ .Site.Params.notFound.title | default hugo.Data.default.notFound.title }}</h1>
   <p>{{ .Site.Params.notFound.paragraph | default hugo.Data.default.notFound.paragraph }}</p>
+  <p>{{ T "not_found_explanation" }}</p>
   {{ with (.Site.Params.notFound.image | default hugo.Data.default.notFound.image) }}
-  <img src="{{ . }}" />
+  <!-- Decorative: an empty alt keeps assistive tech from announcing the filename -->
+  <img src="{{ . }}" alt="" />
+  {{ end }}
+
+  {{ partial "search-form" . }}
+
+  <h2>{{ T "not_found_recovery_heading" }}</h2>
+  <ul class="terms">
+    <li><a class="btn" href="{{ "/" | relURL }}">{{ T "not_found_home_link" }}</a></li>
+    {{ with .Site.GetPage "/posts" }}
+    <li><a class="btn" href="{{ .RelPermalink }}">{{ T "not_found_posts_link" }}</a></li>
+    {{ end }}
+    {{ if gt (len .Site.Taxonomies.tags) 0 }}
+    <li><a class="btn" href="{{ "/tags/" | relURL }}">{{ T "not_found_tags_link" }}</a></li>
+    {{ end }}
+  </ul>
+
+  {{ $recent := first 3 (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
+  {{ with $recent }}
+  <h2>{{ T "not_found_recent_posts" }}</h2>
+  <ul class="posts">
+    {{ range . }}
+    <li>
+      <a class="btn" href="{{ .RelPermalink }}">
+        <p><b>{{ .LinkTitle | emojify }}</b></p>
+        <span class="post-card-meta">
+          {{ if not .Date.IsZero }}<time datetime="{{ .Date | dateFormat "2006-01-02" }}">{{ .Date.Format "2006-01-02"
+            }}</time>{{ end }}
+          {{ partial "reading-time" . }}
+        </span>
+      </a>
+    </li>
+    {{ end }}
+  </ul>
   {{ end }}
 </main>
 
