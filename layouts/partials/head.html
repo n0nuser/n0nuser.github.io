@@ -186,8 +186,11 @@ $highRes 0)).Permalink)) }}
 
 {{ end -}}
 {{ else if .Site.Params.cover }}
-{{ with resources.Get (.Site.Params.cover | default "img/cover.jpg") }}
-<meta property="og:image" content="{{ (.Fill "1200x630").Permalink }}">
+{{ if not (resources.Get .Site.Params.cover) }}
+{{ errorf "params.cover %q was not found in assets/ — section, taxonomy and 404 pages would silently ship without an og:image" .Site.Params.cover }}
+{{ end }}
+{{ with resources.Get .Site.Params.cover }}
+<meta property="og:image" content="{{ (.Fill " 1200x630").Permalink }}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 {{ with $.Site.Params.coverAlt }}
