@@ -790,6 +790,29 @@ article>header {
   }
 }
 
+// Search result excerpts.
+// Scoped to #search-results so ordinary post lists keep their single-line
+// layout; here the card stacks so the snippet sits under the title.
+#search-results {
+  a {
+    flex-wrap: wrap;
+  }
+
+  .search-snippet {
+    flex-basis: 100%;
+    margin: .35rem 0 0;
+    font-size: .85rem;
+    opacity: .85;
+    word-break: break-word;
+
+    mark {
+      background: transparent;
+      color: inherit;
+      font-weight: 700;
+    }
+  }
+}
+
 // Not sure if I like this
 @include respond-below($mobile-breakpoint) {
   .posts a {

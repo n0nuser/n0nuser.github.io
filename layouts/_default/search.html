@@ -5,7 +5,7 @@
     {{ partial "search-form" . }}
 
     <h1>{{ T "search_title" }}</h1>
-    <section id="search-info">
+    <section id="search-info" role="status" aria-live="polite">
       <!-- Info -->
     </section>
 
@@ -13,7 +13,7 @@
       <!-- x-js-template -->
     </ul>
     
-    <script id=search-result-template type=text/x-js-template><li><a class=btn href='${link}'><p>${title}</p><span class=post-card-meta>${date}${readingTime}</span></a></li></script>
+    <script id=search-result-template type=text/x-js-template><li><a class=btn href='${link}'><p>${title}</p>${snippet}<span class=post-card-meta>${date}${readingTime}</span></a></li></script>
   
   </main>
 

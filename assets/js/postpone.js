@@ -14,7 +14,10 @@ const fuseOptions = {
   includeMatches: true,
   findAllMatches: true,
   shouldSort: true,
-  threshold: 0,
+  // 0 requires an exact match, which switches off the fuzzy matching Fuse
+  // exists to provide. .35 tolerates typos and plural/singular mismatches
+  // without drifting into unrelated results.
+  threshold: .35,
   ignoreLocation: true,
   maxPatternLength: {{ .Site.Params.Search.maxLength | default hugo.Data.default.search.maxLength }},
 minMatchCharLength: {{ .Site.Params.Search.minLength | default hugo.Data.default.search.minLength }},
@@ -45,11 +48,30 @@ function infoParagraph(text, className) {
   return p
 };
 
+// Onward links for dead ends, so a failed search is not the end of the road
+function recoveryLinks() {
+  const nav = document.createElement('p');
+  const posts = document.createElement('a');
+  posts.href = '{{ "/posts/" | relURL }}';
+  posts.textContent = '{{ T "search_browse_posts" }}';
+  const tags = document.createElement('a');
+  tags.href = '{{ "/tags/" | relURL }}';
+  tags.textContent = '{{ T "search_browse_tags" }}';
+  nav.appendChild(posts);
+  nav.appendChild(document.createTextNode(' · '));
+  nav.appendChild(tags);
+  return nav
+};
+
 if (searchQuery) {
 
   // Transfer text to search field
   document.querySelector('section.search-box input')
     .value = searchQuery;
+
+  // Doherty threshold: show progress rather than an empty region while the
+  // index is fetched.
+  info.replaceChildren(infoParagraph('{{ T "search_searching" }}'));
 
   executeSearch(searchQuery);
 } else {
@@ -57,20 +79,32 @@ if (searchQuery) {
 };
 
 
+function indexLoadFailed() {
+  info.replaceChildren(
+    infoParagraph('{{ T "search_index_error" }}', 'error'),
+    recoveryLinks()
+  )
+};
+
 function getJSON(url, fn) {
   const request = new XMLHttpRequest();
   request.open('GET', url, true);
   request.onload = function () {
     if (request.status >= 200 && request.status < 400) {
-      const data = JSON.parse(request.responseText);
+      let data;
+      try {
+        data = JSON.parse(request.responseText)
+      } catch (e) {
+        // A malformed index is an index problem, not an empty result set
+        indexLoadFailed();
+        return
+      }
       fn(data)
     } else {
-      info.replaceChildren(infoParagraph('{{ T "search_no_page_found" }}', 'error'));
+      indexLoadFailed()
     }
   };
-  request.onerror = function () {
-    info.replaceChildren(infoParagraph('{{ T "search_no_page_found" }}', 'error'));
-  };
+  request.onerror = indexLoadFailed;
   request.send()
 };
 
@@ -82,14 +116,12 @@ function executeSearch(searchQuery) {
   }};
 
 const pages = data;
-console.log("Data: " + data);
 const fuse = new Fuse(pages, fuseOptions);
-console.log("Fuse: " + fuse);
 const result = fuse.search(searchQuery);
-console.log("Result: " + result);
 
-// Reset info regarding the search and rebuild it from safe nodes.
-// The query is user-controlled, so it must never reach innerHTML.
+// Build the whole status region, then write it in a single replaceChildren so
+// the live region announces once instead of once per append. The query is
+// user-controlled, so it is set as text and never parsed as HTML.
 const infoNodes = [infoParagraph('{{ T "search_results_for" }}: ' + searchQuery)];
 
 if (result.length > 0) {
@@ -101,7 +133,9 @@ if (result.length > 0) {
     infoNodes.push(infoParagraph('{{ T "search_too_many" }}', 'error'))
   }
 } else {
-  infoNodes.push(infoParagraph('{{ T "search_no_page_found" }}', 'error'))
+  infoNodes.push(infoParagraph('{{ T "search_no_page_found" }}', 'error'));
+  infoNodes.push(infoParagraph('{{ T "search_no_results_help" }}'));
+  infoNodes.push(recoveryLinks())
 };
 
 info.replaceChildren(...infoNodes);
@@ -124,6 +158,44 @@ function escapeHTML(value) {
     .replace(/'/g, '&#39;')
 };
 
+// Build a short excerpt around the first content match, with the matched
+// substring emphasised, so users can tell why a result matched without
+// opening it. Everything is escaped before it reaches the template string.
+const SNIPPET_PADDING = 60;
+
+function buildSnippet(value) {
+  const matches = value.matches || [];
+  const match = matches.find(function (m) { return m.key === 'content' && m.indices && m.indices.length });
+
+  if (!match) {
+    // Fall back to the description, which is already a human-written summary
+    return value.item.description
+      ? '<p class=search-snippet>' + escapeHTML(value.item.description) + '</p>'
+      : ''
+  }
+
+  const text = value.item.content || '';
+
+  // Fuse returns [start, end] pairs; pick the longest, which is the most
+  // meaningful match rather than an incidental single character.
+  const indices = match.indices.slice().sort(function (a, b) {
+    return (b[1] - b[0]) - (a[1] - a[0])
+  });
+  const start = indices[0][0];
+  const end = indices[0][1] + 1;
+
+  const before = text.slice(Math.max(0, start - SNIPPET_PADDING), start);
+  const hit = text.slice(start, end);
+  const after = text.slice(end, end + SNIPPET_PADDING);
+
+  const prefix = start - SNIPPET_PADDING > 0 ? '…' : '';
+  const suffix = end + SNIPPET_PADDING < text.length ? '…' : '';
+
+  return '<p class=search-snippet>' + prefix + escapeHTML(before) +
+    '<mark>' + escapeHTML(hit) + '</mark>' +
+    escapeHTML(after) + suffix + '</p>'
+};
+
 // Populate results
 function populateResults(result) {
   result.forEach(function (value, key) {
@@ -144,7 +216,8 @@ function populateResults(result) {
       link: escapeHTML(value.item.permalink),
       date: value.item.date ? formatedDate : '',
       readingTime: readingTime,
-      title: escapeHTML(value.item.title)
+      title: escapeHTML(value.item.title),
+      snippet: buildSnippet(value)
     });
     document.getElementById('search-results').appendChild(htmlToElement(output))
   })

@@ -183,3 +183,18 @@ other = "Browse by tag"
 
 [not_found_recent_posts]
 other = "Recent posts"
+
+[search_searching]
+other = "Searching…"
+
+[search_index_error]
+other = "The search index could not be loaded. Please check your connection and reload the page."
+
+[search_no_results_help]
+other = "Try a different or more general term, or browse:"
+
+[search_browse_posts]
+other = "All posts"
+
+[search_browse_tags]
+other = "All tags"
