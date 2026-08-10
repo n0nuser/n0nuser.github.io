@@ -1,4 +1,7 @@
 ---
+slug: "software-development-best-practices"
+aliases:
+  - "/posts/software-dev-best-practices/"
 title: "Software Development Best Practices"
 description: "Software Development Best Practices including Agile, DevOps, CI/CD, TDD, BDD, DDD, Clean Code, SOLID, Design Patterns, Refactoring, Code Smells, Code Review, Pair Programming, Mob Programming, etc."
 date: 2023-10-17

@@ -1,4 +1,5 @@
 ---
+slug: "bash-aliases"
 title: "My Bash Aliases"
 description: "Curated Bash aliases to speed up daily Linux workflows, reduce repetitive commands, and improve terminal productivity."
 date: 2020-10-12
