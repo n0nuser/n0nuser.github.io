@@ -37,6 +37,14 @@ let searchQuery = param('q');
 // Search info section
 const info = document.getElementById('search-info');
 
+// Build a <p> whose text is set safely, never parsed as HTML
+function infoParagraph(text, className) {
+  const p = document.createElement('p');
+  if (className) { p.className = className }
+  p.textContent = text;
+  return p
+};
+
 if (searchQuery) {
 
   // Transfer text to search field
@@ -45,7 +53,7 @@ if (searchQuery) {
 
   executeSearch(searchQuery);
 } else {
-  info.innerHTML = '<p>{{ T "search_awaiting_search" }}</p>'
+  info.replaceChildren(infoParagraph('{{ T "search_awaiting_search" }}'))
 };
 
 
@@ -57,11 +65,11 @@ function getJSON(url, fn) {
       const data = JSON.parse(request.responseText);
       fn(data)
     } else {
-      info.innerHTML = '<p class=error>{{ T "search_no_page_found" }}</p>';
+      info.replaceChildren(infoParagraph('{{ T "search_no_page_found" }}', 'error'));
     }
   };
   request.onerror = function () {
-    info.innerHTML = '<p class=error>{{ T "search_no_page_found" }}</p>';
+    info.replaceChildren(infoParagraph('{{ T "search_no_page_found" }}', 'error'));
   };
   request.send()
 };
@@ -80,22 +88,23 @@ console.log("Fuse: " + fuse);
 const result = fuse.search(searchQuery);
 console.log("Result: " + result);
 
-// Reset info regarding the search
-info.innerHTML = '';
-
-info.innerHTML = '<p>{{ T "search_results_for" }}: ' + searchQuery + '</p>';
+// Reset info regarding the search and rebuild it from safe nodes.
+// The query is user-controlled, so it must never reach innerHTML.
+const infoNodes = [infoParagraph('{{ T "search_results_for" }}: ' + searchQuery)];
 
 if (result.length > 0) {
   if (result.length == 1) {
-    info.innerHTML += '<p>{{ T "search_one_page_found" }}.</p>'
+    infoNodes.push(infoParagraph('{{ T "search_one_page_found" }}.'))
   } else if (1 < result.length && result.length < limit + 1) {
-    info.innerHTML += '<p>' + result.length + ' {{ T "search_pages_found" }}.</p>'
+    infoNodes.push(infoParagraph(result.length + ' {{ T "search_pages_found" }}.'))
   } else {
-    info.innerHTML += '<p class=error>{{ T "search_too_many" }}</p>'
+    infoNodes.push(infoParagraph('{{ T "search_too_many" }}', 'error'))
   }
 } else {
-  info.innerHTML += '<p class=error>{{ T "search_no_page_found" }}</p>'
+  infoNodes.push(infoParagraph('{{ T "search_no_page_found" }}', 'error'))
 };
+
+info.replaceChildren(...infoNodes);
 
 if (0 < result.length && result.length < limit + 1) {
   populateResults(result)
@@ -103,16 +112,28 @@ if (0 < result.length && result.length < limit + 1) {
     })
   };
 
+// Escape a value before it is interpolated into the result template string.
+// These come from the site's own index.json rather than from the URL, but
+// escaping removes the whole class of problem and fixes titles containing '<'.
+function escapeHTML(value) {
+  return String(value == null ? '' : value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+};
+
 // Populate results
 function populateResults(result) {
   result.forEach(function (value, key) {
-    const content = value.item.content;
 
     // Date as it should be rendered if not null
-    const formatedDate = '<time datetime=' + value.item.date + '>' + value.item.date + '</time>';
+    const safeDate = escapeHTML(value.item.date);
+    const formatedDate = '<time datetime="' + safeDate + '">' + safeDate + '</time>';
 
     const readingTime = value.item.readingTime
-      ? '<span class=reading-time>' + value.item.readingTime + '</span>'
+      ? '<span class=reading-time>' + escapeHTML(value.item.readingTime) + '</span>'
       : '';
 
     // Pull template from hugo template definition
@@ -120,10 +141,10 @@ function populateResults(result) {
 
     // Replace values
     const output = render(templateDefinition, {
-      link: value.item.permalink,
+      link: escapeHTML(value.item.permalink),
       date: value.item.date ? formatedDate : '',
       readingTime: readingTime,
-      title: value.item.title
+      title: escapeHTML(value.item.title)
     });
     document.getElementById('search-results').appendChild(htmlToElement(output))
   })
