@@ -44,8 +44,8 @@ authorDesc = "Python backend engineer focused on reliable APIs and microservices
 # It will be used if the current page doesn't have a image cover
 # File will be picked from the "assets" directory
 # Comment the lines if you don't want to use it
-cover = "img/cover.webp"
-coverAlt = "Hi there! I'm a backend web developer based in Salamanca, Spain specializing in Python and Django."
+cover = "img/me.webp"
+coverAlt = "Portrait of Pablo González"
 
 # Shows a message in the footer about JavaScript being disabled
 # The default is false
