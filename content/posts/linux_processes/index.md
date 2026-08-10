@@ -1,4 +1,7 @@
 ---
+slug: "linux-process-management"
+aliases:
+  - "/posts/linux-processes/"
 title: "How to Monitor and Manage Linux Processes: ps, top, and Process Control"
 description: "Systems Monitoring is in charge of continuously monitoring different resources and services of the computer, to guarantee the required level of availability and alert administrators in case of failure. Its objective is to ensure that the system works correctly and to minimize the downtime of a service."
 date: 2021-04-25
@@ -11,7 +14,7 @@ draft: false
 tags: [ "Linux" ]
 ---
 
-> **Linux series:** Users & Groups → [Filesystem](/posts/linux_filesystem/) → **Monitoring Processes** → [System Auditing](/posts/linux_audit/) → [Backup](/posts/linux_backup/) → [Startup & Shutdown](/posts/linux_startup/) → [Disk Quotas](/posts/linux_diskmanagement/) → [Security](/posts/linux_security/)
+> **Linux series:** Users & Groups → [Filesystem](/posts/linux-filesystem-inodes-partitions/) → **Monitoring Processes** → [System Auditing](/posts/linux-system-auditing/) → [Backup](/posts/linux-server-backup/) → [Startup & Shutdown](/posts/linux-boot-process/) → [Disk Quotas](/posts/linux-disk-quotas/) → [Security](/posts/linux-hardening-guide/)
 
 ## Introduction
 

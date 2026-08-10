@@ -1,4 +1,5 @@
 ---
+slug: "data-exfiltration"
 title: "Data Exfiltration"
 description: "Data exfiltration techniques and command patterns used in post-exploitation to collect files, credentials, and sensitive host information."
 date: 2020-09-03

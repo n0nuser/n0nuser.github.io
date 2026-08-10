@@ -1,4 +1,7 @@
 ---
+slug: "rfid-13-56mhz-cloning"
+aliases:
+  - "/posts/rfid-1356/"
 title: "High Frequency (13.56 MHz)"
 description: "Practical 13.56 MHz RFID overview covering common card technologies, attack surface, and cloning/testing techniques for NFC access systems."
 date: 2020-06-28

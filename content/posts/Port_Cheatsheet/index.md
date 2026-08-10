@@ -1,4 +1,7 @@
 ---
+slug: "port-pentesting-cheatsheet"
+aliases:
+  - "/posts/port-cheatsheet/"
 title: "Port Cheatsheet"
 description: "Port pentesting cheatsheet for common services, with quick enumeration and exploitation tips for FTP, SSH, web, SMB, DNS, and database targets."
 date: 2019-10-09

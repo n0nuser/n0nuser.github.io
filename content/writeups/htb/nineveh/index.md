@@ -218,7 +218,7 @@ Taking this in account, now we have: the private SSH key and the public SSH key.
 
 Let's put each one in `id_rsa` and `id_rsa.pub` respectively.
 
-Looking at the nmap scan again there's no SSH port open, so that makes me think that we may have to knock some ports to open it. It's a security measure called [Port Knocking](../../../posts/port_cheatsheet/#22---ssh) which lets ports being closed until a user knocks other in some specific order.
+Looking at the nmap scan again there's no SSH port open, so that makes me think that we may have to knock some ports to open it. It's a security measure called [Port Knocking](../../../posts/port-pentesting-cheatsheet/#22---ssh) which lets ports being closed until a user knocks other in some specific order.
 
 
 Let's continue looking at other directories, on `/db`:
@@ -360,7 +360,7 @@ And reading `login.php` we can see the variables for the login were hardcoded in
 
 ## User - Amrois
 
-I uploaded `linpeas.sh` to `/tmp` (Via the HTTP serving file method, link to my [Data Exfiltration](/../../posts/data_exfiltration/) post) and ran it. Interesting things that caught my attention were:
+I uploaded `linpeas.sh` to `/tmp` (Via the HTTP serving file method, link to my [Data Exfiltration](/../../posts/data-exfiltration/) post) and ran it. Interesting things that caught my attention were:
 
 ```
 root      1290  0.8  0.2   8756  2224 ?        Ss   06:21   0:22 /usr/sbin/knockd -d -i ens33

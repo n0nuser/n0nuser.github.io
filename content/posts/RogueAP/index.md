@@ -1,4 +1,7 @@
 ---
+slug: "rogue-access-point"
+aliases:
+  - "/posts/rogueap/"
 title: "Rogue AP"
 description: "Rogue Access Point walkthrough covering fake hotspot setup, credential-capture flow, and practical wireless MITM testing considerations."
 date: 2019-11-24

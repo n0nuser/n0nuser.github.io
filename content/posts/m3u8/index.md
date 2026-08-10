@@ -1,4 +1,7 @@
 ---
+slug: "download-m3u8-streams"
+aliases:
+  - "/posts/m3u8/"
 title: "Download videos and streams via m3u8"
 description: "Guide to downloading video streams from m3u8 playlists using VLC and command-line methods, with troubleshooting for segmented media."
 date: 2020-10-09
