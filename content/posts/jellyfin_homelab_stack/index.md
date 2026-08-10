@@ -4,6 +4,10 @@ description: "How my server started as a book library with Calibre and Kavita, t
 date: 2026-05-08
 lastmod: 2026-05-08
 author: "Pablo Jesús González Rubio"
+# TODO: drop a cover image into this bundle and uncomment both lines below.
+# Without it this post falls back to the site-wide cover for og:image.
+# cover: "cover.webp"
+# coverAlt: "The Jellyfin web interface showing the media library"
 toc: true
 draft: false
 tags: [ "Linux", "Self-Hosting" ]
