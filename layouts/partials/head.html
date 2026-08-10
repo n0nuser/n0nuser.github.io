@@ -170,14 +170,14 @@
 {{ end }}
 
 {{- with .Resources.GetMatch $file }}
-<meta property="og:image" content="{{ (.Fill " 1200x630").Permalink }}">
+<meta property="og:image" content="{{ (.Fill "1200x630").Permalink }}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 {{ with $.Params.coverAlt }}
 <meta property="og:image:alt" content="{{ . }}">
 {{ end }}
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="{{ (.Fill " 1280x640").Permalink }}">
+<meta name="twitter:image" content="{{ (.Fill "1280x640").Permalink }}">
 
 {{ if and (in $.Site.Params.mainSections $.Section) (not .Params.sitemapExclude) }}
 {{ $.Scratch.Set "schemaCover" (slice ((.Fill "1280x640").Permalink) ((.Fill "1200x630").Permalink) ((.Resize (index
@@ -187,14 +187,14 @@ $highRes 0)).Permalink)) }}
 {{ end -}}
 {{ else if .Site.Params.cover }}
 {{ with resources.Get (.Site.Params.cover | default "img/cover.jpg") }}
-<meta property="og:image" content="{{ (.Fill " 1200x630").Permalink }}">
+<meta property="og:image" content="{{ (.Fill "1200x630").Permalink }}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 {{ with $.Site.Params.coverAlt }}
 <meta property="og:image:alt" content="{{ . }}">
 {{ end }}
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="{{ (.Fill " 1280x640").Permalink }}">
+<meta name="twitter:image" content="{{ (.Fill "1280x640").Permalink }}">
 
 {{ if and (in $.Site.Params.mainSections $.Section) (not .Params.sitemapExclude) }}
 {{ $.Scratch.Set "schemaCover" (slice ((.Fill "1280x640").Permalink) ((.Fill "1200x630").Permalink) ((.Resize (index
@@ -209,30 +209,30 @@ $highRes 0)).Permalink)) }}
 <meta property="og:type" content="article">
 
 {{ if not .Date.IsZero }}
-<meta property="article:published_time" content="{{ .PublishDate.Format " 2006-01-02" | safeHTML }}">
-<meta property="article:modified_time" content="{{ .Lastmod.Format " 2006-01-02" | safeHTML }}">
-<meta property="og:updated_time" content="{{ .Lastmod.Format " 2006-01-02" | safeHTML }}">
+<meta property="article:published_time" content="{{ .PublishDate.Format "2006-01-02" | safeHTML }}">
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02" | safeHTML }}">
+<meta property="og:updated_time" content="{{ .Lastmod.Format "2006-01-02" | safeHTML }}">
 {{ end }}
 
 {{ with .Params.author }}
 <meta property="article:author" content="{{ . }}">
 {{ end }}
 
-{{ with or .Page.Params.Social.Centralized .Site.Params.Social.Centralized.twitter }}
-<meta name="twitter:creator" content="{{ printf " @%s" (index . 0) }}">
+{{ with .Site.Params.Social.Centralized.twitter }}
+<meta name="twitter:creator" content="@{{ index . 0 }}">
 {{ end}}
 
 {{ else }}
 <meta property="og:type" content="website">
 {{ end -}}
 
-{{ with or .Page.Params.Social.Centralized .Site.Params.Social.Centralized.twitter }}
-<meta name="twitter:site" content="{{ printf " @%s" (index . 0) }}">
+{{ with .Site.Params.Social.Centralized.twitter }}
+<meta name="twitter:site" content="@{{ index . 0 }}">
 {{ end }}
 
 
 
-{{ with .Site.Params.locale }}
+{{ with .Site.Language.Lang }}
 <meta property="og:locale" content="{{ . }}">
 {{ end }}
 
@@ -439,7 +439,7 @@ $highRes 0)).Permalink)) }}
 {{ end }}
 
 <!-- Main CSS -->
-{{ $main := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | toCSS | minify }}
+{{ $main := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | toCSS | minify | resources.Fingerprint "sha512" }}
 <link rel="stylesheet" href="{{ $main.RelPermalink }}" integrity="{{ $main.Data.Integrity }}">
 
 <!-- If JS is disabled -->
