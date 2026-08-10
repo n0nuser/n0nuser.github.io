@@ -7,7 +7,7 @@ author: "Pablo Jesús González Rubio"
 imgPath: "."
 disableTitleSeparator: false
 cover: "me.webp"
-coverAlt: "Pablo González Image"
+coverAlt: "Portrait of Pablo González"
 social:
   centralized:
     github: ["n0nuser"]
