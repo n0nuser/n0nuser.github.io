@@ -73,6 +73,9 @@ other = "Published on"
 [last_updated_on]
 other = "Last updated on"
 
+[updated_on]
+other = "updated"
+
 [min_read]
 other = "min read"
 
