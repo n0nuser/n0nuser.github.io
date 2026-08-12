@@ -4,6 +4,12 @@
 {{ $darkAccent:= .Site.Params.Style.darkAccent | default hugo.Data.default.style.darkAccent }}
 {{ $lightAccent:= .Site.Params.Style.lightAccent | default hugo.Data.default.style.lightAccent }}
 
+// Page background colors. theme-color paints the browser chrome, so it tracks
+// the background rather than the accent, matching the tags in head.html and
+// manifest.webmanifest. See issue #57.
+{{ $darkBg:= .Site.Params.manifest.themeColor | default "#1f1f1f" }}
+{{ $lightBg:= .Site.Params.manifest.lightThemeColor | default "#faf9f6" }}
+
 // Get CSS transition
 {{ $changeTransition:= .Site.Params.Style.changeTransition | default hugo.Data.default.style.changeTransition }}
 
@@ -20,7 +26,17 @@ const MODE_KEY = 'isDark';
 const MODE_SOURCE_KEY = 'isDarkSource';
 
 const SHEET = document.documentElement.style;
-const META_THEME_COLOR = document.querySelector('meta[name=theme-color]');
+
+// Selected by id, not position: head.html emits a media-queried theme-color
+// first, so 'meta[name=theme-color]' would match the wrong element.
+const META_THEME_COLOR = document.getElementById('theme-color-active');
+const DARK_BACKGROUND = '{{ $darkBg }}';
+const LIGHT_BACKGROUND = '{{ $lightBg }}';
+
+// The chrome colour for whichever mode is currently active.
+function getBackground() {
+  return ROOT.dataset.mode === 'dark' ? DARK_BACKGROUND : LIGHT_BACKGROUND;
+};
 
 // Set the dark
 function setDark() {
@@ -104,14 +120,20 @@ var activeAccent = getAccent();
 // Should mitigate any flickering
 SHEET.setProperty('--accent', activeAccent);
 
-// Also meta-theme cuz, why not
-META_THEME_COLOR.setAttribute('content', activeAccent);
+// Keep the browser chrome on the page background for the active mode.
+function updateThemeColor() {
+  if (META_THEME_COLOR) {
+    META_THEME_COLOR.setAttribute('content', getBackground());
+  }
+};
+
+updateThemeColor();
 
 function updateAccent() {
   var activeAccent = getAccent();
 
   SHEET.setProperty('--accent', activeAccent);
-  META_THEME_COLOR.setAttribute('content', activeAccent);
+  updateThemeColor();
 };
 
 document.addEventListener('DOMContentLoaded', function () {

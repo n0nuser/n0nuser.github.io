@@ -260,23 +260,29 @@ $highRes 0)).Permalink)) }}
 
 
 <!--
-  Browser chrome colour before any JS runs. prepone.js later overwrites the
-  content of the FIRST theme-color meta with the active accent, so the value
-  emitted here must be the accent this page will settle on. Otherwise mobile
-  paints one colour and then visibly repaints to another.
+  Browser chrome colour before any JS runs.
 
-  The site default wins for the initial paint; the other scheme is offered as
-  a media-queried fallback for visitors whose OS preference differs and who
-  have not yet chosen a mode.
+  theme-color is meant to blend the browser UI into the page, so these are the
+  page BACKGROUND tokens ($dark-background / $light-background in
+  assets/scss/colors/variables.scss), not the accent — the accent is a
+  foreground colour and painting the chrome with it inverts the chrome against
+  the page it sits above. The default is read from params.manifest.themeColor
+  so the head and manifest.webmanifest cannot drift apart (see issue #41).
+
+  Ordering matters: the user agent takes the FIRST theme-color whose media
+  matches, and an element with no media attribute always matches. The
+  media-queried fallback for the opposite scheme must therefore come first,
+  otherwise it can never apply. prepone.js targets #theme-color-active by id
+  rather than by position, so the two cannot drift.
 -->
-{{ $darkAccent := .Site.Params.Style.darkAccent | default hugo.Data.default.style.darkAccent }}
-{{ $lightAccent := .Site.Params.Style.lightAccent | default hugo.Data.default.style.lightAccent }}
+{{ $darkBg := .Site.Params.manifest.themeColor | default "#1f1f1f" }}
+{{ $lightBg := .Site.Params.manifest.lightThemeColor | default "#faf9f6" }}
 {{ if .Site.Params.Style.isDark }}
-<meta name="theme-color" content="{{ $darkAccent }}">
-<meta name="theme-color" content="{{ $lightAccent }}" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="{{ $lightBg }}" media="(prefers-color-scheme: light)">
+<meta id="theme-color-active" name="theme-color" content="{{ $darkBg }}">
 {{ else }}
-<meta name="theme-color" content="{{ $lightAccent }}">
-<meta name="theme-color" content="{{ $darkAccent }}" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="{{ $darkBg }}" media="(prefers-color-scheme: dark)">
+<meta id="theme-color-active" name="theme-color" content="{{ $lightBg }}">
 {{ end }}
 
 <meta name="mobile-web-app-capable" content="yes">
@@ -470,12 +476,12 @@ $highRes 0)).Permalink)) }}
   {{ $darkAccent := .Site.Params.Style.darkAccent | default hugo.Data.default.style.darkAccent }}
   {{ $lightAccent := .Site.Params.Style.lightAccent | default hugo.Data.default.style.lightAccent }}
 
-  <!-- Not properly tested? -->
-  <meta name="theme-color" content="{{ $darkAccent }}" {{ if .Site.Params.Style.isDark
-    }}media="(prefers-color-scheme: dark)" {{ end }}>
-  <meta name="theme-color" content="{{ $lightAccent }}" {{ if not .Site.Params.Style.isDark
-    }}media="(prefers-color-scheme: light)" {{ end }}>
-
+  <!--
+    No theme-color here. Nothing about the tags in <head> depends on JS, so they
+    already cover the no-JS case, and anything emitted this late in tree order
+    could never win the first-match lookup anyway. Only the --accent fallback
+    below is actually needed, since that is what prepone.js would have set.
+  -->
   <style>
     html {
       --accent: {{ if .Site.Params.Style.isDark }}{{ $darkAccent }}{{ else }}{{ $lightAccent }}{{ end }};

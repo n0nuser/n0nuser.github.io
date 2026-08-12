@@ -147,6 +147,9 @@ stopWords = ["a", "an", "and", "in", "the", "to", "was", "were", "with"]
 shortName = "Pablo G."
 themeColor = "#1f1f1f"      # $dark-background in assets/scss/colors/variables.scss
 backgroundColor = "#1f1f1f"
+# Chrome colour for light mode. Only the head tags and prepone.js read this;
+# the manifest declares a single theme_color, which stays the dark default.
+lightThemeColor = "#faf9f6" # $light-background in the same file
 
 [params.style]
 
