@@ -1,7 +1,5 @@
 ---
 slug: "linux-server-backup"
-aliases:
-  - "/posts/linux-backup/"
 title: "How to Back Up a Linux Server: rsync, tar, and dd"
 description: "A backup or backup is the safe copy of a digital file, a set of files, or all of the data considered important enough to be preserved."
 date: 2021-05-09

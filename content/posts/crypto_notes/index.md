@@ -1,7 +1,5 @@
 ---
 slug: "cryptocurrency-notes"
-aliases:
-  - "/posts/crypto-notes/"
 title: "Cryptocurrency notes"
 description: "Beginner-friendly cryptocurrency notes covering risk management, strategy basics, and practical lessons learned."
 date: 2021-11-22

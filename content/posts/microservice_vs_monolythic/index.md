@@ -1,7 +1,5 @@
 ---
 slug: "microservices-vs-monolith"
-aliases:
-  - "/posts/microservice-vs-monolythic/"
 title: "Microservices vs. Monolithic: A Friendly Guide for Backend Developers"
 description: "A comparison between microservices and monolithic architectures."
 date: 2024-03-01

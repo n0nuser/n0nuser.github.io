@@ -1,7 +1,5 @@
 ---
 slug: "badusb-digispark-rubber-ducky"
-aliases:
-  - "/posts/rubberspark/"
 title: "RubberSpark"
 description: "BadUSB with a cheap Arduino DigiSpark! (4€)"
 date: 2021-03-23

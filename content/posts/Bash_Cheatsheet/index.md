@@ -1,7 +1,5 @@
 ---
 slug: "bash-scripting-cheatsheet"
-aliases:
-  - "/posts/bash-cheatsheet/"
 title: "Bash Scripting Cheatsheet"
 description: "Bash scripting cheatsheet with common syntax, conditionals, loops, functions, and command-line patterns for quick shell automation tasks."
 date: 2019-10-22

@@ -1,7 +1,5 @@
 ---
 slug: "rfid-125khz-cloning"
-aliases:
-  - "/posts/rfid-125/"
 title: "Low Frequency (125 KHz)"
 description: "Introduction to 125 KHz low-frequency RFID basics, attack surface, and practical cloning/testing notes for common access-control tags."
 date: 2020-06-28

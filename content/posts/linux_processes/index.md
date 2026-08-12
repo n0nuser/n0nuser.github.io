@@ -1,7 +1,5 @@
 ---
 slug: "linux-process-management"
-aliases:
-  - "/posts/linux-processes/"
 title: "How to Monitor and Manage Linux Processes: ps, top, and Process Control"
 description: "Systems Monitoring is in charge of continuously monitoring different resources and services of the computer, to guarantee the required level of availability and alert administrators in case of failure. Its objective is to ensure that the system works correctly and to minimize the downtime of a service."
 date: 2021-04-25

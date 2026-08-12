@@ -1,7 +1,5 @@
 ---
 slug: "linux-hardening-guide"
-aliases:
-  - "/posts/linux-security/"
 title: "Linux Hardening Guide: SUID, SGID, and Security Tools Checklist"
 description: "Today there are numerous attack strategies and patterns: ramsonware,DDoS, rootkits, cryptomining programs, botnets... including physical attacks. In this post, I'll try to show you numerous things to take in consideration when hardening a Linux system."
 date: 2021-06-12
