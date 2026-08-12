@@ -1,7 +1,5 @@
 ---
 slug: "linux-users-and-groups"
-aliases:
-  - "/posts/linux-users/"
 title: "Linux - Managing users and groups"
 description: "Notes on Linux user and group administration, including finding orphaned files left behind by deleted users."
 date: 2021-03-21

@@ -1,7 +1,5 @@
 ---
 slug: "linux-filesystem-inodes-partitions"
-aliases:
-  - "/posts/linux-filesystem/"
 title: "Linux Filesystem Explained: Inodes, Partitions, and fstab"
 description: "Linux filesystem fundamentals: inodes, directory hierarchy, partitions, and essential commands for navigating and managing storage."
 date: 2021-04-07
