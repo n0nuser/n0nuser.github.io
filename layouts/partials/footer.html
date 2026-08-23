@@ -38,10 +38,14 @@
   </button>
 </section>
 
+<!-- Service worker: templated so the fingerprinted stylesheet path is injected
+     at build time instead of precaching a 404 (issue #62). -->
+{{ $main := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | toCSS | minify | resources.Fingerprint "sha512" }}
+{{ $sw := resources.Get "js/sw.js" | resources.ExecuteAsTemplate "sw.js" (dict "cssUrl" $main.RelPermalink) }}
 <script>
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-      .register('/sw.js', { scope: '/' })
+      .register('{{ $sw.RelPermalink }}', { scope: '/' })
       .then(() => {
         console.info('Service Worker Registered');
       }, err => console.error("Service Worker registration failed: ", err));
