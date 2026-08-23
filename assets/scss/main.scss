@@ -114,6 +114,10 @@ body {
     &:hover {
       opacity: .75;
     }
+
+    &:active {
+      opacity: .55;
+    }
   }
 
   background: var(--bg);
@@ -251,6 +255,10 @@ body {
           transform: scale(1.2);
         }
 
+        &:active {
+          transform: scale(.95);
+        }
+
         // HACK
         // Override Firefox unnecessary extra inner outline
         &::-moz-focus-inner {
@@ -273,7 +281,7 @@ body a,
 .outline-dashed {
   outline: 2px dashed transparent;
 
-  &:focus {
+  &:focus-visible {
     outline-color: var(--accent);
   }
 }
@@ -567,7 +575,7 @@ article>pre,
 
   outline: 3px solid transparent;
 
-  &:focus {
+  &:focus-visible {
     outline-color: var(--accent);
   }
 }
@@ -614,7 +622,7 @@ article>pre:hover .code-copy-btn,
 article>pre:focus-within .code-copy-btn,
 .highlight:hover .code-copy-btn,
 .highlight:focus-within .code-copy-btn,
-.code-copy-btn:focus,
+.code-copy-btn:focus-visible,
 .code-copy-btn.is-copied {
   opacity: 1;
 }
@@ -832,7 +840,7 @@ article>header {
   overflow-x: auto;
   padding: 15px 30px;
 
-  &:focus {
+  &:focus-visible {
     border: 1px solid $box-border;
   }
 }
@@ -895,7 +903,7 @@ video {
     border-color $change-transition,
     outline-color .3s ease;
 
-  &:focus,
+  &:focus-visible,
   &:hover {
     border-color: var(--accent);
     outline-color: var(--accent);
@@ -1329,7 +1337,7 @@ summary {
 
   outline: 2px solid transparent;
 
-  &:focus {
+  &:focus-visible {
     outline-color: var(--accent);
   }
 }
@@ -1599,7 +1607,7 @@ html {
 
   {{ if .Site.Params.Style.hideAnchors }}
 @include respond-above($mobile-breakpoint) {
-  a.anchor:not(:focus) {
+  a.anchor:not(:focus-visible) {
     opacity: 0;
   }
 
@@ -1609,7 +1617,7 @@ html {
 
   @for $i from 2 through 6 {
 
-    h#{$i}>a:focus+a.anchor,
+    h#{$i}>a:focus-visible+a.anchor,
     h#{$i}:hover>a.anchor {
       @extend %visible;
     }

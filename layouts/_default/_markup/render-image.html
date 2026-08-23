@@ -36,7 +36,7 @@
       data-srcset="{{ $highRes.RelPermalink }} {{ index $imageProc.highRes 1 }}, {{ $mediumRes.RelPermalink }} {{ index $imageProc.mediumRes 1 }}, {{ $lowRes.RelPermalink }} {{ index $imageProc.lowRes 1 }}"
       src="{{ $encodedPlaceholder }}"
       data-src="{{ $mediumRes.RelPermalink }}"
-      {{ with $altText }}alt="{{ . }}"{{ end }}
+       alt="{{ $altText }}"
     />
 
     <noscript>
@@ -44,7 +44,7 @@
         {{ with $class }}class="{{ . }}"{{ end }}
         srcset="{{ $highRes.RelPermalink }} {{ index $imageProc.highRes 1 }}, {{ $mediumRes.RelPermalink }} {{ index $imageProc.mediumRes 1 }}, {{ $lowRes.RelPermalink }} {{ index $imageProc.lowRes 1 }}"
         src="{{ $encodedPlaceholder }}"
-        {{ with $altText }}alt="{{ . }}"{{ end }}
+         alt="{{ $altText }}"
       />
     </noscript>
 
@@ -63,14 +63,14 @@
       class="lazyload {{ $class }}"
       src="{{ $encodedPlaceholder }}"
       data-src="{{ $webp.RelPermalink }}"
-      {{ with $altText }}alt="{{ . }}"{{ end }}
+       alt="{{ $altText }}"
     />
 
     <noscript>
       <img
         {{ with $class }}class="{{ . }}"{{ end }}
         src="{{ $webp.RelPermalink }}"
-        {{ with $altText }}alt="{{ . }}"{{ end }}
+         alt="{{ $altText }}"
       />
     </noscript>
     
@@ -83,14 +83,14 @@
       class="lazyload {{ $class }}"
       src="{{ $encodedPixel }}"
       data-src="{{ . }}"
-      {{ with $altText }}alt="{{ . }}"{{ end }}
+       alt="{{ $altText }}"
     />
     
     <noscript>
       <img
         {{ with $class }}class="{{ . }}"{{ end }}
         src="{{ . }}"
-        {{ with $altText }}alt="{{ . }}"{{ end }}
+         alt="{{ $altText }}"
       />
     </noscript>
   
