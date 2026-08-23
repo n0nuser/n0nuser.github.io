@@ -1,6 +1,6 @@
 ---
-title: "Shocker"
-description: "Writeup for Shocker machine from HTB"
+title: "Shocker - HTB Writeup: Shellshock to root"
+description: "An HTB Shocker writeup covering CGI enumeration, Shellshock exploitation, and privilege escalation to root."
 date: 2020-08-11
 lastmod: 2020-08-11
 author: "Pablo Jesús González Rubio"

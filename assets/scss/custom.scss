@@ -139,6 +139,12 @@ body > header {
       &:hover {
         opacity: 0.75;
       }
+
+      &.site-nav-link--active {
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 0.12em;
+      }
     }
 
     .site-nav-search {

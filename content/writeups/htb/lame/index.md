@@ -1,6 +1,6 @@
 ---
-title: "Lame"
-description: "Writeup for Lame machine from HTB"
+title: "Lame - HTB Writeup: FTP and Samba exploitation"
+description: "An HTB Lame writeup covering FTP and Samba enumeration, including vulnerable service exploitation with and without Metasploit."
 date: 2020-07-12
 lastmod: 2020-07-12
 author: "Pablo Jesús González Rubio"

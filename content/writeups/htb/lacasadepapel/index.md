@@ -1,6 +1,6 @@
 ---
-title: "LaCasaDePapel"
-description: "Writeup for LaCasaDePapel machine from HTB"
+title: "LaCasaDePapel - HTB Writeup: LFI and client certificate abuse"
+description: "An HTB LaCasaDePapel writeup covering PSYSH, client certificate authentication, local file inclusion, and root escalation."
 date: 2020-09-04
 lastmod: 2020-09-04
 author: "Pablo Jesús González Rubio"

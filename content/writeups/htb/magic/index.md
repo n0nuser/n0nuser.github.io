@@ -1,6 +1,6 @@
 ---
-title: "Magic"
-description: "Writeup for Magic machine from HTB"
+title: "Magic - HTB Writeup: SQL login bypass and image upload shell"
+description: "An HTB Magic writeup covering SQL authentication bypass, an image upload flaw, and privilege escalation to root."
 date: 2020-08-03
 lastmod: 2020-08-03
 author: "Pablo Jesús González Rubio"

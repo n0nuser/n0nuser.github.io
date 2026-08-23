@@ -20,7 +20,7 @@
       {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
     {{ end }}
 
-    {{ range .Site.RegularPages }}
+    {{ range where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
       {{ if not .Params.sitemapExclude }}
         <item>
           <title>{{ .Title | emojify }}</title>

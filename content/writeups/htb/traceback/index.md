@@ -1,6 +1,6 @@
 ---
-title: "Traceback"
-description: "Writeup for Traceback machine from HTB"
+title: "Traceback - HTB Writeup: Web shell and sudo Lua escape"
+description: "An HTB Traceback writeup covering exposed web shell source, credential discovery, and a sudo Lua escape to root."
 date: 2020-08-09
 lastmod: 2020-08-09
 author: "Pablo Jesús González Rubio"
@@ -155,4 +155,3 @@ When performing an SSH, `pspy` shows:
 So taking this into account I could modify the `00-header` with a reverse shell and connect again (have to be in less than 30 secs as cron is updating the files forever) with SSH while listening on the port we choose, in my case 3333. And... voilá!
 
 {{< img "root.png" "root" "border" >}}
-
