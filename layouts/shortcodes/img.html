@@ -47,11 +47,11 @@
 {{ end }}
 
 <img class="lazyload {{ $class }}" data-srcset='{{ delimit $outputSet ", " }}' src="{{ $encodedPlaceholder }}"
-  data-src="{{ (.Resize (printf "%s webp" $mediumRes)).RelPermalink }}" {{ with $altText }}alt="{{ . }}" {{ end }} {{ with $width
+  data-src="{{ (.Resize (printf "%s webp" $mediumRes)).RelPermalink }}" alt="{{ $altText }}" {{ with $width
   }}width="{{ . }}" {{ end }} />
 
 <noscript>
   <img {{ with $class }}class="{{ . }}" {{ end }} srcset='{{ delimit $outputSet ", " }}' src="{{ $encodedPlaceholder }}"
-    {{ with $altText }}alt="{{ . }}" {{ end }} />
+    alt="{{ $altText }}" />
 </noscript>
 {{ end }}

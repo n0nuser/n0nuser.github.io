@@ -65,16 +65,16 @@
   src="{{ (.Resize (printf "%s webp" $mediumRes)).RelPermalink }}"
   loading="eager"
   fetchpriority="high"
-  {{ with $altText }}alt="{{ . }}"{{ end }}
+  alt="{{ $altText }}"
   {{ with $width }}width="{{ . }}"{{ end }} />
 {{ else }}
 <img class="lazyload {{ $class }} roundedImage" data-srcset='{{ delimit $outputSet ", " }}'
-  src="{{ $encodedPlaceholder }}" data-src="{{ (.Resize (printf "%s webp" $mediumRes)).RelPermalink }}" {{ with $altText }}alt="{{ . }}" {{
-  end }} {{ with $width }}width="{{ . }}" {{ end }} />
+  src="{{ $encodedPlaceholder }}" data-src="{{ (.Resize (printf "%s webp" $mediumRes)).RelPermalink }}"
+  alt="{{ $altText }}" {{ with $width }}width="{{ . }}" {{ end }} />
 
 <noscript>
   <img {{ with $class }}class="{{ . }} roundedImage" {{ end }} srcset='{{ delimit $outputSet ", " }}'
-    src="{{ $encodedPlaceholder }}" {{ with $altText }}alt="{{ . }}" {{ end }} />
+    src="{{ $encodedPlaceholder }}" alt="{{ $altText }}" />
 </noscript>
 {{ end }}
 {{ end }}
