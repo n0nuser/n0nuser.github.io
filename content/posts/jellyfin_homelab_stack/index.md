@@ -10,6 +10,7 @@ coverAlt: "Isometric illustration of a home media server linked to stacked conta
 toc: true
 draft: false
 tags: [ "Linux", "Self-Hosting" ]
+mermaid: true
 ---
 
 ## Intro
