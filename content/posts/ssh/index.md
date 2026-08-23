@@ -287,6 +287,8 @@ It will ask us for the location where the keys `id_rsa` (*Private Key*) and `id_
 
 {{< img "keygen.png" "Keygen" "border" >}}
 
+{{< img "keygen-rsa.png" "RSA key pair generation output from ssh-keygen" "border" >}}
+
 To use them we issue the same ssh command but with the argument `-i` (*identity_file*):
 
 ```

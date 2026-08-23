@@ -10,7 +10,7 @@ It describes architecture, workflows, conventions, and operational history at a 
 
 - Personal technical website built with Hugo
 - Content-first structure with posts, pages, and writeups
-- Theme-based frontend with project customizations
+- Vendored Hugo layout and asset frontend with project customizations
 - Progressive Web App support via static assets
 
 ## Technology Stack
@@ -20,7 +20,7 @@ It describes architecture, workflows, conventions, and operational history at a 
 - Hugo static site generator (current version: v0.162.1)
 - Go-template based Hugo layouts/shortcodes
 - Markdown content in leaf bundles and page files
-- Theme customization based on Color Your World
+- Layouts and assets are vendored directly in `layouts/` and `assets/`
 
 ### Frontend Assets
 
@@ -40,7 +40,6 @@ It describes architecture, workflows, conventions, and operational history at a 
 n0nuser.github.io/
 ├── content/          # Posts, pages, writeups, section indexes
 ├── layouts/          # Hugo templates and shortcodes
-├── themes/           # Hugo theme source
 ├── static/           # Static files (PWA assets, media, misc)
 ├── assets/           # Processed assets and vendored JS libs
 ├── archetypes/       # Content templates/front matter defaults

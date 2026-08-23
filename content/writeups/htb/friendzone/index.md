@@ -1,6 +1,6 @@
 ---
-title: "Friendzone"
-description: "Writeup for Friendzone machine from HTB"
+title: "Friendzone - HTB Writeup: SMB credentials to Python module hijacking"
+description: "An HTB Friendzone writeup covering SMB share enumeration, web credential reuse, and Python library hijacking for root."
 date: 2020-09-06
 lastmod: 2020-09-06
 author: "Pablo Jesús González Rubio"

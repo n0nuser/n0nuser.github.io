@@ -8,14 +8,9 @@
 
         <h1>{{ .Title }}</h1>
 
-        {{ if or .Params.categories .Params.tags }}
+        {{ if .Params.tags }}
           <section class="terms">
             <ul>
-              {{- with .Params.categories -}}
-                  {{- range sort . -}}
-                    <li class="category"><a class="btn" href="/categories/{{ . | urlize }}">{{ . }}</a></li>
-                  {{- end -}}
-              {{- end -}}
               {{- with .Params.tags -}}
                   {{- range sort . -}}
                     <li><a class="btn" href="/tags/{{ . | urlize }}">{{ . }}</a></li>

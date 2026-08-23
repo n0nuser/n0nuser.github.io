@@ -44,16 +44,6 @@
 .Paginator.TotalPages) }}
 {{ end }}
 
-{{ else if (and (or (eq .Kind "taxonomy") (eq .Kind "taxonomyTerm")) (eq .Type "categories")) }}
-
-<!-- Categories taxonomy root (e.g., /categories/) -->
-{{ $currentTitle = (T "categories") }}
-
-{{ if gt .Paginator.TotalPages 1 }}
-{{ $mainTitle = printf "%s, %s %s %s %s" (T "categories") (T "page") (string .Paginator.PageNumber) (T "of") (string
-.Paginator.TotalPages) }}
-{{ end }}
-
 {{ else if and (.IsHome) (not .Content) }}
 
 <!-- If it's the home page without content -->
@@ -68,8 +58,6 @@
 {{ $currentDesc = (.Site.Params.description | emojify) }}
 {{ else if and (eq .Kind "term") (eq .Type "tags") (not .Params.description) }}
 {{ $currentDesc = (T "posts_under_tag" .) }}
-{{ else if and (eq .Kind "term") (eq .Type "categories") (not .Params.description) }}
-{{ $currentDesc = (T "posts_under_category" .) }}
 {{ else if or (eq .Kind "taxonomy") (eq .Kind "taxonomyTerm") }}
 {{ $currentDesc = printf "%s %s." (T "page_containing") ($currentTitle | lower) }}
 {{ else if (eq .Kind "404") }}

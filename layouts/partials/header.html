@@ -5,8 +5,10 @@
     {{ if .Site.Menus.main }}
       <ul class="site-nav-links" id="site-nav-links">
         {{ range .Site.Menus.main }}
+          {{ $menuURL := .URL | relLangURL }}
+          {{ $isActive := or (eq $.RelPermalink $menuURL) (and (ne $menuURL "/") (hasPrefix $.RelPermalink $menuURL)) }}
           <li>
-            <a class="site-nav-link" href="{{ .URL | relLangURL }}">{{ .Name }}</a>
+            <a class="site-nav-link{{ if $isActive }} site-nav-link--active{{ end }}" href="{{ $menuURL }}"{{ if $isActive }} aria-current="page"{{ end }}>{{ .Name }}</a>
           </li>
         {{ end }}
         {{ $searchPages := where .Site.RegularPages "Layout" "eq" "search" }}

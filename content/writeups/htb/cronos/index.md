@@ -1,6 +1,6 @@
 ---
-title: "Cronos"
-description: "Writeup for Cronos machine from HTB"
+title: "Cronos - HTB Writeup: DNS takeover and Laravel command injection"
+description: "An HTB Cronos writeup covering DNS enumeration, a Laravel admin panel, and command injection to root."
 date: 2020-09-05
 lastmod: 2020-09-05
 author: "Pablo Jesús González Rubio"
