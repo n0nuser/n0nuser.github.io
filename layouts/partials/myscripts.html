@@ -18,8 +18,11 @@
 {{ $copyCode := resources.Get "js/copy-code.js" | resources.ExecuteAsTemplate "js/copy-code.js" . | minify | resources.Fingerprint "sha512" }}
 <script defer src="{{ $copyCode.RelPermalink }}" integrity="{{ $copyCode.Data.Integrity }}"></script>
 
-<!-- Mermaid diagrams -->
-<script defer src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<!-- Mermaid diagrams: load this 3.3 MB dependency only where it is used. -->
+{{ if .Params.mermaid }}
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"
+  integrity="sha512-HvxxeyPSnbU7/x0g15v3OMxTFeADyCUnCN3iCam3BDTxgFPKxa+ujRCbFuwjE8PASDwOH5LpzFfGGNWks7tuJQ=="
+  crossorigin="anonymous"></script>
 <script defer>
   document.addEventListener("DOMContentLoaded", function () {
     if (typeof mermaid === "undefined") return;
@@ -40,3 +43,4 @@
     });
   });
 </script>
+{{ end }}
