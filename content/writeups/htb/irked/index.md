@@ -1,6 +1,6 @@
 ---
-title: "Irked"
-description: "Writeup for Irked machine from HTB"
+title: "Irked - HTB Writeup: IRC backdoor to SUID privilege escalation"
+description: "An HTB Irked writeup covering IRC enumeration, a backdoored service, and SUID-based privilege escalation."
 date: 2020-07-13
 lastmod: 2020-07-13
 author: "Pablo Jesús González Rubio"

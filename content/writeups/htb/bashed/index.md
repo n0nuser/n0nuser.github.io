@@ -1,7 +1,7 @@
 ---
 aliases: ["Bashed","bashed"]
-title: "Bashed"
-description: "Writeup for Bashed machine from HTB"
+title: "Bashed - HTB Writeup: Web shell to root"
+description: "An HTB Bashed writeup covering web enumeration, an exposed PHP web shell, and sudo-based privilege escalation."
 date: 2020-09-04
 lastmod: 2020-09-04
 author: "Pablo Jesús González Rubio"

@@ -11,6 +11,9 @@ enableInlineShortcodes = true
 [pagination]
 pagerSize = 7
 
+[taxonomies]
+tag = "tags"
+
 # The web app manifest is generated from this config rather than hand-edited in
 # static/, so the app name and description cannot drift from the site's own.
 # Template: layouts/index.webappmanifest.webmanifest
@@ -347,4 +350,4 @@ url = "tags/"
 identifier = "contact"
 name = "Contact"
 weight = 8
-url = "/#contact"
+url = "contact/"

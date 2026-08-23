@@ -1,6 +1,6 @@
 ---
-title: "Nineveh"
-description: "Writeup for Nineveh machine from HTB"
+title: "Nineveh - HTB Writeup: PHPLiteAdmin RCE and port knocking"
+description: "An HTB Nineveh writeup covering hidden web services, PHPLiteAdmin exploitation, SSH port knocking, and root cron jobs."
 date: 2020-09-09
 lastmod: 2020-09-09
 author: "Pablo Jesús González Rubio"

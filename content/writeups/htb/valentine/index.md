@@ -1,6 +1,6 @@
 ---
-title: "Valentine"
-description: "Writeup for Valentine machine from HTB"
+title: "Valentine - HTB Writeup: Heartbleed and Tmux hijacking"
+description: "An HTB Valentine writeup covering Heartbleed credential disclosure, SSH access, and a shared Tmux session for root."
 date: 2020-09-05
 lastmod: 2020-09-05
 author: "Pablo Jesús González Rubio"

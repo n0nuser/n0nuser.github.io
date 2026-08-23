@@ -1,6 +1,6 @@
 ---
-title: "Blunder"
-description: "Writeup for Blunder machine from HTB"
+title: "Blunder - HTB Writeup: Bludit upload bypass to root"
+description: "An HTB Blunder writeup covering Bludit authentication bypass, file upload exploitation, and local privilege escalation."
 date: 2020-08-01
 lastmod: 2020-08-01
 author: "Pablo Jesús González Rubio"
@@ -190,4 +190,3 @@ A Linux system has UIDS of the users, where `root` has the UID 0, well, this exp
 > This is because the Sudo command itself is already running as user ID 0 so when Sudo tries to change to user ID -1, no change occurs.
 
 More info on [sudo](https://www.sudo.ws/alerts/minus_1_uid.html) website.
-

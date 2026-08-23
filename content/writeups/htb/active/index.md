@@ -1,6 +1,6 @@
 ---
-title: "Active"
-description: "Writeup for Active machine from HTB"
+title: "Active - HTB Writeup: SMB GPP credentials to Kerberos root"
+description: "An HTB Active writeup covering SMB enumeration, Group Policy Preferences credentials, and Kerberos access to root."
 date: 2018-10-18
 lastmod: 2018-10-18
 author: "Pablo Jesús González Rubio"

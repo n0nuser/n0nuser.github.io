@@ -1,6 +1,6 @@
 ---
-title: "Solidstate"
-description: "Writeup for Solidstate machine from HTB"
+title: "Solidstate - HTB Writeup: POP3 credentials and cron root shell"
+description: "An HTB Solidstate writeup covering JAMES and POP3 enumeration, credential reuse, and a writable cron script for root."
 date: 2020-08-10
 lastmod: 2020-08-10
 author: "Pablo Jesús González Rubio"
