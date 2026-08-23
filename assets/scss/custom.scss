@@ -210,7 +210,7 @@ body > header + .filler {
     display: grid;
     gap: 1rem;
 
-    @media (min-width: 768px) {
+    @include respond-above($mobile-breakpoint) {
       margin: 1.25rem 0 2rem;
       gap: 1.5rem;
       grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
@@ -221,7 +221,7 @@ body > header + .filler {
       max-width: 160px;
       margin: 0 auto;
 
-      @media (min-width: 768px) {
+      @include respond-above($mobile-breakpoint) {
         max-width: 220px;
       }
     }
@@ -239,7 +239,7 @@ body > header + .filler {
     font-size: 0.9rem;
     margin: 0 0 0.5rem;
 
-    @media (min-width: 768px) {
+    @include respond-above($mobile-breakpoint) {
       margin: 0 0 0.75rem;
     }
   }
@@ -251,7 +251,7 @@ body > header + .filler {
     font-size: clamp(1.85rem, 7vw, 2.6rem);
     margin: 0 0 0.75rem;
 
-    @media (min-width: 768px) {
+    @include respond-above($mobile-breakpoint) {
       font-size: clamp(2.1rem, 4vw, 2.6rem);
       margin: 0 0 1rem;
     }
