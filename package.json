@@ -27,11 +27,16 @@
     "eslint": "^10.1.0",
     "glob": "^13.0.6",
     "globals": "^17.4.0",
-    "markdownlint-cli2": "^0.22.0",
-    "postcss": "^8.5.14",
+    "markdownlint-cli2": "^0.23.2",
+    "postcss": "^8.5.26",
     "postcss-scss": "^4.0.9",
     "stylelint": "^17.6.0",
     "stylelint-config-recommended-scss": "^17.0.0",
     "stylelint-config-standard-scss": "^17.0.0"
+  },
+  "overrides": {
+    "brace-expansion": "5.0.9",
+    "fast-uri": "3.1.5",
+    "linkify-it": "5.0.2"
   }
 }
