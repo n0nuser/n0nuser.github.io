@@ -1,8 +1,3 @@
-<!--
-  TODO
-  Add a better way to detect custom fonts (ignoring the default ones)
--->
-
-{{ range (resources.Match "fonts/*") }}
+{{ with resources.Get "fonts/GeistVF.woff" }}
 <link rel="preload" href="{{ .RelPermalink }}" as="font" type="font/woff" crossorigin>
 {{ end }}
