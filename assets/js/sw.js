@@ -1,13 +1,20 @@
-const version = "1.1.0";
+const version = "1.2.0";
 
 /* https://wbaer.net/2022/05/setting-up-a-service-worker-with-hugo/ */
+
+// Fingerprinted stylesheet path, injected at build time (see footer.html).
+// The old hard-coded "/css/main.min.css" no longer exists and made every
+// install fail (issue #62).
+const MAIN_CSS_URL = "{{ .cssUrl }}";
+
 const BASE_CACHE_FILES = [
-    // Add URLs to the cache here
+    // Pages
     '/',
     '/posts/',
     '/writeups/htb/',
-    // Add files to the cache here
-    '/css/main.min.css',
+    '/offline/',
+    // Files
+    MAIN_CSS_URL,
     '/manifest.webmanifest',
     '/android-chrome-192x192.png',
     '/android-chrome-512x512.png',
@@ -22,11 +29,23 @@ const BASE_CACHE_FILES = [
 self.addEventListener("install", (event) => {
     event.waitUntil(
         caches.open(`precache-${version}`).then((cache) => {
-            return cache.addAll(BASE_CACHE_FILES).catch((error) => {
-                console.error("Failed to cache:", error);
-                throw error; // Ensure the error is propagated and the service worker installation fails
+            // Cache entries individually so one bad URL cannot reject the
+            // whole installation; failures are logged instead of fatal.
+            return Promise.allSettled(
+                BASE_CACHE_FILES.map((url) => cache.add(url))
+            ).then((results) => {
+                results.forEach((result, index) => {
+                    if (result.status === "rejected") {
+                        console.error(
+                            "Failed to precache:",
+                            BASE_CACHE_FILES[index],
+                            result.reason
+                        );
+                    }
+                });
+                return self.skipWaiting();
             });
-        }).then(() => self.skipWaiting())
+        })
     );
 });
 
