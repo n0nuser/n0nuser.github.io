@@ -3,6 +3,26 @@
 // people who turn motion off get the static site. Scroll-driven effects are
 // also behind @supports: without support the content simply stays visible.
 
+// Dot-matrix portrait overlay (assets/js/hero-dots.js); the canvas only
+// exists when motion is allowed, so it needs no media query of its own.
+.home-hero-photo {
+  position: relative;
+
+  .hero-dots {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .4s ease;
+  }
+
+  &.is-dotted .hero-dots {
+    opacity: 1;
+  }
+}
+
 // Reading progress bar (single.html) — hidden unless scroll timelines work
 .reading-progress {
   display: none;

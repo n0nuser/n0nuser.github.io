@@ -18,6 +18,12 @@
 {{ $copyCode := resources.Get "js/copy-code.js" | resources.ExecuteAsTemplate "js/copy-code.js" . | minify | resources.Fingerprint "sha512" }}
 <script defer src="{{ $copyCode.RelPermalink }}" integrity="{{ $copyCode.Data.Integrity }}"></script>
 
+<!-- Homepage-only dot-matrix portrait (progressive enhancement, ~3 KB) -->
+{{ if .IsHome }}
+{{ $heroDots := resources.Get "js/hero-dots.js" | minify | resources.Fingerprint "sha512" }}
+<script defer src="{{ $heroDots.RelPermalink }}" integrity="{{ $heroDots.Data.Integrity }}"></script>
+{{ end }}
+
 <!-- Mermaid diagrams: load this 3.3 MB dependency only where it is used. -->
 {{ if .Params.mermaid }}
 <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"
