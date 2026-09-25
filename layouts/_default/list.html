@@ -26,19 +26,11 @@
         {{ range $paginator.Pages }}
           <li>
             <a class="btn" href="{{ .RelPermalink }}">
-              <p>
-                <b>{{ .LinkTitle | emojify }}</b>{{ if .Description }}: 
-                {{ if gt (len .Description) 90 }}
-                  {{ slicestr .Description 0 90 }}...
-                {{ else }}
-                  {{ .Description }}
-                {{ end }}
-                {{ end }}
-              </p>
-              <span class="post-card-meta">
-                {{ if not .Date.IsZero }}<time datetime="{{ .Date | dateFormat "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>{{ end }}
-                {{ partial "reading-time" . }}
-              </span>
+              <p class="post-card-title"><b {{ partial "view-transition-name" . }}>{{ .LinkTitle | emojify }}</b></p>
+              {{ with .Description }}
+                <p class="post-card-desc">{{ if gt (len .) 90 }}{{ slicestr . 0 90 }}…{{ else }}{{ . }}{{ end }}</p>
+              {{ end }}
+              {{ partial "post-card-meta" . }}
             </a>
           </li>
         {{ end }}

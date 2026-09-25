@@ -1,0 +1,155 @@
+// Motion layer.
+// Every animation lives inside `prefers-reduced-motion: no-preference`, so
+// people who turn motion off get the static site. Scroll-driven effects are
+// also behind @supports: without support the content simply stays visible.
+
+// Dot-matrix portrait overlay (assets/js/hero-dots.js); the canvas only
+// exists when motion is allowed, so it needs no media query of its own.
+.home-hero-photo {
+  position: relative;
+
+  .hero-dots {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .4s ease;
+  }
+
+  &.is-dotted .hero-dots {
+    opacity: 1;
+  }
+}
+
+// Reading progress bar (single.html) — hidden unless scroll timelines work
+.reading-progress {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+
+  // Cross-document page transitions (Chromium, recent Safari).
+  // Titles sharing a view-transition-name morph from listing to post <h1>
+  // (see layouts/partials/view-transition-name.html).
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-group(*) {
+    animation-duration: .35s;
+  }
+
+  // Home hero: kicker types itself, then the highlighter strokes draw in
+  .index {
+    .home-hero-kicker {
+      font-family: $code-font;
+    }
+
+    .home-hero-typed {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+      white-space: nowrap;
+      // "Hey there!" = 10 characters, each followed by the kicker's letter-spacing
+      width: calc(10ch + 10 * .06em);
+      border-right: 2px solid currentColor;
+      animation:
+        hero-type .8s steps(10, end) .2s both,
+        hero-caret .5s step-end 0s 3 forwards;
+    }
+
+    .home-hero-wave {
+      display: inline-block;
+      animation: hero-wave-in .4s ease-out 1s both;
+    }
+
+    .home-highlight {
+      animation: hero-highlight .6s ease-out both;
+    }
+
+    .home-highlight--yellow {
+      animation-delay: 1s;
+    }
+
+    .home-highlight--mint {
+      animation-delay: 1.3s;
+    }
+
+    .home-highlight--pink {
+      animation-delay: 1.7s;
+      animation-duration: .9s;
+    }
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .reading-progress {
+      display: block;
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 1000;
+      height: 3px;
+      background: var(--accent);
+      transform-origin: left center;
+      animation: reading-progress linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+
+  // Listing rows fade up as they scroll into view
+  @supports (animation-timeline: view()) {
+    .posts li,
+    .home-posts li {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+
+@keyframes hero-type {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes hero-caret {
+  50% {
+    border-right-color: transparent;
+  }
+
+  to {
+    border-right-color: transparent;
+  }
+}
+
+@keyframes hero-wave-in {
+  from {
+    opacity: 0;
+    transform: rotate(-20deg) scale(.6);
+  }
+}
+
+@keyframes hero-highlight {
+  from {
+    background-size: 0% 100%;
+  }
+}
+
+@keyframes reading-progress {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}

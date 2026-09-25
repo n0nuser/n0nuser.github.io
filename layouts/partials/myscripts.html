@@ -18,6 +18,12 @@
 {{ $copyCode := resources.Get "js/copy-code.js" | resources.ExecuteAsTemplate "js/copy-code.js" . | minify | resources.Fingerprint "sha512" }}
 <script defer src="{{ $copyCode.RelPermalink }}" integrity="{{ $copyCode.Data.Integrity }}"></script>
 
+<!-- Homepage-only dot-matrix portrait (progressive enhancement, ~3 KB) -->
+{{ if .IsHome }}
+{{ $heroDots := resources.Get "js/hero-dots.js" | minify | resources.Fingerprint "sha512" }}
+<script defer src="{{ $heroDots.RelPermalink }}" integrity="{{ $heroDots.Data.Integrity }}"></script>
+{{ end }}
+
 <!-- Mermaid diagrams: load this 3.3 MB dependency only where it is used. -->
 {{ if .Params.mermaid }}
 <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"
@@ -28,19 +34,42 @@
     if (typeof mermaid === "undefined") return;
 
     // Hugo renders fenced mermaid blocks as code.language-mermaid.
-    // Convert them into div.mermaid so Mermaid can parse them.
+    // Convert them into div.mermaid so Mermaid can parse them, keeping the
+    // source so diagrams can be redrawn when the colour mode changes.
+    var diagrams = [];
     document.querySelectorAll("pre code.language-mermaid").forEach(function (code) {
       var pre = code.parentElement;
       var container = document.createElement("div");
       container.className = "mermaid";
       container.textContent = code.textContent;
+      diagrams.push({ el: container, source: code.textContent });
       pre.replaceWith(container);
     });
+    if (!diagrams.length) return;
 
-    mermaid.initialize({
-      startOnLoad: true,
-      securityLevel: "strict"
-    });
+    var root = document.documentElement;
+    var renderedMode = null;
+
+    // Match the site's data-mode (set by prepone.js from OS or user choice)
+    function render() {
+      var mode = root.dataset.mode === "dark" ? "dark" : "light";
+      if (mode === renderedMode) return;
+      renderedMode = mode;
+
+      diagrams.forEach(function (d) {
+        d.el.removeAttribute("data-processed");
+        d.el.textContent = d.source;
+      });
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: "strict",
+        theme: mode === "dark" ? "dark" : "default"
+      });
+      mermaid.run({ nodes: diagrams.map(function (d) { return d.el; }) });
+    }
+
+    render();
+    new MutationObserver(render).observe(root, { attributes: true, attributeFilter: ["data-mode"] });
   });
 </script>
 {{ end }}

@@ -9,11 +9,13 @@
 {{- range $index, $page := $pages -}}
 
   {{- $.Scratch.Delete "date" -}}
+  {{- $.Scratch.Delete "dateDisplay" -}}
   {{- $.Scratch.Delete "description" -}}
   {{- $.Scratch.Delete "tags" -}}
 
   {{- if not .Date.IsZero -}}
     {{- $.Scratch.Set "date" (.Date.Format "2006-01-02") -}}
+    {{- $.Scratch.Set "dateDisplay" (.Date.Format "2 Jan 2006") -}}
   {{- end -}}
 
   {{- if .Description -}}
@@ -73,7 +75,7 @@
   {{- end -}}
   
   
-  {{- $.Scratch.Add "index" (dict "title" (.Title | emojify) "date" ($.Scratch.Get "date") "description" ($.Scratch.Get "description") "content" ($.Scratch.Get "uniqueContent") "permalink" .Permalink "tags" ($.Scratch.Get "tags") "readingTime" (partial "reading-time" (dict "page" $page "format" "value"))) -}}
+  {{- $.Scratch.Add "index" (dict "title" (.Title | emojify) "date" ($.Scratch.Get "date") "dateDisplay" ($.Scratch.Get "dateDisplay") "description" ($.Scratch.Get "description") "content" ($.Scratch.Get "uniqueContent") "permalink" .Permalink "tags" ($.Scratch.Get "tags") "readingTime" (partial "reading-time" (dict "page" $page "format" "value"))) -}}
   
   {{- $.Scratch.Delete "currentWords" -}}
 

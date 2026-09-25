@@ -202,10 +202,15 @@ function populateResults(result) {
 
     // Date as it should be rendered if not null
     const safeDate = escapeHTML(value.item.date);
-    const formatedDate = '<time datetime="' + safeDate + '">' + safeDate + '</time>';
+    const safeDateDisplay = escapeHTML(value.item.dateDisplay || value.item.date);
+    const formatedDate = '<time datetime="' + safeDate + '">' + safeDateDisplay + '</time>';
 
+    // Same "date · reading time" line as layouts/partials/post-card-meta.html
+    const separator = value.item.date && value.item.readingTime
+      ? '<span class=post-meta-sep aria-hidden=true> · </span>'
+      : '';
     const readingTime = value.item.readingTime
-      ? '<span class=reading-time>' + escapeHTML(value.item.readingTime) + '</span>'
+      ? separator + '<span class=reading-time>' + escapeHTML(value.item.readingTime) + '</span>'
       : '';
 
     // Pull template from hugo template definition

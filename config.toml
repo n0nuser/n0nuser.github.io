@@ -136,7 +136,7 @@ minLength = 2  # Default is 3
 maxLength = 32 # Default is 32
 
 # Optional placeholder for search field
-placeholder = "ie.: lorem ipsum"
+placeholder = "e.g. wireguard, docker, htb"
 
 # Stop word filter list
 # Can also be set PER PAGE via front matter

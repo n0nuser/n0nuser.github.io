@@ -31,9 +31,9 @@
 body > header {
   --brand-font-size: 1.125rem;
   --brand-line-height: 1.25;
-  --brand-avatar-size: 3rem;
+  --brand-avatar-size: 2.25rem;
 
-  padding: 1rem 15px;
+  padding: 0.5rem 15px;
   border-bottom: 1px solid var(--fg);
 
   .site-header-inner {
@@ -51,9 +51,9 @@ body > header {
 
   .site-nav-brand {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
   }
 
   // Theme sets margin: 1.8rem on all img — must reset here or avatar overlaps name / spills past header
@@ -88,6 +88,7 @@ body > header {
   .site-brand-name {
     display: inline-flex;
     align-items: center;
+    box-sizing: border-box;
     min-height: 44px;
     padding: 0.35rem 0.15rem;
     font-family: $heading-font;
@@ -108,7 +109,7 @@ body > header {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 0.35rem 1rem;
+    gap: 0 0.75rem;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -121,7 +122,9 @@ body > header {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      box-sizing: border-box;
       margin: 0;
+      min-width: 44px;
       min-height: 44px;
       padding: 0.35rem 0.15rem;
       font-size: 1rem;
@@ -142,8 +145,9 @@ body > header {
 
       &.site-nav-link--active {
         text-decoration: underline;
-        text-decoration-thickness: 2px;
+        text-decoration-thickness: 0.2rem;
         text-underline-offset: 0.12em;
+        text-decoration-skip-ink: none;
       }
     }
 
@@ -187,10 +191,24 @@ body > header {
         padding: 0.35rem 0.5rem;
         color: var(--fg);
         border-bottom: 0;
-        text-decoration: underline;
+        text-decoration: none;
         text-decoration-color: var(--accent);
         text-decoration-thickness: 0.2rem;
         text-underline-offset: 0.12em;
+        text-decoration-skip-ink: none;
+
+        // Hover previews the underline thinly; the current page owns the thick one
+        &:hover {
+          opacity: 1;
+          text-decoration-line: underline;
+          text-decoration-thickness: 1px;
+        }
+
+        &.site-nav-link--active {
+          color: var(--alt-fg);
+          text-decoration-line: underline;
+          text-decoration-thickness: 0.2rem;
+        }
       }
 
       .site-nav-search {
@@ -266,6 +284,10 @@ body > header + .filler {
   .home-hero-lede {
     margin: 0;
     line-height: 1.7;
+
+    & + .home-hero-lede {
+      margin-top: 0.75rem;
+    }
   }
 
   .home-hero-cta {
@@ -282,6 +304,19 @@ body > header + .filler {
     min-height: 44px;
     padding: 0.5rem 1.1rem;
     text-decoration: none;
+  }
+
+  // Secondary action: outline so "Read latest posts" stays the primary one
+  .home-hero-cta-link--secondary {
+    background: transparent;
+    border-color: var(--accent);
+    box-shadow: none;
+    color: var(--fg);
+    text-shadow: none;
+  }
+
+  .home-hero + h2 {
+    margin-top: 2.5rem;
   }
 
   .home-posts {

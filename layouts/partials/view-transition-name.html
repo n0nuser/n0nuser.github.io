@@ -1,0 +1,11 @@
+{{- /*
+  Shared view-transition-name for a page's title, so a listing title can morph
+  into the post <h1> on navigation (see assets/scss/motion.scss).
+  Usage: <h1 {{ partial "view-transition-name" . }}>. Returns nothing for pages
+  without a backing file.
+*/ -}}
+{{- $attr := "" -}}
+{{- with .File -}}
+  {{- $attr = printf "style=\"view-transition-name: post-%s\"" (.ContentBaseName | anchorize) -}}
+{{- end -}}
+{{- return ($attr | safeHTMLAttr) -}}

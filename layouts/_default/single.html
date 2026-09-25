@@ -1,12 +1,14 @@
 {{ define "main" }}
 
+  <div class="reading-progress" aria-hidden="true"></div>
+
   <main>
     <article>
       {{ partial "breadcrumbs" . }}
 
       <header>
 
-        <h1>{{ .Title }}</h1>
+        <h1 {{ partial "view-transition-name" . }}>{{ .Title }}</h1>
 
         {{ if .Params.tags }}
           <section class="terms">
@@ -23,9 +25,9 @@
         {{ if or (not .Date.IsZero) .RawContent }}
           <p class="post-meta">
             {{ if not .Date.IsZero }}
-              {{ T "published_on" }} <time datetime="{{ .PublishDate.Format "2006-01-02" }}">{{ .PublishDate.Format "2006-01-02" }}</time>
+              {{ T "published_on" }} <time datetime="{{ .PublishDate.Format "2006-01-02" }}">{{ .PublishDate.Format "2 Jan 2006" }}</time>
               {{ if ne (.PublishDate.Format "2006-01-02") (.Lastmod.Format "2006-01-02") }}
-                · {{ T "updated_on" }} <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006-01-02" }}</time>
+                · {{ T "updated_on" }} <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2 Jan 2006" }}</time>
               {{ end }}
             {{ end }}
             {{ if .RawContent }}

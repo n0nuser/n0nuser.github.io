@@ -18,11 +18,11 @@ social:
 
 <section class="home-hero">
   <div class="home-hero-photo">
-    {{< imgRounded "me.webp" "Photo of Pablo" "borderless" "400" "high" >}}
+    {{< imgRounded "me.webp" "Photo of Pablo" "borderless" "400" "high" "(min-width: 769px) 220px, 160px" >}}
   </div>
   <div class="home-hero-copy">
     <p class="home-hero-kicker">
-      <span class="home-highlight home-highlight--yellow">Hey there! 👋🏻</span>
+      <span class="home-highlight home-highlight--yellow"><span class="home-hero-typed">Hey there!</span> <span class="home-hero-wave">👋🏻</span></span>
     </p>
     <h1 class="home-hero-title">
       <span class="home-highlight home-highlight--mint">My name is Pablo,</span><br />
@@ -36,7 +36,7 @@ social:
     </p>
     <p class="home-hero-cta">
       <a class="btn home-hero-cta-link" href="/posts/">Read latest posts</a>
-      <a class="btn home-hero-cta-link" href="/resume/">View résumé</a>
+      <a class="btn home-hero-cta-link home-hero-cta-link--secondary" href="/resume/">View résumé</a>
     </p>
   </div>
 </section>
