@@ -284,6 +284,10 @@ body > header + .filler {
   .home-hero-lede {
     margin: 0;
     line-height: 1.7;
+
+    & + .home-hero-lede {
+      margin-top: 0.75rem;
+    }
   }
 
   .home-hero-cta {
@@ -300,6 +304,19 @@ body > header + .filler {
     min-height: 44px;
     padding: 0.5rem 1.1rem;
     text-decoration: none;
+  }
+
+  // Secondary action: outline so "Read latest posts" stays the primary one
+  .home-hero-cta-link--secondary {
+    background: transparent;
+    border-color: var(--accent);
+    box-shadow: none;
+    color: var(--fg);
+    text-shadow: none;
+  }
+
+  .home-hero + h2 {
+    margin-top: 2.5rem;
   }
 
   .home-posts {

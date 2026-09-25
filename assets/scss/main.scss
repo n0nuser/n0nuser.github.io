@@ -32,6 +32,7 @@ html {
     --input-bg: #{$light-input-background};
     --input-fg: #{$light-input-foreground};
     --input-bd: #{$light-input-border};
+    --card-bd: #{$light-card-border};
 
     --lpress: #{$light-letterpress};
     --rlpress: #{$dark-letterpress};
@@ -64,6 +65,7 @@ html {
     --input-bg: #{$dark-input-background};
     --input-fg: #{$dark-input-foreground};
     --input-bd: #{$dark-input-border};
+    --card-bd: #{$dark-card-border};
 
     --lpress: #{$dark-letterpress};
     --rlpress: #{$light-letterpress};
@@ -767,7 +769,19 @@ article>header {
       display: inline-block;
 
       margin: 0 7.5px 9px 0;
-      padding: 6px 15px 9px;
+      padding: 3px 12px 5px;
+      font-size: .9rem;
+
+      // Keep the chip small but give touch users a 44px-tall tap area
+      @include respond-below($mobile-breakpoint) {
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          inset: -9px 0;
+        }
+      }
     }
   }
 }
@@ -779,45 +793,46 @@ article>header {
     margin: .5rem 0;
   }
 
+  // Rows keep .btn for focus/transition behaviour but read as quiet cards,
+  // so titles lead instead of the container.
   a {
-    background: var(--accent);
-    color: var(--dtl);
+    background: var(--bg);
+    border: 1px solid var(--card-bd);
+    box-shadow: none;
+    color: var(--fg);
+    text-shadow: none;
 
     display: flex;
-    margin: 15px auto;
-    padding: 15px 30px 18px;
+    flex-direction: column;
+    gap: .35rem;
+    margin: 0;
+    padding: 1rem 1.25rem;
 
     text-decoration: none;
-
-    align-items: center;
     word-break: break-word;
 
+    transition:
+      border-color .2s ease-in-out,
+      transform .2s ease-in-out,
+      outline-color .3s ease;
+
     p {
-      flex: 1;
       margin: 0;
     }
 
-    .post-card-meta {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.15rem;
-      margin-left: 1.8rem;
+    b {
+      color: var(--alt-fg);
     }
 
-    time,
-    .reading-time {
-      // HACK
-      // Using a background-image as an overlay...
-      background-image:
-        linear-gradient(0deg, var(--bgmod),
-          100%, transparent);
+    &:hover {
+      border-color: var(--accent);
+      opacity: 1;
+      transform: translateY(-2px);
+    }
 
-      border-radius: $border-radius;
-
+    .post-card-meta {
+      color: var(--alt-fg);
       font-size: .85rem;
-
-      padding: 0 9px 2px;
     }
   }
 }
@@ -840,23 +855,13 @@ article>header {
     mark {
       background: transparent;
       color: inherit;
+      filter: none;
       font-weight: 700;
+      text-decoration: underline var(--accent);
     }
   }
 }
 
-// Not sure if I like this
-@include respond-below($mobile-breakpoint) {
-  .posts a {
-    flex-direction: column-reverse;
-    align-items: unset;
-
-    .post-card-meta {
-      align-items: unset;
-      margin: .3rem 0;
-    }
-  }
-}
 
 .katex-display {
   border: 1px dashed var(--alt-fg);
@@ -1153,6 +1158,18 @@ summary {
     padding: 7.5px 18px 10.5px;
 
     word-break: keep-all;
+
+    // Chips, not primary buttons: outline style so they don't compete with CTAs
+    background: transparent;
+    border: 1px solid var(--card-bd);
+    box-shadow: none;
+    color: var(--fg);
+    text-shadow: none;
+
+    &:hover {
+      border-color: var(--accent);
+      opacity: 1;
+    }
 
     span {
       background-image:

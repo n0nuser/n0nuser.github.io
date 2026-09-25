@@ -20,7 +20,7 @@
           <li>
             <a class="btn" href="{{ .Permalink }}">
               <p>{{ .LinkTitle | emojify }}</p>
-              {{ if not .Date.IsZero }}<time datetime="{{ .Date | dateFormat "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>{{ end }}
+              {{ partial "post-card-meta" . }}
             </a>
           </li>
         {{ end }}

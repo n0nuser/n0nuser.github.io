@@ -30,11 +30,7 @@
     <li>
       <a class="btn" href="{{ .RelPermalink }}">
         <p><b>{{ .LinkTitle | emojify }}</b></p>
-        <span class="post-card-meta">
-          {{ if not .Date.IsZero }}<time datetime="{{ .Date | dateFormat "2006-01-02" }}">{{ .Date.Format "2006-01-02"
-            }}</time>{{ end }}
-          {{ partial "reading-time" . }}
-        </span>
+        {{ partial "post-card-meta" . }}
       </a>
     </li>
     {{ end }}

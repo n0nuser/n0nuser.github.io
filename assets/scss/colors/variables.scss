@@ -12,7 +12,8 @@ $light-bg-modifier: rgba(0, 0, 0, .3);
 
 $light-input-background: #faf9f6;
 $light-input-foreground: #111;
-$light-input-border: #ccc;
+$light-input-border: #8f8f8f; // >= 3:1 on the page background (WCAG 1.4.11)
+$light-card-border: #d9d4ca;
 
 $light-letterpress: rgba(0, 0, 0, .2);
 
@@ -30,7 +31,8 @@ $dark-bg-modifier: rgba(255, 255, 255, .3);
 
 $dark-input-background: #222;
 $dark-input-foreground: #f0f0f0;
-$dark-input-border: #262626;
+$dark-input-border: #707070; // >= 3:1 on the input background (WCAG 1.4.11)
+$dark-card-border: #3d3d3d;
 
 $dark-letterpress: rgba(255, 255, 255, .2);
 

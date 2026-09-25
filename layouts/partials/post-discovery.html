@@ -22,10 +22,7 @@
         <li>
           <a class="btn" href="{{ .page.RelPermalink }}">
             <p><b>{{ .page.LinkTitle | emojify }}</b></p>
-            <span class="post-card-meta">
-              {{ if not .page.Date.IsZero }}<time datetime="{{ .page.Date.Format "2006-01-02" }}">{{ .page.Date.Format "2006-01-02" }}</time>{{ end }}
-              {{ partial "reading-time" .page }}
-            </span>
+            {{ partial "post-card-meta" .page }}
           </a>
         </li>
       {{ end }}
