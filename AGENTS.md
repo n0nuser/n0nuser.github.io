@@ -27,6 +27,9 @@ Use these as default guidance unless the user asks for a different direction.
 - Keep mobile hit targets accessible (`>= 44px`) while preserving visual style.
 - Keep nav underlines close to text; add hit-area mostly via `min-height` and top/side padding instead of extra bottom gap.
 - For homepage post metadata, render date and reading time on the same line for faster scanability.
+- Post listings use the shared `post-card-meta` partial; dates shown to readers use the `2 Jan 2006` layout.
+- Any new animation goes in `assets/scss/motion.scss`, gated on `prefers-reduced-motion: no-preference`.
+- `assets/scss/main.scss` has mixed CRLF/LF line endings; edit it without normalizing them.
 - When doing UX audits, validate both light and dark modes, plus desktop and mobile.
 - In Playwright checks, beware local overlays/widgets that can intercept clicks and skew interaction results.
 - The purple **Discord promo box** (`mcp-discord-container`, text like "Join Discord Community") is injected by the **Playwright MCP browser**, not this site. Do not file UX bugs or site fixes for it; ignore it during audits unless reproducing in a normal browser without Playwright.

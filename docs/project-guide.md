@@ -151,14 +151,28 @@ When the user explicitly asks to "get the score", run the project skill at `.cur
 
 This scoring workflow is manual and analyst-driven unless the user asks for additional automation.
 
-### Current Navigation/UI Conventions (May 2026)
+### Current Navigation/UI Conventions (September 2026)
 
-- Mobile header uses an always-visible nav row under the brand (no collapsible menu button).
+- Mobile header puts the avatar and name on one row, with always-visible nav links below (no collapsible menu button).
 - `/uses` stays as a top-level nav label (standard personal-site convention).
 - `/now` is optional and should only be shown when actively maintained.
-- Nav links should keep underlines visually close to text.
-- Tap targets should remain touch-friendly (`>=44px`) without creating large visual gaps.
-- Homepage recent-post metadata is shown inline as: `date · reading time`.
+- Nav links should keep underlines visually close to text. On desktop only the current page (`.site-nav-link--active`) is underlined; hover previews a thin underline.
+- Tap targets should remain touch-friendly (`>=44px`) without creating large visual gaps. Nav links use `box-sizing: border-box` so `min-height: 44px` is the real height; small tag chips get an invisible `::after` tap area on mobile.
+- Post listings (`/posts`, related posts, 404, search results, homepage recent writing) share `layouts/partials/post-card-meta.html`, rendering `date · reading time`.
+- Dates shown to readers use the `2 Jan 2006` Go layout (for example "8 May 2026"). `datetime` attributes, meta tags, JSON-LD, RSS and sitemap keep machine formats. The search index carries both `date` (ISO) and `dateDisplay`.
+- Post rows are subtle bordered cards (`--card-bd` token); tags are outline chips so they never compete with primary buttons.
+- Wide tables scroll inside their `.scroll` wrapper, and inline `code` wraps (`overflow-wrap: anywhere`) so posts never scroll sideways on phones.
+
+### Fonts
+
+- Fonts live in `assets/fonts/` and are published through `layouts/partials/font-preload.html` (`resources.Get`). Geist is preloaded; JetBrains Mono is published without preload because only pages with code need it. A font referenced only from SCSS is **not** published by Hugo on its own.
+
+### Motion
+
+- All animation lives in `assets/scss/motion.scss` inside `@media (prefers-reduced-motion: no-preference)`; scroll-driven effects are additionally behind `@supports`. New motion must follow the same rule.
+- Current effects: typed hero kicker and highlighter draw-in, cross-document view transitions (titles morph via `layouts/partials/view-transition-name.html`), reading progress bar on single pages, fade-up reveal for listing rows.
+- `assets/js/hero-dots.js` (homepage only, loaded at idle after `load`) turns the hero photo into an interactive dot matrix on hover. It is skipped for reduced motion and touch-only devices, and the `<img>` stays the accessible content.
+- When testing locally with Playwright, the service worker can serve stale HTML/CSS; unregister it or block `sw.js` before checking changes.
 
 ## Security and Privacy Notes
 
