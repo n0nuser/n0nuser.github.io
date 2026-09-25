@@ -653,6 +653,8 @@ article>pre:focus-within .code-copy-btn,
 .scroll {
 
   border: 1px solid var(--fg);
+  max-width: 100%;
+  overflow-x: auto;
 
   &>table {
     border-collapse: collapse;

@@ -1,4 +1,4 @@
-const version = "1.2.0";
+const version = "1.2.1";
 
 /* https://wbaer.net/2022/05/setting-up-a-service-worker-with-hugo/ */
 
