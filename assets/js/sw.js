@@ -1,4 +1,4 @@
-const version = "1.2.1";
+const version = "1.3.0";
 
 /* https://wbaer.net/2022/05/setting-up-a-service-worker-with-hugo/ */
 
@@ -49,8 +49,12 @@ self.addEventListener("install", (event) => {
     );
 });
 
+// Runtime cache is versioned too, so bumping `version` clears it on activate.
+// It used to be a fixed "runtime" name that survived every deploy.
+const RUNTIME_CACHE = `runtime-${version}`;
+
 self.addEventListener("activate", (event) => {
-    const currentCaches = [`precache-${version}`, "runtime"];
+    const currentCaches = [`precache-${version}`, RUNTIME_CACHE];
     event.waitUntil(
         caches.keys().then((cacheNames) => {
             return cacheNames.filter(
@@ -66,26 +70,59 @@ self.addEventListener("activate", (event) => {
     );
 });
 
-self.addEventListener("fetch", (event) => {
-    if (event.request.url.startsWith(self.location.origin)) {
-        event.respondWith(
-            caches.match(event.request).then((cachedResponse) => {
-                if (cachedResponse) {
-                    return cachedResponse;
-                }
-                return caches.open("runtime").then((cache) => {
-                    return fetch(event.request).then((response) => {
-                        return cache.put(event.request, response.clone()).then(() => {
-                            return response;
-                        });
-                    }).catch(() => {
-                        return caches.open(`precache-${version}`).then((cache) => {
-                            console.log("Fetch failed; returning offline page instead.");
-                            return cache.match("/offline/");
-                        });
-                    });
-                });
-            })
-        );
+// Store only complete, successful same-origin responses (never 404s or errors).
+function putInRuntime(request, response) {
+    if (!response || !response.ok || response.type !== "basic") {
+        return Promise.resolve(response);
     }
+    const copy = response.clone();
+    return caches.open(RUNTIME_CACHE)
+        .then((cache) => cache.put(request, copy))
+        .then(() => response, () => response);
+}
+
+function offlinePage() {
+    return caches.open(`precache-${version}`).then((cache) => {
+        console.log("Fetch failed; returning offline page instead.");
+        return cache.match("/offline/");
+    });
+}
+
+// Pages and data (HTML, search index JSON, feeds, manifest): network first,
+// so a deploy is visible on the next visit. The cache is only an offline fallback.
+function networkFirst(request) {
+    return fetch(request)
+        .then((response) => putInRuntime(request, response))
+        .catch(() => caches.match(request).then((cached) => {
+            if (cached) {
+                return cached;
+            }
+            // Only navigations get the HTML offline page; data requests just fail
+            return request.mode === "navigate" ? offlinePage() : Response.error();
+        }));
+}
+
+// Static assets (fingerprinted CSS/JS, fonts, images): cache first.
+// Fingerprinted URLs change when their content changes, so this is safe.
+function cacheFirst(request) {
+    return caches.match(request).then((cached) => {
+        if (cached) {
+            return cached;
+        }
+        return fetch(request)
+            .then((response) => putInRuntime(request, response))
+            .catch(() => Response.error());
+    });
+}
+
+const STATIC_DESTINATIONS = ["style", "script", "font", "image"];
+
+self.addEventListener("fetch", (event) => {
+    const { request } = event;
+    if (request.method !== "GET" || !request.url.startsWith(self.location.origin)) {
+        return;
+    }
+    event.respondWith(
+        STATIC_DESTINATIONS.includes(request.destination) ? cacheFirst(request) : networkFirst(request)
+    );
 });
