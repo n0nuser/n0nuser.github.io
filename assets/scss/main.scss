@@ -1177,11 +1177,10 @@ summary {
       opacity: 1;
     }
 
+    // Count pill: neutral surface so its text keeps >= 4.5:1 on the outline chip
     span {
-      background-image:
-        linear-gradient(0deg, var(--bgmod),
-          100%, transparent);
-
+      background: var(--alt-bg);
+      border: 1px solid var(--card-bd);
       border-radius: $border-radius;
 
       margin-left: .45rem;
