@@ -18,7 +18,7 @@ social:
 
 <section class="home-hero">
   <div class="home-hero-photo">
-    {{< imgRounded "me.webp" "Photo of Pablo" "borderless" "400" "high" >}}
+    {{< imgRounded "me.webp" "Photo of Pablo" "borderless" "400" "high" "(min-width: 769px) 220px, 160px" >}}
   </div>
   <div class="home-hero-copy">
     <p class="home-hero-kicker">

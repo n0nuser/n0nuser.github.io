@@ -884,6 +884,8 @@ article>header {
 img {
   display: block;
 
+  // width/height attributes only reserve the aspect ratio; CSS decides the size
+  height: auto;
   max-width: 100%;
   max-height: $box-max-height;
 

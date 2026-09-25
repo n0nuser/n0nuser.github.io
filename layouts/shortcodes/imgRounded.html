@@ -4,6 +4,7 @@
     imgRounded "weird_cat.jpg" "Alt text" "border"
     imgRounded "weird_cat.jpg" "Alt text" "border" "400"
     imgRounded "weird_cat.jpg" "Alt text" "border" "400" "high"
+    imgRounded "weird_cat.jpg" "Alt text" "border" "400" "high" "(min-width: 769px) 220px, 160px"
 
   Usage (named params):
     imgRounded src="weird_cat.jpg" alt="Alt text"
@@ -16,6 +17,7 @@
     class / 2    : extra CSS classes ("border", "borderless", etc.)
     width / 3    : width attribute value (string, e.g. "400")
     priority / 4 : if "high", LCP-friendly image (no lazyload, loading="eager", fetchpriority="high")
+    sizes / 5    : "sizes" hint for the high-priority image; defaults to the width capped at the viewport
 
   Default available classes:
     border
@@ -27,6 +29,7 @@
 {{ $class := .Get "class" | default (.Get 2) }}
 {{ $width := .Get "width" | default (.Get 3) }}
 {{ $priority := .Get "priority" | default (.Get 4) }}
+{{ $sizes := .Get "sizes" | default (.Get 5) }}
 
 <!-- Image processing options -->
 {{ $imageProc := (dict "highRes" (.Site.Params.imageProc.highRes | default hugo.Data.default.imageProc.highRes)
@@ -60,13 +63,25 @@
 {{ end }}
 
 {{ if eq $priority "high" }}
+<!-- Small variants so a 160-440px slot never downloads the 1280w file -->
+{{ $prioritySet := slice }}
+{{ range slice 320 480 }}
+{{ if lt . $inputFile.Width }}
+{{ $prioritySet = $prioritySet | append (printf "%s %dw" (($inputFile.Resize (printf "%dx webp" .)).RelPermalink) .) }}
+{{ end }}
+{{ end }}
+{{ $prioritySet = $prioritySet | append $outputSet }}
+{{ $displayWidth := int ($width | default (.Resize $mediumRes).Width) }}
+{{ $displayHeight := div (mul $displayWidth .Height) .Width }}
 <img class="{{ $class }} roundedImage"
-  srcset='{{ delimit $outputSet ", " }}'
+  srcset='{{ delimit $prioritySet ", " }}'
+  sizes="{{ $sizes | default (printf "(max-width: %dpx) 100vw, %dpx" $displayWidth $displayWidth) }}"
   src="{{ (.Resize (printf "%s webp" $mediumRes)).RelPermalink }}"
   loading="eager"
   fetchpriority="high"
   alt="{{ $altText }}"
-  {{ with $width }}width="{{ . }}"{{ end }} />
+  width="{{ $displayWidth }}"
+  height="{{ $displayHeight }}" />
 {{ else }}
 <img class="lazyload {{ $class }} roundedImage" data-srcset='{{ delimit $outputSet ", " }}'
   src="{{ $encodedPlaceholder }}" data-src="{{ (.Resize (printf "%s webp" $mediumRes)).RelPermalink }}"
