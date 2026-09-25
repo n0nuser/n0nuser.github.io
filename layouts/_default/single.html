@@ -1,12 +1,14 @@
 {{ define "main" }}
 
+  <div class="reading-progress" aria-hidden="true"></div>
+
   <main>
     <article>
       {{ partial "breadcrumbs" . }}
 
       <header>
 
-        <h1>{{ .Title }}</h1>
+        <h1 {{ partial "view-transition-name" . }}>{{ .Title }}</h1>
 
         {{ if .Params.tags }}
           <section class="terms">

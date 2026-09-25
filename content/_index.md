@@ -22,7 +22,7 @@ social:
   </div>
   <div class="home-hero-copy">
     <p class="home-hero-kicker">
-      <span class="home-highlight home-highlight--yellow">Hey there! 👋🏻</span>
+      <span class="home-highlight home-highlight--yellow"><span class="home-hero-typed">Hey there!</span> <span class="home-hero-wave">👋🏻</span></span>
     </p>
     <h1 class="home-hero-title">
       <span class="home-highlight home-highlight--mint">My name is Pablo,</span><br />

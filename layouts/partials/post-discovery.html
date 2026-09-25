@@ -21,7 +21,7 @@
       {{ range $related }}
         <li>
           <a class="btn" href="{{ .page.RelPermalink }}">
-            <p><b>{{ .page.LinkTitle | emojify }}</b></p>
+            <p class="post-card-title"><b {{ partial "view-transition-name" .page }}>{{ .page.LinkTitle | emojify }}</b></p>
             {{ partial "post-card-meta" .page }}
           </a>
         </li>

@@ -29,7 +29,7 @@
     {{ range . }}
     <li>
       <a class="btn" href="{{ .RelPermalink }}">
-        <p><b>{{ .LinkTitle | emojify }}</b></p>
+        <p class="post-card-title"><b {{ partial "view-transition-name" . }}>{{ .LinkTitle | emojify }}</b></p>
         {{ partial "post-card-meta" . }}
       </a>
     </li>

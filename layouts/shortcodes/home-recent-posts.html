@@ -11,7 +11,7 @@
       {{ if ge $shown $max }}{{ break }}{{ end }}
       {{ if strings.Contains (lower .Title) "wip" }}{{ continue }}{{ end }}
       <li>
-        <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        <a href="{{ .RelPermalink }}" {{ partial "view-transition-name" . }}>{{ .LinkTitle }}</a>
         {{ partial "post-card-meta" . }}
       </li>
       {{ $shown = add $shown 1 }}

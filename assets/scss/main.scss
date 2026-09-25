@@ -820,8 +820,14 @@ article>header {
       margin: 0;
     }
 
+    // Block title: one box, so it can carry a view-transition-name (motion.scss)
     b {
       color: var(--alt-fg);
+      display: block;
+    }
+
+    .post-card-desc {
+      font-size: .95rem;
     }
 
     &:hover {
@@ -1690,6 +1696,9 @@ html {
 @import 'custom';
 
   {{ end }}
+
+// Motion layer: everything inside is gated on prefers-reduced-motion
+@import 'motion';
 
 // Accessibility: honour the OS "reduce motion" preference.
 // People enable this for vestibular disorders, migraine triggers and motion
