@@ -740,6 +740,12 @@ li code {
   padding: 1px 3px;
 }
 
+// Long identifiers (labels, URLs) must wrap instead of widening the page on phones
+p code,
+li code {
+  overflow-wrap: anywhere;
+}
+
 li a {
   word-break: break-all;
 }
