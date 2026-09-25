@@ -34,19 +34,42 @@
     if (typeof mermaid === "undefined") return;
 
     // Hugo renders fenced mermaid blocks as code.language-mermaid.
-    // Convert them into div.mermaid so Mermaid can parse them.
+    // Convert them into div.mermaid so Mermaid can parse them, keeping the
+    // source so diagrams can be redrawn when the colour mode changes.
+    var diagrams = [];
     document.querySelectorAll("pre code.language-mermaid").forEach(function (code) {
       var pre = code.parentElement;
       var container = document.createElement("div");
       container.className = "mermaid";
       container.textContent = code.textContent;
+      diagrams.push({ el: container, source: code.textContent });
       pre.replaceWith(container);
     });
+    if (!diagrams.length) return;
 
-    mermaid.initialize({
-      startOnLoad: true,
-      securityLevel: "strict"
-    });
+    var root = document.documentElement;
+    var renderedMode = null;
+
+    // Match the site's data-mode (set by prepone.js from OS or user choice)
+    function render() {
+      var mode = root.dataset.mode === "dark" ? "dark" : "light";
+      if (mode === renderedMode) return;
+      renderedMode = mode;
+
+      diagrams.forEach(function (d) {
+        d.el.removeAttribute("data-processed");
+        d.el.textContent = d.source;
+      });
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: "strict",
+        theme: mode === "dark" ? "dark" : "default"
+      });
+      mermaid.run({ nodes: diagrams.map(function (d) { return d.el; }) });
+    }
+
+    render();
+    new MutationObserver(render).observe(root, { attributes: true, attributeFilter: ["data-mode"] });
   });
 </script>
 {{ end }}
