@@ -200,6 +200,9 @@ One paragraph. What exists, and whether production serves the latest work.
 ## Next actions, in order
 1. Concrete enough to start without asking a question.
 
+## Believed but not measured
+- Places where the code embodies a guess. The next session should know which.
+
 ## Gotchas
 - Traps that silently do the wrong thing, and why, so nobody undoes the fix.
 
@@ -211,8 +214,6 @@ Two rules make it work:
 
 - **Gather, don't remember.** The handoff is built from `git log`, `git status` and the tracker, not from the model's memory of the chat.
 - **Link, don't restate.** If a spec, ADR or issue already says it, link it. The handoff is an index, not a copy.
-
-A good handoff also has a section for **what is believed but not measured**. It's the list of places where the code embodies a guess, and the next session should know which ones they are.
 
 ## Matt Pocock's skills
 
@@ -326,7 +327,7 @@ pgrep -x opencode | while read p; do ps -o pid=,etimes=,%cpu= -p "$p"; done
 - **A terminal workspace manager.** [herdr](https://herdr.dev/) runs each agent in a pane and marks it working, blocked or idle, so I see who's waiting on me without checking every pane.
 - **Sessions that talk.** Claude Code sessions can message each other, which is how two agents avoid editing the same thing.
 
-At work this becomes about 14 Claude sessions, managed by an orchestrator session. The shape is the same: one tracker ticket per session, one worktree per ticket, the orchestrator reviews, the sessions execute. Only the numbers change.
+At work the same habits scale to about 14 Claude sessions, managed by an orchestrator, with Jira as the tracker.
 
 ## What broke
 
@@ -370,6 +371,7 @@ The minimum to copy. It should take less than an hour.
   }
   ```
 
+- [ ] Run `codegraph init` in each repo you want indexed. The hook does nothing without an index.
 - [ ] Save the statusline script above as `~/.claude/statusline.sh`.
 - [ ] Install the skills: `/plugin install mattpocock-skills@claude-plugins-official`, then run `setup-matt-pocock-skills` in each repo.
 - [ ] Write a starter `AGENTS.md` (and a `CLAUDE.md` that contains `@AGENTS.md`):
