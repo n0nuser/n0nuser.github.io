@@ -2,7 +2,7 @@
 title: "Apache Web Server"
 description: "Practical Apache web server guide covering installation, core configuration, virtual hosts, TLS basics, and hardening on Linux."
 date: 2021-05-16
-lastmod: 2021-05-16
+lastmod: 2026-09-26
 author: "Pablo Jesús González Rubio"
 cover: "cover.png"
 coverAlt: "Tux!"
@@ -12,6 +12,8 @@ tags: [ "Linux" ]
 ---
 
 ## Introduction
+
+Apache (`httpd`) is still one of the most widely deployed web servers on Linux. By the end of this guide you'll have it installed on Debian/Ubuntu or Arch, understand how Debian splits its configuration, know how to enable the modules you actually need (user directories and CGI), and have a free HTTPS certificate from Let's Encrypt. It's aimed at anyone standing up their first Linux web server.
 
 ## Installation
 

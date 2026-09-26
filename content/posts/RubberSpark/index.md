@@ -1,14 +1,14 @@
 ---
 slug: "badusb-digispark-rubber-ducky"
 title: "RubberSpark"
-description: "BadUSB with a cheap Arduino DigiSpark! (4€)"
+description: "Build a cheap BadUSB from an Arduino DigiSpark: install the drivers, write DuckyScript, and compile payloads with the RubberSpark framework."
 date: 2021-03-23
 lastmod: 2021-03-23
 author: "Pablo Jesús González Rubio"
 cover: "digispark.jpg"
 coverAlt: "Digispark board"
 toc: true
-tags: [ "Red-Team", "Projects" ]
+tags: [ "Projects" ]
 ---
 
 ## Introduction

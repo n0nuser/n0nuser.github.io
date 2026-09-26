@@ -2,10 +2,8 @@
 title: "Email Server - Postfix, Dovecot and Roundcube"
 description: "Step-by-step Linux email server setup with Postfix, Dovecot, and Roundcube, including installation, configuration, and security basics."
 date: 2021-05-21
-lastmod: 2026-06-23
+lastmod: 2026-09-26
 author: "Pablo Jesús González Rubio"
-cover: "cover.png"
-coverAlt: "Tux!"
 toc: true
 draft: false
 tags: [ "Linux" ]
@@ -13,6 +11,10 @@ howToSteps: [ "Postfix", "Dovecot", "Roundcube", "Port forwarding", "Send emails
 ---
 
 ## Introduction
+
+This is a step-by-step guide to running your own mail server on Linux: **Postfix** for sending (SMTP), **Dovecot** for reading over IMAP, and **Roundcube** for webmail, then wiring it all up so you can also send and receive through Gmail. It's aimed at self-hosters who are comfortable on the command line.
+
+> **Before you start:** self-hosted email is hard to get *delivered*. Most residential ISPs block outbound port 25, and mail from a new IP without **SPF, DKIM and DMARC** records (plus a clean reverse DNS) usually lands in spam or is rejected outright. This guide covers the server setup; treat deliverability (those DNS records and a reputable relay) as a separate, required step before relying on it for real mail.
 
 ## Postfix
 

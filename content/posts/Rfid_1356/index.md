@@ -3,15 +3,17 @@ slug: "rfid-13-56mhz-cloning"
 title: "High Frequency (13.56 MHz)"
 description: "Practical 13.56 MHz RFID overview covering common card technologies, attack surface, and cloning/testing techniques for NFC access systems."
 date: 2020-06-28
-lastmod: 2020-08-06T01:33:10+02:00
+lastmod: 2026-09-26
 author: "Pablo Jesús González Rubio"
-cover: "card.png"
+cover: "card.jpg"
 coverAlt: "Transparent 13.56 MHz chip card"
 toc: true
 tags: [ "RFID" ]
 ---
 
 ## Introduction
+
+> This is the High Frequency half. For the 125 kHz side (proximity fobs, animal tags, older access control), see the companion post: [Low Frequency (125 KHz)](/posts/rfid-125khz-cloning/).
 
 ### Frequency
 

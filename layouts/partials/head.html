@@ -17,7 +17,7 @@
 {{ else if (eq .Kind "section") }}
 
 <!-- If it's a post list -->
-{{ if gt .Paginator.TotalPages 1 }}
+{{ if gt .Paginator.PageNumber 1 }}
 {{ $mainTitle = printf "%s, %s %s %s %s" .Title (T "page") (string .Paginator.PageNumber) (T "of") (string
 .Paginator.TotalPages) }}
 {{ end }}
@@ -27,7 +27,7 @@
 <!-- Single tag term page (e.g., /tags/linux/) -->
 {{ $currentTitle = printf "%s: \"%s\"" (T "tag") .Title }}
 
-{{ if gt .Paginator.TotalPages 1 }}
+{{ if gt .Paginator.PageNumber 1 }}
 {{ $mainTitle = printf "%s: \"%s\", %s %s %s %s" (T "tag") .Title (T "page") (string .Paginator.PageNumber) (T "of")
 (string .Paginator.TotalPages) }}
 {{ else }}
@@ -39,15 +39,22 @@
 <!-- Tags taxonomy root (e.g., /tags/) -->
 {{ $currentTitle = (T "tags") }}
 
-{{ if gt .Paginator.TotalPages 1 }}
+{{ if gt .Paginator.PageNumber 1 }}
 {{ $mainTitle = printf "%s, %s %s %s %s" (T "tags") (T "page") (string .Paginator.PageNumber) (T "of") (string
 .Paginator.TotalPages) }}
 {{ end }}
 
-{{ else if and (.IsHome) (not .Content) }}
+{{ else if .IsHome }}
 
-<!-- If it's the home page without content -->
+<!-- Home / posts feed -->
+{{ if not .Content }}
 {{ $currentTitle = (.Site.Title | emojify) }}
+{{ end }}
+{{ if gt .Paginator.PageNumber 1 }}
+{{ $base := $mainTitle }}
+{{ if not $base }}{{ $base = $currentTitle }}{{ end }}
+{{ $mainTitle = printf "%s, %s %s %s %s" $base (T "page") (string .Paginator.PageNumber) (T "of") (string .Paginator.TotalPages) }}
+{{ end }}
 
 {{ end }}
 
@@ -103,7 +110,7 @@
 {{ if ne .Kind "404" }}
 {{ if .Params.canonicalURL }}
 <link rel="canonical" href="{{ .Params.canonicalURL | absURL }}">
-{{ else if and (eq .Kind "section") (gt .Paginator.TotalPages 0) }}
+{{ else if and (or (eq .Kind "home") (eq .Kind "section") (eq .Kind "term") (eq .Kind "taxonomy") (eq .Kind "taxonomyTerm")) (gt .Paginator.TotalPages 0) }}
 <link rel="canonical" href="{{ .Paginator.URL | absURL }}">
 {{ else if ne .Params.sitemapExclude true }}
 <link rel="canonical" href="{{ .Permalink }}">
@@ -149,49 +156,51 @@
 {{ $imgPath := .Page.Param "imgPath" }}
 
 <!-- Generate images for Open Graph, Twitter Cards and also Schema.org -->
+<!--
+  Resolve one cover resource: the page's own cover when it exists in the page
+  bundle, otherwise the site-wide cover from assets/. A page that names a cover
+  the bundle doesn't contain (or a leaf .md with no bundled resources, like
+  about/uses/resume) used to fall through and ship no og:image; the fallback
+  below fixes that so every indexable page has a social image.
+-->
+{{- $ogImage := false }}
+{{- $ogAlt := "" }}
 {{- if .Params.cover }}
-
 {{ $file := .Params.cover }}
-
 {{ if $imgPath }}
 {{ $file = path.Join $imgPath $file }}
 {{ end }}
+{{ with .Resources.GetMatch $file }}
+{{ $ogImage = . }}
+{{ $ogAlt = $.Params.coverAlt }}
+{{ end }}
+{{- end }}
 
-{{- with .Resources.GetMatch $file }}
+{{- if not $ogImage }}
+{{ if .Site.Params.cover }}
+{{ if not (resources.Get .Site.Params.cover) }}
+{{ errorf "params.cover %q was not found in assets/ — pages would silently ship without an og:image" .Site.Params.cover }}
+{{ end }}
+{{ with resources.Get .Site.Params.cover }}
+{{ $ogImage = . }}
+{{ $ogAlt = $.Site.Params.coverAlt }}
+{{ end }}
+{{ end }}
+{{- end }}
+
+{{- with $ogImage }}
 <meta property="og:image" content="{{ (.Fill "1200x630").Permalink }}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-{{ with $.Params.coverAlt }}
+{{ with $ogAlt }}
 <meta property="og:image:alt" content="{{ . }}">
 {{ end }}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="{{ (.Fill "1280x640").Permalink }}">
 
-{{ if and (in $.Site.Params.mainSections $.Section) (not .Params.sitemapExclude) }}
+{{ if and (in $.Site.Params.mainSections $.Section) ($.IsPage) (not $.Params.sitemapExclude) }}
 {{ $.Scratch.Set "schemaCover" (slice ((.Fill "1280x640").Permalink) ((.Fill "1200x630").Permalink) ((.Resize (index
 $highRes 0)).Permalink)) }}
-{{ end }}
-
-{{ end -}}
-{{ else if .Site.Params.cover }}
-{{ if not (resources.Get .Site.Params.cover) }}
-{{ errorf "params.cover %q was not found in assets/ — section, taxonomy and 404 pages would silently ship without an og:image" .Site.Params.cover }}
-{{ end }}
-{{ with resources.Get .Site.Params.cover }}
-<meta property="og:image" content="{{ (.Fill " 1200x630").Permalink }}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-{{ with $.Site.Params.coverAlt }}
-<meta property="og:image:alt" content="{{ . }}">
-{{ end }}
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="{{ (.Fill "1280x640").Permalink }}">
-
-{{ if and (in $.Site.Params.mainSections $.Section) (not .Params.sitemapExclude) }}
-{{ $.Scratch.Set "schemaCover" (slice ((.Fill "1280x640").Permalink) ((.Fill "1200x630").Permalink) ((.Resize (index
-$highRes 0)).Permalink)) }}
-{{ end }}
-
 {{ end }}
 {{ end -}}
 

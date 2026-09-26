@@ -3,7 +3,7 @@ slug: "rfid-125khz-cloning"
 title: "Low Frequency (125 KHz)"
 description: "Introduction to 125 KHz low-frequency RFID basics, attack surface, and practical cloning/testing notes for common access-control tags."
 date: 2020-06-28
-lastmod: 2020-08-06T00:50:52+02:00
+lastmod: 2026-09-26
 author: "Pablo Jesús González Rubio"
 cover: "tag.jpg"
 coverAlt: "One of the most common door access tags"
@@ -20,6 +20,8 @@ This technology is based on Radio Frequency as its name indicates (Radio Frequen
 The most common frequencies are **125**-134.2 kHz for Low Frequency (LF) and **13.56** MHz for High Frequency (HF). There are [more frequencies](https://en.wikipedia.org/wiki/Radio-frequency_identification##Frequencies) but they are much less common.
 
 In this post we’ll talk only about the most common to make it simpler.
+
+> This is the Low Frequency half. For the 13.56 MHz side (NFC, MIFARE, access cards), see the companion post: [High Frequency (13.56 MHz)](/posts/rfid-13-56mhz-cloning/).
 
 {{< img "bus.jpg" "Bus" "border" >}}
 
