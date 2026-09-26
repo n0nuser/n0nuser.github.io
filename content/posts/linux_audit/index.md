@@ -334,5 +334,5 @@ tail -f /var/log/messages
 I'll add more tools here with the time.
 
 * [logcheck](https://logcheck.org/)
-* [fail2ban](https://www.fail2ban.org/wiki/index.php/Main_Page)
+* [fail2ban](https://github.com/fail2ban/fail2ban)
 * [sshguard](https://www.sshguard.net/)

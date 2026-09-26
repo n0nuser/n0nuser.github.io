@@ -468,9 +468,7 @@ That's it!
 
 ### Fail2Ban
 
-Link to [webpage](https://www.fail2ban.org/wiki/index.php/Main_Page).
-
-I have a [post about Fail2Ban](../fail2ban).
+[Fail2Ban](https://github.com/fail2ban/fail2ban) watches your logs and bans IPs that keep failing to log in. Install it with `sudo apt install fail2ban`, and put your changes in `/etc/fail2ban/jail.local` rather than editing `jail.conf`, which package updates overwrite.
 
 Apart from the normal configuration, what interests us here is changing these lines:
 

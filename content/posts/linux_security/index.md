@@ -296,8 +296,8 @@ Install tools to improve security such as:
   ```
 
   Every time a file is changed it reports it.
-* [Fail2Ban](https://www.fail2ban.org/wiki/index.php/Main_Page)
-  * I have a [post about it](../fail2ban).
+* [Fail2Ban](https://github.com/fail2ban/fail2ban)
+  * Setting it up for SSH is covered in [my SSH hardening post](/posts/ssh/#fail2ban).
 * [Snort](https://www.snort.org/)
 * [Modsecurity](https://github.com/SpiderLabs/ModSecurity)
 * [JShielder](https://github.com/Jsitech/JShielder)

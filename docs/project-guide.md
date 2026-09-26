@@ -66,6 +66,13 @@ n0nuser.github.io/
   - `author`, `cover`, `coverAlt`
   - `toc`, `tags`, optional `draft`/`lastmod`
 
+### Social Images (og:image)
+
+- A page's own `cover` is used when it exists in the bundle (`img/` via `imgPath`).
+- Posts without a cover get a build-time title card from `layouts/partials/og-card.html`: `images.Text` draws the first tag, the title and the byline on `assets/og/base.png` (1200x630).
+- The card fonts are TTF copies of Geist Bold and JetBrains Mono in `assets/og/` (OFL, licenses alongside); `images.Text` can't read the WOFF files the CSS uses.
+- Every other page falls back to the site-wide `params.cover`.
+
 ### Naming and Structure
 
 - Predominant pattern is leaf bundles: `content/<section>/<slug>/index.md`
