@@ -60,7 +60,6 @@ In the `home_mailbox` I've chosen to use **Maildir** instead of **Mailbox**. Mai
 myorigin = /etc/mailname
 mydomain = mydomain.com
 myhostname = mydomain.com
-smtp_use_tls = yes
 smtp_tls_security_level = may
 smtpd_tls_cert_file = /etc/letsencrypt/live/mydomain.com/fullchain.pem
 smtpd_tls_key_file = /etc/letsencrypt/live/mydomain.com/privkey.pem
@@ -120,6 +119,19 @@ sudo apt install dovecot-imapd -y
 ```
 
 ### Configuration
+
+> **Dovecot version check:** run `dovecot --version`. The snippets below use **2.3** syntax (Debian 12, Ubuntu 24.04). Debian 13 ships **2.4**, which isn't backward-compatible: the config must start with `dovecot_config_version` and `dovecot_storage_version`, and several settings were renamed:
+>
+> | Dovecot 2.3 | Dovecot 2.4 |
+> |---|---|
+> | `mail_location = maildir:~/Maildir` | `mail_driver = maildir` + `mail_path = ~/Maildir` |
+> | `disable_plaintext_auth = yes` | `auth_allow_cleartext = no` (now the default) |
+> | `ssl_cert` / `ssl_key` | `ssl_server_cert_file` / `ssl_server_key_file` |
+> | `ssl_prefer_server_ciphers` | `ssl_server_prefer_ciphers` |
+> | `passdb { driver = pam }` | `passdb pam { }` |
+> | `userdb { driver = passwd }` | `userdb passwd { }` |
+>
+> The [2.3 to 2.4 upgrade guide](https://doc.dovecot.org/2.4.1/installation/upgrade/2.3-to-2.4.html) has the full list.
 
 We'll need to modify some files as root, so you can use the next command to edit these files:
 
