@@ -81,6 +81,8 @@ These frameworks exemplify Python's adaptability, offering tailored solutions th
 - **Microservices** excel in environments where continuous deployment and integration are critical. Independent services mean you can update, add, or fix parts of your application without redeploying the entire application, leading to a more agile development process.
 - **Monolithic** applications can be slower to update and deploy, as any change requires redeploying the entire application, which can be time-consuming and risky.
 
+Whichever you pick, a solid CI/CD pipeline does most of the heavy lifting. I cover the basics in [Software Development Best Practices](/posts/software-development-best-practices/#continuous-integration-and-continuous-deployment-cicd).
+
 ## Real-World Examples
 
 To give you an idea of how these architectures are applied, let's look at a couple of hypothetical examples:

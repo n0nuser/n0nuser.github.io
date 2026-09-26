@@ -156,7 +156,7 @@ Domain Driven Design is an approach to software development that focuses on mode
 
 Incorporating DDD principles into your software development process can lead to more robust and efficient systems that better meet the needs of the business domain.
 
-For more in-depth information on Domain-Driven Design, consult dedicated resources and literature in the field of software architecture and design.
+Bounded contexts are also the natural seams if you ever split a system into services. If you're weighing that move, I compare both sides in [Microservices vs. Monolithic](/posts/microservices-vs-monolith/).
 
 ## Clean Code Principles
 
@@ -325,7 +325,7 @@ Code smells are specific patterns or structures in code that indicate potential 
 
 ## Code Review Best Practices
 
-Code reviews are a crucial part of the software development process, ensuring code quality, maintaining consistency, and catching potential issues early. Here are some best practices to make your code review process effective:
+Code reviews are a crucial part of the software development process, ensuring code quality, maintaining consistency, and catching potential issues early. Here are some best practices to make your code review process effective (for the concrete, rule-by-rule checklist I use on Python code, see [An Opinionated Python Code Review Guide](/posts/python-code-review-guide/)):
 
 - **Define Clear Objectives**: Clearly define what you want to achieve with the code review. Are you looking for bugs, code style issues, or architectural improvements? Knowing the objectives helps reviewers focus.
 - **Involve the Right People**: Ensure that the right people are involved in the review. Developers, architects, and subject matter experts should participate to bring diverse perspectives.
@@ -415,6 +415,6 @@ Lastly, we touched on collaborative development practices, including **pair prog
 
 By incorporating these best practices into your software development process, you can create **high-quality, maintainable software** that meets the needs of your users and stakeholders. Embracing these principles and methodologies will not only enhance your development process but also contribute to the **success of your software projects**.
 
-Remember that software development is an evolving field, and staying updated with the latest trends and practices is essential. **Continuously learning and adapting** will help you and your team remain competitive and deliver outstanding results.
+Remember that software development is an evolving field, and staying updated with the latest trends and practices is essential. **Continuously learning and adapting** will help you and your team remain competitive and deliver outstanding results. The biggest shift right now is AI-generated code: these practices matter more, not less, when agents write most of it. I cover that in [From Programmers to Orchestrators](/posts/programmers-to-orchestrators/) and show my day-to-day setup in [How I Work with AI Agents](/posts/how-i-work-with-ai-agents/).
 
 Thank you for reading, and may your software development journey be filled with **innovation, efficiency, and success**.

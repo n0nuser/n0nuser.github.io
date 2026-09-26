@@ -13,7 +13,7 @@ tags: [ "Software Development", "Python" ]
 
 This is the checklist I review Python code against. Each section is a group of rules, each rule is one line, and code shows up only where a rule needs it. Where a rule is one a reasonable engineer would push back on, the counterpoint is stated and answered.
 
-It's written for two readers: someone joining a team who wants to know what review will look like, and someone reviewing a lot of PRs who wants a list to work from.
+It's written for two readers: someone joining a team who wants to know what review will look like, and someone reviewing a lot of PRs who wants a list to work from. It assumes the fundamentals (clean code, SOLID, testing, code smells); if you want a refresher first, see [Software Development Best Practices](/posts/software-development-best-practices/).
 
 > Examples target **Python 3.11+**. Tools: [Ruff](https://docs.astral.sh/ruff/), [mypy](https://mypy.readthedocs.io/), [pyright](https://microsoft.github.io/pyright/), [Pydantic](https://docs.pydantic.dev/), [pytest](https://docs.pytest.org/).
 

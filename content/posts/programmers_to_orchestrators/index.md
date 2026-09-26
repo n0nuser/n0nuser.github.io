@@ -181,6 +181,8 @@ What doesn't become a commodity:
 - **Domain depth:** the business rule that isn't written down anywhere.
 - **Verification:** building the environment that proves the work is right.
 
+None of this replaces the fundamentals. Clean code, tests and good review are what make agent output verifiable in the first place; I collected them in [Software Development Best Practices](/posts/software-development-best-practices/).
+
 The question for every team is the same: **is your environment forcing agents toward good output, or letting generated code grow unchecked?**
 
 If you want to see what such an environment looks like in practice, the companion post shows mine: [How I Work with AI Agents](/posts/how-i-work-with-ai-agents/).
