@@ -10,3 +10,8 @@ nohup.out
 # Node / npm
 node_modules/
 npm-debug.log*
+
+# AI/agent tooling artifacts (not part of the site)
+.codegraph/
+.playwright-mcp/
+SEO_AUDIT.md

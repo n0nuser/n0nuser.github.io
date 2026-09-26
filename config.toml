@@ -136,7 +136,7 @@ minLength = 2  # Default is 3
 maxLength = 32 # Default is 32
 
 # Optional placeholder for search field
-placeholder = "e.g. wireguard, docker, htb"
+placeholder = "e.g. wireguard, docker, python"
 
 # Stop word filter list
 # Can also be set PER PAGE via front matter
@@ -327,12 +327,6 @@ identifier = "uses"
 name = "Uses"
 weight = 4
 url = "uses/"
-
-[[languages.en.menu.main]]
-identifier = "htb"
-name = "HTB"
-weight = 5
-url = "writeups/htb/"
 
 [[languages.en.menu.main]]
 identifier = "posts"

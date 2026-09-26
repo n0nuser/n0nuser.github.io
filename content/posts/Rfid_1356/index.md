@@ -13,6 +13,8 @@ tags: [ "RFID" ]
 
 ## Introduction
 
+> This is the High Frequency half. For the 125 kHz side (proximity fobs, animal tags, older access control), see the companion post: [Low Frequency (125 KHz)](/posts/rfid-125khz-cloning/).
+
 ### Frequency
 
 HF ranges between 3 MHz and 30 MHz.

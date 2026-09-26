@@ -21,6 +21,8 @@ The most common frequencies are **125**-134.2 kHz for Low Frequency (LF) and **1
 
 In this post we’ll talk only about the most common to make it simpler.
 
+> This is the Low Frequency half. For the 13.56 MHz side (NFC, MIFARE, access cards), see the companion post: [High Frequency (13.56 MHz)](/posts/rfid-13-56mhz-cloning/).
+
 {{< img "bus.jpg" "Bus" "border" >}}
 
 ## How it works

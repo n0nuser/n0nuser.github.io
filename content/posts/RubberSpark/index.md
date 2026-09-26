@@ -8,7 +8,7 @@ author: "Pablo Jesús González Rubio"
 cover: "digispark.jpg"
 coverAlt: "Digispark board"
 toc: true
-tags: [ "Red-Team", "Projects" ]
+tags: [ "Projects" ]
 ---
 
 ## Introduction
