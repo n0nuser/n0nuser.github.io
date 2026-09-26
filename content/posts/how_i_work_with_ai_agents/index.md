@@ -17,6 +17,8 @@ The same habits run at two scales. At home it's a few hobby repos. At work it's 
 
 It's written for someone who already uses an agent CLI and keeps running out of context or losing track of state between sessions.
 
+For why the work shifted this way, and what the industry evidence says, see the companion post: [From Programmers to Orchestrators](/posts/programmers-to-orchestrators/).
+
 > Examples use [Claude Code](https://code.claude.com/docs/en/overview). Most of it transfers to any agent CLI that supports hooks and an instructions file.
 
 ## Context is the budget
