@@ -1,6 +1,6 @@
 ---
 slug: "linux-users-and-groups"
-title: "Linux Users and Groups: useradd, usermod and sudo"
+title: "Linux Users and Groups: useradd and sudo"
 description: "Manage Linux users and groups from the command line: /etc/passwd and /etc/shadow, useradd, usermod, groups, sudo rules, password ageing and orphaned files."
 date: 2026-09-27T00:30:00+02:00
 lastmod: 2026-09-27

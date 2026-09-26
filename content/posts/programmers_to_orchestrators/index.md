@@ -1,6 +1,6 @@
 ---
 slug: "programmers-to-orchestrators"
-title: "From Programmers to Orchestrators: Working in the Code-Overload Era"
+title: "From Programmers to Orchestrators"
 description: "AI made writing code cheap. The work moved to context, constraints and verification. What the evidence says, and what a team can change on Monday."
 date: 2026-09-26
 lastmod: 2026-09-26

@@ -1,6 +1,6 @@
 ---
 slug: "linux-hardening-guide"
-title: "Linux Hardening Guide: SUID, SGID, and Security Tools Checklist"
+title: "Linux Hardening Guide: SUID, SGID and Tools"
 description: "A practical Linux hardening checklist: SUID/SGID and the sticky bit, bootloader and BIOS, PAM password policy, fstab mount options, and rootkit-scanning tools."
 date: 2021-06-12
 lastmod: 2026-06-23

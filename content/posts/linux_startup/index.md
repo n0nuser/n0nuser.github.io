@@ -1,6 +1,6 @@
 ---
 slug: "linux-boot-process"
-title: "Linux Boot Process Explained: systemd, Runlevels, and Startup Scripts"
+title: "Linux Boot Process: systemd and Runlevels"
 description: "How Linux boots and shuts down: SysVinit vs systemd, runlevels and targets, and how to run your own script at boot or shutdown with a systemd service."
 date: 2021-05-10
 lastmod: 2026-09-27

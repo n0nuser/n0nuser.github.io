@@ -1,7 +1,7 @@
 ---
 slug: "how-i-work-with-ai-agents"
-title: "How I Work with AI Agents: Context, Handoffs and Rules"
-description: "The setup behind my AI agent workflow: tools that shrink what the agent reads, a concise output style, handoffs at 30% context, state kept in the issue tracker, rules written from failures, and an orchestrator/executor loop."
+title: "How I Work with AI Agents: Handoffs and Rules"
+description: "My AI agent setup: tools that shrink context, handoffs at 30% context, state kept outside the chat, rules written from failures, and an orchestrator loop."
 date: 2026-09-26
 lastmod: 2026-09-26
 author: "Pablo Jesús González Rubio"

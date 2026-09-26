@@ -1,7 +1,7 @@
 ---
 slug: "jellyfin-homelab-media-stack"
-title: "My Homelab: From Book Server to Full Media Stack"
-description: "How my server started as a book library with Calibre and Kavita, then grew into a full media homelab with Jellyfin, Arr automation, a reverse proxy, and operations tooling — one folder per service, all in Docker Compose."
+title: "My Homelab: From Book Server to Media Stack"
+description: "How my home server grew from a Calibre book library into a Jellyfin media stack with Arr automation, a reverse proxy and one Docker Compose per service."
 date: 2026-05-08
 lastmod: 2026-05-08
 author: "Pablo Jesús González Rubio"

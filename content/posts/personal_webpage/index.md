@@ -1,6 +1,6 @@
 ---
 slug: "static-site-hugo-cloudflare"
-title: "Setting Up a Static Page with Hugo, Cloudflare, and Umami Analytics"
+title: "Hugo Site on Cloudflare Pages with Umami"
 description: "A guide to setting up a static website using Hugo with a domain from Namecheap, Cloudflare DNS, Cloudflare Pages, and Umami for analytics."
 date: 2024-06-26
 lastmod: 2024-06-26

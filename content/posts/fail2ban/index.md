@@ -1,6 +1,6 @@
 ---
-title: "Fail2Ban - Install and configure"
-description: "Fail2ban scans log files and bans IPs that show the malicious signs (too many password failures, seeking for exploits, etc). Generally Fail2Ban is then used to update firewall rules to reject the IP addresses for a specified amount of time."
+title: "Fail2Ban: Install and Configure"
+description: "Install Fail2Ban on Debian, Fedora or Gentoo and configure it with jail.local to ban IPs that keep failing logins or probing for exploits."
 date: 2021-03-08
 lastmod: 2021-03-08
 author: "Pablo Jesús González Rubio"

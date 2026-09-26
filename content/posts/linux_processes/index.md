@@ -1,7 +1,7 @@
 ---
 slug: "linux-process-management"
 title: "Linux Process Management: ps, top and Signals"
-description: "Systems Monitoring is in charge of continuously monitoring different resources and services of the computer, to guarantee the required level of availability and alert administrators in case of failure. Its objective is to ensure that the system works correctly and to minimize the downtime of a service."
+description: "Monitor and control Linux processes: ps, top, nice and signals, scheduling with at, nohup and cron, and tools for CPU, disk, memory and network."
 date: 2021-04-25
 lastmod: 2026-09-27
 author: "Pablo Jesús González Rubio"

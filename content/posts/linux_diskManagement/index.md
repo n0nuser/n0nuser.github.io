@@ -1,7 +1,7 @@
 ---
 slug: "linux-disk-quotas"
-title: "How to Set Disk Quotas on Linux: Limiting User Storage"
-description: "Quotas are necessary as in a multi-user system limits allow to distribute space to each user. This way, everyone has the same conditions. As administrators, we don't want a user to upload all his movies to the system and block system resources for other users."
+title: "Linux Disk Quotas: Limit User Storage"
+description: "Stop one user from filling the disk: check usage with df and du, enable quotas in fstab, and set soft limits, hard limits and grace periods."
 date: 2021-05-10
 lastmod: 2026-06-23
 author: "Pablo Jesús González Rubio"

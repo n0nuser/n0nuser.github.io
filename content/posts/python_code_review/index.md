@@ -1,7 +1,7 @@
 ---
 slug: "python-code-review-guide"
 title: "An Opinionated Python Code Review Guide"
-description: "The checklist I use to review Python code: architecture, typing, imports, state, naming, validation, errors, comments, tests, concurrency and resource lifecycle, with the reasoning behind each rule."
+description: "The checklist I review Python code against: architecture, typing, state, errors, tests, concurrency and resource lifecycle, with the reason behind each rule."
 date: 2026-09-26
 lastmod: 2026-09-26
 author: "Pablo Jesús González Rubio"

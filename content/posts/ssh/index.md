@@ -1,6 +1,6 @@
 ---
 title: "How to install and harden SSH"
-description: "Installing an SSH server can be very useful to manage your files from outside home and knowing it encrypts the traffic one can remain relieved that the data is secure. Today we are going to install one and secure it!"
+description: "Install an OpenSSH server, open it in ufw, then harden it: a custom port, no root login, SSH keys, login grace time and chroot."
 date: 2020-10-22
 lastmod: 2026-09-27
 author: "Pablo Jesús González Rubio"
