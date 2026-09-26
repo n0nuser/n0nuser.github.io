@@ -21,7 +21,7 @@ It's written for engineers and tech leads who use AI assistants daily and feel t
 
 The volume numbers are real:
 
-- **Google:** in April 2026, Sundar Pichai said about [75% of Google's new code is AI-generated](https://www.semafor.com/article/04/24/2026/google-ceo-says-75-of-companys-new-code-is-ai-generated) and approved by engineers. The figure was about 25% in late 2024.
+- **Google:** in April 2026, Sundar Pichai said [75% of all new code at Google](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/) is AI-generated and approved by engineers, up from 50% the previous autumn. In [October 2024](https://fortune.com/2024/10/30/googles-code-ai-sundar-pichai) it was about a quarter.
 - **Amazon:** Andy Jassy said AI-assisted Java upgrades [saved an estimated 4,500 developer-years](https://x.com/ajassy/status/1826608791741493281) of work. An upgrade that took about 50 developer-days took a few hours.
 
 The cost shows up downstream. In April 2026 the New York Times gave it a name, [code overload](https://www.thestar.com.my/tech/tech-news/2026/04/07/the-big-bang-ai-has-created-a-code-overload): teams produce more code than they can handle. One company in the article went from 25,000 lines of code a month to 250,000, and was left with a review backlog of about a million lines.
@@ -55,11 +55,19 @@ The best evidence on AI productivity is a randomised trial by [METR](https://arx
 - Before starting, the developers expected AI to make them **24% faster**.
 - After finishing, they still believed it had made them **about 20% faster**.
 
-The gap between felt speed and measured speed is the point. Generating code feels productive. Prompting, waiting, reading the output and correcting it don't feel like work, but they take the time.
+The gap between felt speed and measured speed is the point. The paper names five factors that likely contributed:
+
+- Over-optimism about how useful the AI would be.
+- Developers who already knew their repositories very well.
+- Large, complex repositories (over a million lines on average).
+- Low reliability: developers accepted less than 44% of the generations and spent about 9% of their time reviewing and cleaning the output.
+- Context that lives only in the developers' heads, which the model can't see.
+
+Most of those are context and verification problems, not generation problems.
 
 Two more findings from [ByteByteGo's piece on verification](https://blog.bytebytego.com/p/why-code-verification-matters-more):
 
-- **AI reviewing AI is weak.** Two similar models share the same blind spots. Their agreement is one opinion stated twice, not an independent check.
+- **AI reviewing AI is weak.** Two similar models share the same blind spots, so their agreement is, in the article's words, "one opinion stated twice" rather than an independent check.
 - **Verification is a stack of filters.** Type checkers, linters, tests, human review and production monitoring each catch a different class of error. None catches all of them.
 
 GitHub's [guide to keeping quality high](https://github.blog/ai-and-ml/generative-ai/speed-is-nothing-without-control-how-to-keep-quality-high-in-the-ai-era/) adds a practical habit: write down the *why*. Issues, commit messages and PR descriptions that explain the reasoning are what the next human, or agent, needs to review the change.
@@ -68,17 +76,17 @@ GitHub's [guide to keeping quality high](https://github.blog/ai-and-ml/generativ
 
 ## The codebase is the agents' memory
 
-poteto (Lauren Tan) described [shipping 2,000 PRs in a month](https://www.youtube.com/watch?v=NjoZoUm85x0) with agents. The argument of the talk is that the limit isn't the number of agents, it's **trust**. More agents running before you trust their output only produce more bad PRs.
+poteto (Lauren Tan) gave a talk on [shipping 2,000 PRs in a month](https://www.youtube.com/watch?v=NjoZoUm85x0) with agents, and published the practices behind it as [pstack](https://github.com/cursor/plugins/tree/main/pstack), a set of skills and engineering principles. Its README puts the order plainly: "if you want to go fast, go deep first". Parallel agents only help once you trust one agent to write good, verifiable code.
 
-The talk and [pstack](https://github.com/cursor/plugins/tree/main/pstack), the skills and principles poteto published, share a few ideas that apply to any team:
+A few ideas from it that apply to any team:
 
-- **The codebase teaches.** Agents copy what they find. One workaround left in place becomes the pattern the next changes follow.
-- **Encode lessons in structure.** When a bad pattern appears, write the lint rule that forbids it. A rule in a doc gets skipped. A failing check doesn't.
-- **A feature map.** A compact record of each user-facing feature: what it does, how to reach it, and its traps. Agents use it to find and verify features instead of guessing.
-- **Prove it works.** Verify against the real artifact (run the feature, read the value, inspect the diff), not against a self-report or "it compiles".
+- **The codebase teaches.** In the words of the [encode-lessons-in-structure](https://github.com/cursor/plugins/tree/main/pstack/skills/principle-encode-lessons-in-structure) principle, "agents copy whatever the surrounding code already does". A workaround left in place becomes the template for the next change.
+- **Encode lessons in structure.** A rule written in a doc depends on someone noticing and remembering it. A lint rule, a type or a runtime check enforces it without anyone's cooperation. An impossible state beats a lint rule, and a lint rule beats a documented pattern.
+- **Prove it works.** Verify against the real artifact: run the feature, read the value, inspect the diff. A self-report or "it compiles" isn't evidence.
+- **Feature maps.** pstack's verify skill keeps a map of the app's features, so an agent can drive the real app and collect evidence instead of guessing how to reach a feature.
 - **Guard the context window.** An agent works better with less, well-chosen context.
 
-The same logic shows up in language choice. [GitHub's Octoverse data](https://github.blog/ai-and-ml/generative-ai/how-ai-is-reshaping-developer-choice-and-octoverse-data-proves-it/) shows TypeScript became the most-used language on GitHub in August 2025. One reason given: types constrain what a model can generate. Declaring `x: string` rules out every non-string operation before the model writes a line.
+The same logic shows up in language choice. [GitHub's Octoverse data](https://github.blog/ai-and-ml/generative-ai/how-ai-is-reshaping-developer-choice-and-octoverse-data-proves-it/) shows TypeScript became the most-used language on GitHub in August 2025. The article's explanation: types narrow what a model can generate. A variable declared as a string can't be the target of a number operation, so a whole class of wrong completions is ruled out before any code runs.
 
 **On Monday:** find the workaround in your codebase that agents keep copying. Fix the root cause, then add a check that fails if the workaround comes back.
 
@@ -90,7 +98,7 @@ What made it work was the measurement, not the model:
 
 - **Deterministic metrics.** Wall-clock milliseconds are noisy in CI. They counted CPU instructions with Valgrind and `node --predictable`, plus React commits, DOM mutations and layout recalculations. Those counts don't change between runs.
 - **One-way ratchets.** Each benchmark became a number that could only go down. A PR that made it worse failed.
-- **Humans owned the hill.** People set the targets (like an 8.33 ms frame budget for 120 Hz displays), made the taste calls, and kept each thread narrow.
+- **Humans owned taste and scope.** Each thread had a named owner who reviewed before-and-after recordings, made the UX calls, and kept the work narrow. The agent climbed against concrete budgets, like 8.33 ms per frame on a 120 Hz display.
 
 Meta's [capacity efficiency platform](https://engineering.fb.com/2026/04/16/developer-tools/capacity-efficiency-at-meta-how-unified-ai-agents-optimize-performance-at-hyperscale/) shows the same shape at a larger scale. Agents combine **tools** (standard interfaces to profiling data, code and configs) with **skills** (encoded expertise from senior engineers). Regression investigations went from about 10 hours to about 30 minutes, and the fix goes back to the original author as a PR for review.
 
@@ -110,9 +118,11 @@ measure() {
 
 count=$(measure)
 baseline=$(cat "$baseline_file")
-echo "instructions: $count (baseline: $baseline)"
+# Identical runs still differ by a few hundred instructions; allow 0.1%
+tolerance=$(( baseline / 1000 ))
+echo "instructions: $count (baseline: $baseline, tolerance: $tolerance)"
 
-if (( count > baseline )); then
+if (( count > baseline + tolerance )); then
   echo "FAIL: +$(( count - baseline )) instructions over the baseline" >&2
   exit 1
 fi
@@ -123,6 +133,8 @@ fi
 ```
 
 - Seed `perf/baseline.txt` with the current count once.
+- The count only holds for one Node version on one kind of runner. Pin both, or the baseline moves when CI does.
+- Counts aren't perfectly stable. In my test, identical runs of a 118-million-instruction benchmark differed by up to about 900 instructions. That's why the 0.1% tolerance is there.
 - An agent can now optimise against a number that doesn't lie, and CI stops it from giving back what it won.
 
 **On Monday:** pick one slow path. Turn it into a deterministic number and a ratchet. Then point an agent at it.
@@ -160,7 +172,7 @@ echo "All dependencies are allowlisted."
 
 ## What stays valuable
 
-In January 2025 Mark Zuckerberg predicted that [in 2025](https://fortune.com/2025/01/24/mark-zuckerberg-ai-engineer-capex-spend) AI would work as "a sort of midlevel engineer". Whether or not that happened where you work, the direction is clear: writing syntax is becoming a commodity.
+In January 2025 Mark Zuckerberg predicted that [in 2025](https://fortune.com/2025/01/24/mark-zuckerberg-ai-engineer-capex-spend) AI could "effectively be a sort of mid-level engineer". Whether or not that happened where you work, the direction is clear: writing syntax is becoming a commodity.
 
 What doesn't become a commodity:
 
@@ -181,6 +193,7 @@ If you want to see what such an environment looks like in practice, the companio
 - [How we made claude.ai 3x faster in two weeks](https://claude.dev/blog/how-we-made-claude-ai-faster/) (Anthropic): deterministic benchmarks, ratchets and human steering.
 - [Capacity Efficiency at Meta](https://engineering.fb.com/2026/04/16/developer-tools/capacity-efficiency-at-meta-how-unified-ai-agents-optimize-performance-at-hyperscale/) (Engineering at Meta): tools plus skills for performance work at scale.
 - [How I Shipped 2000 PRs Last Month](https://www.youtube.com/watch?v=NjoZoUm85x0), poteto (Lauren Tan), and [pstack](https://github.com/cursor/plugins/tree/main/pstack): trust before throughput.
+- [Sundar Pichai at Google Cloud Next 2026](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/) (Google): the 75% figure.
 - [How AI is reshaping developer choice](https://github.blog/ai-and-ml/generative-ai/how-ai-is-reshaping-developer-choice-and-octoverse-data-proves-it/) (GitHub): why typed languages and AI work well together.
 - [Speed is nothing without control](https://github.blog/ai-and-ml/generative-ai/speed-is-nothing-without-control-how-to-keep-quality-high-in-the-ai-era/) (GitHub): guardrails and documenting the why.
 - [The big bang: AI has created a code overload](https://www.thestar.com.my/tech/tech-news/2026/04/07/the-big-bang-ai-has-created-a-code-overload), Mike Isaac and Erin Griffith (New York Times, syndicated).
