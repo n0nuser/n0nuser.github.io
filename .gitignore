@@ -15,3 +15,4 @@ npm-debug.log*
 .codegraph/
 .playwright-mcp/
 SEO_AUDIT.md
+SEO_PROMPTS*.md
