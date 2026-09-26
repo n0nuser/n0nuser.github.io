@@ -473,7 +473,7 @@ The Nginx log directory is mounted read-only from the SWAG config folder — Cro
 
 ### WireGuard and DuckDNS
 
-Private services (admin UIs, Sonarr, Radarr, etc.) are intended to stay private (LAN/VPN), while public exposure is limited to selected endpoints through the reverse proxy. **DuckDNS** keeps the WireGuard host address up to date when the public IP changes, which happens regularly on residential connections.
+Private services (admin UIs, Sonarr, Radarr, etc.) are intended to stay private (LAN/VPN), while public exposure is limited to selected endpoints through the reverse proxy. **DuckDNS** keeps the WireGuard host address up to date when the public IP changes, which happens regularly on residential connections. If you're setting up wg-easy from scratch, including the client side, I walk through it in [Wireguard Setup](/posts/wireguard/).
 
 ```yaml
 services:
