@@ -179,41 +179,27 @@ The full version adds colours (green, yellow at 50%, orange at 70%, red at 90%),
 
 At ~30% context:
 
-1. Run `/handoff`. It writes the current state to a file.
+1. Run `/handoff`, optionally with what the next session is for: `/handoff finish the review fixes`.
 2. Run `/clear`.
 3. Type "work from this handoff" and give the path.
 
-`/handoff` comes from [Matt Pocock's skills](#matt-pococks-skills). A handoff is only useful if it's short and honest. This is the shape I use:
+`/handoff` is a skill from [Matt Pocock's set](#matt-pococks-skills). It compacts the conversation into a document for a fresh agent:
+
+- **Saved outside the repo**, in the OS temp directory, so handoffs don't pile up in the working tree.
+- **Links instead of copying.** Anything already in a spec, ADR, issue, commit or diff is referenced by path or URL, not restated. The handoff is an index, not a copy.
+- **Suggested skills.** It names the skills the next session should load, so the new agent starts in the right workflow.
+- **Redacted.** API keys, passwords and personal data are left out.
+
+Before I clear, I check the handoff answers these questions. If one is missing, I ask for it:
 
 ```markdown
-# Handoff: YYYY-MM-DD
-
-## State
-One paragraph. What exists, and whether production serves the latest work.
-
-## Shipped since the last handoff
-- Commit SHAs and PR numbers. Facts, not narrative.
-
-## In flight / blocked
-- What it is, what it's waiting on, and who or what unblocks it.
-
-## Next actions, in order
-1. Concrete enough to start without asking a question.
-
-## Believed but not measured
-- Places where the code embodies a guess. The next session should know which.
-
-## Gotchas
-- Traps that silently do the wrong thing, and why, so nobody undoes the fix.
-
-## Open questions for the user
-- Decisions that aren't the agent's to make.
+- State: what exists right now, and is it deployed?
+- In flight / blocked: what's waiting, and on whom?
+- Next actions, in order: can the next session start without asking?
+- Believed but not measured: where does the code embody a guess?
+- Gotchas: what silently does the wrong thing?
+- Open questions: which decisions aren't the agent's to make?
 ```
-
-Two rules make it work:
-
-- **Gather, don't remember.** The handoff is built from `git log`, `git status` and the tracker, not from the model's memory of the chat.
-- **Link, don't restate.** If a spec, ADR or issue already says it, link it. The handoff is an index, not a copy.
 
 ## Matt Pocock's skills
 
@@ -230,7 +216,7 @@ Two rules make it work:
 | Check | `code-review` | Reviews the diff against the repo's standards and against the spec |
 | Look things up | `research` | Checks primary sources and writes the findings to a file in the repo |
 | Name things | `domain-modeling` | Keeps `CONTEXT.md` and the ADRs in sync with the code's vocabulary |
-| Stop | `handoff` | Compacts the session into a document for the next one |
+| Stop | `handoff` | Compacts the session into a document for the next session |
 
 ```console
 /plugin install mattpocock-skills@claude-plugins-official
