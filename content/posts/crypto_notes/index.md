@@ -10,6 +10,7 @@ coverAlt: "Crypto"
 toc: true
 tags: [ "Crypto"]
 noindex: true
+sitemapExclude: true
 ---
 
 ## Do's and Don'ts

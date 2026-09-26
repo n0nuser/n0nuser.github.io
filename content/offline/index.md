@@ -2,6 +2,7 @@
 title: "Offline"
 description: "You are offline right now. Reconnect, or use the links below to reach pages stored on your device."
 author: "Pablo Jesús González Rubio"
+noindex: true
 build:
   list: never
   render: always

@@ -1,9 +1,9 @@
 ---
 slug: "linux-server-backup"
 title: "How to Back Up a Linux Server: rsync, tar, and dd"
-description: "A backup or backup is the safe copy of a digital file, a set of files, or all of the data considered important enough to be preserved."
+description: "How to back up a Linux server: full vs differential vs incremental strategies, with hands-on tar, dd, dump/restore and rsync examples, plus Raspberry Pi images."
 date: 2021-05-09
-lastmod: 2026-06-23
+lastmod: 2026-09-26
 author: "Pablo Jesús González Rubio"
 cover: "cover.png"
 coverAlt: "Tux!"
@@ -14,7 +14,7 @@ tags: [ "Linux" ]
 
 > **Linux series:** Users & Groups → [Filesystem](/posts/linux-filesystem-inodes-partitions/) → [Monitoring Processes](/posts/linux-process-management/) → [System Auditing](/posts/linux-system-auditing/) → **Backup** → [Startup & Shutdown](/posts/linux-boot-process/) → [Disk Quotas](/posts/linux-disk-quotas/) → [Security](/posts/linux-hardening-guide/)
 
-A backup or backup is the safe copy of a digital file, a set of files, or all of the data considered important enough to be preserved.
+A backup is a safe copy of the files or data you can't afford to lose. This guide covers *why* backups matter, the three classic strategies (full, differential and incremental) and when each one makes sense, then walks through the Linux tools that implement them — `tar`, `dd`, `dump`/`restore` and `rsync` — finishing with a practical way to image a Raspberry Pi. It's aimed at anyone administering a Linux machine they care about.
 
 ## Why is it important
 

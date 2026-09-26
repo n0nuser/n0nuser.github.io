@@ -4,8 +4,6 @@ description: "Fail2ban scans log files and bans IPs that show the malicious sign
 date: 2021-03-08
 lastmod: 2021-03-08
 author: "Pablo Jesús González Rubio"
-cover: "cover.jpg"
-coverAlt: "Fail2Ban"
 toc: true
 tags: [ "Linux" ]
 ---

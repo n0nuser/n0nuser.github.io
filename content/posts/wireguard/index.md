@@ -1,8 +1,8 @@
 ---
 title: "Wireguard Setup"
-description: "How to setup Wireguard server and client the easy way."
+description: "Set up a WireGuard VPN the easy way with wg-easy in Docker, then connect Windows, Linux and phone clients, with notes on obscuring the public port."
 date: 2022-07-27
-lastmod: 2026-06-23
+lastmod: 2026-09-26
 author: "Pablo Jesús González Rubio"
 cover: "cover.png"
 coverAlt: "WireGuard"
@@ -11,6 +11,10 @@ draft: false
 tags: [ "Linux" ]
 howToSteps: [ "Wireguard Server Setup", "Wireguard Client Setup" ]
 ---
+
+## Introduction
+
+WireGuard is a fast, modern VPN that's refreshingly simple to run. By the end of this guide you'll have a server up the easy way, using **wg-easy** in Docker, and clients connected on Windows, Linux, Android and iOS. It's aimed at anyone who wants secure remote access to their home network or a personal server without hand-editing config files.
 
 ## Wireguard Server Setup
 

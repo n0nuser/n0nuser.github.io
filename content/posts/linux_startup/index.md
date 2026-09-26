@@ -1,7 +1,7 @@
 ---
 slug: "linux-boot-process"
 title: "Linux Boot Process Explained: systemd, Runlevels, and Startup Scripts"
-description: "In this post I'll explain with detail how Unix uses *initd* or *systemd* to manage the boot/shutdown process: runlevels, targets, and how to run a script/program at certain points like boot or shutdown."
+description: "How Linux boots and shuts down: SysVinit vs systemd, runlevels and targets, and how to run your own script at boot or shutdown with a systemd service."
 date: 2021-05-10
 lastmod: 2026-06-23
 author: "Pablo Jesús González Rubio"

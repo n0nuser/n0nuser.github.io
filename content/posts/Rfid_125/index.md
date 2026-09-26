@@ -3,7 +3,7 @@ slug: "rfid-125khz-cloning"
 title: "Low Frequency (125 KHz)"
 description: "Introduction to 125 KHz low-frequency RFID basics, attack surface, and practical cloning/testing notes for common access-control tags."
 date: 2020-06-28
-lastmod: 2020-08-06T00:50:52+02:00
+lastmod: 2026-09-26
 author: "Pablo Jesús González Rubio"
 cover: "tag.jpg"
 coverAlt: "One of the most common door access tags"

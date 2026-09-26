@@ -1,11 +1,11 @@
 ---
 slug: "microservices-vs-monolith"
 title: "Microservices vs. Monolithic: A Friendly Guide for Backend Developers"
-description: "A comparison between microservices and monolithic architectures."
+description: "Microservices vs monolith for backend developers: trade-offs in deployment, scaling, complexity and cost, plus which Python frameworks fit each approach."
 date: 2024-03-01
 lastmod: 2024-03-01
 author: "Pablo Jesús González Rubio"
-cover: "cover.jpg"
+cover: "introduction.webp"
 coverAlt: "Microservice vs Monolithic"
 toc: true
 draft: false
