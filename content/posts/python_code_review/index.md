@@ -5,7 +5,8 @@ description: "The checklist I use to review Python code: architecture, typing, i
 date: 2026-09-26
 lastmod: 2026-09-26
 author: "Pablo Jesús González Rubio"
-coverAlt: "An Opinionated Python Code Review Guide"
+cover: "cover.jpg"
+coverAlt: "Isometric illustration of a code editor under a magnifying glass, linked to a review checklist with three passing rows and one failing row, a security shield and a test tube"
 toc: true
 draft: false
 tags: [ "Software Development", "Python" ]

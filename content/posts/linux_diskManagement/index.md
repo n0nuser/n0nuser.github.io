@@ -12,7 +12,7 @@ draft: false
 tags: [ "Linux" ]
 ---
 
-> **Linux series:** Users & Groups → [Filesystem](/posts/linux-filesystem-inodes-partitions/) → [Monitoring Processes](/posts/linux-process-management/) → [System Auditing](/posts/linux-system-auditing/) → [Backup](/posts/linux-server-backup/) → [Startup & Shutdown](/posts/linux-boot-process/) → **Disk Quotas** → [Security](/posts/linux-hardening-guide/)
+> **Linux series:** [Users & Groups](/posts/linux-users-and-groups/) → [Filesystem](/posts/linux-filesystem-inodes-partitions/) → [Monitoring Processes](/posts/linux-process-management/) → [System Auditing](/posts/linux-system-auditing/) → [Backup](/posts/linux-server-backup/) → [Startup & Shutdown](/posts/linux-boot-process/) → **Disk Quotas** → [Security](/posts/linux-hardening-guide/)
 
 ## Introduction
 
