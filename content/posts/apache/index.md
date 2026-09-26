@@ -2,7 +2,7 @@
 title: "Apache Web Server"
 description: "Practical Apache web server guide covering installation, core configuration, virtual hosts, TLS basics, and hardening on Linux."
 date: 2021-05-16
-lastmod: 2026-09-26
+lastmod: 2026-09-27
 author: "Pablo Jesús González Rubio"
 cover: "cover.png"
 coverAlt: "Tux!"
@@ -412,13 +412,13 @@ For the SSL certificate, we can build our own with OpenSSL, but since it’s not
 2. Install Certbot
 
    ```bash
-   sudo apt update && sudo apt install certbot python-certbot-apache -y
+   sudo apt update && sudo apt install certbot python3-certbot-apache -y
    ```
 
 3. Run Certbot
 
    ```bash
-   certbot  --apache --redirect -d mydomain.com -d www.mydomain.com -m admin@mydomain.com --agree-tos
+   sudo certbot --apache --redirect -d mydomain.com -d www.mydomain.com -m admin@mydomain.com --agree-tos
    ```
 
    >`--redirect`: Redirects every HTTP request to HTTPS

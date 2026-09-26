@@ -3,7 +3,7 @@ slug: "linux-boot-process"
 title: "Linux Boot Process Explained: systemd, Runlevels, and Startup Scripts"
 description: "How Linux boots and shuts down: SysVinit vs systemd, runlevels and targets, and how to run your own script at boot or shutdown with a systemd service."
 date: 2021-05-10
-lastmod: 2026-06-23
+lastmod: 2026-09-27
 author: "Pablo Jesús González Rubio"
 cover: "cover.png"
 coverAlt: "Tux!"
@@ -85,6 +85,8 @@ These scripts start with an *S* (Start) or a *K* (Kill) and a number after that 
 If you want Spotify to start in runlevel 2, you should put S in rc2, but if you change to runlevel 3 or 4, you should put K.
 
 If we have two numbers with the same priority number, it is executed first in alphabetical order.
+
+> **Historical note:** `update-rc.d` priorities and `insserv` below are how pre-systemd Debian (6 and 7) handled this. Every current mainstream distro uses systemd instead; skip to [Systemd service](#systemd-service) for the modern way.
 
 There is a Debian 6 command that does all of this:
 
