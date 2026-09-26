@@ -2,19 +2,19 @@
 title: "Email Server - Postfix, Dovecot and Roundcube"
 description: "Step-by-step Linux email server setup with Postfix, Dovecot, and Roundcube, including installation, configuration, and security basics."
 date: 2021-05-21
-lastmod: 2026-09-26
+lastmod: 2026-09-27
 author: "Pablo Jesús González Rubio"
 toc: true
 draft: false
 tags: [ "Linux" ]
-howToSteps: [ "Postfix", "Dovecot", "Roundcube", "Port forwarding", "Send emails with Gmail via IMAP" ]
+howToSteps: [ "Postfix", "Dovecot", "Roundcube", "Port forwarding", "SPF, DKIM and DMARC", "Send emails with Gmail via IMAP" ]
 ---
 
 ## Introduction
 
 This is a step-by-step guide to running your own mail server on Linux: **Postfix** for sending (SMTP), **Dovecot** for reading over IMAP, and **Roundcube** for webmail, then wiring it all up so you can also send and receive through Gmail. It's aimed at self-hosters who are comfortable on the command line.
 
-> **Before you start:** self-hosted email is hard to get *delivered*. Most residential ISPs block outbound port 25, and mail from a new IP without **SPF, DKIM and DMARC** records (plus a clean reverse DNS) usually lands in spam or is rejected outright. This guide covers the server setup; treat deliverability (those DNS records and a reputable relay) as a separate, required step before relying on it for real mail.
+> **Before you start:** self-hosted email is hard to get *delivered*. Most residential ISPs block outbound port 25, and mail from a new IP without **SPF, DKIM and DMARC** records (plus a clean reverse DNS) usually lands in spam or is rejected outright. The server setup comes first; the [SPF, DKIM and DMARC](#spf-dkim-and-dmarc) section then covers the DNS records you need before relying on it for real mail.
 
 ## Postfix
 
@@ -302,6 +302,97 @@ Once all of the above is configured, we will be able to send messages:
 * To other users from other domains.
 
 Thanks to the address mapping we did in Postfix, we will be able to receive emails from outside the network.
+
+> **Heads-up:** most residential ISPs block port 25, usually outbound and often inbound too. If `nc -vz gmail-smtp-in.l.google.com 25` times out from your server, that's why. Your options are asking the ISP to unblock it (some do for business plans), running the server on a VPS that allows port 25, or sending through an SMTP relay with Postfix's `relayhost`.
+
+## SPF, DKIM and DMARC
+
+A working server isn't enough: Gmail, Outlook and friends check three DNS records before trusting your mail. Without them, expect the spam folder or a flat rejection. Replace `mydomain.com` with your domain in everything below.
+
+### Reverse DNS (PTR)
+
+Your server's public IP should resolve back to your hostname (`mydomain.com`, matching `myhostname` in Postfix). You can't set this in your own DNS zone: it's set by whoever owns the IP, so look for "reverse DNS" in your VPS panel or ask your ISP. Check it with:
+
+```bash
+dig -x <your-public-ip> +short
+```
+
+### SPF
+
+SPF lists which servers may send mail for your domain. Add a TXT record on the domain itself:
+
+```txt
+mydomain.com.  TXT  "v=spf1 mx -all"
+```
+
+`mx` means "the servers in my MX record may send", and `-all` means "reject everything else". If you send through a relay, add it too (your provider documents the exact `include:`).
+
+### DKIM with OpenDKIM
+
+DKIM signs every outgoing message with a private key; receivers verify it with a public key you publish in DNS. Install OpenDKIM and generate a key pair with the selector `mail`:
+
+```bash
+sudo apt install opendkim opendkim-tools -y
+sudo mkdir -p /etc/opendkim/keys/mydomain.com
+sudo opendkim-genkey -b 2048 -s mail -d mydomain.com -D /etc/opendkim/keys/mydomain.com
+sudo chown -R opendkim:opendkim /etc/opendkim/keys
+```
+
+That creates `mail.private` (keep it secret, never commit it) and `mail.txt` (the DNS record).
+
+File **/etc/opendkim.conf**, set or add:
+
+```conf
+Domain    mydomain.com
+Selector  mail
+KeyFile   /etc/opendkim/keys/mydomain.com/mail.private
+Socket    inet:8891@localhost
+```
+
+A TCP socket on localhost avoids fighting Postfix's chroot over a Unix socket path.
+
+File **/etc/postfix/main.cf**, append:
+
+```conf
+milter_default_action = accept
+milter_protocol = 6
+smtpd_milters = inet:localhost:8891
+non_smtpd_milters = $smtpd_milters
+```
+
+Restart both:
+
+```bash
+sudo systemctl restart opendkim postfix
+```
+
+Now publish the public key. `cat /etc/opendkim/keys/mydomain.com/mail.txt` prints it split over several quoted strings; join them into one value for a TXT record named `mail._domainkey`:
+
+```txt
+mail._domainkey.mydomain.com.  TXT  "v=DKIM1; k=rsa; p=<public key from mail.txt>"
+```
+
+Once DNS has propagated, check that the published key matches the private one:
+
+```bash
+sudo opendkim-testkey -d mydomain.com -s mail -vvv
+```
+
+`key OK` is what you want. (`key not secure` just means your zone doesn't use DNSSEC; it's fine.)
+
+### DMARC
+
+DMARC tells receivers what to do when SPF or DKIM fail, and where to send reports. Start in monitoring mode:
+
+```txt
+_dmarc.mydomain.com.  TXT  "v=DMARC1; p=none; rua=mailto:postmaster@mydomain.com"
+```
+
+Read the reports for a couple of weeks. Once your legitimate mail passes, tighten it to `p=quarantine`, then `p=reject`.
+
+### Test it
+
+Send a message to a Gmail address, open it, and choose **Show original**: SPF, DKIM and DMARC should all say `PASS`. For a more detailed score, send one to the address that [mail-tester.com](https://www.mail-tester.com/) gives you.
 
 ## Send emails with Gmail via IMAP
 

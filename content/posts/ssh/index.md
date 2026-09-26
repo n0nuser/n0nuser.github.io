@@ -2,7 +2,7 @@
 title: "How to install and harden SSH"
 description: "Installing an SSH server can be very useful to manage your files from outside home and knowing it encrypts the traffic one can remain relieved that the data is secure. Today we are going to install one and secure it!"
 date: 2020-10-22
-lastmod: 2026-06-23
+lastmod: 2026-09-27
 author: "Pablo Jesús González Rubio"
 cover: "cover.jpg"
 coverAlt: "SSH"
@@ -134,7 +134,7 @@ Include /etc/ssh/sshd_config.d/*.conf
 
 # Change to yes to enable challenge-response passwords (beware issues with
 # some PAM modules and threads)
-ChallengeResponseAuthentication no
+KbdInteractiveAuthentication no
 
 # Kerberos options
 #KerberosAuthentication no
@@ -150,13 +150,13 @@ ChallengeResponseAuthentication no
 
 # Set this to 'yes' to enable PAM authentication, account processing,
 # and session processing. If this is enabled, PAM authentication will
-# be allowed through the ChallengeResponseAuthentication and
+# be allowed through the KbdInteractiveAuthentication and
 # PasswordAuthentication.  Depending on your PAM configuration,
-# PAM authentication via ChallengeResponseAuthentication may bypass
+# PAM authentication via KbdInteractiveAuthentication may bypass
 # the setting of "PermitRootLogin without-password".
 # If you just want the PAM account and session checks to run without
 # PAM authentication, then enable this but set PasswordAuthentication
-# and ChallengeResponseAuthentication to 'no'.
+# and KbdInteractiveAuthentication to 'no'.
 UsePAM yes
 
 #AllowAgentForwarding yes

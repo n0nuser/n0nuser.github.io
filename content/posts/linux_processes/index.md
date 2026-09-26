@@ -3,7 +3,7 @@ slug: "linux-process-management"
 title: "How to Monitor and Manage Linux Processes: ps, top, and Process Control"
 description: "Systems Monitoring is in charge of continuously monitoring different resources and services of the computer, to guarantee the required level of availability and alert administrators in case of failure. Its objective is to ensure that the system works correctly and to minimize the downtime of a service."
 date: 2021-04-25
-lastmod: 2026-06-23
+lastmod: 2026-09-27
 author: "Pablo Jesús González Rubio"
 cover: "cover.png"
 coverAlt: "Tux!"
@@ -306,9 +306,29 @@ sudo apt install iftop -y
 
 {{< img "iftop.png" "iftop commmand" "border" >}}
 
+#### ss and ip
+
+`ss` shows sockets: which ports are listening and which connections are open. It ships with every modern distro (it's part of `iproute2`).
+
+```bash
+# Listening TCP/UDP sockets, numeric ports, with the owning process
+sudo ss -tulpn
+# Established TCP connections
+ss -tn state established
+```
+
+`ip` shows interfaces, addresses and routes:
+
+```bash
+# One line per interface with its state and addresses
+ip -br addr
+# Routing table (your default gateway is the "default via" line)
+ip route
+```
+
 #### netstat
 
-Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships.
+`netstat` and `ifconfig` come from the old `net-tools` package, which isn't installed by default on most current distros. You'll still see them in older docs and scripts; `ss` and `ip` above replace them.
 
 {{< img "netstat.png" "netstat commmand" "border" >}}
 
