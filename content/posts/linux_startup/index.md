@@ -117,14 +117,15 @@ Systemd instead of calling scripts, it calls them units, and they can be: servic
 
 Instead of calling the runlevels by their numbers, they use:
 
-|||
+| Runlevel alias | systemd target |
 |:-:|:-:|
-| `runlelel0.target` | `poweroff.target` |
+| `runlevel0.target` | `poweroff.target` |
 | `runlevel1.target` | `rescue.target` |
 | `runlevel2.target` | `multi-user.target` |
 | `runlevel3.target` | `multi-user.target` |
-| `runlevel4.target` | `multi-user.target`<br><br>`graphical.target` |
-| `runlevel5.target` | `reboot.target` |
+| `runlevel4.target` | `multi-user.target` |
+| `runlevel5.target` | `graphical.target` |
+| `runlevel6.target` | `reboot.target` |
 
 ## Systemd service
 
