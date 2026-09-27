@@ -1,12 +1,10 @@
 ---
 slug: "linux-hardening-guide"
-title: "Linux Hardening Guide: SUID, SGID, and Security Tools Checklist"
+title: "Linux Hardening Guide: SUID, SGID and Tools"
 description: "A practical Linux hardening checklist: SUID/SGID and the sticky bit, bootloader and BIOS, PAM password policy, fstab mount options, and rootkit-scanning tools."
 date: 2021-06-12
 lastmod: 2026-06-23
 author: "Pablo Jesús González Rubio"
-cover: "cover.png"
-coverAlt: "Tux!"
 toc: true
 draft: false
 tags: [ "Linux" ]
@@ -296,8 +294,8 @@ Install tools to improve security such as:
   ```
 
   Every time a file is changed it reports it.
-* [Fail2Ban](https://www.fail2ban.org/wiki/index.php/Main_Page)
-  * I have a [post about it](../fail2ban).
+* [Fail2Ban](https://github.com/fail2ban/fail2ban)
+  * Setting it up for SSH is covered in [my SSH hardening post](/posts/ssh/#fail2ban).
 * [Snort](https://www.snort.org/)
 * [Modsecurity](https://github.com/SpiderLabs/ModSecurity)
 * [JShielder](https://github.com/Jsitech/JShielder)

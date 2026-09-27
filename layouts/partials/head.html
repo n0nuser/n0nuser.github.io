@@ -161,7 +161,8 @@
   bundle, otherwise the site-wide cover from assets/. A page that names a cover
   the bundle doesn't contain (or a leaf .md with no bundled resources, like
   about/uses/resume) used to fall through and ship no og:image; the fallback
-  below fixes that so every indexable page has a social image.
+  below fixes that so every indexable page has a social image. Posts with no
+  cover of their own get a generated title card (partials/og-card.html) instead.
 -->
 {{- $ogImage := false }}
 {{- $ogAlt := "" }}
@@ -174,6 +175,11 @@
 {{ $ogImage = . }}
 {{ $ogAlt = $.Params.coverAlt }}
 {{ end }}
+{{- end }}
+
+{{- if and (not $ogImage) .IsPage (eq .Section "posts") }}
+{{ $ogImage = partial "og-card.html" . }}
+{{ $ogAlt = .Title }}
 {{- end }}
 
 {{- if not $ogImage }}

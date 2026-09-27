@@ -1,0 +1,19 @@
+{{- /*
+  Build-time social card for posts without their own cover: the post title on
+  the site's dark background, rendered with images.Text. Returns an image
+  resource sized 1200x630, so head.html can use it like any other og:image.
+  Fonts are TTF copies of the site's Geist and JetBrains Mono (OFL, see
+  assets/og/OFL-*.txt); images.Text can't read the WOFF files the CSS uses.
+*/ -}}
+{{- $base := resources.Get "og/base.png" -}}
+{{- $bold := resources.Get "og/Geist-Bold.ttf" -}}
+{{- $mono := resources.Get "og/JetBrainsMono-Medium.ttf" -}}
+{{- $label := "Blog" -}}
+{{- with .Params.tags }}{{ $label = index . 0 }}{{ end -}}
+{{- $filters := slice
+  (images.Text (upper $label) (dict "font" $mono "color" "#4bce97" "size" 26 "x" 104 "y" 88))
+  (images.Text .Title (dict "font" $bold "color" "#f1f1f1" "size" 66 "linespacing" 10 "x" 80 "y" 160))
+  (images.Text "Pablo González" (dict "font" $bold "color" "#f1f1f1" "size" 28 "x" 80 "y" 558))
+  (images.Text "pablogonzalez.me" (dict "font" $mono "color" "#9a9a9a" "size" 24 "x" 1120 "y" 562 "alignx" "right"))
+-}}
+{{- return $base.Filter $filters -}}

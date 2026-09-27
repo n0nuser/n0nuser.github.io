@@ -1,12 +1,10 @@
 ---
 slug: "linux-server-backup"
-title: "How to Back Up a Linux Server: rsync, tar, and dd"
+title: "Back Up a Linux Server: rsync, tar and dd"
 description: "How to back up a Linux server: full vs differential vs incremental strategies, with hands-on tar, dd, dump/restore and rsync examples, plus Raspberry Pi images."
 date: 2021-05-09
 lastmod: 2026-09-26
 author: "Pablo Jesús González Rubio"
-cover: "cover.png"
-coverAlt: "Tux!"
 toc: true
 draft: false
 tags: [ "Linux" ]

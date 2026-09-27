@@ -5,8 +5,6 @@ description: "Practical 13.56 MHz RFID overview covering common card technologie
 date: 2020-06-28
 lastmod: 2026-09-26
 author: "Pablo Jesús González Rubio"
-cover: "card.jpg"
-coverAlt: "Transparent 13.56 MHz chip card"
 toc: true
 tags: [ "RFID" ]
 ---

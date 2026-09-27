@@ -5,8 +5,6 @@ description: "Build a cheap BadUSB from an Arduino DigiSpark: install the driver
 date: 2021-03-23
 lastmod: 2021-03-23
 author: "Pablo Jesús González Rubio"
-cover: "digispark.jpg"
-coverAlt: "Digispark board"
 toc: true
 tags: [ "Projects" ]
 ---

@@ -16,7 +16,7 @@ http://pablogonzalez.me/* https://pablogonzalez.me/:splat 301
 # diffing a build of the pre-rename commit against a build of HEAD (see #56).
 /posts/bash_aliases/                 /posts/bash-aliases/  301
 /posts/bash_cheatsheet/              /posts/bash-scripting-cheatsheet/  301
-/posts/crypto_notes/                 /posts/cryptocurrency-notes/  301
+/posts/crypto_notes/                 /posts/  301
 /posts/data_exfiltration/            /posts/  301
 /posts/jellyfin_homelab_stack/       /posts/jellyfin-homelab-media-stack/  301
 /posts/linux_audit/                  /posts/linux-system-auditing/  301
@@ -38,7 +38,7 @@ http://pablogonzalez.me/* https://pablogonzalez.me/:splat 301
 # m3u8 and linux_users have no underscore in their directory name, so for those
 # four the rule below is the one that matters. The rest are harmless.
 /posts/bash-cheatsheet/              /posts/bash-scripting-cheatsheet/  301
-/posts/crypto-notes/                 /posts/cryptocurrency-notes/  301
+/posts/crypto-notes/                 /posts/  301
 /posts/jellyfin-homelab-stack/       /posts/jellyfin-homelab-media-stack/  301
 /posts/linux-audit/                  /posts/linux-system-auditing/  301
 /posts/linux-backup/                 /posts/linux-server-backup/  301
@@ -59,12 +59,16 @@ http://pablogonzalez.me/* https://pablogonzalez.me/:splat 301
 /posts/software-dev-best-practices/  /posts/software-development-best-practices/  301
 
 # Removed content (see SEO prune): HTB writeups and four offensive-security
-# reference posts (pentest, port, data-exfiltration, dorks). Their live slugs
-# and the old writeup section 301 to the posts index.
+# reference posts (pentest, port, data-exfiltration, dorks), then the crypto
+# notes, Markdown cheatsheet and Fail2Ban posts. Their live slugs and the old
+# writeup section 301 to the posts index (Fail2Ban to the SSH hardening post).
 /posts/pentest-cheatsheet/           /posts/  301
 /posts/port-pentesting-cheatsheet/   /posts/  301
 /posts/data-exfiltration/            /posts/  301
 /posts/dorks/                        /posts/  301
+/posts/cryptocurrency-notes/         /posts/  301
+/posts/markdown/                     /posts/  301
+/posts/fail2ban/                     /posts/ssh/  301
 /writeups/htb/*                      /posts/  301
 /writeups/*                          /posts/  301
 /htb/*                               /posts/  301

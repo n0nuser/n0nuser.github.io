@@ -4,8 +4,6 @@ description: "Set up a WireGuard VPN the easy way with wg-easy in Docker, then c
 date: 2022-07-27
 lastmod: 2026-09-26
 author: "Pablo Jesús González Rubio"
-cover: "cover.png"
-coverAlt: "WireGuard"
 toc: true
 draft: false
 tags: [ "Linux" ]

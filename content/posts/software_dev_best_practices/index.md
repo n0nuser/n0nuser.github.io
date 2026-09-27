@@ -1,12 +1,10 @@
 ---
 slug: "software-development-best-practices"
 title: "Software Development Best Practices"
-description: "Software Development Best Practices including Agile, DevOps, CI/CD, TDD, BDD, DDD, Clean Code, SOLID, Design Patterns, Refactoring, Code Smells, Code Review, Pair Programming, Mob Programming, etc."
+description: "The practices behind maintainable software: CI/CD, TDD, DDD, clean code, SOLID, design patterns, refactoring, code smells, code review and pairing."
 date: 2023-10-17
-lastmod: 2026-06-23
+lastmod: 2026-09-27
 author: "Pablo Jesús González Rubio"
-cover: "cover.jpg"
-coverAlt: "Software Development Best Practices"
 toc: true
 draft: false
 tags: [ "Software Development" ]
@@ -14,19 +12,15 @@ tags: [ "Software Development" ]
 
 ## Introduction
 
-In the ever-evolving landscape of software development, **adhering to best practices** is crucial for delivering high-quality, maintainable, and efficient software solutions. This post explores a comprehensive set of **software development best practices**, covering a wide range of methodologies, principles, and techniques that have become the cornerstone of modern software engineering.
+This is a map of the practices that keep software maintainable: how teams plan (Agile), ship (DevOps, CI/CD), test (TDD, BDD), model the problem (DDD), and write and review code (clean code, SOLID, design patterns, refactoring, code smells, code review, pairing).
 
-We delve into topics such as **Agile**, **DevOps**, **Continuous Integration/Continuous Deployment (CI/CD)**, **Test-Driven Development (TDD)**, **Behavior-Driven Development (BDD)**, **Domain-Driven Design (DDD)**, **Clean Code**, **SOLID principles**, **Design Patterns**, **Code Refactoring**, identifying **Code Smells**, **Code Review processes**, and collaborative practices like **Pair Programming** and **Mob Programming**.
-
-These best practices are not just buzzwords but essential tools that can help development teams streamline their processes, improve product quality, and foster collaboration among team members. Whether you're a seasoned developer looking to reinforce your skills or someone just entering the world of software development, this post will provide **valuable insights** into the key practices that underpin the success of software projects.
-
-Join us on this journey through the software development landscape, where we explore the principles and methodologies that shape the industry and help teams deliver exceptional software products.
+It's aimed at developers early in their career who keep hearing these acronyms, and at anyone who wants a one-page refresher. Each section explains the idea and why it helps. None of these are rules to apply everywhere; they're tools, and knowing when *not* to use one is part of the skill.
 
 ## Agile Methodology
 
 Agile is a software development methodology that emphasizes iterative and incremental development. It promotes collaboration between cross-functional teams, continuous customer feedback, and adaptability to changing requirements. Some key principles of Agile include:
 
-- **Iterative Development:** Agile projects are broken down into small, manageable iterations, typically lasting 4 weeks, known as sprints. At the end of each sprint, a potentially shippable product increment is delivered.
+- **Iterative Development:** Agile projects are broken down into small, manageable iterations, known as sprints, usually one to four weeks long (two is the most common). At the end of each sprint, a potentially shippable product increment is delivered.
 - **Customer-Centric Approach:** Agile places a strong emphasis on understanding and meeting customer needs. Regular customer feedback is used to guide the development process.
 - **Cross-Functional Teams:** Agile teams are diverse and include individuals with various skills, such as developers, testers, designers, and product owners, who work collaboratively.
 - **Adaptability:** Agile teams are encouraged to adapt to changing requirements and priorities. This flexibility is valuable when dealing with evolving project conditions.
@@ -84,9 +78,7 @@ Continuous Deployment takes CI a step further by automatically deploying the sof
 
 In a CI/CD pipeline, code changes go through various stages, from code commits to automated tests, and finally, deployment to production if all tests pass. This automated and consistent process significantly reduces the risk of human error and speeds up the release cycle.
 
-CI/CD tools and practices have become integral to software development, enabling teams to release high-quality software at a faster pace. Incorporating CI/CD into your development process is a best practice that can lead to more reliable and efficient software delivery.
-
-In the next sections, we'll explore various other best practices in software development, including Test-Driven Development (TDD), Behavior-Driven Development (BDD), Clean Code, and more.
+If you only adopt one practice from this post, make it this one: a pipeline that runs the linter and the tests on every push catches most problems before a human reviewer ever sees them.
 
 {{< img "ci-ci.jpg" "CI/CD" "border" >}}
 
@@ -130,11 +122,7 @@ BDD involves writing scenarios and specifications in a human-readable format tha
 - **Test Automation:** BDD scenarios can be automated, which helps in validating that the software behaves as expected. Automated tests become living documentation that can be run repeatedly to ensure ongoing correctness.
 - **User-Centric Focus:** BDD keeps the user in mind, making it easier to align development efforts with user needs and expectations.
 
-By using BDD, software teams can improve communication, reduce misunderstandings, and create software that aligns closely with the desired user experience.
-
-BDD is a valuable practice for ensuring that your software not only functions correctly but also delivers the intended value to users.
-
-Incorporating BDD into your development process can lead to more user-focused, reliable, and maintainable software.
+By using BDD, software teams can improve communication, reduce misunderstandings, and create software that aligns closely with the desired user experience. In Python, [pytest-bdd](https://pytest-bdd.readthedocs.io/) and [behave](https://behave.readthedocs.io/) run Given-When-Then scenarios as tests.
 
 ## Domain Driven Design (DDD)
 
@@ -170,7 +158,7 @@ Clean code is a fundamental concept in software development that emphasizes writ
 - **Don't Repeat Yourself (DRY)**: Eliminate code duplication by creating reusable functions or classes.
 - **Comments and Documentation**: Use comments sparingly. Instead, strive to write self-explanatory code. When you do use comments, ensure they add value.
 - **Consistent Formatting**: Follow a consistent code style and formatting throughout the project. This makes it easier for the team to collaborate.
-- **Unit Testing**: Write unit tests to ensure the code's correctness and maintainability. This is often referred to as Test-Driven Development (TDD)
+- **Unit Testing**: Write unit tests to ensure the code's correctness and maintainability. Writing them *before* the code is Test-Driven Development (TDD), covered above.
 - **Refactoring**: Continuously improve the code by refactoring to make it cleaner and more maintainable. Refactoring is an ongoing process.
 
 ### Benefits of Clean Code
@@ -294,7 +282,7 @@ Code smells are specific patterns or structures in code that indicate potential 
 ### Complex Conditional Statements
 
 - Nested or deeply nested if-else statements.
-- **Solution**: Refactor conditional logic using techniques like switch statements or polymorphism.
+- **Solution**: Use guard clauses and early returns, replace long `if`/`elif` chains with a lookup table or a `match` statement, or move type-based branching into polymorphism.
 
 ### Inconsistent Naming Conventions
 
@@ -401,20 +389,10 @@ Mob programming is a collaborative software development approach where a group o
 
 Mob programming is particularly effective for tackling complex problems, resolving challenging bugs, and fostering a strong team dynamic. It may not be suitable for all tasks, but it can be a valuable tool in your software development toolkit.
 
-In conclusion, mob programming is a collaborative approach that can lead to better code quality, knowledge sharing, and team cohesion, making it a valuable practice in software development.
-
 ## Conclusion
 
-In this post, we've delved into various software development best practices that are integral to creating **robust and efficient software solutions**. We explored the Agile methodology, which emphasizes collaboration and adaptability to changing requirements. **DevOps principles** were discussed to streamline the development and operations process, enabling faster delivery and continuous improvement.
+That's the map: **Agile** and **DevOps** for how the team works, **CI/CD** to ship safely and often, **TDD** and **BDD** to prove the code does what it should, **DDD** to model the problem, and **clean code**, **SOLID**, **design patterns**, **refactoring** and **code review** to keep the codebase something people can still change next year. **Pair and mob programming** spread that knowledge across the team.
 
-**Continuous Integration and Continuous Deployment (CI/CD)** were explained as key components for automating and simplifying the release pipeline. **Test-Driven Development (TDD)** and **Behavior-Driven Development (BDD)** were highlighted for ensuring code quality through testing. **Domain-Driven Design (DDD)** encourages aligning software with business domains.
+You don't need all of it on day one. Start with CI running your tests, small reviewed pull requests, and refactoring as you go, then add the rest as the pain points show up.
 
-We also explored the importance of writing **clean code** and adhering to **SOLID principles**. **Design patterns** offer reusable solutions to common software design problems, while **code refactoring** helps improve code maintainability. Identifying code smells is crucial for maintaining a healthy codebase, and we discussed the value of thorough **code reviews**.
-
-Lastly, we touched on collaborative development practices, including **pair programming** and **mob programming**, which enhance teamwork and knowledge sharing among developers.
-
-By incorporating these best practices into your software development process, you can create **high-quality, maintainable software** that meets the needs of your users and stakeholders. Embracing these principles and methodologies will not only enhance your development process but also contribute to the **success of your software projects**.
-
-Remember that software development is an evolving field, and staying updated with the latest trends and practices is essential. **Continuously learning and adapting** will help you and your team remain competitive and deliver outstanding results. The biggest shift right now is AI-generated code: these practices matter more, not less, when agents write most of it. I cover that in [From Programmers to Orchestrators](/posts/programmers-to-orchestrators/) and show my day-to-day setup in [How I Work with AI Agents](/posts/how-i-work-with-ai-agents/).
-
-Thank you for reading, and may your software development journey be filled with **innovation, efficiency, and success**.
+The biggest shift right now is AI-generated code: these practices matter more, not less, when agents write most of it. I cover that in [From Programmers to Orchestrators](/posts/programmers-to-orchestrators/) and show my day-to-day setup in [How I Work with AI Agents](/posts/how-i-work-with-ai-agents/).

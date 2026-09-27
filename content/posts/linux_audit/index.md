@@ -1,12 +1,10 @@
 ---
 slug: "linux-system-auditing"
-title: "Linux System Auditing: rsyslog, logrotate, and Process Accounting"
-description: "System auditing allows to save information in logs about different interactions of the system (like crashes, logins, reports of services, etc.) and use to investigate incidents on the system."
+title: "Linux System Auditing: rsyslog and logrotate"
+description: "Audit what happens on a Linux system: process accounting with acct, logging with rsyslog, log rotation with logrotate, and other audit tools."
 date: 2021-04-28
 lastmod: 2026-06-23
 author: "Pablo Jesús González Rubio"
-cover: "cover.png"
-coverAlt: "Tux!"
 toc: true
 draft: false
 tags: [ "Linux" ]
@@ -334,5 +332,5 @@ tail -f /var/log/messages
 I'll add more tools here with the time.
 
 * [logcheck](https://logcheck.org/)
-* [fail2ban](https://www.fail2ban.org/wiki/index.php/Main_Page)
+* [fail2ban](https://github.com/fail2ban/fail2ban)
 * [sshguard](https://www.sshguard.net/)

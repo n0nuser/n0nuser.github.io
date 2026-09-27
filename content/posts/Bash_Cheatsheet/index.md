@@ -5,8 +5,6 @@ description: "Bash scripting cheatsheet with common syntax, conditionals, loops,
 date: 2019-10-22
 lastmod: 2026-06-23T00:00:00+02:00
 author: "Pablo Jesús González Rubio"
-cover: ""
-coverAlt: ""
 toc: true
 tags: [ "Cheatsheet", "Bash" ]
 ---
