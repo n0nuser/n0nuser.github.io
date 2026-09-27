@@ -5,8 +5,6 @@ description: "Microservices vs monolith for backend developers: trade-offs in de
 date: 2024-03-01
 lastmod: 2026-09-27
 author: "Pablo Jesús González Rubio"
-cover: "introduction.webp"
-coverAlt: "Microservice vs Monolithic"
 toc: true
 draft: false
 tags: [ "Software Development" ]

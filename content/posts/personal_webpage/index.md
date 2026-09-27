@@ -5,8 +5,6 @@ description: "A guide to setting up a static website using Hugo with a domain fr
 date: 2024-06-26
 lastmod: 2024-06-26
 author: "Pablo Jesús González Rubio"
-cover: "cover.png"
-coverAlt: "Static website setup illustration"
 toc: true
 draft: false
 tags: [ "Software Development" ]

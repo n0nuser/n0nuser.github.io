@@ -5,8 +5,6 @@ description: "Guide to downloading video streams from m3u8 playlists using VLC a
 date: 2020-10-09
 lastmod: 2020-10-10
 author: "Pablo Jesús González Rubio"
-cover: "m3u8.png"
-coverAlt: "Network Analysis with Developer Tools."
 toc: true
 tags: [ "Misc" ]
 ---

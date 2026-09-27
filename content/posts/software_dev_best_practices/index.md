@@ -5,8 +5,6 @@ description: "The practices behind maintainable software: CI/CD, TDD, DDD, clean
 date: 2023-10-17
 lastmod: 2026-09-27
 author: "Pablo Jesús González Rubio"
-cover: "cover.jpg"
-coverAlt: "Software Development Best Practices"
 toc: true
 draft: false
 tags: [ "Software Development" ]

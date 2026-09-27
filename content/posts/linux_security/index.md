@@ -5,8 +5,6 @@ description: "A practical Linux hardening checklist: SUID/SGID and the sticky bi
 date: 2021-06-12
 lastmod: 2026-06-23
 author: "Pablo Jesús González Rubio"
-cover: "cover.png"
-coverAlt: "Tux!"
 toc: true
 draft: false
 tags: [ "Linux" ]

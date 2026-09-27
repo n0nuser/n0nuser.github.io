@@ -5,8 +5,6 @@ description: "Introduction to 125 KHz low-frequency RFID basics, attack surface,
 date: 2020-06-28
 lastmod: 2026-09-26
 author: "Pablo Jesús González Rubio"
-cover: "tag.jpg"
-coverAlt: "One of the most common door access tags"
 toc: true
 tags: [ "RFID" ]
 ---

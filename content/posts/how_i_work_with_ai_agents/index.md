@@ -5,8 +5,6 @@ description: "My AI agent setup: tools that shrink context, handoffs at 30% cont
 date: 2026-09-26
 lastmod: 2026-09-26
 author: "Pablo Jesús González Rubio"
-cover: "cover.jpg"
-coverAlt: "Isometric illustration of a developer desk with a split terminal and a context bar on the monitor, while one robot hands a stack of handoff notes to another, next to a gear and a rulebook"
 toc: true
 draft: false
 tags: [ "Software Development", "AI" ]

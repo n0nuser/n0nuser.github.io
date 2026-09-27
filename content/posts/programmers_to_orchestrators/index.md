@@ -5,8 +5,6 @@ description: "AI made writing code cheap. The work moved to context, constraints
 date: 2026-09-26
 lastmod: 2026-09-26
 author: "Pablo Jesús González Rubio"
-cover: "cover.jpg"
-coverAlt: "Isometric illustration of a conductor robot directing several robots coding on laptops, their output flowing through a verification gate with a check mark into a tidy stack of blocks"
 toc: true
 draft: false
 tags: [ "Software Development", "AI" ]

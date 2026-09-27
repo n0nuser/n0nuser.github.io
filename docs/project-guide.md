@@ -63,13 +63,12 @@ n0nuser.github.io/
 - Some section index files use TOML front matter (`+++`)
 - Common post fields:
   - `title`, `description`, `date`
-  - `author`, `cover`, `coverAlt`
+  - `author`, optional `cover`/`coverAlt` (posts normally leave them out; see Social Images)
   - `toc`, `tags`, optional `draft`/`lastmod`
 
 ### Social Images (og:image)
 
-- A page's own `cover` is used when it exists in the bundle (`img/` via `imgPath`).
-- Posts without a cover get a build-time title card from `layouts/partials/og-card.html`: `images.Text` draws the first tag, the title and the byline on `assets/og/base.png` (1200x630).
+- Posts don't use decorative covers: every post gets a build-time title card from `layouts/partials/og-card.html`: `images.Text` draws the first tag, the title and the byline on `assets/og/base.png` (1200x630). A post can still set `cover` to a real photo in its bundle (`img/` via `imgPath`), which then wins.
 - The card fonts are TTF copies of Geist Bold and JetBrains Mono in `assets/og/` (OFL, licenses alongside); `images.Text` can't read the WOFF files the CSS uses.
 - Every other page falls back to the site-wide `params.cover`.
 

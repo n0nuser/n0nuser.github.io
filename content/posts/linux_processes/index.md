@@ -5,8 +5,6 @@ description: "Monitor and control Linux processes: ps, top, nice and signals, sc
 date: 2021-04-25
 lastmod: 2026-09-27
 author: "Pablo Jesús González Rubio"
-cover: "cover.png"
-coverAlt: "Tux!"
 toc: true
 draft: false
 tags: [ "Linux" ]

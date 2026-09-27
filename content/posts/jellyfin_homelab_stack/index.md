@@ -5,8 +5,6 @@ description: "How my home server grew from a Calibre book library into a Jellyfi
 date: 2026-05-08
 lastmod: 2026-05-08
 author: "Pablo Jesús González Rubio"
-cover: "cover.png"
-coverAlt: "Isometric illustration of a home media server linked to stacked containers, a reverse proxy shield and a router, streaming a media library to a TV, monitor, laptop and two phones"
 toc: true
 draft: false
 tags: [ "Linux", "Self-Hosting" ]

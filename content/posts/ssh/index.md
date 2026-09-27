@@ -2,10 +2,8 @@
 title: "How to install and harden SSH"
 description: "Install an OpenSSH server, open it in ufw, then harden it: a custom port, no root login, SSH keys, login grace time and chroot."
 date: 2020-10-22
-lastmod: 2026-09-27
+lastmod: 2026-06-23
 author: "Pablo Jesús González Rubio"
-cover: "cover.jpg"
-coverAlt: "SSH"
 toc: true
 tags: [ "Linux" ]
 howToSteps: [ "Installing", "Firewall", "Hardening" ]

@@ -5,8 +5,6 @@ description: "The Bash aliases and small functions I keep in ~/.bash_aliases: sy
 date: 2020-10-12
 lastmod: 2026-09-27
 author: "Pablo Jesús González Rubio"
-cover: "cover.jpg"
-coverAlt: "Some of the Bash aliases"
 toc: true
 tags: [ "Bash" ]
 ---

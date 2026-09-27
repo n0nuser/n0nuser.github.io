@@ -5,8 +5,6 @@ description: "Linux filesystem fundamentals: inodes, directory hierarchy, partit
 date: 2021-04-07
 lastmod: 2026-06-23
 author: "Pablo Jesús González Rubio"
-cover: "cover.png"
-coverAlt: "Tux!"
 toc: true
 tags: [ "Linux" ]
 ---

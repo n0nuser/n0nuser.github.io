@@ -5,8 +5,6 @@ description: "Audit what happens on a Linux system: process accounting with acct
 date: 2021-04-28
 lastmod: 2026-06-23
 author: "Pablo Jesús González Rubio"
-cover: "cover.png"
-coverAlt: "Tux!"
 toc: true
 draft: false
 tags: [ "Linux" ]

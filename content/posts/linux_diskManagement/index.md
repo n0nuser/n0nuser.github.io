@@ -5,8 +5,6 @@ description: "Stop one user from filling the disk: check usage with df and du, e
 date: 2021-05-10
 lastmod: 2026-06-23
 author: "Pablo Jesús González Rubio"
-cover: "cover.png"
-coverAlt: "Tux!"
 toc: true
 draft: false
 tags: [ "Linux" ]

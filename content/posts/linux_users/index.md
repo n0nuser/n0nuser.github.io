@@ -5,8 +5,6 @@ description: "Manage Linux users and groups from the command line: /etc/passwd a
 date: 2026-09-27T00:30:00+02:00
 lastmod: 2026-09-27
 author: "Pablo Jesús González Rubio"
-cover: "cover.png"
-coverAlt: "Tux!"
 toc: true
 draft: false
 tags: [ "Linux" ]
