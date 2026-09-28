@@ -3,7 +3,7 @@ slug: "programmers-to-orchestrators"
 title: "From Programmers to Orchestrators"
 description: "AI made writing code cheap. The work moved to context, constraints and verification. What the evidence says, and what a team can change on Monday."
 date: 2026-09-26
-lastmod: 2026-09-26
+lastmod: 2026-09-28
 author: "Pablo Jesús González Rubio"
 toc: true
 draft: false
@@ -43,6 +43,8 @@ The skills that matter change with it:
 - **Decomposition:** splitting work into steps an agent can finish and a human can check.
 - **Context engineering:** giving the agent the specs, rules and domain knowledge it would otherwise guess.
 - **Specification:** stating what "done" means before any code is generated.
+
+"Orchestrate" is no longer a metaphor either. Terminal managers built for agents, such as [herdr](https://herdr.dev/), now expose a CLI that an agent can call: it opens a workspace, starts another agent in it, sends the brief, waits for the result and clears the worker for the next task. One agent keeps the task list and hands the tasks to the others. The human approves PRs and makes the decisions nobody wrote down. I show that loop in [How I Work with AI Agents](/posts/how-i-work-with-ai-agents/#the-orchestrator-drives-the-terminal).
 
 **On Monday:** before the next agent task, write down what "done" means as something you can check. If you can't, the task isn't ready for an agent.
 
