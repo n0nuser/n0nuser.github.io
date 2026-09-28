@@ -1,9 +1,9 @@
 ---
 slug: "how-i-work-with-ai-agents"
 title: "How I Work with AI Agents: Handoffs and Rules"
-description: "My AI agent setup: tools that shrink context, handoffs at 30% context, state kept outside the chat, rules written from failures, and an orchestrator loop."
+description: "My AI agent setup: tools that shrink context, handoffs at 30% context, rules written from failures, and an orchestrator that runs other agents through herdr."
 date: 2026-09-26
-lastmod: 2026-09-26
+lastmod: 2026-09-28
 author: "Pablo Jesús González Rubio"
 toc: true
 draft: false
@@ -12,7 +12,7 @@ tags: [ "Software Development", "AI" ]
 
 Agents write code fast. The slow part now is giving them the right context, keeping them inside the rules, and checking what they did. This post is the setup I use for that, with the real config.
 
-The same habits run at two scales. At home it's a few hobby repos. At work it's around 14 Claude Code sessions open at once, managed by an orchestrator. Only the hobby setup is shown in detail.
+The same habits run at two scales. At home it's a few hobby repos. At work it's around 14 Claude Code sessions open at once, and an orchestrator agent now starts, briefs and clears the others itself (see [The orchestrator drives the terminal](#the-orchestrator-drives-the-terminal)). Only the hobby setup is shown in detail.
 
 It's written for someone who already uses an agent CLI and keeps running out of context or losing track of state between sessions.
 
@@ -308,13 +308,130 @@ Hung executor runs are detected by output growth, not by elapsed time. The wrapp
 pgrep -x opencode | while read p; do ps -o pid=,etimes=,%cpu= -p "$p"; done
 ```
 
+## The orchestrator drives the terminal
+
+Until recently, "orchestrator" in this post meant an agent that wrote briefs and a human who carried them to the other sessions. That changed when [herdr](https://herdr.dev/), the terminal workspace manager I run every agent in, got a CLI that agents can call.
+
+herdr organises terminals into **workspaces** (herdr's sidebar calls them *spaces*), each with **tabs**, each split into **panes**. It recognises the coding agent running in a pane and tracks its state. Since the CLI talks to the same session the agent runs in, the orchestrator can now do what I used to do by hand:
+
+- **Make room.** Create a workspace or tab for a task, or split a pane.
+- **Staff it.** Start a Claude Code (or Codex, OpenCode, Gemini...) agent in that pane, with a name.
+- **Brief it.** Send the prompt and wait until the agent settles.
+- **Check it.** Read its terminal output, then read the `git diff`.
+- **Reuse it.** Clear its context and hand it the next task.
+
+Here's a test run on a toy repo. The orchestrator opened a space per task (`t1`, `t2`, `t3`, each on its own worktree branch), started a Sonnet worker in each, and briefed all three. The orchestrator was a Claude Code session driving this herdr session through its socket. The right pane shows the commands it ran, with the JSON trimmed to the interesting fields. The sidebar is herdr's view of the workers:
+
+{{< img "herdr-dispatch.png" "herdr sidebar with an orchestrator space and three worker spaces, next to the orchestrator's log of workspace create, agent start and agent prompt commands" "border" >}}
+
+### The commands
+
+Every call returns JSON, so the agent reads IDs from the response instead of guessing them:
+
+```bash
+# A workspace for the task, without stealing my focus
+pane=$(herdr workspace create --label fix-314 --cwd ~/work/api-fix-314 --no-focus \
+  | jq -r '.result.root_pane.pane_id')
+
+# A named worker in it. Arguments after -- go to the agent CLI.
+herdr agent start fix-314 --kind claude --pane "$pane" -- --model sonnet
+
+# The brief, then block until the worker is idle, done or blocked
+herdr agent prompt fix-314 "$(cat briefs/fix-314.md)" --wait --timeout 1800000
+
+# What happened
+herdr agent get fix-314 | jq -r '.result.agent.agent_status'
+herdr agent read fix-314 --source recent-unwrapped --lines 120
+```
+
+The state is what makes this work. herdr reports one of five per agent:
+
+| State | Meaning | What the orchestrator does |
+| --- | --- | --- |
+| `working` | Busy on a turn | Leaves it alone |
+| `idle` | Ready for input, and I've seen it | Reviews, then gives it the next task |
+| `done` | Finished while nobody was looking | Same as idle |
+| `blocked` | Waiting at an approval or a question | Brings it to me |
+| `unknown` | herdr can't classify it | Reads the pane before assuming anything |
+
+`agent prompt --wait` refuses to type into a `blocked` agent, so a brief can't accidentally answer somebody else's approval dialog.
+
+### The loop
+
+The orchestrator stops being a worker and becomes a dispatcher. Its context holds an **index of tasks**, not the tasks themselves:
+
+1. Read the tracker and the plan. Pick the tasks that don't depend on each other.
+2. For each one: a worktree, a workspace, a named worker, a brief.
+3. `agent wait` on the workers. Whoever settles first gets reviewed first: the diff, the tests, the log.
+4. Good: the worker opens the PR. Wrong: a correction goes into the same session.
+5. Clear the worker and give it the next task from the index.
+
+Clearing has one catch. `/clear` never puts the agent into `working`, so `agent prompt w1 "/clear" --wait` fails with `agent_prompt_stalled` even though the clear worked. Send it without `--wait` and check the result:
+
+```bash
+herdr agent prompt t1 "/clear"
+herdr agent read t1 --source visible | tail -3   # the context counter is back to 0
+```
+
+The workers burn context. The orchestrator should burn much less, since it only holds briefs, statuses and review notes. I haven't measured how much longer that lets it go before it needs its own [handoff](#the-handoff-loop).
+
+The same run, from the first `workspace create` to three workers asking for approval, in about 45 seconds:
+
+<video src="img/herdr-loop.mp4" poster="img/herdr-dispatch.png" muted playsinline controls preload="metadata" width="100%" aria-label="Recording of an orchestrator creating three herdr workspaces, starting a worker in each and briefing them, until each worker stops at an approval prompt"></video>
+
+Every worker stopped at the same place: its first shell command. That's the `blocked` state doing its job:
+
+{{< img "herdr-blocked.png" "A worker in herdr's t2 space, stopped at Claude Code's approval prompt for a read-only find command" "border" >}}
+
+At work that doesn't happen, and the reason is boring: every "Yes, and don't ask again" is saved in the project's `.claude/settings.local.json`, and my work folders have months of those answers. A fresh git worktree has none, because that file isn't tracked. So I gave each worktree a narrow allowlist (read-only commands, the test command, `git diff`) and ran it again:
+
+```json
+{
+  "permissions": {
+    "allow": [
+      "Bash(rtk ls *)", "Bash(rtk find *)", "Bash(rtk read *)", "Bash(rtk grep *)",
+      "Bash(ls *)", "Bash(find *)",
+      "Bash(python3 -m unittest*)", "Bash(rtk python3 -m unittest*)",
+      "Bash(git diff*)", "Bash(git status*)", "Bash(rtk git diff*)", "Bash(rtk git status*)"
+    ]
+  }
+}
+```
+
+Second run: all three workers went from `working` to `done` without asking anything. The orchestrator read the three diffs, ran the tests in each worktree, then cleared `t1` and gave it the fourth task:
+
+<video src="img/herdr-loop-2.mp4" poster="img/herdr-done.png" muted playsinline controls preload="metadata" width="100%" aria-label="Recording of the second run: three workers restarted with an allowlist, briefed, all reaching done, then worker t1 cleared and given task T4"></video>
+
+{{< img "herdr-done.png" "The orchestrator's log after the second run: three workers done, a review note, t1 cleared and reassigned T4, which also finished" "border" >}}
+
+The log pane still shows the first run above the second: same session, same log.
+
+### What's left for me
+
+I tried this at work with Opus 5.5 as the orchestrator. It created workspaces on the fly, briefed the other agents, cleared their context when a task was done and handed them the next one. With the tools the job needs available to the workers (Playwright to check the UI, `kubectl`, the AWS CLI), my part shrank to two things:
+
+- **Approving PRs.** Reading the diff is still mine. The orchestrator's review is a filter before mine, not a replacement for it.
+- **Taking decisions.** A `blocked` worker, or a question the brief didn't answer, lands on me.
+
+Everything in [Orchestrator and executor](#orchestrator-and-executor) still applies. The difference is who carries the briefs.
+
+### Guardrails
+
+An agent that can start agents needs a few extra rules:
+
+- **Least access per worker.** A worker that only needs to read a cluster gets a read-only kubeconfig, not mine. Anything that touches production or spends money goes through a `blocked` approval to a human.
+- **Close only what you created.** The orchestrator may clean up the workspaces it opened. Mine are off limits.
+- **Background by default.** Every create uses `--no-focus`, so the orchestrator never pulls the screen away from what I'm reading.
+- **Experiment in a named session.** `herdr --session demo` runs a separate server with its own socket, and panes inside it talk to that socket by default. It keeps a test run away from your real workspaces. It isn't a security boundary: both sockets belong to the same user.
+- **Read the diff, not the transcript.** `agent read` shows what the worker *said*. The tree shows what it *did*.
+
 ## Scaling out
 
 - **A git worktree per task.** Parallel sessions never share a working tree, so they can't overwrite each other's changes.
-- **A terminal workspace manager.** [herdr](https://herdr.dev/) runs each agent in a pane and marks it working, blocked or idle, so I see who's waiting on me without checking every pane.
+- **A terminal workspace manager.** [herdr](https://herdr.dev/) runs each agent in a pane and marks it working, blocked or idle, so I see who's waiting on me without checking every pane. Its CLI lets the orchestrator do the same.
 - **Sessions that talk.** Claude Code sessions can message each other, which is how two agents avoid editing the same thing.
 
-At work the same habits scale to about 14 Claude sessions, managed by an orchestrator, with Jira as the tracker.
+At work the same habits scale to about 14 Claude sessions, dispatched by one orchestrator through herdr, with Jira as the tracker.
 
 ## What broke
 
@@ -325,6 +442,18 @@ The setup is a list of fixes for things that went wrong. These are the ones wort
 - **A quota error looked exactly like a hang.** The provider rejected the request, the executor swallowed the error, printed nothing and stayed alive. The watchdog would have spent all three retries on an error no retry can clear. Now it checks the provider log for errors before calling silence a stall.
 - **The executor promoted itself.** It read the orchestrator's rulebook, concluded it was the orchestrator, launched its own nested executor and edited the plan file. Hence the "You are the executor" line at the top of every brief.
 - **The token filter hid a green test suite.** `rtk pytest` reported "No tests collected" on a suite that passes. It reads like a real failure, so the executor retried it for about ten minutes. Acceptance checks now run unfiltered, and every brief says so.
+- **The permission layer said no, correctly.** In auto mode, Claude Code refused:
+  - to let the orchestrator add its own allow rule ("Self-Modification");
+  - to start a worker before I'd allowed the herdr commands, and later to start a second orchestrator in auto mode ("Create Unsafe Agents");
+  - to let the orchestrator answer the workers' approval prompts for them.
+
+  All of those are the right defaults. Allowing the herdr commands is my decision in `settings.json`, and a `blocked` worker is mine to answer.
+- **A new folder starts `blocked`.** The first worker in a fresh repo stopped at Claude Code's "do you trust this folder?" prompt, so `agent start` returned `agent_not_ready`. Worktrees inside a trusted repo didn't ask again.
+- **A narrow allowlist blocks on the first look around.** I started workers with only the test command and `git diff` allowed. Each one first ran `ls` and `find` to orient itself, and blocked there. The prompt also shows the command *after* the rtk rewrite (`rtk find ...`), so that's the form an allowlist has to match. A worker needs its read-only commands allowed too, or a permission mode that fits the task.
+- **Worktrees start with no saved answers.** `.claude/settings.local.json` isn't tracked, so a new worktree doesn't inherit the "don't ask again" answers of the main checkout. Copy the allowlist in when you create the worktree.
+- **`--wait` isn't proof the turn is over.** Once, `agent prompt --wait` came back `done` while the worker's spinner was still running. A second `agent wait` returned the real reply. The orchestrator now waits until the reply line (`DONE` or `BLOCKED`) is actually in `agent read`, not only until the state changes.
+- **I broke my own step 1.** I gave `t1` the README task, which documents functions from `t2` and `t3`, in a worktree that had neither. The worker noticed and documented them from the spec. The right move was to merge T2 and T3 first, or mark T4 as blocked until they merged.
+- **The worker's reply was right; my suspicion was wrong.** `t3` answered "already existed" over a 22-line diff. It looked like the old summary-versus-log problem, but the code came from the first run's `t3`, which had finished before it exited. Reading the diff settled it in a minute.
 - **The context hook doesn't know what you're doing.** The CodeGraph prompt hook attaches code to every prompt, including prompts about writing prose, where it's ~15 KB of noise.
 
 The last cost is the plainest one: **all of this is setup.** Hooks, rules, templates and a wrapper script are work, and each one exists because the version without it failed first.
@@ -377,6 +506,16 @@ The minimum to copy. It should take less than an hour.
 
   ## Communication
   - After changes: a few bullets. What changed and why.
+  ```
+
+- [ ] Optional, for the orchestrator: install [herdr](https://herdr.dev/), run your agents inside it, and read `herdr --skill`. That's the file that teaches an agent the CLI. If you run Claude Code in auto mode, allow the herdr commands yourself in `~/.claude/settings.json`:
+
+  ```json
+  {
+    "autoMode": {
+      "allow": ["$defaults", "Bash(herdr*)"]
+    }
+  }
   ```
 
 - [ ] Start a `gotchas.md`. Add a line the first time something costs you more than a few minutes.
