@@ -81,6 +81,10 @@
       animation-delay: 1.7s;
       animation-duration: .9s;
     }
+
+    .home-hero-title .home-highlight--pink {
+      animation-name: hero-highlight-ink;
+    }
   }
 
   @supports (animation-timeline: scroll()) {
@@ -131,9 +135,17 @@
   }
 }
 
+// Highlights are thin underlines now: grow the width only, keep the height
 @keyframes hero-highlight {
   from {
-    background-size: 0% 100%;
+    background-size: 0% 2px;
+  }
+}
+
+// Gradient-ink line: underline grows, the text-clip layer stays full size
+@keyframes hero-highlight-ink {
+  from {
+    background-size: 0% 2px, 100% 100%;
   }
 }
 
@@ -161,7 +173,7 @@
 @media (prefers-reduced-motion: no-preference) {
 
   // Grid parallax: the fixed hairline grid and its ✦ marks drift up at a
-  // fraction of the scroll speed. Shift = 4 cells so the pattern stays aligned.
+  // fraction of the scroll speed (4 cells over the whole page).
   @supports (animation-timeline: scroll()) {
     body::before,
     body::after {
@@ -190,20 +202,7 @@
   }
 
   .index {
-    // Cube field fades in, then parallaxes away as the hero leaves
-    .home-hero::before {
-      animation: cubes-in 1.2s ease-out .15s both;
-    }
-
     @supports (animation-timeline: view()) {
-      .home-hero::before {
-        animation:
-          cubes-in 1.2s ease-out .15s both,
-          cubes-away linear both;
-        animation-timeline: auto, view();
-        animation-range: normal, exit 0% exit 100%;
-      }
-
       // pear.no in reverse: the portrait goes soft and recedes as you scroll on
       .home-hero-photo img {
         animation: photo-recede linear both;
@@ -251,12 +250,6 @@
       animation-range: entry 0% entry 90%;
     }
 
-    // Footer wordmark rises behind the copyright
-    body > footer::before {
-      animation: wordmark-rise linear both;
-      animation-timeline: view();
-      animation-range: entry 0% cover 50%;
-    }
   }
 
   // Page change: the incoming page wipes down over the old one, which sinks
@@ -278,11 +271,11 @@
 
 @keyframes twinkle {
   from {
-    opacity: .35;
+    opacity: .25;
   }
 
   to {
-    opacity: .85;
+    opacity: .6;
   }
 }
 
@@ -299,19 +292,7 @@
   }
 }
 
-@keyframes cubes-in {
-  from {
-    opacity: 0;
-    transform: scale(1.06);
-  }
-}
 
-@keyframes cubes-away {
-  to {
-    opacity: .2;
-    transform: translateY(18%) scale(1.08);
-  }
-}
 
 @keyframes photo-recede {
   to {
@@ -362,12 +343,6 @@
   }
 }
 
-@keyframes wordmark-rise {
-  from {
-    opacity: 0;
-    transform: translateY(30%);
-  }
-}
 
 @keyframes vt-sink {
   to {

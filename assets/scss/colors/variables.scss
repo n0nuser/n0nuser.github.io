@@ -53,12 +53,14 @@ $home-underline-pink-light:   #bb4afc55;
 $home-underline-yellow-dark:  #8a6b2a;
 $home-underline-mint-dark:    #2f7a55;
 $home-underline-pink-dark:    #8b3c5e;
-// Pink -> blue signature gradient. Decorative only (borders, glows, rules,
-// large display text); body links keep --accent for contrast.
-$grad-pink-dark: #ff5fa2;
-$grad-blue-dark: #5b8cff;
-$grad-pink-light: #c2185b;
-$grad-blue-light: #2f5bd3;
+// "Liquid" purple signature gradient (#e0c3fc -> #7b2cbf -> #240046).
+// Decorative only (borders, glows, rules, large display text); body links keep
+// --accent. Dark mode uses the light end, light mode the deep end, so both
+// stops clear AA on their page background.
+$grad-a-dark: #e0c3fc;
+$grad-b-dark: #9d4edd;
+$grad-a-light: #7b2cbf;
+$grad-b-light: #240046;
 
 // Hairline grid lines
 $grid-line-dark: rgba(140, 160, 200, .09);
