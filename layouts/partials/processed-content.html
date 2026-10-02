@@ -46,7 +46,8 @@
   * Making tables scrollable;
   * Localizing some text;
   * Adding a "h2" to footnotes;
-  * Changing the default inline style for default Chroma.
+  * Changing the default inline style for default Chroma;
+  * Labelling task-list checkboxes (a11y "label" audit).
 -->
 
-{{ .Content | replaceRE "(<table>(?:.|\n)+?</table>)" $improvedTable | replaceRE "(<div class=\"highlight\"><(?:pre|div) class=\"chroma\")(>)" $highlightCodeBlockLabel | replaceRE "(<pre)>(<code>)" $indentedCodeBlockLabel | replaceRE "(class=\"footnote-ref\")" $seeFootnotes | replaceRE "(class=\"footnote-backref\")" $returnToText | replaceRE "(<section class=\"footnotes\" role=\"doc-endnotes\">)" $references | replaceRE "(<a (?:.*) class=\"footnote-backref\" (?:.*)>)(?:.*)(</a>)" $footnoteReturnLink | replaceRE "(?:(<div class=\"highlight\">(?:.|\n)+?<table (?:.*?))(?:padding:0))" $highlightPadding | safeHTML }}
+{{ .Content | replaceRE "(<table>(?:.|\n)+?</table>)" $improvedTable | replaceRE "(<div class=\"highlight\"><(?:pre|div) class=\"chroma\")(>)" $highlightCodeBlockLabel | replaceRE "(<pre)>(<code>)" $indentedCodeBlockLabel | replaceRE "(class=\"footnote-ref\")" $seeFootnotes | replaceRE "(class=\"footnote-backref\")" $returnToText | replaceRE "(<section class=\"footnotes\" role=\"doc-endnotes\">)" $references | replaceRE "(<a (?:.*) class=\"footnote-backref\" (?:.*)>)(?:.*)(</a>)" $footnoteReturnLink | replaceRE "(?:(<div class=\"highlight\">(?:.|\n)+?<table (?:.*?))(?:padding:0))" $highlightPadding | replaceRE "<input ((?:checked=\"\" )?disabled=\"\" type=\"checkbox\")" "<input aria-label=\"Task\" ${1}" | safeHTML }}
