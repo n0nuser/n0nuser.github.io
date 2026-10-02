@@ -23,5 +23,12 @@
         {{ end }}
       </ul>
     {{ end }}
+    {{- /* Theme toggle (prepone.js binds .mode-toggle). Moon shows in light
+           mode, sun in dark; hidden without JS via .req-js. Phones put it on
+           the brand row so the links keep a single row. */}}
+    <button class="site-nav-link mode-toggle req-js" type="button" title="{{ T "change_mode" }}" aria-label="{{ T "change_mode" }}">
+      <svg class="mode-icon mode-icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="mode-icon mode-icon--sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>
+    </button>
   </nav>
 </div>

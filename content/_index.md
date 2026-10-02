@@ -1,11 +1,11 @@
 ---
 title: "Pablo Gonzalez - Backend Developer"
 hideTitle: true
-mainTitle: "Backend Development, Linux, and Security Posts"
+mainTitle: "Pablo González · Software Engineer"
 description: "Personal website of Pablo González, a Python backend engineer sharing guides on APIs, microservices, Linux, cybersecurity, and production reliability."
 author: "Pablo Jesús González Rubio"
 imgPath: "."
-disableTitleSeparator: false
+disableTitleSeparator: true
 cover: "me.webp"
 coverAlt: "Portrait of Pablo González"
 social:
