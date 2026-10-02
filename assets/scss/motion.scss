@@ -82,8 +82,12 @@
       animation-duration: .9s;
     }
 
+    // Underline draws in; separately, one slow highlight sweeps the gradient
+    // line shortly after load (background-position only, not the LCP text)
     .home-hero-title .home-highlight--pink {
-      animation-name: hero-highlight-ink;
+      animation:
+        hero-highlight-ink .9s ease-out 1.7s both,
+        hero-shimmer 1.4s ease-in-out .8s both;
     }
   }
 
@@ -145,7 +149,27 @@
 // Gradient-ink line: underline grows, the text-clip layer stays full size
 @keyframes hero-highlight-ink {
   from {
-    background-size: 0% 2px, 100% 100%;
+    background-size: 0% 2px, 300% 100%, 100% 100%;
+  }
+}
+
+@keyframes hero-shimmer {
+  from {
+    background-position: 0 92%, 100% 0, 0 0;
+  }
+
+  to {
+    background-position: 0 92%, 0% 0, 0 0;
+  }
+}
+
+@keyframes haze-breathe {
+  from {
+    opacity: .65;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 
@@ -193,6 +217,13 @@
 
     html[data-mode='dark'] body::after {
       animation: star-twinkle 5.2s ease-in-out .6s infinite alternate;
+    }
+  }
+
+  // Daylight haze (light mode) breathes very slowly
+  @media (min-width: 1100px) {
+    html[data-mode='light'] body::before {
+      animation: haze-breathe 34s ease-in-out infinite alternate;
     }
   }
 

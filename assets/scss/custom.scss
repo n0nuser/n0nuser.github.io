@@ -664,14 +664,19 @@ html[data-mode='dark'] {
 }
 
 // Second title line in gradient ink (large text, both stops pass AA large)
+// Layers: underline, shimmer band (parked off to the right at rest; swept
+// once on load in motion.scss), gradient fill
 .index .home-hero-title .home-highlight--pink {
   color: var(--grad-a);
-  background-image: var(--grad), var(--grad);
-  background-size: 100% 2px, 100% 100%;
-  background-position: 0 92%, 0 0;
+  background-image:
+    var(--grad),
+    linear-gradient(100deg, transparent 46%, rgba(255, 255, 255, .55) 50%, transparent 54%),
+    var(--grad);
+  background-size: 100% 2px, 300% 100%, 100% 100%;
+  background-position: 0 92%, 0% 0, 0 0;
   background-repeat: no-repeat;
-  -webkit-background-clip: border-box, text;
-  background-clip: border-box, text;
+  -webkit-background-clip: border-box, text, text;
+  background-clip: border-box, text, text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -1003,5 +1008,24 @@ html[data-mode='dark'] .mode-icon--moon {
     box-shadow:
       calc(50vw + 46rem) 67vh 0 .5px #e0c3fc, calc(50vw + 46rem) 67vh 6px 1px rgba(199, 125, 255, .55),
       calc(50vw + 37rem) 90vh 0 1px #f3e8ff, calc(50vw + 37rem) 90vh 7px 1px rgba(184, 198, 255, .5);
+  }
+}
+
+// --- Light mode: daylight haze in the page margins ---------------------------
+// Counterpart to the dark starfield: a few large, very soft lilac/periwinkle
+// glows on a fixed layer, masked out of the text column, gutters only.
+
+@media (min-width: 1100px) {
+  html[data-mode='light'] body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(36rem 30rem at calc(50% - 46rem) 18%, rgba(224, 195, 252, .55), transparent 70%),
+      radial-gradient(34rem 34rem at calc(50% + 46rem) 55%, rgba(184, 198, 255, .5), transparent 70%),
+      radial-gradient(30rem 26rem at calc(50% - 42rem) 92%, rgba(224, 195, 252, .4), transparent 70%);
+    mask-image: linear-gradient(to right, #000 0, #000 calc(50% - 31rem), transparent calc(50% - 28rem), transparent calc(50% + 28rem), #000 calc(50% + 31rem), #000 100%);
   }
 }
