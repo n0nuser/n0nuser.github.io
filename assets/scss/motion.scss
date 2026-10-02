@@ -237,16 +237,15 @@
     }
 
     // Chapter labels slide in as their section arrives
-    article > h2::before,
-    .post-body > h2::before {
+    article > h2::before {
       animation: label-in linear both;
       animation-timeline: view();
       animation-range: entry 0% entry 100%;
     }
 
     // Post images and videos come into focus as they scroll in
-    .post-body img,
-    .post-body video {
+    article :is(p, figure) > img,
+    article video {
       animation: focus-in linear backwards;
       animation-timeline: view();
       animation-range: entry 0% entry 90%;

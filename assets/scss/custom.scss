@@ -563,7 +563,7 @@ body > header {
     font-family: $label-font;
     font-size: .75rem;
     font-weight: 400;
-    letter-spacing: .04em;
+    letter-spacing: 0;
     text-transform: uppercase;
 
     @include respond-above($mobile-breakpoint) {
@@ -574,7 +574,7 @@ body > header {
 
   @include respond-below($mobile-breakpoint) {
     .site-nav-links {
-      gap: 0 .35rem;
+      gap: 0 .1rem;
     }
   }
 }
@@ -610,8 +610,7 @@ body > header {
 article {
   counter-reset: chapter;
 
-  > h2,
-  .post-body > h2 {
+  > h2 {
     counter-increment: chapter;
     font-family: $display-font;
     font-weight: 400;
@@ -822,10 +821,6 @@ article > header h1 {
   letter-spacing: -.015em;
 }
 
-.post-body {
-  position: relative;
-}
-
 .toc {
   summary {
     font-family: $label-font;
@@ -853,6 +848,10 @@ article > header h1 {
 
 // Wide screens: the TOC becomes a sticky chapter index in the left gutter
 @media (min-width: 1500px) {
+  article {
+    position: relative;
+  }
+
   .toc {
     position: absolute;
     top: 0;
@@ -861,7 +860,7 @@ article > header h1 {
     width: 15rem;
     background: none;
 
-    // The details box spans the whole post body; its content slot is what
+    // The details box spans the whole article; its content slot is what
     // sticks (Chromium ::details-content). Elsewhere the index scrolls away.
     &::details-content {
       position: sticky;
