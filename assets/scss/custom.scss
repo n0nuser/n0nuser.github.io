@@ -825,11 +825,12 @@ html[data-mode='dark'] .mode-icon--moon {
     z-index: -1;
     inset: -2rem calc(50% - 50vw);
     pointer-events: none;
-    // Fades toward the copy: below the portrait on phones, right of it on desktop
-    mask-image: linear-gradient(to bottom, #000 0, #000 30%, transparent 70%);
+    // Full banner width, with a soft hole where the copy sits: below the
+    // portrait on phones, right of it on desktop
+    mask-image: radial-gradient(ellipse 75% 34% at 50% 68%, transparent 35%, #000 85%);
 
     @include respond-above($mobile-breakpoint) {
-      mask-image: linear-gradient(to right, #000 0, #000 calc(50% - 8rem), transparent calc(50% + 14rem));
+      mask-image: radial-gradient(ellipse 26rem 62% at calc(50% + 7rem) 50%, transparent 30%, #000 90%);
     }
   }
 
@@ -863,31 +864,42 @@ html[data-mode='dark'] .mode-icon--moon {
 }
 
 @media (min-width: 1200px) {
+  // Quiet vertical tab on the left viewport edge: ~32px wide visually, a
+  // 44px hit area via ::after, and far from the text column at any width.
   .toc-drawer-btn {
     position: fixed;
-    left: 1rem;
-    bottom: 1.5rem;
+    left: 0;
+    top: 50%;
     z-index: 50;
     display: inline-flex;
     align-items: center;
-    min-height: 44px;
-    padding: 0 1rem;
+    width: 32px;
+    padding: .9rem 0;
+    writing-mode: vertical-rl;
+    transform: translateY(-50%) rotate(180deg);
     font-family: $label-font;
-    font-size: .8rem;
-    letter-spacing: .12em;
+    font-size: .7rem;
+    letter-spacing: .16em;
     text-transform: uppercase;
-    color: var(--fg);
+    color: var(--alt-fg);
     background: var(--bg);
     border: 1px solid var(--card-bd);
-    border-radius: 999px;
+    border-left: 0;
+    border-radius: 6px 0 0 6px;
+    opacity: .6;
     cursor: pointer;
+    transition: opacity .2s ease, border-color .2s ease;
 
-    &::before {
-      content: '— ' / '';
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0 -12px 0 0;
     }
 
     &:hover,
     &:focus-visible {
+      opacity: 1;
+      color: var(--fg);
       border-color: var(--grad-a);
     }
   }
@@ -931,5 +943,65 @@ html[data-mode='dark'] .mode-icon--moon {
 
   .toc-drawer::backdrop {
     background: rgba(0, 0, 0, .45);
+  }
+}
+
+// --- Dark mode: sparse starfield in the page margins -------------------------
+// Fixed, behind content, dark mode only, and masked out across the text column
+// (~72ch plus padding) so no star sits behind running text. Hidden where the
+// viewport has no real gutters. The scatter layer is static; only the few
+// bright stars twinkle (motion.scss), each group a 2px element whose stars are
+// box-shadows, so opacity animates on tiny composited layers.
+
+@media (min-width: 1100px) {
+  html[data-mode='dark'] body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: .45;
+    background-image:
+      radial-gradient(circle at 23px 41px, #e0c3fc 0 .5px, transparent 1px),
+      radial-gradient(circle at 131px 97px, #b8c6ff 0 .5px, transparent 1px),
+      radial-gradient(circle at 67px 9px, #c77dff 0 .6px, transparent 1.1px),
+      radial-gradient(circle at 151px 19px, #e0c3fc 0 .6px, transparent 1.1px),
+      radial-gradient(circle at 41px 203px, #b8c6ff 0 .75px, transparent 1.25px);
+    background-size: 173px 157px, 173px 157px, 211px 139px, 211px 139px, 89px 241px;
+    mask-image: linear-gradient(to right, #000 0, #000 calc(50% - 31rem), transparent calc(50% - 28rem), transparent calc(50% + 28rem), #000 calc(50% + 31rem), #000 100%);
+  }
+
+  // Bright stars: 3 phase groups, 7 stars, all inside the gutters
+  html[data-mode='dark']::before,
+  html[data-mode='dark']::after,
+  html[data-mode='dark'] body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  html[data-mode='dark']::before {
+    box-shadow:
+      calc(50vw - 36rem) 14vh 0 .5px #e0c3fc, calc(50vw - 36rem) 14vh 6px 1px rgba(199, 125, 255, .55),
+      calc(50vw + 40rem) 38vh 0 .5px #f3e8ff, calc(50vw + 40rem) 38vh 6px 1px rgba(184, 198, 255, .5),
+      calc(50vw - 44rem) 81vh 0 .5px #e0c3fc, calc(50vw - 44rem) 81vh 6px 1px rgba(199, 125, 255, .55);
+  }
+
+  html[data-mode='dark']::after {
+    box-shadow:
+      calc(50vw + 34rem) 9vh 0 .5px #f3e8ff, calc(50vw + 34rem) 9vh 7px 1px rgba(199, 125, 255, .5),
+      calc(50vw - 39rem) 52vh 0 1px #e0c3fc, calc(50vw - 39rem) 52vh 7px 1px rgba(184, 198, 255, .5);
+  }
+
+  html[data-mode='dark'] body::after {
+    box-shadow:
+      calc(50vw + 46rem) 67vh 0 .5px #e0c3fc, calc(50vw + 46rem) 67vh 6px 1px rgba(199, 125, 255, .55),
+      calc(50vw + 37rem) 90vh 0 1px #f3e8ff, calc(50vw + 37rem) 90vh 7px 1px rgba(184, 198, 255, .5);
   }
 }

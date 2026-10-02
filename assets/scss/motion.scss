@@ -181,6 +181,21 @@
     animation: star-twinkle 3.7s ease-in-out 1.3s infinite alternate;
   }
 
+  // Margin starfield (dark mode): only the bright-star groups twinkle
+  @media (min-width: 1100px) {
+    html[data-mode='dark']::before {
+      animation: star-twinkle 6.3s ease-in-out infinite alternate;
+    }
+
+    html[data-mode='dark']::after {
+      animation: star-twinkle 4.1s ease-in-out 1.7s infinite alternate;
+    }
+
+    html[data-mode='dark'] body::after {
+      animation: star-twinkle 5.2s ease-in-out .6s infinite alternate;
+    }
+  }
+
   // TOC drawer slides in from the left (popover + @starting-style)
   .toc-drawer {
     transition:
