@@ -59,6 +59,13 @@
           if (window.matchMedia('(max-width: 768px)').matches) {
             document.currentScript.previousElementSibling.removeAttribute('open');
           }
+          // Following a link in the wide-screen drawer closes it
+          var tocDrawer = document.getElementById('toc-drawer');
+          if (tocDrawer && tocDrawer.hidePopover) {
+            tocDrawer.addEventListener('click', function (event) {
+              if (event.target.closest('a')) tocDrawer.hidePopover();
+            });
+          }
         </script>
       {{ end }}
       

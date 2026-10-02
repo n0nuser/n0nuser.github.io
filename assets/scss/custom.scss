@@ -523,9 +523,41 @@ body > header {
     }
   }
 
+  // Phones: brand + theme toggle on row 1, links on a single row 2
   @include respond-below($mobile-breakpoint) {
+    .site-nav {
+      display: grid;
+      grid-template-columns: 44px 1fr 44px;
+      align-items: center;
+    }
+
+    .site-nav-brand {
+      grid-column: 2;
+      justify-self: center;
+    }
+
+    .mode-toggle {
+      grid-column: 3;
+      grid-row: 1;
+    }
+
     .site-nav-links {
+      grid-column: 1 / -1;
       gap: 0 .1rem;
+      flex-wrap: nowrap;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .site-nav-links a {
+      font-size: .7rem;
+    }
+  }
+
+  // Desktop: links then toggle, flush right
+  @include respond-above($mobile-breakpoint) {
+    .site-nav-links {
+      margin-left: auto;
     }
   }
 }
@@ -744,7 +776,8 @@ body > footer {
 
 // --- Theme toggle in the top bar ---------------------------------------------
 
-body > header .mode-toggle {
+// :where keeps specificity at the <noscript> .req-js level, which comes later
+:where(body > header) .mode-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
