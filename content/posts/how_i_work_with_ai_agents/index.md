@@ -377,7 +377,7 @@ The workers burn context. The orchestrator should burn much less, since it only 
 
 The same run, from the first `workspace create` to three workers asking for approval, in about 45 seconds:
 
-<video src="img/herdr-loop.mp4" poster="img/herdr-dispatch.png" muted playsinline controls preload="metadata" width="100%" aria-label="Recording of an orchestrator creating three herdr workspaces, starting a worker in each and briefing them, until each worker stops at an approval prompt"></video>
+<video src="img/herdr-loop.mp4" poster="img/herdr-dispatch-poster.webp" muted playsinline controls preload="metadata" width="100%" aria-label="Recording of an orchestrator creating three herdr workspaces, starting a worker in each and briefing them, until each worker stops at an approval prompt"></video>
 
 Every worker stopped at the same place: its first shell command. That's the `blocked` state doing its job:
 
@@ -400,7 +400,7 @@ At work that doesn't happen, and the reason is boring: every "Yes, and don't ask
 
 Second run: all three workers went from `working` to `done` without asking anything. The orchestrator read the three diffs, ran the tests in each worktree, then cleared `t1` and gave it the fourth task:
 
-<video src="img/herdr-loop-2.mp4" poster="img/herdr-done.png" muted playsinline controls preload="metadata" width="100%" aria-label="Recording of the second run: three workers restarted with an allowlist, briefed, all reaching done, then worker t1 cleared and given task T4"></video>
+<video src="img/herdr-loop-2.mp4" poster="img/herdr-done-poster.webp" muted playsinline controls preload="metadata" width="100%" aria-label="Recording of the second run: three workers restarted with an allowlist, briefed, all reaching done, then worker t1 cleared and given task T4"></video>
 
 {{< img "herdr-done.png" "The orchestrator's log after the second run: three workers done, a review note, t1 cleared and reassigned T4, which also finished" "border" >}}
 
