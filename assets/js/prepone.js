@@ -208,6 +208,6 @@ document.addEventListener('DOMContentLoaded', function () {
   PREFERS_DARK.addListener(OSModeChange);
 
   // Mode change button
-  document.querySelector('footer button')
+  document.querySelector('.mode-toggle')
     .addEventListener('click', userModeChange)
 })

@@ -43,6 +43,13 @@
       </header>
     
       {{ if .Params.toc }}
+        {{- /* Wide screens: the same TOC as a left drawer, native popover (no JS).
+               The copy gets its own id so the page keeps unique ids. */}}
+        <button class="toc-drawer-btn" type="button" popovertarget="toc-drawer">{{ T "table_of_contents" }}</button>
+        <div id="toc-drawer" class="toc-drawer" popover>
+          <p class="toc-drawer-title">{{ T "table_of_contents" }}</p>
+          {{ replace .Page.TableOfContents `id="TableOfContents"` `id="toc-drawer-nav"` | safeHTML }}
+        </div>
         <details class="toc" open>
           <summary class="outline-dashed">{{ T "table_of_contents" }}</summary>
           {{ .Page.TableOfContents }}

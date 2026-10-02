@@ -456,26 +456,23 @@ body > footer section {
 html[data-mode='dark'] {
   --grad-a: #{$grad-a-dark};
   --grad-b: #{$grad-b-dark};
-  --grid-line: #{$grid-line-dark};
+  --star-1: #e0c3fc;
+  --star-2: #c77dff;
+  --star-3: #b8c6ff;
 }
 
 html[data-mode='light'] {
   --grad-a: #{$grad-a-light};
   --grad-b: #{$grad-b-light};
-  --grid-line: #{$grid-line-light};
+  --star-1: #7b2cbf;
+  --star-2: #5a189a;
+  --star-3: #240046;
 }
 
 html {
   --grad: linear-gradient(100deg, var(--grad-a), var(--grad-b));
-  --cell: 40px;
-
-  @include respond-above($mobile-breakpoint) {
-    --cell: 56px;
-  }
 }
 
-$sparkle-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 6.87C50.2 8.13 50.4 8.13 51.47 8.33C50.4 8.53 50.2 8.53 50 9.8C49.8 8.53 49.6 8.53 48.53 8.33C49.6 8.13 49.8 8.13 50 6.87Z'/%3E%3C/svg%3E";
-$noise-svg: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
 
 .visually-hidden {
   position: absolute;
@@ -496,50 +493,11 @@ body {
   overflow-x: clip;
 }
 
-body {
-  position: relative;
-  isolation: isolate;
-
-  // Hairline crosshair grid + film grain, fixed behind the page. Lines sit on
-  // the centre of each tile so the grid is symmetric around the viewport.
-  &::before {
-    content: '';
-    position: fixed;
-    inset: 0 0 auto;
-    z-index: -2;
-    height: calc(100vh + var(--cell) * 8);
-    pointer-events: none;
-    background-image:
-      url("#{$noise-svg}"),
-      linear-gradient(transparent calc(50% - .5px), var(--grid-line) calc(50% - .5px), var(--grid-line) calc(50% + .5px), transparent calc(50% + .5px)),
-      linear-gradient(90deg, transparent calc(50% - .5px), var(--grid-line) calc(50% - .5px), var(--grid-line) calc(50% + .5px), transparent calc(50% + .5px));
-    background-size: 160px 160px, var(--cell) var(--cell), var(--cell) var(--cell);
-    background-position: 0 0, center top, center top;
-  }
-
-  // ✦ marks on every sixth crossing, inked with the signature gradient.
-  // The mask tile is 6x6 cells with the mark at (50%, 8.333%): that is half a
-  // cell down, which is exactly where the first horizontal line sits.
-  &::after {
-    content: '';
-    position: fixed;
-    inset: 0 0 auto;
-    z-index: -1;
-    height: calc(100vh + var(--cell) * 8);
-    pointer-events: none;
-    background: var(--grad);
-    opacity: .5;
-    mask-image: url("#{$sparkle-svg}");
-    mask-size: calc(var(--cell) * 6) calc(var(--cell) * 6);
-    mask-position: center top;
-  }
-}
-
-// --- Header: geometric logotype + small mono nav -----------------------------
+// --- Header: small mono nav + theme toggle ------------------------------------
 
 body > header {
   position: relative;
-  border-bottom: 1px solid var(--grid-line);
+  border-bottom: 1px solid var(--card-bd);
   background: color-mix(in srgb, var(--bg) 70%, transparent);
 
   // Signature hairline under the header
@@ -550,10 +508,6 @@ body > header {
     height: 1px;
     background: var(--grad);
     opacity: .8;
-  }
-
-  .site-brand-name {
-    padding-block: 0;
   }
 
   .site-nav-links a {
@@ -574,32 +528,6 @@ body > header {
       gap: 0 .1rem;
     }
   }
-}
-
-.logotype {
-  display: inline-flex;
-  align-items: flex-end;
-  gap: 2px;
-  line-height: 1;
-}
-
-.logotype-cell {
-  display: inline-grid;
-  place-items: center;
-  width: 1.05em;
-  height: 1.3em;
-  font-family: $heading-font;
-  font-weight: 600;
-  font-size: .95rem;
-  text-transform: uppercase;
-  color: var(--alt-fg);
-  border: 1px solid var(--grid-line);
-  border-bottom: 2px solid currentColor;
-}
-
-.logotype-gap {
-  display: inline-block;
-  width: .45em;
 }
 
 // --- Section labels: mono caps chapter index ("— 01") -------------------------
@@ -803,96 +731,6 @@ article > header h1 {
   letter-spacing: -.015em;
 }
 
-.toc {
-  summary {
-    font-family: $label-font;
-    font-size: .8rem;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-
-    &::before {
-      content: '— ' / '';
-    }
-  }
-
-  // Highlights the section currently in view (Chromium scroll markers);
-  // elsewhere the list simply stays static.
-  #TableOfContents {
-    scroll-target-group: auto;
-
-    // stylelint-disable-next-line selector-pseudo-class-no-unknown -- Chromium 140+ scroll markers
-    a:target-current {
-      color: var(--grad-a);
-      text-decoration-thickness: 2px;
-    }
-  }
-}
-
-// Wide screens: the TOC becomes a sticky chapter index in the left gutter
-@media (min-width: 1500px) {
-  article {
-    position: relative;
-  }
-
-  .toc {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    // Fit the gutter: (viewport - article) / 2, minus a 2.5rem gap to the text
-    // and a 1.5rem edge margin (covers the scrollbar). 100% = article width.
-    right: calc(100% + 2.5rem);
-    width: #{"min(15rem, calc((100vw - 100%) / 2 - 4rem))"};
-    background: none;
-
-    // The details box spans the whole article; its content slot is what
-    // sticks (Chromium ::details-content). Elsewhere the index scrolls away.
-    &::details-content {
-      position: sticky;
-      top: 4rem;
-    }
-
-    summary {
-      position: sticky;
-      top: 1.5rem;
-      list-style: none;
-      padding: .5rem 0;
-      background: none;
-      border: 0;
-      box-shadow: none;
-      text-shadow: none;
-      color: var(--alt-fg);
-    }
-
-    &[open] summary {
-      padding: .5rem 0;
-      box-shadow: none;
-    }
-
-    nav#TableOfContents {
-      max-height: calc(100vh - 6rem);
-      overflow-y: auto;
-      border: 0;
-      border-left: 1px solid var(--grid-line);
-      border-radius: 0;
-      box-shadow: none;
-      padding: 0 0 0 1rem;
-      font-size: .85rem;
-
-      a {
-        color: var(--fg);
-        text-decoration: none;
-        word-break: normal;
-        overflow-wrap: break-word;
-
-        &:hover {
-          color: var(--alt-fg);
-          text-decoration: underline;
-        }
-      }
-    }
-  }
-}
-
 // Reading progress: signature gradient instead of flat accent
 .reading-progress {
   background: var(--grad);
@@ -901,5 +739,164 @@ article > header h1 {
 // --- Footer ---------------------------------------------------------------------
 
 body > footer {
-  border-top: 1px solid var(--grid-line);
+  border-top: 1px solid var(--card-bd);
+}
+
+// --- Theme toggle in the top bar ---------------------------------------------
+
+body > header .mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  color: var(--fg);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+
+  .mode-icon {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+
+  .mode-icon--moon {
+    fill: currentColor;
+  }
+
+  .mode-icon--sun {
+    fill: currentColor;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+  }
+}
+
+// Light mode offers the moon (go dark), dark mode offers the sun
+html[data-mode='light'] .mode-icon--sun,
+html[data-mode='dark'] .mode-icon--moon {
+  display: none;
+}
+
+// --- Home hero: star scatter --------------------------------------------------
+// Three layers of tiny dots on co-prime tile periods (97x83, 61x71, 131x109),
+// several dots per tile at uneven offsets, so the field never lines up into a
+// grid. Two pseudo-elements so the layers twinkle out of phase (motion.scss).
+
+.index .home-hero {
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: -2rem calc(50% - 50vw);
+    pointer-events: none;
+    // Fades toward the copy: below the portrait on phones, right of it on desktop
+    mask-image: linear-gradient(to bottom, #000 0, #000 30%, transparent 70%);
+
+    @include respond-above($mobile-breakpoint) {
+      mask-image: linear-gradient(to right, #000 0, #000 calc(50% - 8rem), transparent calc(50% + 14rem));
+    }
+  }
+
+  &::before {
+    background-image:
+      radial-gradient(circle at 13px 21px, var(--star-1) 0 .5px, transparent 1px),
+      radial-gradient(circle at 61px 57px, var(--star-1) 0 .5px, transparent 1px),
+      radial-gradient(circle at 82px 9px, var(--star-2) 0 .5px, transparent 1px),
+      radial-gradient(circle at 29px 77px, var(--star-3) 0 .75px, transparent 1.25px),
+      radial-gradient(circle at 101px 31px, var(--star-1) 0 .75px, transparent 1.25px),
+      radial-gradient(circle at 66px 98px, var(--star-2) 0 .75px, transparent 1.25px);
+    background-size: 97px 83px, 97px 83px, 97px 83px, 131px 109px, 131px 109px, 131px 109px;
+  }
+
+  &::after {
+    background-image:
+      radial-gradient(circle at 7px 44px, var(--star-2) 0 .6px, transparent 1.1px),
+      radial-gradient(circle at 38px 12px, var(--star-3) 0 .6px, transparent 1.1px),
+      radial-gradient(circle at 52px 63px, var(--star-1) 0 .6px, transparent 1.1px);
+    background-size: 61px 71px;
+    background-position: 17px 5px;
+  }
+}
+
+// --- Wide screens: "Contents" button opens the TOC as a left drawer -----------
+// Native popover: light dismiss, Esc, top layer and focus come from the browser.
+
+.toc-drawer-btn,
+.toc-drawer {
+  display: none;
+}
+
+@media (min-width: 1200px) {
+  .toc-drawer-btn {
+    position: fixed;
+    left: 1rem;
+    bottom: 1.5rem;
+    z-index: 50;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 1rem;
+    font-family: $label-font;
+    font-size: .8rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--fg);
+    background: var(--bg);
+    border: 1px solid var(--card-bd);
+    border-radius: 999px;
+    cursor: pointer;
+
+    &::before {
+      content: '— ' / '';
+    }
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--grad-a);
+    }
+  }
+
+  .toc-drawer:popover-open {
+    display: block;
+    box-sizing: border-box;
+    inset: 0 auto 0 0;
+    width: 22rem;
+    height: 100vh;
+    max-height: none;
+    margin: 0;
+    padding: 1.5rem 1.5rem 2rem;
+    overflow-y: auto;
+    color: var(--fg);
+    background: var(--bg);
+    border: 0;
+    border-right: 1px solid var(--card-bd);
+
+    a {
+      color: var(--fg);
+    }
+
+    ul {
+      padding-left: 1.1rem;
+    }
+
+    li {
+      margin: .35rem 0;
+    }
+  }
+
+  .toc-drawer-title {
+    margin: 0 0 1rem;
+    font-family: $label-font;
+    font-size: .8rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--alt-fg);
+  }
+
+  .toc-drawer::backdrop {
+    background: rgba(0, 0, 0, .45);
+  }
 }

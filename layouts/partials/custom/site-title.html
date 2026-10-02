@@ -1,16 +1,5 @@
 {{ $home := .Site.Home }}
-{{ $brand := .Site.Params.brandName | default .Site.Title }}
 <div class="site-nav-brand">
   <a class="site-brand-avatar-link" href="{{ "/" | relLangURL }}" aria-label="Go to homepage">{{- partial "nav-avatar-img" $home -}}</a>
-  {{- /* Geometric logotype: one square cell per letter on an underline grid.
-         The cells are decoration; the real name is the visually hidden span. */}}
-  <a class="site-brand-name" href="{{ "/" | relLangURL }}">
-    <span class="logotype" aria-hidden="true">
-      {{- range $i, $ch := split $brand "" -}}
-        {{- if eq $ch " " -}}<span class="logotype-gap"></span>
-        {{- else -}}<span class="logotype-cell" style="--i: {{ $i }}">{{ $ch }}</span>{{- end -}}
-      {{- end -}}
-    </span>
-    <span class="visually-hidden">{{ $brand }}</span>
-  </a>
+  <a class="site-brand-name" href="{{ "/" | relLangURL }}">{{ .Site.Params.brandName | default .Site.Title }}</a>
 </div>

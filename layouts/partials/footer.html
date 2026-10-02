@@ -29,15 +29,6 @@
 {{ end }}
 
 
-<!-- Footer button and color picker -->
-<section class="req-js">
-  <button class="outline-dashed" title="{{ T "change_mode" }}" aria-label="{{ T "change_mode" }}">
-    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <use xlink:href="#adjust" />
-    </svg>
-  </button>
-</section>
-
 <!-- Service worker: templated so the fingerprinted stylesheet path is injected
      at build time instead of precaching a 404 (issue #62). -->
 {{ $main := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | toCSS | minify | resources.Fingerprint "sha512" }}

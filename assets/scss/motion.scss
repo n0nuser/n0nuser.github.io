@@ -172,33 +172,32 @@
 // =============================================================================
 @media (prefers-reduced-motion: no-preference) {
 
-  // Grid parallax: the fixed hairline grid and its ✦ marks drift up at a
-  // fraction of the scroll speed (4 cells over the whole page).
-  @supports (animation-timeline: scroll()) {
-    body::before,
-    body::after {
-      animation: grid-drift linear both;
-      animation-timeline: scroll(root);
+  // Star scatter twinkles: two layers, opacity only, out of phase
+  .index .home-hero::before {
+    animation: star-twinkle 5.5s ease-in-out infinite alternate;
+  }
+
+  .index .home-hero::after {
+    animation: star-twinkle 3.7s ease-in-out 1.3s infinite alternate;
+  }
+
+  // TOC drawer slides in from the left (popover + @starting-style)
+  .toc-drawer {
+    transition:
+      transform .3s cubic-bezier(.2, .8, .2, 1),
+      opacity .3s ease,
+      overlay .3s allow-discrete,
+      display .3s allow-discrete;
+  }
+
+  .toc-drawer:popover-open {
+    transform: none;
+    opacity: 1;
+
+    @starting-style {
+      transform: translateX(-100%);
+      opacity: 0;
     }
-  }
-
-  // Logotype: cells drop into the underline grid one after another
-  .logotype-cell {
-    animation: logo-cell .5s cubic-bezier(.2, .9, .3, 1.3) both;
-    animation-delay: calc(var(--i) * 45ms);
-  }
-
-  .site-brand-name:hover .logotype-cell {
-    animation: logo-hop .45s ease both;
-    animation-delay: calc(var(--i) * 25ms);
-  }
-
-  // Sparkle marks twinkle (opacity only)
-  body::after {
-    animation:
-      grid-drift linear both,
-      twinkle 4s ease-in-out infinite alternate;
-    animation-timeline: scroll(root), auto;
   }
 
   .index {
@@ -263,34 +262,9 @@
   }
 }
 
-@keyframes grid-drift {
-  to {
-    transform: translateY(calc(var(--cell) * -4));
-  }
-}
 
-@keyframes twinkle {
-  from {
-    opacity: .25;
-  }
 
-  to {
-    opacity: .6;
-  }
-}
 
-@keyframes logo-cell {
-  from {
-    opacity: 0;
-    transform: translateY(-60%) rotate(-12deg);
-  }
-}
-
-@keyframes logo-hop {
-  40% {
-    transform: translateY(-25%);
-  }
-}
 
 
 
@@ -299,6 +273,16 @@
     opacity: .4;
     filter: blur(10px);
     transform: scale(.92);
+  }
+}
+
+@keyframes star-twinkle {
+  from {
+    opacity: .35;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 
