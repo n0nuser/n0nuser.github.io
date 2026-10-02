@@ -7,3 +7,7 @@ $font-size: 16px;
 $heading-weight: 700;
 $heading-bold-weight: 600;
 $body-bold-weight: 700;
+
+// Editorial display face (headlines only) and the mono used for chapter labels
+$display-font: 'Instrument Serif', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+$label-font: $code-font;

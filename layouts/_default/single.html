@@ -42,6 +42,7 @@
         
       </header>
     
+      <div class="post-body">
       {{ if .Params.toc }}
         <details class="toc" open>
           <summary class="outline-dashed">{{ T "table_of_contents" }}</summary>
@@ -56,6 +57,7 @@
       {{ end }}
       
       {{ partial "processed-content" . }}
+      </div>
 
       {{ partial "post-discovery" . }}
 

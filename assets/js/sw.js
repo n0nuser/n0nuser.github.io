@@ -22,7 +22,8 @@ const BASE_CACHE_FILES = [
     '/favicon-16x16.png',
     '/favicon-32x32.png',
     '/favicon.ico',
-    '/fonts/GeistVF.woff',
+    '/fonts/GeistVF-latin.woff2',
+    '/fonts/instrument-serif-latin-regular.woff2',
     '/fonts/jetbrains-mono-v12-latin-regular.woff',
 ];
 

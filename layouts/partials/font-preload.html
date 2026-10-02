@@ -1,5 +1,11 @@
-{{ with resources.Get "fonts/GeistVF.woff" }}
-<link rel="preload" href="{{ .RelPermalink }}" as="font" type="font/woff" crossorigin>
+{{ with resources.Get "fonts/GeistVF-latin.woff2" }}
+<link rel="preload" href="{{ .RelPermalink }}" as="font" type="font/woff2" crossorigin>
+{{ end }}
+{{/* Full Geist: published for non-Latin characters only, not preloaded. */}}
+{{ with resources.Get "fonts/GeistVF.woff" }}{{ .Publish }}{{ end }}
+{{/* Display serif: preloaded so `font-display: optional` can use it on first paint. */}}
+{{ with resources.Get "fonts/instrument-serif-latin-regular.woff2" }}
+<link rel="preload" href="{{ .RelPermalink }}" as="font" type="font/woff2" crossorigin>
 {{ end }}
 {{/* Published without preload: only pages with code blocks need it. */}}
 {{ with resources.Get "fonts/jetbrains-mono-v12-latin-regular.woff" }}{{ .Publish }}{{ end }}

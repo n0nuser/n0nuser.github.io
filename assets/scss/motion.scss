@@ -52,8 +52,8 @@
       overflow: hidden;
       vertical-align: bottom;
       white-space: nowrap;
-      // "Hey there!" = 10 characters, each followed by the kicker's letter-spacing
-      width: calc(10ch + 10 * .06em);
+      // "Hey there!" = 10 characters, each followed by the kicker's .18em letter-spacing
+      width: calc(10ch + 10 * .18em);
       border-right: 2px solid currentColor;
       animation:
         hero-type .8s steps(10, end) .2s both,
@@ -151,5 +151,238 @@
   from {
     opacity: 0;
     transform: translateY(12px);
+  }
+}
+
+// =============================================================================
+// feat/crazy-motion layer. Transform / opacity / filter only (plus the hover-only
+// conic spin), nothing on the LCP text, nothing that changes layout.
+// =============================================================================
+@media (prefers-reduced-motion: no-preference) {
+
+  // Grid parallax: the fixed hairline grid and its ✦ marks drift up at a
+  // fraction of the scroll speed. Shift = 4 cells so the pattern stays aligned.
+  @supports (animation-timeline: scroll()) {
+    body::before,
+    body::after {
+      animation: grid-drift linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+
+  // Logotype: cells drop into the underline grid one after another
+  .logotype-cell {
+    animation: logo-cell .5s cubic-bezier(.2, .9, .3, 1.3) both;
+    animation-delay: calc(var(--i) * 45ms);
+  }
+
+  .site-brand-name:hover .logotype-cell {
+    animation: logo-hop .45s ease both;
+    animation-delay: calc(var(--i) * 25ms);
+  }
+
+  // Sparkle marks twinkle (opacity only)
+  body::after {
+    animation:
+      grid-drift linear both,
+      twinkle 4s ease-in-out infinite alternate;
+    animation-timeline: scroll(root), auto;
+  }
+
+  .index {
+    // Cube field fades in, then parallaxes away as the hero leaves
+    .home-hero::before {
+      animation: cubes-in 1.2s ease-out .15s both;
+    }
+
+    @supports (animation-timeline: view()) {
+      .home-hero::before {
+        animation:
+          cubes-in 1.2s ease-out .15s both,
+          cubes-away linear both;
+        animation-timeline: auto, view();
+        animation-range: normal, exit 0% exit 100%;
+      }
+
+      // pear.no in reverse: the portrait goes soft and recedes as you scroll on
+      .home-hero-photo img {
+        animation: photo-recede linear both;
+        animation-timeline: view();
+        animation-range: exit 0% exit 100%;
+      }
+    }
+
+    .home-hero-photo::before {
+      animation: orbit 14s linear infinite;
+    }
+  }
+
+  // Card border glow spins while hovered
+  .posts a:hover::after,
+  .posts a:focus-visible::after {
+    animation: spin 2.4s linear infinite;
+  }
+
+  .posts a:hover {
+    transform: translateY(-3px);
+  }
+
+  // /posts cards wipe in from the left as they enter (replaces the fade-up).
+  // backwards fill: once revealed, no clip remains to cut off the hover glow.
+  @supports (animation-timeline: view()) {
+    .posts li {
+      animation: card-wipe linear backwards;
+      animation-timeline: view();
+      animation-range: entry 0% entry 80%;
+    }
+
+    // Chapter labels slide in as their section arrives
+    article > h2::before,
+    .post-body > h2::before {
+      animation: label-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 100%;
+    }
+
+    // Post images and videos come into focus as they scroll in
+    .post-body img,
+    .post-body video {
+      animation: focus-in linear backwards;
+      animation-timeline: view();
+      animation-range: entry 0% entry 90%;
+    }
+
+    // Footer wordmark rises behind the copyright
+    body > footer::before {
+      animation: wordmark-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 50%;
+    }
+  }
+
+  // Page change: the incoming page wipes down over the old one, which sinks
+  // back slightly. Shared post titles still morph on top (see above).
+  ::view-transition-old(root) {
+    animation: vt-sink .45s cubic-bezier(.7, 0, .3, 1) both;
+  }
+
+  ::view-transition-new(root) {
+    animation: vt-wipe .45s cubic-bezier(.7, 0, .3, 1) both;
+  }
+}
+
+@keyframes grid-drift {
+  to {
+    transform: translateY(calc(var(--cell) * -4));
+  }
+}
+
+@keyframes twinkle {
+  from {
+    opacity: .35;
+  }
+
+  to {
+    opacity: .85;
+  }
+}
+
+@keyframes logo-cell {
+  from {
+    opacity: 0;
+    transform: translateY(-60%) rotate(-12deg);
+  }
+}
+
+@keyframes logo-hop {
+  40% {
+    transform: translateY(-25%);
+  }
+}
+
+@keyframes cubes-in {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes cubes-away {
+  to {
+    opacity: .2;
+    transform: translateY(18%) scale(1.08);
+  }
+}
+
+@keyframes photo-recede {
+  to {
+    opacity: .4;
+    filter: blur(10px);
+    transform: scale(.92);
+  }
+}
+
+@keyframes orbit {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes spin {
+  to {
+    --spin: 360deg;
+  }
+}
+
+@keyframes card-wipe {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+
+  to {
+    clip-path: inset(0);
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes label-in {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+}
+
+@keyframes focus-in {
+  from {
+    opacity: .3;
+    filter: blur(12px) saturate(.4);
+    transform: scale(1.03);
+  }
+}
+
+@keyframes wordmark-rise {
+  from {
+    opacity: 0;
+    transform: translateY(30%);
+  }
+}
+
+@keyframes vt-sink {
+  to {
+    opacity: .4;
+    transform: scale(.97);
+  }
+}
+
+@keyframes vt-wipe {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+
+  to {
+    clip-path: inset(0);
   }
 }

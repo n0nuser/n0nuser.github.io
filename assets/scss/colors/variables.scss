@@ -18,13 +18,13 @@ $light-card-border: #d9d4ca;
 $light-letterpress: rgba(0, 0, 0, .2);
 
 // Dark mode palette
-$dark-background: #1f1f1f; // # Body - before: 282828, 22272b
+$dark-background: #0c0f14; // slate near-black; before: #1f1f1f, 282828, 22272b
 $dark-foreground: #e6e6e6; // #bbb
 
-$dark-alt-background: #232323; // # Header and footer background - before: 161a1d
+$dark-alt-background: #121722; // (was #232323) // # Header and footer background - before: 161a1d
 $dark-alt-foreground: #f1f1f1; // #ddd
 
-$dark-details: #1a1a1a;
+$dark-details: #0a0d12; // (was #1a1a1a)
 $dark-error-color: #ff3131;
 
 $dark-bg-modifier: rgba(255, 255, 255, .3);
@@ -32,7 +32,7 @@ $dark-bg-modifier: rgba(255, 255, 255, .3);
 $dark-input-background: #222;
 $dark-input-foreground: #f0f0f0;
 $dark-input-border: #707070; // >= 3:1 on the input background (WCAG 1.4.11)
-$dark-card-border: #3d3d3d;
+$dark-card-border: #2a3240; // (was #3d3d3d)
 
 $dark-letterpress: rgba(255, 255, 255, .2);
 
@@ -53,3 +53,13 @@ $home-underline-pink-light:   #bb4afc55;
 $home-underline-yellow-dark:  #8a6b2a;
 $home-underline-mint-dark:    #2f7a55;
 $home-underline-pink-dark:    #8b3c5e;
+// Pink -> blue signature gradient. Decorative only (borders, glows, rules,
+// large display text); body links keep --accent for contrast.
+$grad-pink-dark: #ff5fa2;
+$grad-blue-dark: #5b8cff;
+$grad-pink-light: #c2185b;
+$grad-blue-light: #2f5bd3;
+
+// Hairline grid lines
+$grid-line-dark: rgba(140, 160, 200, .09);
+$grid-line-light: rgba(30, 30, 30, .07);

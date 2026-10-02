@@ -14,12 +14,22 @@
 /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
 $font-display: swap;
 
-/* Geist Variable */
+/* Geist Variable. The full woff only downloads for characters outside the
+   Latin subset below; faces declared later win, so the subset serves Latin. */
 @font-face {
     font-display: $font-display;
     font-family: 'Geist Sans';
     src: url('../fonts/GeistVF.woff') format('woff');
     font-weight: 100 1000;
+}
+
+/* Geist Variable, Latin subset as woff2 (29 KB vs 65 KB) - the preloaded one */
+@font-face {
+    font-display: $font-display;
+    font-family: 'Geist Sans';
+    src: url('../fonts/GeistVF-latin.woff2') format('woff2');
+    font-weight: 100 1000;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2190-21FF, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 /* jetbrains-mono-regular - latin */
@@ -29,4 +39,14 @@ $font-display: swap;
     font-weight: 400;
     font-display: $font-display;
     src: url('../fonts/jetbrains-mono-v12-latin-regular.woff') format('woff');
+}
+/* Instrument Serif (OFL 1.1) - latin, regular only. Editorial display face for
+   headings. `optional` keeps it off the CLS budget: if the preloaded file is not
+   ready for the first paint, the fallback serif stays for that page view. */
+@font-face {
+    font-family: 'Instrument Serif';
+    font-style: normal;
+    font-weight: 400;
+    font-display: optional;
+    src: url('../fonts/instrument-serif-latin-regular.woff2') format('woff2');
 }
